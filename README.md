@@ -5,7 +5,11 @@
 # BindableEnum
 Provides an enumeration wrapper that holds whether binding from the original string is successful.
 
-This is useful when model state validation needs to be postponed to sometime after the automatic validation that is provided by an ApiController.
+This is useful when automatic model state validation needs to be disabled so that validation can be postponed to a later point in time. 
+
+Normally a bad enum will cause the binding to fail, even though it would be preferrable to check for this in the postponed validation. 
+
+With the bindable enum, this is avoided while also providing the convenience of automatically handling the conversion to an enum that would otherwise be missing when reverting back to using a string within a model.
 
 # Setup
 
