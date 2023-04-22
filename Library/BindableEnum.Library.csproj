@@ -1,14 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <RootNamespace>$(RootPackageId).BindableEnum</RootNamespace>
     <PackageId>$(RootPackageId).BindableEnum</PackageId>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <PackageVersion>$(Version)</PackageVersion>
     <Version>1.1.0</Version>
+    <Description>Enumeration wrapper for manual model state validation in ASP.NET Core.</Description>
+  </PropertyGroup>
+  <PropertyGroup Label="Pack">
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <RootNamespace>$(RootPackageId).BindableEnum</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <None Include="..\LICENSE.txt">
