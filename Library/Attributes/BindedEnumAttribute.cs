@@ -3,14 +3,23 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
-namespace BindableEnum.Library.Validation
+namespace BindableEnum.Library.Attributes
 {
     /// <summary>
     /// Validates that a bindable enum has been successfully binded.
     /// </summary>
-    public class BindableEnumAttribute : ValidationAttribute
+    public class BindedEnumAttribute : ValidationAttribute
     {
-        /// <inheritdoc/>
+        /// <summary>
+        /// <para>Validates that the bindable enum has been binded.</para>
+        /// <para>
+        /// A null value is considered valid. 
+        /// If nulls should not be allowed, then the <see cref="RequiredAttribute"/> should also be applied.
+        /// </para>
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="validationContext">The validation context.</param>
+        /// <returns>A success result if the bindable enum has been binded OR the value is null.</returns>
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             if (value == null)
