@@ -1,5 +1,5 @@
 ![](https://img.shields.io/github/v/release/Woody230/BindableEnum)
-[![](https://img.shields.io/nuget/v/BindableEnum)](https://www.nuget.org/packages?q=BindableEnum)
+[![](https://img.shields.io/nuget/v/Woody230.BindableEnum)](https://www.nuget.org/packages/Woody230.BindableEnum)
 ![](https://img.shields.io/github/license/Woody230/BindableEnum)
 
 # BindableEnum
