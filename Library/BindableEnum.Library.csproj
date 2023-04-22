@@ -3,6 +3,7 @@
     <PackageId>$(RootPackageId).BindableEnum</PackageId>
     <PackageVersion>$(Version)</PackageVersion>
     <Version>1.0.0</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="$(SwashbuckleAspNetCoreSwaggerGenPkgVer)" />
