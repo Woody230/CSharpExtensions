@@ -1,0 +1,15 @@
+<Project>
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <PlatformTarget>x64</PlatformTarget>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Authors>Brandon Selzer</Authors>
+    <RepositoryUrl>https://github.com/Woody230/BindableEnum</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <NeutralLanguage>en-us</NeutralLanguage>
+    <RepoRoot>$(MSBuildThisFileDirectory)</RepoRoot>
+  </PropertyGroup>
+  <PropertyGroup Label="Package Versions">
+    <SwashbuckleAspNetCorePkgVer>6.4.0</SwashbuckleAspNetCorePkgVer>
+  </PropertyGroup>
+</Project>
