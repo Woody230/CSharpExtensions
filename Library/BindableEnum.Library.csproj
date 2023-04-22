@@ -5,7 +5,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <PackageVersion>$(Version)</PackageVersion>
-    <Version>1.1.1</Version>
+    <Version>1.1.2</Version>
     <Description>Enumeration wrapper for manual model state validation in ASP.NET Core.</Description>
   </PropertyGroup>
   <PropertyGroup Label="Pack">
