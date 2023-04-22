@@ -84,6 +84,35 @@ namespace BindableEnum.Tests.Integration
             var response = await HttpClient.SendAsync(request);
 
             // Assert
+            var message = $"Value `{value}` must be one of: Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday";
+            await AssertDayOfWeekError(response, message);
+        }
+
+        /// <summary>
+        /// Verifies that validation fails when an enum is not provided.
+        /// </summary>
+        [Fact]
+        public async Task Create_WithoutEnum_ReturnsBadRequest()
+        {
+            // Arrange
+            var request = new HttpRequestMessage(HttpMethod.Post, "WeatherForecast");
+            request.Content = new StringContent("{}");
+            request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            // Act
+            var response = await HttpClient.SendAsync(request);
+
+            // Assert
+            await AssertDayOfWeekError(response, $"The DayOfWeek field is required.");
+        }
+
+        /// <summary>
+        /// Asserts that the day of week error in the <paramref name="response"/> has the given <paramref name="message"/>.
+        /// </summary>
+        /// <param name="response">The response.</param>
+        /// <param name="message">The expected message.</param>
+        private async Task AssertDayOfWeekError(HttpResponseMessage response, string message)
+        {
             using var scope = new AssertionScope();
             response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
 
@@ -92,8 +121,6 @@ namespace BindableEnum.Tests.Integration
 
             var model = JsonSerializer.Deserialize<ValidationProblemDetails>(content, _options);
             model.Errors.Should().ContainKey("DayOfWeek");
-
-            var message = $"Value `{value}` must be one of: Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday";
             model.Errors["DayOfWeek"].Should().BeEquivalentTo(new List<string>() { message });
         }
 

@@ -1,6 +1,7 @@
 using BindableEnum.Library.Models;
 using BindableEnum.Library.Validation;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace BindableEnum.Web.Models
 {
@@ -34,6 +35,7 @@ namespace BindableEnum.Web.Models
         /// <summary>
         /// The day of the week.
         /// </summary>
+        [Required]
         [BindableEnum]
         public BindableEnum<DayOfWeek> DayOfWeek { get; set; }
     }

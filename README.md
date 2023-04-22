@@ -24,15 +24,18 @@ This will map the `BindableEnum` generic type definition with an OpenApiSchema t
 Also, the `BindableEnumSchemaFilter` is applied in order to add the enumerations to the OpenApiSchema.
 
 ## Model
-When declaring your bindable enumeration, you can use the `BindableEnumAttribute` to validate that the enumeration has been successfully binded.
+When declaring your bindable enumeration, you can use the `BindableEnumAttribute` to validate that the enumeration has been successfully binded. 
+
+Note that a null bindable enumeration is NOT validated. The `RequiredAttribute` must be added to support this.
 
 ```c#
 using BindableEnum.Library.Models;
 using BindableEnum.Library.Validation;
-using System;
+using System.ComponentModel.DataAnnotations;
 
 public record WeatherForecast
 {
+    [Required]
     [BindableEnum]
     public BindableEnum<DayOfWeek> DayOfWeek { get; set; }
 }    
