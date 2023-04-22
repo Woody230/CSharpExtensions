@@ -9,7 +9,7 @@ This is useful when automatic model state validation needs to be disabled so tha
 
 Normally a bad enum will cause the binding to fail, even though it would be preferrable to check for this in the postponed validation. 
 
-With the bindable enum, this is avoided while also providing the convenience of automatically handling the conversion to an enum that would otherwise be missing when reverting back to using a string within a model.
+With the bindable enum this is avoided, while also providing the convenience of automatically handling the conversion to an enum that would otherwise be missing when reverting back to using a string within a model.
 
 # Setup
 
