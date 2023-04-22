@@ -1,6 +1,6 @@
 using System;
 
-namespace Web
+namespace BindableEnum.Web
 {
     public class WeatherForecast
     {

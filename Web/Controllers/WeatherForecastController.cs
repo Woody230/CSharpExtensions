@@ -1,10 +1,11 @@
+using BindableEnum.Web;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Web.Controllers
+namespace BindableEnum.Web.Controllers
 {
     [ApiController]
     [Route("[controller]")]
