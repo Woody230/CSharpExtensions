@@ -38,3 +38,11 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+/// <summary>
+/// The program.
+/// </summary>
+public partial class Program 
+{
+    // Needed so test project can access the program.
+}

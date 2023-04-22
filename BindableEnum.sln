@@ -3,14 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\BindableEnum.Web.csproj", "{8E67B46F-6A4B-4216-945C-582907A74658}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BindableEnum.Web", "Web\BindableEnum.Web.csproj", "{8E67B46F-6A4B-4216-945C-582907A74658}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{157B8944-014B-4B4C-9E10-82A6F95460EF}"
 	ProjectSection(SolutionItems) = preProject
 		Directory.Build.props = Directory.Build.props
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library", "Library\BindableEnum.Library.csproj", "{A2B1F15D-5EA0-44D9-8188-D89EA5DDC213}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BindableEnum.Library", "Library\BindableEnum.Library.csproj", "{A2B1F15D-5EA0-44D9-8188-D89EA5DDC213}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\BindableEnum.Tests.csproj", "{833AADC1-4AAF-4668-90B5-35460DD62BAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +28,10 @@ Global
 		{A2B1F15D-5EA0-44D9-8188-D89EA5DDC213}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2B1F15D-5EA0-44D9-8188-D89EA5DDC213}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2B1F15D-5EA0-44D9-8188-D89EA5DDC213}.Release|Any CPU.Build.0 = Release|Any CPU
+		{833AADC1-4AAF-4668-90B5-35460DD62BAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{833AADC1-4AAF-4668-90B5-35460DD62BAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{833AADC1-4AAF-4668-90B5-35460DD62BAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{833AADC1-4AAF-4668-90B5-35460DD62BAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

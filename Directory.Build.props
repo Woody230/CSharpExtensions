@@ -10,7 +10,13 @@
     <RepoRoot>$(MSBuildThisFileDirectory)</RepoRoot>
   </PropertyGroup>
   <PropertyGroup Label="Package Versions">
+    <FluentAssertionsPkgVer>6.10.0</FluentAssertionsPkgVer>
+    <MicrosoftAspNetCoreMvcTestingPkgVer>6.0.8</MicrosoftAspNetCoreMvcTestingPkgVer>
+    <MicrosoftNETTestSdkPkgVer>17.5.0</MicrosoftNETTestSdkPkgVer>
+    <MoqPkgVer>4.18.2</MoqPkgVer>
     <SwashbuckleAspNetCorePkgVer>6.4.0</SwashbuckleAspNetCorePkgVer>
     <SwashbuckleAspNetCoreSwaggerGenPkgVer>6.4.0</SwashbuckleAspNetCoreSwaggerGenPkgVer>
+    <xunitPkgVer>2.4.2</xunitPkgVer>
+    <xunitRunnerVisualStudioPkgVer>2.4.5</xunitRunnerVisualStudioPkgVer>
   </PropertyGroup>
 </Project>

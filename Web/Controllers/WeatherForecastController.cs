@@ -41,7 +41,8 @@ namespace BindableEnum.Web.Controllers
             {
                 Date = DateTime.Now.AddDays(index),
                 TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+                Summary = Summaries[Random.Shared.Next(Summaries.Length)],
+                DayOfWeek = (DayOfWeek)index
             })
             .ToArray();
         }
@@ -50,10 +51,11 @@ namespace BindableEnum.Web.Controllers
         /// Creates a weather forecast.
         /// </summary>
         /// <param name="forecast">The weather forecast.</param>
+        /// <returns>The weather forecast.</returns>
         [HttpPost(Name = "CreateWeatherForecast")]
         public IActionResult Post([FromBody] WeatherForecast forecast)
         {
-            return Ok();
+            return new OkObjectResult(forecast);
         }
     }
 }
