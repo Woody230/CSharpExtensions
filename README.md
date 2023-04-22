@@ -13,7 +13,9 @@ This is useful when model state validation needs to be postponed to sometime aft
 Configure the `BindableEnumSwaggerGenOptions` on the service collection.
 
 ```c#
-using BindableEnum.Library.Options;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Woody230.BindableEnum.Library.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.ConfigureOptions<BindableEnumSwaggerGenOptions>();
@@ -29,9 +31,9 @@ When declaring your bindable enumeration, you can use the `BindedEnumAttribute` 
 Note that a null bindable enumeration is NOT validated. The `RequiredAttribute` must be added to support this.
 
 ```c#
-using BindableEnum.Library.Attributes;
-using BindableEnum.Library.Models;
 using System.ComponentModel.DataAnnotations;
+using Woody230.BindableEnum.Library.Attributes;
+using Woody230.BindableEnum.Library.Models;
 
 public record WeatherForecast
 {
