@@ -2,7 +2,7 @@
 using System.Net.Http;
 using Xunit;
 
-namespace BindableEnum.Tests.Integration
+namespace Woody230.BindableEnum.Tests.Integration
 {
     /// <summary>
     /// Represents integration tests for the <see cref="Program"/>.

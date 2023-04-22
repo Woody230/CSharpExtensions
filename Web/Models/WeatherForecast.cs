@@ -1,9 +1,9 @@
-using BindableEnum.Library.Attributes;
-using BindableEnum.Library.Models;
 using System;
 using System.ComponentModel.DataAnnotations;
+using Woody230.BindableEnum.Library.Attributes;
+using Woody230.BindableEnum.Library.Models;
 
-namespace BindableEnum.Web.Models
+namespace Woody230.BindableEnum.Web.Models
 {
     /// <summary>
     /// Represents a weather forecast.
@@ -14,7 +14,7 @@ namespace BindableEnum.Web.Models
         /// The date.
         /// </summary>
         public DateTime Date { get; set; }
-        
+
         /// <summary>
         /// The temperature in degrees celsius.
         /// </summary>

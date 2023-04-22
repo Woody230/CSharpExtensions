@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BindableEnum.Library.Models
+namespace Woody230.BindableEnum.Library.Models
 {
     /// <summary>
     /// Represents an enumeration that is bind safe.

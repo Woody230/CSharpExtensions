@@ -1,6 +1,4 @@
-﻿using BindableEnum.Web.Controllers;
-using BindableEnum.Web.Models;
-using FluentAssertions;
+﻿using FluentAssertions;
 using FluentAssertions.Execution;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -11,9 +9,11 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Woody230.BindableEnum.Web.Controllers;
+using Woody230.BindableEnum.Web.Models;
 using Xunit;
 
-namespace BindableEnum.Tests.Integration
+namespace Woody230.BindableEnum.Tests.Integration
 {
     /// <summary>
     /// Represents tests for the <see cref="WeatherForecastController"/> related to creating a new weather forecast.

@@ -9,6 +9,10 @@
     <NeutralLanguage>en-us</NeutralLanguage>
     <RepoRoot>$(MSBuildThisFileDirectory)</RepoRoot>
   </PropertyGroup>
+  <PropertyGroup Label="Namespace">
+    <RootPackageId>Woody230</RootPackageId>
+    <RootNamespace>$(RootPackageId).$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+  </PropertyGroup>
   <PropertyGroup Label="Package Versions">
     <FluentAssertionsPkgVer>6.10.0</FluentAssertionsPkgVer>
     <MicrosoftAspNetCoreMvcTestingPkgVer>6.0.8</MicrosoftAspNetCoreMvcTestingPkgVer>

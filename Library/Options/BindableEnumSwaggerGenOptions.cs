@@ -1,11 +1,11 @@
-﻿using BindableEnum.Library.Filters;
-using BindableEnum.Library.Models;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using Woody230.BindableEnum.Library.Filters;
+using Woody230.BindableEnum.Library.Models;
 
-namespace BindableEnum.Library.Options
+namespace Woody230.BindableEnum.Library.Options
 {
     /// <summary>
     /// Represents options for configuring a bindable enum.

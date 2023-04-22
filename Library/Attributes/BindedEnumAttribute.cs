@@ -1,9 +1,9 @@
-﻿using BindableEnum.Library.Models;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using Woody230.BindableEnum.Library.Models;
 
-namespace BindableEnum.Library.Attributes
+namespace Woody230.BindableEnum.Library.Attributes
 {
     /// <summary>
     /// Validates that a bindable enum has been successfully binded.

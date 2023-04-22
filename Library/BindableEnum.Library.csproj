@@ -1,5 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <PackageId>$(RootPackageId).BindableEnum</PackageId>
     <PackageVersion>1.0.0</PackageVersion>
   </PropertyGroup>
   <ItemGroup>
