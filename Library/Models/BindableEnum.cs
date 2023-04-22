@@ -22,7 +22,7 @@ namespace BindableEnum.Library.Models
         public bool Binded { get; }
 
         /// <inheritdoc/>
-        public IEnumerable<string> Values => typeof(T).GetEnumValues().Cast<Enum>().Select(@enum => @enum.ToString());
+        Enum IBindableEnum.Enum => Enum;
 
         /// <summary>
         /// The string value.
@@ -53,7 +53,7 @@ namespace BindableEnum.Library.Models
         /// Initializes a new instance of the <see cref="BindableEnum{T}"/> structure.
         /// </summary>
         /// <param name="enum">The enumeration.</param>
-        private BindableEnum(T @enum)
+        public BindableEnum(T @enum)
         {
             String = @enum.ToString();
             Enum = @enum;

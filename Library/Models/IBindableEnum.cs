@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace BindableEnum.Library.Models
 {
@@ -13,8 +14,8 @@ namespace BindableEnum.Library.Models
         public bool Binded { get; }
 
         /// <summary>
-        /// The enum values for binding to be successful.
+        /// The enumeration.
         /// </summary>
-        public IEnumerable<string> Values { get; }
+        public Enum Enum { get; }
     }
 }

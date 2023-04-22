@@ -1,5 +1,7 @@
 ﻿using BindableEnum.Library.Models;
+using System;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace BindableEnum.Library.Validation
 {
@@ -23,8 +25,8 @@ namespace BindableEnum.Library.Validation
 
             if (!@enum.Binded)
             {
-                var expectedValues = string.Join(", ", @enum.Values);
-                return new ValidationResult($"Value `{@enum}` must be one of: {expectedValues}");
+                var expectedValues = @enum.Enum.GetType().GetEnumValues().Cast<Enum>().Select(@enum => @enum.ToString());
+                return new ValidationResult($"Value `{@enum}` must be one of: {string.Join(", ", expectedValues)}");
             }
 
             return ValidationResult.Success;
