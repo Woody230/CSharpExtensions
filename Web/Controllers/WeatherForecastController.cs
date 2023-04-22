@@ -1,4 +1,4 @@
-using BindableEnum.Web;
+using BindableEnum.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -7,6 +7,9 @@ using System.Linq;
 
 namespace BindableEnum.Web.Controllers
 {
+    /// <summary>
+    /// The weather forecast controller.
+    /// </summary>
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
@@ -18,11 +21,19 @@ namespace BindableEnum.Web.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WeatherForecastController"/> class.
+        /// </summary>
+        /// <param name="logger">The logger.</param>
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
             _logger = logger;
         }
 
+        /// <summary>
+        /// Gets one or more weather forecasts.
+        /// </summary>
+        /// <returns>The weather forecasts.</returns>
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
@@ -33,6 +44,16 @@ namespace BindableEnum.Web.Controllers
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+
+        /// <summary>
+        /// Creates a weather forecast.
+        /// </summary>
+        /// <param name="forecast">The weather forecast.</param>
+        [HttpPost(Name = "CreateWeatherForecast")]
+        public IActionResult Post([FromBody] WeatherForecast forecast)
+        {
+            return Ok();
         }
     }
 }

@@ -11,5 +11,6 @@
   </PropertyGroup>
   <PropertyGroup Label="Package Versions">
     <SwashbuckleAspNetCorePkgVer>6.4.0</SwashbuckleAspNetCorePkgVer>
+    <SwashbuckleAspNetCoreSwaggerGenPkgVer>6.4.0</SwashbuckleAspNetCoreSwaggerGenPkgVer>
   </PropertyGroup>
 </Project>
