@@ -8,11 +8,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{157B8944-014B-4B4C-9E10-82A6F95460EF}"
 	ProjectSection(SolutionItems) = preProject
 		Directory.Build.props = Directory.Build.props
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BindableEnum.Library", "Library\BindableEnum.Library.csproj", "{A2B1F15D-5EA0-44D9-8188-D89EA5DDC213}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\BindableEnum.Tests.csproj", "{833AADC1-4AAF-4668-90B5-35460DD62BAF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BindableEnum.Tests", "Tests\BindableEnum.Tests.csproj", "{833AADC1-4AAF-4668-90B5-35460DD62BAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
