@@ -17,6 +17,7 @@
     <FluentAssertionsPkgVer>6.10.0</FluentAssertionsPkgVer>
     <MicrosoftAspNetCoreMvcTestingPkgVer>6.0.8</MicrosoftAspNetCoreMvcTestingPkgVer>
     <MicrosoftNETTestSdkPkgVer>17.5.0</MicrosoftNETTestSdkPkgVer>
+    <MicrosoftSourceLinkGitHubPkgVer>1.1.1</MicrosoftSourceLinkGitHubPkgVer>
     <MoqPkgVer>4.18.2</MoqPkgVer>
     <SwashbuckleAspNetCorePkgVer>6.4.0</SwashbuckleAspNetCorePkgVer>
     <SwashbuckleAspNetCoreSwaggerGenPkgVer>[6.0.0,7.0.0)</SwashbuckleAspNetCoreSwaggerGenPkgVer>
