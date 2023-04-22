@@ -28,7 +28,7 @@ namespace BindableEnum.Library.Models
         private string String { get; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BindableEnum{T}"/> structure.
+        /// Initializes a new instance of the <see cref="BindableEnum{T}"/> class.
         /// </summary>
         /// <param name="value">The string value.</param>
         public BindableEnum(string value)
@@ -48,7 +48,7 @@ namespace BindableEnum.Library.Models
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BindableEnum{T}"/> structure.
+        /// Initializes a new instance of the <see cref="BindableEnum{T}"/> class.
         /// </summary>
         /// <param name="enum">The enumeration.</param>
         public BindableEnum(T @enum)
