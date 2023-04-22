@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Text.Json.Serialization;
-using Woody230.BindableEnum.Library.Converters;
+using Woody230.BindableEnum.Converters;
 
-namespace Woody230.BindableEnum.Library.Models
+namespace Woody230.BindableEnum.Models
 {
     /// <summary>
     /// Represents a wrapper for a string associated with an enumeration.

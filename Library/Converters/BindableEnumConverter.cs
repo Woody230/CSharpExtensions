@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Woody230.BindableEnum.Library.Models;
+using Woody230.BindableEnum.Models;
 
-namespace Woody230.BindableEnum.Library.Converters
+namespace Woody230.BindableEnum.Converters
 {
     /// <summary>
     /// Represents a converter for a <see cref="BindableEnum{T}"/>.

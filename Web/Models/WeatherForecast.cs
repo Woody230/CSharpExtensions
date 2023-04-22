@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using Woody230.BindableEnum.Library.Attributes;
-using Woody230.BindableEnum.Library.Models;
+using Woody230.BindableEnum.Attributes;
+using Woody230.BindableEnum.Models;
 
 namespace Woody230.BindableEnum.Web.Models
 {

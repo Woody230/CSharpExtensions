@@ -4,7 +4,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.IO;
 using System.Reflection;
-using Woody230.BindableEnum.Library.Options;
+using Woody230.BindableEnum.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 

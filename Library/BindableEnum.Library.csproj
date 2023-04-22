@@ -8,6 +8,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <RootNamespace>$(RootPackageId).BindableEnum</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <None Include="..\LICENSE.txt">

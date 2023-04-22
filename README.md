@@ -19,7 +19,7 @@ Configure the `BindableEnumSwaggerGenOptions` on the service collection.
 ```c#
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Woody230.BindableEnum.Library.Options;
+using Woody230.BindableEnum.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.ConfigureOptions<BindableEnumSwaggerGenOptions>();
@@ -36,8 +36,8 @@ Note that a null bindable enumeration is NOT validated. The `RequiredAttribute` 
 
 ```c#
 using System.ComponentModel.DataAnnotations;
-using Woody230.BindableEnum.Library.Attributes;
-using Woody230.BindableEnum.Library.Models;
+using Woody230.BindableEnum.Attributes;
+using Woody230.BindableEnum.Models;
 
 public record WeatherForecast
 {

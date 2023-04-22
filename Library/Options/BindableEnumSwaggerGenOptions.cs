@@ -2,10 +2,10 @@
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using Woody230.BindableEnum.Library.Filters;
-using Woody230.BindableEnum.Library.Models;
+using Woody230.BindableEnum.Filters;
+using Woody230.BindableEnum.Models;
 
-namespace Woody230.BindableEnum.Library.Options
+namespace Woody230.BindableEnum.Options
 {
     /// <summary>
     /// Represents options for configuring a bindable enum.

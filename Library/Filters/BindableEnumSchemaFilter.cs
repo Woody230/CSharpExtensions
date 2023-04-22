@@ -4,9 +4,9 @@ using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.Linq;
-using Woody230.BindableEnum.Library.Models;
+using Woody230.BindableEnum.Models;
 
-namespace Woody230.BindableEnum.Library.Filters
+namespace Woody230.BindableEnum.Filters
 {
     /// <summary>
     /// Represents a filter for applying the enumerations to the schema of a bindable enum.
