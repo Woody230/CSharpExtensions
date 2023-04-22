@@ -11,7 +11,7 @@ namespace BindableEnum.Library.Filters
     /// <summary>
     /// Represents a filter for applying the enumerations to the schema of a bindable enum.
     /// </summary>
-    public class BindableEnumFilter : ISchemaFilter
+    public class BindableEnumSchemaFilter : ISchemaFilter
     {
         /// <inheritdoc/>
         public void Apply(OpenApiSchema schema, SchemaFilterContext context)

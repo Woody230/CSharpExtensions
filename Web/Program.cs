@@ -1,9 +1,7 @@
-using BindableEnum.Library.Filters;
-using BindableEnum.Library.Models;
+using BindableEnum.Library.Options;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using System;
 using System.IO;
 using System.Reflection;
@@ -20,9 +18,9 @@ builder.Services.AddSwaggerGen(options =>
     var name = Assembly.GetExecutingAssembly().GetName().Name;
     var xmlPath = Path.Combine(AppContext.BaseDirectory, $"{name}.xml");
     options.IncludeXmlComments(xmlPath);
-    options.SchemaFilter<BindableEnumFilter>();
-    options.MapType(typeof(BindableEnum<>), () => new OpenApiSchema { Type = "string" });
 });
+
+builder.Services.ConfigureOptions<BindableEnumSwaggerGenOptions>();
 
 var app = builder.Build();
 
