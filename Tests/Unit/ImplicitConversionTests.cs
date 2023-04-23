@@ -14,7 +14,7 @@ namespace Woody230.BindableEnum.Tests.Unit
         /// Verifies that enums can be converted to and back from a bindable enum implicitly.
         /// </summary>
         [Fact]
-        public void Conversions_AreSuccessful()
+        public void ConvertToAndFromEnum()
         {
             BindableEnum<DayOfWeek> bindable = DayOfWeek.Monday;
             bindable.Enum.Should().Be(DayOfWeek.Monday);
@@ -28,6 +28,17 @@ namespace Woody230.BindableEnum.Tests.Unit
             bindable = nullableEnum;
             bindable.Should().NotBeNull();
             bindable.Enum.Should().Be(DayOfWeek.Monday);
+        }
+
+        /// <summary>
+        /// Verifies that a null enum is able to be implicitly converted to a bindable enum.
+        /// </summary>
+        [Fact]
+        public void ConvertFromNullEnum()
+        {
+            DayOfWeek? nullableEnum = null;
+            BindableEnum<DayOfWeek> bindable = nullableEnum;
+            bindable.Should().BeNull();
         }
     }
 }
