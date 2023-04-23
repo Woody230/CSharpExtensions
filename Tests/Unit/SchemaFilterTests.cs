@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using Woody230.BindableEnum.Filters;
 using Woody230.BindableEnum.Models;
+using Woody230.BindableEnum.Options;
 using Xunit;
 
 namespace Woody230.BindableEnum.Tests.Unit
@@ -18,7 +19,7 @@ namespace Woody230.BindableEnum.Tests.Unit
         /// <summary>
         /// The expected enumerations.
         /// </summary>
-        private static readonly IEnumerable<IOpenApiAny> _enums = new List<OpenApiString>()
+        private static readonly IList<IOpenApiAny> _enums = new List<IOpenApiAny>()
         {
             new OpenApiString("Sunday"),
             new OpenApiString("Monday"),
@@ -30,15 +31,43 @@ namespace Woody230.BindableEnum.Tests.Unit
         };
 
         /// <summary>
+        /// The expected schema.
+        /// </summary>
+        private static readonly OpenApiSchema _schema = new()
+        {
+            Type = "string",
+            Enum = _enums
+        };
+
+        /// <summary>
         /// Verifies that when the schema filter is applied to a <see cref="IBindableEnum{T}"/>, then the associated enumerations are documented.
         /// </summary>
         [Fact]
-        public void Apply_ToInterface_AddsEnumerations()
+        public void ApplyToInterface_AddsEnumerations()
         {
             // Arrange
             var type = typeof(IBindableEnum<DayOfWeek>);
 
-            var schema = new OpenApiSchema();
+            var schema = CreateSchema(typeof(IBindableEnum<>));
+            var context = new SchemaFilterContext(type, null, null);
+
+            // Act
+            new BindableEnumSchemaFilter().Apply(schema, context);
+
+            // Assert
+            schema.Should().BeEquivalentTo(_schema);
+        }
+
+        /// <summary>
+        /// Verifies that when the schema filter is applied to a <see cref="BindableEnum{T}"/>, then the associated enumerations are documented.
+        /// </summary>
+        [Fact]
+        public void ApplyToImplementation_AddsEnumerations()
+        {
+            // Arrange
+            var type = typeof(BindableEnum<DayOfWeek>);
+
+            var schema = CreateSchema(typeof(BindableEnum<>));
             var context = new SchemaFilterContext(type, null, null);
 
             // Act
@@ -49,22 +78,18 @@ namespace Woody230.BindableEnum.Tests.Unit
         }
 
         /// <summary>
-        /// Verifies that when the schema filter is applied to a <see cref="BindableEnum{T}"/>, then the associated enumerations are documented.
+        /// Creates the schema from the swagger gen options.
         /// </summary>
-        [Fact]
-        public void Apply_ToImplementation_AddsEnumerations()
+        /// <param name="type">The type.</param>
+        /// <returns>The schema.</returns>
+        private OpenApiSchema CreateSchema(Type type)
         {
-            // Arrange
-            var type = typeof(BindableEnum<DayOfWeek>);
+            var swaggerOptions = new SwaggerGenOptions();
+            new BindableEnumSwaggerGenOptions().Configure(swaggerOptions);
 
-            var schema = new OpenApiSchema();
-            var context = new SchemaFilterContext(type, null, null);
-
-            // Act
-            new BindableEnumSchemaFilter().Apply(schema, context);
-
-            // Assert
-            schema.Enum.Should().BeEquivalentTo(_enums);
+            var mapping = swaggerOptions.SchemaGeneratorOptions.CustomTypeMappings;
+            mapping.Should().ContainKey(type);
+            return mapping[type]();
         }
     }
 }
