@@ -48,7 +48,7 @@ namespace Woody230.BindableEnum.Models
         /// <param name="enum">The enumeration.</param>
         public BindableEnum(T @enum)
         {
-            String = ToString(@enum);
+            String = @enum.ToString();
             Enum = @enum;
             Binded = true;
         }
@@ -87,12 +87,5 @@ namespace Woody230.BindableEnum.Models
         /// <param name="enum">The enumeration.</param>
         /// <returns>True if the enumeration is successfully parsed.</returns>
         protected virtual bool TryParse(string value, out T @enum) => System.Enum.TryParse(value, false, out @enum);
-
-        /// <summary>
-        /// Converts the enumeration to its string form.
-        /// </summary>
-        /// <param name="enum">The enumeration.</param>
-        /// <returns>The string form of the enumeration.</returns>
-        protected virtual string ToString(T @enum) => @enum.ToString();
     }
 }
