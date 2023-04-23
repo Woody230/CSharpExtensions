@@ -17,5 +17,21 @@ namespace Woody230.BindableEnum.Models
         {
             return new BindableEnum<T>(@enum);
         }
+
+        /// <summary>
+        /// Converts the nullable <paramref name="enum"/> to a <see cref="IBindableEnum{T}"/>.
+        /// </summary>
+        /// <typeparam name="T">The type of enum.</typeparam>
+        /// <param name="enum">The nullable enumeration.</param>
+        /// <returns>The <see cref="IBindableEnum{T}"/> if the <paramref name="enum"/> has a value, otherwise null.</returns>
+        public static IBindableEnum<T> Bindable<T>(this T? @enum) where T : struct, Enum
+        {
+            if (!@enum.HasValue)
+            {
+                return null;
+            }
+
+            return new BindableEnum<T>(@enum.Value);
+        }
     }
 }
