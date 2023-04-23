@@ -46,7 +46,7 @@ namespace Woody230.BindableEnum.Converters
         /// <param name="type">The type.</param>
         /// <param name="enumType">The type of the enum if the <paramref name="type"/> is a <see cref="IBindableEnum{T}"/>.</param>
         /// <returns>True if the type is a <see cref="IBindableEnum{T}"/>.</returns>
-        private bool TryResolveInterface(Type type, out Type enumType)
+        private static bool TryResolveInterface(Type type, out Type enumType)
         {
             static bool IsBindableInterface(Type type) => type != null && type.IsAssignableTo(typeof(IBindableEnum<>));
 
@@ -66,7 +66,7 @@ namespace Woody230.BindableEnum.Converters
         /// </summary>
         /// <param name="type">The type.</param>
         /// <param name="enumType">The type of the enum if the <paramref name="type"/> is a <see cref="BindableEnum{T}"/>.</param>
-        private bool TryResolveClass(Type type, out Type enumType)
+        private static bool TryResolveClass(Type type, out Type enumType)
         {
             if (!type.IsGenericType)
             {
