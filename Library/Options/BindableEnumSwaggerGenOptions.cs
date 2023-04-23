@@ -16,6 +16,7 @@ namespace Woody230.BindableEnum.Options
         public void Configure(SwaggerGenOptions options)
         {
             options.SchemaFilter<BindableEnumSchemaFilter>();
+            options.MapType(typeof(IBindableEnum<>), () => new OpenApiSchema { Type = "string" });
             options.MapType(typeof(BindableEnum<>), () => new OpenApiSchema { Type = "string" });
         }
     }

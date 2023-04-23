@@ -21,9 +21,8 @@ namespace Woody230.BindableEnum.Filters
                 return;
             }
 
-            var actualGenericType = context.Type.GetGenericTypeDefinition();
-            var genericBindableEnum = typeof(BindableEnum<>);
-            if (actualGenericType != genericBindableEnum)
+            var genericType = context.Type.GetGenericTypeDefinition();
+            if (genericType != typeof(IBindableEnum<>) && genericType != typeof(BindableEnum<>))
             {
                 return;
             }

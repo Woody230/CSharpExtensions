@@ -20,7 +20,7 @@ namespace Woody230.BindableEnum.Converters
         /// <inheritdoc/>
         public override void Write(Utf8JsonWriter writer, BindableEnum<T> value, JsonSerializerOptions options)
         {
-            JsonSerializer.Serialize(writer, value.ToString(), options);
+            JsonSerializer.Serialize(writer, value?.ToString(), typeof(string), options);
         }
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Woody230.BindableEnum.Models;
 using Woody230.BindableEnum.Web.Models;
 
 namespace Woody230.BindableEnum.Web.Controllers
@@ -42,7 +43,7 @@ namespace Woody230.BindableEnum.Web.Controllers
                 Date = DateTime.Now.AddDays(index),
                 TemperatureC = Random.Shared.Next(-20, 55),
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)],
-                DayOfWeek = (DayOfWeek)index
+                IDayOfWeek = ((DayOfWeek)index).Bindable()
             })
             .ToArray();
         }
