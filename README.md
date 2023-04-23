@@ -48,7 +48,7 @@ public record WeatherForecast
 ```
 
 # Extensions
-If you are using the interface `IBindableEnum{T}`, you can use the `Bindable()` extension method to convert an enumeration into a `IBindable{T}`.
+If you are using the interface `IBindableEnum{T}`, you can use the `Bindable()` extension method to convert an enumeration into a `IBindableEnum{T}`.
 
 ```c#
 using System;
