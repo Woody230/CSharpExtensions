@@ -6,12 +6,12 @@ using Xunit;
 namespace Woody230.BindableEnum.Tests.Unit
 {
     /// <summary>
-    /// Represents implicit operator conversion tests for <see cref="BindableEnum{T}"/>
+    /// Represents implicit operator conversion tests for <see cref="BindableEnum{T}"/>.
     /// </summary>
     public class ImplicitConversionTests
     {
         /// <summary>
-        /// Verifies that enums can be converted to and back from a bindable enum implicitly.
+        /// Verifies that an enum can be implicitly converted to and back from a bindable enum implicitly.
         /// </summary>
         [Fact]
         public void ConvertToAndFromEnum()
@@ -31,14 +31,17 @@ namespace Woody230.BindableEnum.Tests.Unit
         }
 
         /// <summary>
-        /// Verifies that a null enum is able to be implicitly converted to a bindable enum.
+        /// Verifies that a null enum can be implicitly converted to and back from a bindable enum implicitly.
         /// </summary>
         [Fact]
-        public void ConvertFromNullEnum()
+        public void ConvertToAndFromNullEnum()
         {
             DayOfWeek? nullableEnum = null;
             BindableEnum<DayOfWeek> bindable = nullableEnum;
             bindable.Should().BeNull();
+
+            nullableEnum = bindable;
+            nullableEnum.Should().BeNull();
         }
     }
 }

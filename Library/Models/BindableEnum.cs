@@ -63,10 +63,22 @@ namespace Woody230.BindableEnum.Models
         public static implicit operator T(BindableEnum<T> bindable) => bindable.Enum;
 
         /// <summary>
+        /// Implicitly converts a bindable enum to the nullable enum.
+        /// </summary>
+        /// <param name="bindable">The bindable enum.</param>
+        public static implicit operator T?(BindableEnum<T> bindable) => bindable?.Enum;
+
+        /// <summary>
         /// Implicitly converts the enum to a bindable enum.
         /// </summary>
         /// <param name="enum">The enum.</param>
         public static implicit operator BindableEnum<T>(T @enum) => new(@enum);
+
+        /// <summary>
+        /// Implicitly converts the nullable enum to a bindable enum.
+        /// </summary>
+        /// <param name="enum">The enum.</param>
+        public static implicit operator BindableEnum<T>(T? @enum) => @enum.HasValue ? new(@enum.Value) : null;
 
         /// <summary>
         /// Tries to parse the enumeration from the string <paramref name="value"/>.
