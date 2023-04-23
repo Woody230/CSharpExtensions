@@ -63,7 +63,7 @@ namespace Woody230.BindableEnum.Tests.Integration
             scope.AddReportable("Content", content);
 
             var model = JsonSerializer.Deserialize<WeatherForecast>(content, _options);
-            model.DayOfWeek.Enum.Should().Be(dayOfWeek);
+            model.IDayOfWeek.Enum.Should().Be(dayOfWeek);
         }
 
         /// <summary>
@@ -103,15 +103,16 @@ namespace Woody230.BindableEnum.Tests.Integration
             var response = await HttpClient.SendAsync(request);
 
             // Assert
-            await AssertDayOfWeekError(response, $"The DayOfWeek field is required.");
+            await AssertDayOfWeekError(response, $"The DayOfWeek field is required.", $"The IDayOfWeek field is required.");
         }
 
         /// <summary>
-        /// Asserts that the day of week error in the <paramref name="response"/> has the given <paramref name="message"/>.
+        /// Asserts that the day of week error in the <paramref name="response"/> has the given <paramref name="implementationMessage"/> and <paramref name="interfaceMessage"/>.
         /// </summary>
         /// <param name="response">The response.</param>
-        /// <param name="message">The expected message.</param>
-        private async Task AssertDayOfWeekError(HttpResponseMessage response, string message)
+        /// <param name="implementationMessage">The expected message for the implementation.</param>
+        /// <param name="interfaceMessage">The expected message for the interface.</param>
+        private async Task AssertDayOfWeekError(HttpResponseMessage response, string implementationMessage, string interfaceMessage = null)
         {
             using var scope = new AssertionScope();
             response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
@@ -120,8 +121,9 @@ namespace Woody230.BindableEnum.Tests.Integration
             scope.AddReportable("Content", content);
 
             var model = JsonSerializer.Deserialize<ValidationProblemDetails>(content, _options);
-            model.Errors.Should().ContainKey("DayOfWeek");
-            model.Errors["DayOfWeek"].Should().BeEquivalentTo(new List<string>() { message });
+            model.Errors.Should().ContainKeys("DayOfWeek", "IDayOfWeek");
+            model.Errors["DayOfWeek"].Should().BeEquivalentTo(new List<string>() { implementationMessage });
+            model.Errors["IDayOfWeek"].Should().BeEquivalentTo(new List<string>() { interfaceMessage ?? implementationMessage });
         }
 
         /// <summary>
@@ -132,7 +134,7 @@ namespace Woody230.BindableEnum.Tests.Integration
         private HttpRequestMessage CreateRequest(string dayOfWeek)
         {
             var request = new HttpRequestMessage(HttpMethod.Post, "WeatherForecast");
-            request.Content = new StringContent($"{{ \"dayOfWeek\": \"{dayOfWeek}\"}}");
+            request.Content = new StringContent($"{{ \"dayOfWeek\": \"{dayOfWeek}\", \"iDayOfWeek\": \"{dayOfWeek}\"}}");
             request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             return request;
         }

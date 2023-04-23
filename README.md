@@ -43,6 +43,26 @@ public record WeatherForecast
 {
     [Required]
     [BindedEnum]
-    public BindableEnum<DayOfWeek> DayOfWeek { get; set; }
+    public IBindableEnum<DayOfWeek> DayOfWeek { get; set; }
 }    
+```
+
+# Extensions
+If you are using the interface `IBindableEnum{T}`, you can use the `Bindable()` extension method to convert an enumeration into a `IBindable{T}`.
+
+```c#
+using System;
+using Woody230.BindableEnum.Models;
+
+IBindableEnum<DayOfWeek> dayOfWeek = DayOfWeek.Sunday.Bindable();
+```
+
+
+If you are using the implementation `BindableEnum{T}`, then there is an implicit conversion between the enumeration and the `BindableEnum{T}` in both directions.
+
+```c#
+using System;
+using Woody230.BindableEnum.Models;
+
+BindableEnum<DayOfWeek> dayOfWeek = DayOfWeek.Sunday;
 ```

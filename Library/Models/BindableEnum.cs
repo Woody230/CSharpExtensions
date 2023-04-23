@@ -9,18 +9,13 @@ namespace Woody230.BindableEnum.Models
     /// </summary>
     /// <typeparam name="T">The type of enum.</typeparam>
     [JsonConverter(typeof(BindableEnumConverterFactory))]
-    public class BindableEnum<T> : IBindableEnum where T : struct, Enum
+    public class BindableEnum<T> : IBindableEnum<T> where T : struct, Enum
     {
-        /// <summary>
-        /// The enumeration.
-        /// </summary>
+        /// <inheritdoc/>
         public T Enum { get; }
 
         /// <inheritdoc/>
         public bool Binded { get; }
-
-        /// <inheritdoc/>
-        Enum IBindableEnum.Enum => Enum;
 
         /// <summary>
         /// The string value.
@@ -35,7 +30,7 @@ namespace Woody230.BindableEnum.Models
         {
             String = value;
 
-            if (System.Enum.TryParse<T>(value, false, out var @enum))
+            if (TryParse(value, out var @enum))
             {
                 Enum = @enum;
                 Binded = true;
@@ -53,7 +48,7 @@ namespace Woody230.BindableEnum.Models
         /// <param name="enum">The enumeration.</param>
         public BindableEnum(T @enum)
         {
-            String = @enum.ToString();
+            String = ToString(@enum);
             Enum = @enum;
             Binded = true;
         }
@@ -72,5 +67,20 @@ namespace Woody230.BindableEnum.Models
         /// </summary>
         /// <param name="enum">The enum.</param>
         public static implicit operator BindableEnum<T>(T @enum) => new(@enum);
+
+        /// <summary>
+        /// Tries to parse the enumeration from the string <paramref name="value"/>.
+        /// </summary>
+        /// <param name="value">The string value.</param>
+        /// <param name="enum">The enumeration.</param>
+        /// <returns>True if the enumeration is successfully parsed.</returns>
+        protected virtual bool TryParse(string value, out T @enum) => System.Enum.TryParse(value, false, out @enum);
+
+        /// <summary>
+        /// Converts the enumeration to its string form.
+        /// </summary>
+        /// <param name="enum">The enumeration.</param>
+        /// <returns>The string form of the enumeration.</returns>
+        protected virtual string ToString(T @enum) => @enum.ToString();
     }
 }
