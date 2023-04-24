@@ -35,8 +35,10 @@ namespace Woody230.BindableEnum.Attributes
 
             if (!@enum.Binded)
             {
+                var valueType = value.GetType();
+                var enumName = valueType.IsGenericType ? valueType.GetGenericArguments()[0].Name : string.Empty;
                 var expectedValues = @enum.Enum.GetType().GetEnumValues().Cast<Enum>().Select(@enum => @enum.ToString());
-                return new ValidationResult($"Value `{@enum}` must be one of: {string.Join(", ", expectedValues)}", memberNames);
+                return new ValidationResult($"`{@enum}` must be one of the following {enumName} values: {string.Join(", ", expectedValues)}", memberNames);
             }
 
             return ValidationResult.Success;

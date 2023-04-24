@@ -84,7 +84,7 @@ namespace Woody230.BindableEnum.Tests.Integration
             var response = await HttpClient.SendAsync(request);
 
             // Assert
-            var message = $"Value `{value}` must be one of: Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday";
+            var message = $"`{value}` must be one of the following DayOfWeek values: Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday";
             await AssertDayOfWeekError(response, message);
         }
 
