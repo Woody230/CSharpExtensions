@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using Woody230.BindableEnum.Converters;
 
@@ -87,5 +88,18 @@ namespace Woody230.BindableEnum.Models
         /// <param name="enum">The enumeration.</param>
         /// <returns>True if the enumeration is successfully parsed.</returns>
         protected virtual bool TryParse(string value, out T @enum) => System.Enum.TryParse(value, false, out @enum);
+
+        /// <inheritdoc/>
+        public override bool Equals(object obj)
+        {
+            return obj is BindableEnum<T> @enum &&
+                   EqualityComparer<T>.Default.Equals(Enum, @enum.Enum);
+        }
+
+        /// <inheritdoc/>
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Enum);
+        }
     }
 }
