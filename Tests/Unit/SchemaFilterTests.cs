@@ -4,6 +4,7 @@ using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.Collections.Generic;
+using System.Text.Json;
 using Woody230.BindableEnum.Filters;
 using Woody230.BindableEnum.Models;
 using Woody230.BindableEnum.Options;
@@ -36,8 +37,22 @@ namespace Woody230.BindableEnum.Tests.Unit
         private static readonly OpenApiSchema _schema = new()
         {
             Type = "string",
-            Enum = _enums
+            Reference = new OpenApiReference()
+            {
+                Id = "DayOfWeek",
+                Type = ReferenceType.Schema
+            }
         };
+
+        /// <summary>
+        /// The schema generator.
+        /// </summary>
+        private static readonly SchemaGenerator _schemaGenerator = new(new SchemaGeneratorOptions(), new JsonSerializerDataContractResolver(new JsonSerializerOptions()));
+
+        /// <summary>
+        /// The schema repository.
+        /// </summary>
+        private static readonly SchemaRepository _schemaRepository = new SchemaRepository();
 
         /// <summary>
         /// Verifies that when the schema filter is applied to a <see cref="IBindableEnum{T}"/>, then the associated enumerations are documented.
@@ -49,7 +64,7 @@ namespace Woody230.BindableEnum.Tests.Unit
             var type = typeof(IBindableEnum<DayOfWeek>);
 
             var schema = CreateSchema(typeof(IBindableEnum<>));
-            var context = new SchemaFilterContext(type, null, null);
+            var context = new SchemaFilterContext(type, _schemaGenerator, _schemaRepository);
 
             // Act
             new BindableEnumSchemaFilter().Apply(schema, context);
@@ -68,13 +83,13 @@ namespace Woody230.BindableEnum.Tests.Unit
             var type = typeof(BindableEnum<DayOfWeek>);
 
             var schema = CreateSchema(typeof(BindableEnum<>));
-            var context = new SchemaFilterContext(type, null, null);
+            var context = new SchemaFilterContext(type, _schemaGenerator, _schemaRepository);
 
             // Act
             new BindableEnumSchemaFilter().Apply(schema, context);
 
             // Assert
-            schema.Enum.Should().BeEquivalentTo(_enums);
+            schema.Should().BeEquivalentTo(_schema);
         }
 
         /// <summary>

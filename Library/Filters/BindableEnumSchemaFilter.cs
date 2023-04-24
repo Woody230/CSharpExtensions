@@ -33,8 +33,13 @@ namespace Woody230.BindableEnum.Filters
                 throw new Exception("Expected the bindable enum to have a generic argument.");
             }
 
-            static IOpenApiAny ToString(Enum @enum) => new OpenApiString(@enum.GetDisplayName());
-            schema.Enum = genericArguments[0].GetEnumValues().Cast<Enum>().Select(ToString).ToList();
+            var enumType = genericArguments[0];
+            if (!context.SchemaRepository.TryLookupByType(enumType, out var referenceSchema))
+            {
+                referenceSchema = context.SchemaGenerator.GenerateSchema(enumType, context.SchemaRepository);
+            }
+
+            schema.Reference = referenceSchema.Reference;
         }
     }
 }
