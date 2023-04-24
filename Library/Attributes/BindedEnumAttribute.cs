@@ -27,15 +27,16 @@ namespace Woody230.BindableEnum.Attributes
                 return ValidationResult.Success;
             }
 
+            var memberNames = validationContext.MemberName == null ? Array.Empty<string>() : new string[] { validationContext.MemberName };
             if (value is not IBindableEnum @enum)
             {
-                return new ValidationResult("Expected the enum to be bindable.");
+                return new ValidationResult("Expected the enum to be bindable.", memberNames);
             }
 
             if (!@enum.Binded)
             {
                 var expectedValues = @enum.Enum.GetType().GetEnumValues().Cast<Enum>().Select(@enum => @enum.ToString());
-                return new ValidationResult($"Value `{@enum}` must be one of: {string.Join(", ", expectedValues)}");
+                return new ValidationResult($"Value `{@enum}` must be one of: {string.Join(", ", expectedValues)}", memberNames);
             }
 
             return ValidationResult.Success;
