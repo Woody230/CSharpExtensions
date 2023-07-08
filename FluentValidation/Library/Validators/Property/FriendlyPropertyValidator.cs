@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using FluentValidation.Validators;
 
-namespace Woody230.FluentValidation.Validators
+namespace Woody230.FluentValidation.Validators.Property
 {
     /// <summary>
     /// <para>

@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using Woody230.FluentValidation.Resources;
 
-namespace Woody230.FluentValidation.Validators
+namespace Woody230.FluentValidation.Validators.Property
 {
     /// <summary>
     /// Validates that the <typeparamref name="TProperty"/> is not a null or default value.

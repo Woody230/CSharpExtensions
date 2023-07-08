@@ -1,12 +1,12 @@
 ﻿using FluentValidation.Validators;
 using Woody230.FluentValidation.Resources;
 
-namespace Woody230.FluentValidation.Validators
+namespace Woody230.FluentValidation.Validators.Property
 {
     /// <summary>
     /// Validates a <typeparamref name="TProperty"/> within the context of a <typeparamref name="T"/>.
     /// </summary>
-    public abstract class ExtensiblePropertyValidator<T, TProperty>: PropertyValidator<T, TProperty>
+    public abstract class ExtensiblePropertyValidator<T, TProperty> : PropertyValidator<T, TProperty>
     {
         /// <inheritdoc/>
         public override string Name
