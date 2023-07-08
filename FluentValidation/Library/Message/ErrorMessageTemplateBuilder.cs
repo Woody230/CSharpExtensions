@@ -11,6 +11,21 @@ namespace Woody230.FluentValidation.Message
         private const string PropertyName = "PropertyName";
         private const string PropertyValue = "PropertyValue";
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ErrorMessageTemplateBuilder"/> class.
+        /// </summary>
+        /// <param name="builder">The string builder.</param>
+        public ErrorMessageTemplateBuilder(StringBuilder builder): base(builder)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ErrorMessageTemplateBuilder"/> with a new <see cref="StringBuilder"/>.
+        /// </summary>
+        public ErrorMessageTemplateBuilder(): base()
+        {
+        }
+
         #region Placeholder 
 
         /// <summary>
