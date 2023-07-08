@@ -5,29 +5,15 @@ using System.Runtime.CompilerServices;
 
 namespace Woody230.Text.StringBuilder
 {
+    /// <summary>
+    /// Represents a <see cref="System.Text.StringBuilder"/> that is extensible with additional functionality.
+    /// </summary>
     public class ExtensibleStringBuilder: IExtensibleStringBuilder
     {
         /// <summary>
         /// The string builder.
         /// </summary>
         private readonly System.Text.StringBuilder _builder;
-
-        public int Capacity
-        {
-            get => _builder.Capacity;
-            set => _builder.Capacity = value;
-        }
-        public int Length
-        {
-            get => _builder.Length;
-            set => _builder.Length = value;
-        }
-        public int MaxCapacity => _builder.MaxCapacity;
-        public char this[int index]
-        {
-            get => _builder[index];
-            set => _builder[index] = value;
-        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ExtensibleStringBuilder"/> class.
@@ -43,6 +29,25 @@ namespace Woody230.Text.StringBuilder
         /// </summary>
         public ExtensibleStringBuilder(): this(new())
         {
+        }
+
+
+        #region IExtensibleStringBuilder Delegated
+        public int Capacity
+        {
+            get => _builder.Capacity;
+            set => _builder.Capacity = value;
+        }
+        public int Length
+        {
+            get => _builder.Length;
+            set => _builder.Length = value;
+        }
+        public int MaxCapacity => _builder.MaxCapacity;
+        public char this[int index]
+        {
+            get => _builder[index];
+            set => _builder[index] = value;
         }
 
         public int EnsureCapacity(int capacity) => _builder.EnsureCapacity(capacity);
@@ -477,5 +482,25 @@ namespace Woody230.Text.StringBuilder
             _builder.Replace(oldChar, newChar, startIndex, count);
             return this;
         }
+
+        public override bool Equals(object? obj)
+        {
+            return _builder.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return _builder.GetHashCode();
+        }
+
+        #endregion IExtensibleStringBuilder Delegated
+
+        #region IExtensibleStringBuilder Implementation
+        public IExtensibleStringBuilder Prepend(string value)
+        {
+            return Insert(0, value);
+        }
+
+        #endregion IExtensibleStringBuilder Implementation
     }
 }

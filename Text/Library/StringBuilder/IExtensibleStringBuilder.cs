@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using static System.Text.StringBuilder;
 
@@ -11,16 +10,8 @@ namespace Woody230.Text.StringBuilder
     /// </summary>
     public interface IExtensibleStringBuilder
     {
-        public int Capacity { get; set; }
-        public int MaxCapacity { get; }
-        public int EnsureCapacity(int capacity);
-        public string ToString(int startIndex, int length);
+        #region base
         public IExtensibleStringBuilder Clear();
-        public int Length { get; set; }
-
-        [IndexerName("Chars")]
-        public char this[int index] { get; set; }
-        public ChunkEnumerator GetChunks();
         public IExtensibleStringBuilder Append(char value, int repeatCount);
         public IExtensibleStringBuilder Append(char[]? value, int startIndex, int charCount);
         public IExtensibleStringBuilder Append(string? value);
@@ -29,8 +20,6 @@ namespace Woody230.Text.StringBuilder
         public IExtensibleStringBuilder Append(System.Text.StringBuilder? value, int startIndex, int count);
         public IExtensibleStringBuilder AppendLine();
         public IExtensibleStringBuilder AppendLine(string? value);
-        public void CopyTo(int sourceIndex, char[] destination, int destinationIndex, int count);
-        public void CopyTo(int sourceIndex, Span<char> destination, int count);
         public IExtensibleStringBuilder Insert(int index, string? value, int count);
         public IExtensibleStringBuilder Remove(int startIndex, int length);
         public IExtensibleStringBuilder Append(bool value);
@@ -87,10 +76,18 @@ namespace Woody230.Text.StringBuilder
         public IExtensibleStringBuilder AppendFormat(IFormatProvider? provider, string format, object? arg0, object? arg1, object? arg2);
         public IExtensibleStringBuilder AppendFormat(IFormatProvider? provider, string format, params object?[] args);
         public IExtensibleStringBuilder Replace(string oldValue, string? newValue);
-        public bool Equals([NotNullWhen(true)] System.Text.StringBuilder? sb);
-        public bool Equals(ReadOnlySpan<char> span);
         public IExtensibleStringBuilder Replace(string oldValue, string? newValue, int startIndex, int count);
         public IExtensibleStringBuilder Replace(char oldChar, char newChar);
         public IExtensibleStringBuilder Replace(char oldChar, char newChar, int startIndex, int count);
+        #endregion base
+
+        #region extensible
+        /// <summary>
+        /// Adds the value to the beginning of the string being built.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>This builder.</returns>
+        public IExtensibleStringBuilder Prepend(string value);
+        #endregion extensible
     }
 }
