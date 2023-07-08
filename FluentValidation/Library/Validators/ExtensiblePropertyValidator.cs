@@ -1,5 +1,5 @@
 ﻿using FluentValidation.Validators;
-using Woody230.FluentValidation.Message;
+using Woody230.FluentValidation.Resources;
 
 namespace Woody230.FluentValidation.Validators
 {

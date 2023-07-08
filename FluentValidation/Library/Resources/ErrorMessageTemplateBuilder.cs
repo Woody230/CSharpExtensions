@@ -1,12 +1,12 @@
 ﻿using System.Text;
 using Woody230.Text.StringBuilder;
 
-namespace Woody230.FluentValidation.Message
+namespace Woody230.FluentValidation.Resources
 {
     /// <summary>
     /// Represents a builder for creating an error message template.
     /// </summary>
-    public class ErrorMessageTemplateBuilder: ExtensibleStringBuilder<ErrorMessageTemplateBuilder>
+    public class ErrorMessageTemplateBuilder : ExtensibleStringBuilder<ErrorMessageTemplateBuilder>
     {
         private const string PropertyName = "PropertyName";
         private const string PropertyValue = "PropertyValue";
@@ -15,14 +15,14 @@ namespace Woody230.FluentValidation.Message
         /// Initializes a new instance of the <see cref="ErrorMessageTemplateBuilder"/> class.
         /// </summary>
         /// <param name="builder">The string builder.</param>
-        public ErrorMessageTemplateBuilder(StringBuilder builder): base(builder)
+        public ErrorMessageTemplateBuilder(StringBuilder builder) : base(builder)
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ErrorMessageTemplateBuilder"/> with a new <see cref="StringBuilder"/>.
         /// </summary>
-        public ErrorMessageTemplateBuilder(): base()
+        public ErrorMessageTemplateBuilder() : base()
         {
         }
 
