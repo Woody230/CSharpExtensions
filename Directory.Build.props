@@ -15,6 +15,7 @@
   </PropertyGroup>
   <PropertyGroup Label="Package Versions">
     <FluentAssertionsPkgVer>6.10.0</FluentAssertionsPkgVer>
+    <FluentValidationPkgVer>11.0.0</FluentValidationPkgVer>
     <MicrosoftAspNetCoreMvcTestingPkgVer>6.0.8</MicrosoftAspNetCoreMvcTestingPkgVer>
     <MicrosoftNETTestSdkPkgVer>17.5.0</MicrosoftNETTestSdkPkgVer>
     <MicrosoftSourceLinkGitHubPkgVer>1.1.1</MicrosoftSourceLinkGitHubPkgVer>
