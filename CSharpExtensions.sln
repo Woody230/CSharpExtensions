@@ -16,6 +16,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BindableEnum.Library", "Bin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BindableEnum.Tests", "BindableEnum\Tests\BindableEnum.Tests.csproj", "{833AADC1-4AAF-4668-90B5-35460DD62BAF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BindableEnum", "BindableEnum", "{977E26CC-06AB-459F-AE70-0BB8B026D1E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8E67B46F-6A4B-4216-945C-582907A74658} = {977E26CC-06AB-459F-AE70-0BB8B026D1E3}
+		{A2B1F15D-5EA0-44D9-8188-D89EA5DDC213} = {977E26CC-06AB-459F-AE70-0BB8B026D1E3}
+		{833AADC1-4AAF-4668-90B5-35460DD62BAF} = {977E26CC-06AB-459F-AE70-0BB8B026D1E3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B59A3CED-A160-49B9-A001-B4EA679E9D25}
