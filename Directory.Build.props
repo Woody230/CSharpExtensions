@@ -11,7 +11,7 @@
   </PropertyGroup>
   <PropertyGroup Label="Namespace">
     <RootPackageId>Woody230</RootPackageId>
-    <RootNamespace>$(RootPackageId).$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+    <RootNamespace>$(RootPackageId).$(MSBuildProjectName.Replace(".Library", ""))</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Label="Package Versions">
     <FluentAssertionsPkgVer>6.10.0</FluentAssertionsPkgVer>

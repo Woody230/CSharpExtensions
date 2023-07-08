@@ -1,7 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <RootNamespace>$(RootPackageId).BindableEnum</RootNamespace>
-    <PackageId>$(RootPackageId).BindableEnum</PackageId>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <PackageVersion>$(Version)</PackageVersion>
