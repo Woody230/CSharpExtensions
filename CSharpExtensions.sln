@@ -37,6 +37,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Text", "Text", "{51633B31-F
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Text.Library", "Text\Library\Text.Library.csproj", "{29906E7B-4CE3-41B1-AE23-94F33C296104}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Text.Tests", "Text\Tests\Text.Tests.csproj", "{DF290BB8-1AA6-46D5-AA6F-D1DFF62F33C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,10 @@ Global
 		{29906E7B-4CE3-41B1-AE23-94F33C296104}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29906E7B-4CE3-41B1-AE23-94F33C296104}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29906E7B-4CE3-41B1-AE23-94F33C296104}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF290BB8-1AA6-46D5-AA6F-D1DFF62F33C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF290BB8-1AA6-46D5-AA6F-D1DFF62F33C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF290BB8-1AA6-46D5-AA6F-D1DFF62F33C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF290BB8-1AA6-46D5-AA6F-D1DFF62F33C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,6 +99,7 @@ Global
 		{DFD9E158-2C47-4F69-84E3-FA874FCFFD4B} = {9D53864C-34A2-450A-A294-355907E774DF}
 		{DCC33301-B030-490E-9D9B-F315C3F8C72E} = {9D53864C-34A2-450A-A294-355907E774DF}
 		{29906E7B-4CE3-41B1-AE23-94F33C296104} = {51633B31-F408-4DE1-9157-D64CB96507A6}
+		{DF290BB8-1AA6-46D5-AA6F-D1DFF62F33C8} = {51633B31-F408-4DE1-9157-D64CB96507A6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B59A3CED-A160-49B9-A001-B4EA679E9D25}

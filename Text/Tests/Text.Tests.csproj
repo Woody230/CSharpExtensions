@@ -4,6 +4,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Internal\Tests\Internal.Tests.csproj" />
-    <ProjectReference Include="..\Web\FluentValidation.Web.csproj" />
+    <ProjectReference Include="..\Library\Text.Library.csproj" />
   </ItemGroup>
 </Project>
