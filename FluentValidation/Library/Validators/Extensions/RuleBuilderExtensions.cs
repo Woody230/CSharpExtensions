@@ -17,7 +17,7 @@ public static class RuleBuilderExtensions
     /// <param name="validator">The validator.</param>
     /// <param name="ruleSets">The rule sets.</param>
     /// <returns></returns>
-    public static IRuleBuilderOptions<T, TProperty> SetFriendlyValidator<T, TProperty, TValidator>(
+    public static IRuleBuilderOptions<T, TProperty> FriendlyValidator<T, TProperty, TValidator>(
         this IRuleBuilder<T, TProperty> ruleBuilder, 
         TValidator validator, 
         params string[] ruleSets
