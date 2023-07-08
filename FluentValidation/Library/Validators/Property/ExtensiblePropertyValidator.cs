@@ -26,7 +26,7 @@ namespace Woody230.FluentValidation.Validators.Property
         /// <returns>The default error message.</returns>
         protected override string GetDefaultMessageTemplate(string errorCode)
         {
-            return BuildDefaultErrorMessage(errorCode).Prepend("'").PrependPropertyName().Prepend("'").ToString();
+            return BuildDefaultErrorMessage(errorCode).Prepend("'").PrependPropertyName().Prepend("'");
         }
 
         /// <summary>

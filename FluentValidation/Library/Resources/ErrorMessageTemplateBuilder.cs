@@ -135,5 +135,17 @@ namespace Woody230.FluentValidation.Resources
             handler.AppendLiteral("}");
             return handler;
         }
+
+        /// <summary>
+        /// Implicitly converts the <see cref="string"/> to an <see cref="ErrorMessageTemplateBuilder"/>.
+        /// </summary>
+        /// <param name="value"></param>
+        public static implicit operator ErrorMessageTemplateBuilder(string value) => new(new StringBuilder(value));
+
+        /// <summary>
+        /// Implicitly converts the <see cref="ErrorMessageTemplateBuilder"/> to a <see cref="string"/>.
+        /// </summary>
+        /// <param name="builder"></param>
+        public static implicit operator string(ErrorMessageTemplateBuilder builder) => builder.ToString();
     }
 }

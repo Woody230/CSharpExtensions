@@ -24,7 +24,7 @@ namespace Woody230.FluentValidation.Validators.Property
         /// <inheritdoc/>
         protected override ErrorMessageTemplateBuilder BuildDefaultErrorMessage(string errorCode)
         {
-            return new ErrorMessageTemplateBuilder().Append("must not be null or defaulted");
+            return "must not be null or defaulted";
         }
     }
 }
