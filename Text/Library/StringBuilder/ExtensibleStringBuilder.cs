@@ -8,7 +8,7 @@ namespace Woody230.Text.StringBuilder
     /// <summary>
     /// Represents a <see cref="System.Text.StringBuilder"/> that is extensible with additional functionality.
     /// </summary>
-    public class ExtensibleStringBuilder: IExtensibleStringBuilder
+    public class ExtensibleStringBuilder : IExtensibleStringBuilder
     {
         /// <summary>
         /// The string builder.
@@ -27,7 +27,7 @@ namespace Woody230.Text.StringBuilder
         /// <summary>
         /// Initializes a new instance of the <see cref="ExtensibleStringBuilder"/> class with a new string builder.
         /// </summary>
-        public ExtensibleStringBuilder(): this(new())
+        public ExtensibleStringBuilder() : this(new())
         {
         }
 
@@ -69,7 +69,7 @@ namespace Woody230.Text.StringBuilder
 
         public IExtensibleStringBuilder Append(char[]? value, int startIndex, int charCount)
         {
-            _builder.Append(value, startIndex, charCount); 
+            _builder.Append(value, startIndex, charCount);
             return this;
         }
 
@@ -241,7 +241,7 @@ namespace Woody230.Text.StringBuilder
 
         public IExtensibleStringBuilder Append(IFormatProvider? provider, [InterpolatedStringHandlerArgument(new[] { "", "provider" })] ref System.Text.StringBuilder.AppendInterpolatedStringHandler handler)
         {
-            _builder.Append(provider, ref handler); 
+            _builder.Append(provider, ref handler);
             return this;
         }
 
@@ -433,7 +433,7 @@ namespace Woody230.Text.StringBuilder
 
         public IExtensibleStringBuilder AppendFormat(IFormatProvider? provider, string format, object? arg0, object? arg1)
         {
-            _builder.AppendFormat(provider, format, arg0, arg1); 
+            _builder.AppendFormat(provider, format, arg0, arg1);
             return this;
         }
 
