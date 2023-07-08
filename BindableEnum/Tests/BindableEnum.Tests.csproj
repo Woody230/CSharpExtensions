@@ -1,13 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
-    <PackageReference Include="FluentAssertions" Version="$(FluentAssertionsPkgVer)" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="$(MicrosoftAspNetCoreMvcTestingPkgVer)" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="$(MicrosoftNETTestSdkPkgVer)" />
-    <PackageReference Include="Moq" Version="$(MoqPkgVer)" />
-    <PackageReference Include="xunit" Version="$(xunitPkgVer)" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="$(xunitRunnerVisualStudioPkgVer)" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Internal\Tests\Internal.Tests.csproj" />
     <ProjectReference Include="..\Web\BindableEnum.Web.csproj" />
   </ItemGroup>
 </Project>

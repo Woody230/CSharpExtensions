@@ -20,11 +20,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BindableEnum", "BindableEnu
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FluentValidation", "FluentValidation", "{7B9A2D3F-6BBB-421B-B875-83FA55885D31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentValidation.Library", "FluentValidation\Library\FluentValidation.Library.csproj", "{CBB643D3-C4EE-48E4-961A-211FDE032595}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentValidation.Library", "FluentValidation\Library\FluentValidation.Library.csproj", "{CBB643D3-C4EE-48E4-961A-211FDE032595}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentValidation.Tests", "FluentValidation\Tests\FluentValidation.Tests.csproj", "{EC63817D-6D22-4DC9-A149-4AF590B5F7D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentValidation.Tests", "FluentValidation\Tests\FluentValidation.Tests.csproj", "{EC63817D-6D22-4DC9-A149-4AF590B5F7D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentValidation.Web", "FluentValidation\Web\FluentValidation.Web.csproj", "{134427D3-A1CA-4DBB-AD0E-94AF99EA3735}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentValidation.Web", "FluentValidation\Web\FluentValidation.Web.csproj", "{134427D3-A1CA-4DBB-AD0E-94AF99EA3735}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Internal", "Internal", "{9D53864C-34A2-450A-A294-355907E774DF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Internal.Tests", "Internal\Tests\Internal.Tests.csproj", "{DFD9E158-2C47-4F69-84E3-FA874FCFFD4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Internal.Web", "Internal\Web\Internal.Web.csproj", "{DCC33301-B030-490E-9D9B-F315C3F8C72E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,6 +62,14 @@ Global
 		{134427D3-A1CA-4DBB-AD0E-94AF99EA3735}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{134427D3-A1CA-4DBB-AD0E-94AF99EA3735}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{134427D3-A1CA-4DBB-AD0E-94AF99EA3735}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFD9E158-2C47-4F69-84E3-FA874FCFFD4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFD9E158-2C47-4F69-84E3-FA874FCFFD4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFD9E158-2C47-4F69-84E3-FA874FCFFD4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFD9E158-2C47-4F69-84E3-FA874FCFFD4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCC33301-B030-490E-9D9B-F315C3F8C72E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCC33301-B030-490E-9D9B-F315C3F8C72E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCC33301-B030-490E-9D9B-F315C3F8C72E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCC33301-B030-490E-9D9B-F315C3F8C72E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +81,8 @@ Global
 		{CBB643D3-C4EE-48E4-961A-211FDE032595} = {7B9A2D3F-6BBB-421B-B875-83FA55885D31}
 		{EC63817D-6D22-4DC9-A149-4AF590B5F7D4} = {7B9A2D3F-6BBB-421B-B875-83FA55885D31}
 		{134427D3-A1CA-4DBB-AD0E-94AF99EA3735} = {7B9A2D3F-6BBB-421B-B875-83FA55885D31}
+		{DFD9E158-2C47-4F69-84E3-FA874FCFFD4B} = {9D53864C-34A2-450A-A294-355907E774DF}
+		{DCC33301-B030-490E-9D9B-F315C3F8C72E} = {9D53864C-34A2-450A-A294-355907E774DF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B59A3CED-A160-49B9-A001-B4EA679E9D25}
