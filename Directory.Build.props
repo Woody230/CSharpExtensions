@@ -4,14 +4,14 @@
     <PlatformTarget>x64</PlatformTarget>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <Authors>Brandon Selzer</Authors>
-    <RepositoryUrl>https://github.com/Woody230/BindableEnum</RepositoryUrl>
+    <RepositoryUrl>https://github.com/Woody230/CSharpExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <NeutralLanguage>en-us</NeutralLanguage>
     <RepoRoot>$(MSBuildThisFileDirectory)</RepoRoot>
   </PropertyGroup>
   <PropertyGroup Label="Namespace">
     <RootPackageId>Woody230</RootPackageId>
-    <RootNamespace>$(RootPackageId).$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+    <RootNamespace>$(RootPackageId).$(MSBuildProjectName.Replace(".Library", ""))</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Label="Package Versions">
     <FluentAssertionsPkgVer>6.10.0</FluentAssertionsPkgVer>
