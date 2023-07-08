@@ -4,7 +4,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <Authors>Brandon Selzer</Authors>
-    <RepositoryUrl>https://github.com/Woody230/BindableEnum</RepositoryUrl>
+    <RepositoryUrl>https://github.com/Woody230/CSharpExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <NeutralLanguage>en-us</NeutralLanguage>
     <RepoRoot>$(MSBuildThisFileDirectory)</RepoRoot>
