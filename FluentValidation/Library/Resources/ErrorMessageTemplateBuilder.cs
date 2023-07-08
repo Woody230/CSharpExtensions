@@ -140,7 +140,7 @@ namespace Woody230.FluentValidation.Resources
         /// Implicitly converts the <see cref="string"/> to an <see cref="ErrorMessageTemplateBuilder"/>.
         /// </summary>
         /// <param name="value"></param>
-        public static implicit operator ErrorMessageTemplateBuilder(string value) => new(new StringBuilder(value));
+        public static implicit operator ErrorMessageTemplateBuilder(string? value) => new(new StringBuilder(value));
 
         /// <summary>
         /// Implicitly converts the <see cref="ErrorMessageTemplateBuilder"/> to a <see cref="string"/>.
