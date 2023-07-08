@@ -20,11 +20,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BindableEnum", "BindableEnu
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FluentValidation", "FluentValidation", "{7B9A2D3F-6BBB-421B-B875-83FA55885D31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentValidation.Library", "FluentValidation.Library\FluentValidation.Library.csproj", "{CBB643D3-C4EE-48E4-961A-211FDE032595}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentValidation.Library", "FluentValidation\Library\FluentValidation.Library.csproj", "{CBB643D3-C4EE-48E4-961A-211FDE032595}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentValidation.Tests", "FluentValidation.Tests\FluentValidation.Tests.csproj", "{EC63817D-6D22-4DC9-A149-4AF590B5F7D4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentValidation.Tests", "FluentValidation\Tests\FluentValidation.Tests.csproj", "{EC63817D-6D22-4DC9-A149-4AF590B5F7D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentValidation.Web", "FluentValidation.Web\FluentValidation.Web.csproj", "{134427D3-A1CA-4DBB-AD0E-94AF99EA3735}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentValidation.Web", "FluentValidation\Web\FluentValidation.Web.csproj", "{134427D3-A1CA-4DBB-AD0E-94AF99EA3735}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
