@@ -27,6 +27,6 @@ namespace FluentValidation.Web
         /// <summary>
         /// The summary.
         /// </summary>
-        public string Summary { get; set; }
+        public string? Summary { get; set; }
     }
 }

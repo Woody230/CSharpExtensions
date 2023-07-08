@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -30,14 +31,14 @@ namespace Woody230.BindableEnum.Converters
         /// A <see cref="BindableEnumConverter{T}"/> if the type can be resolved to a <see cref="IBindableEnum"/> or <see cref="BindableEnum{T}"/>/
         /// Null if the type is null <see cref="IBindableEnum{T}"/> or <see cref="BindableEnum{T}"/>, which will throw a <see cref="NotSupportedException"/>.
         /// </returns>
-        public override JsonConverter CreateConverter(Type typeToConvert, JsonSerializerOptions options)
+        public override JsonConverter? CreateConverter(Type typeToConvert, JsonSerializerOptions options)
         {
-            if (!TryResolveInterface(typeToConvert, out Type enumType) && !TryResolveClass(typeToConvert, out enumType))
+            if (!TryResolveInterface(typeToConvert, out var enumType) && !TryResolveClass(typeToConvert, out enumType))
             {
                 return null;
             }
 
-            return (JsonConverter)Activator.CreateInstance(typeof(BindableEnumConverter<>).MakeGenericType(enumType));
+            return Activator.CreateInstance(typeof(BindableEnumConverter<>).MakeGenericType(enumType)) as JsonConverter;
         }
 
         /// <summary>
@@ -46,7 +47,7 @@ namespace Woody230.BindableEnum.Converters
         /// <param name="type">The type.</param>
         /// <param name="enumType">The type of the enum if the <paramref name="type"/> is a <see cref="IBindableEnum{T}"/>.</param>
         /// <returns>True if the type is a <see cref="IBindableEnum{T}"/>.</returns>
-        private static bool TryResolveInterface(Type type, out Type enumType)
+        private static bool TryResolveInterface(Type type, [NotNullWhen(returnValue: true)] out Type? enumType)
         {
             static bool IsBindableInterface(Type type) => type != null && type.IsAssignableTo(typeof(IBindableEnum<>));
 
@@ -66,7 +67,7 @@ namespace Woody230.BindableEnum.Converters
         /// </summary>
         /// <param name="type">The type.</param>
         /// <param name="enumType">The type of the enum if the <paramref name="type"/> is a <see cref="BindableEnum{T}"/>.</param>
-        private static bool TryResolveClass(Type type, out Type enumType)
+        private static bool TryResolveClass(Type type, [NotNullWhen(returnValue: true)] out Type? enumType)
         {
             if (!type.IsGenericType)
             {

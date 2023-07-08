@@ -20,7 +20,7 @@ namespace Woody230.BindableEnum.Attributes
         /// <param name="value">The value.</param>
         /// <param name="validationContext">The validation context.</param>
         /// <returns>A success result if the bindable enum has been binded OR the value is null.</returns>
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
             if (value == null)
             {

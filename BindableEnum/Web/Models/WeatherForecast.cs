@@ -30,20 +30,20 @@ namespace Woody230.BindableEnum.Web.Models
         /// <summary>
         /// The summary.
         /// </summary>
-        public string Summary { get; set; }
+        public string? Summary { get; set; }
 
         /// <summary>
         /// The day of the week (implementation).
         /// </summary>
         [Required]
         [BindedEnum]
-        public BindableEnum<DayOfWeek> DayOfWeek { get; set; }
+        public BindableEnum<DayOfWeek>? DayOfWeek { get; set; }
 
         /// <summary>
         /// The day of the week (interface).
         /// </summary>
         [Required]
         [BindedEnum]
-        public IBindableEnum<DayOfWeek> IDayOfWeek { get; set; }
+        public IBindableEnum<DayOfWeek>? IDayOfWeek { get; set; }
     }
 }

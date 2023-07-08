@@ -21,13 +21,13 @@ namespace Woody230.BindableEnum.Models
         /// <summary>
         /// The string value.
         /// </summary>
-        private string String { get; }
+        private string? String { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BindableEnum{T}"/> class.
         /// </summary>
         /// <param name="value">The string value.</param>
-        public BindableEnum(string value)
+        public BindableEnum(string? value)
         {
             String = value;
 
@@ -55,7 +55,7 @@ namespace Woody230.BindableEnum.Models
         }
 
         /// <inheritdoc/>
-        public override string ToString() => String;
+        public override string? ToString() => String;
 
         /// <summary>
         /// Implicitly converts a bindable enum to the enum.
@@ -67,7 +67,7 @@ namespace Woody230.BindableEnum.Models
         /// Implicitly converts a bindable enum to the nullable enum.
         /// </summary>
         /// <param name="bindable">The bindable enum.</param>
-        public static implicit operator T?(BindableEnum<T> bindable) => bindable?.Enum;
+        public static implicit operator T?(BindableEnum<T>? bindable) => bindable?.Enum;
 
         /// <summary>
         /// Implicitly converts the enum to a bindable enum.
@@ -79,7 +79,7 @@ namespace Woody230.BindableEnum.Models
         /// Implicitly converts the nullable enum to a bindable enum.
         /// </summary>
         /// <param name="enum">The enum.</param>
-        public static implicit operator BindableEnum<T>(T? @enum) => @enum.HasValue ? new(@enum.Value) : null;
+        public static implicit operator BindableEnum<T>?(T? @enum) => @enum.HasValue ? new(@enum.Value) : null;
 
         /// <summary>
         /// Tries to parse the enumeration from the string <paramref name="value"/>.
@@ -87,10 +87,10 @@ namespace Woody230.BindableEnum.Models
         /// <param name="value">The string value.</param>
         /// <param name="enum">The enumeration.</param>
         /// <returns>True if the enumeration is successfully parsed.</returns>
-        protected virtual bool TryParse(string value, out T @enum) => System.Enum.TryParse(value, false, out @enum);
+        protected virtual bool TryParse(string? value, out T @enum) => System.Enum.TryParse(value, false, out @enum);
 
         /// <inheritdoc/>
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return obj is BindableEnum<T> @enum &&
                    EqualityComparer<T>.Default.Equals(Enum, @enum.Enum);

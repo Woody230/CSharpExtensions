@@ -2,6 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <PlatformTarget>x64</PlatformTarget>
+    <Nullable>enable</Nullable>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <Authors>Brandon Selzer</Authors>
     <RepositoryUrl>https://github.com/Woody230/CSharpExtensions</RepositoryUrl>
