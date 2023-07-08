@@ -1,19 +1,45 @@
 <Project>
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <PlatformTarget>x64</PlatformTarget>
-    <Nullable>enable</Nullable>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  <PropertyGroup Label="Metadata">
     <Authors>Brandon Selzer</Authors>
     <RepositoryUrl>https://github.com/Woody230/CSharpExtensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <NeutralLanguage>en-us</NeutralLanguage>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Settings">
+    <TargetFramework>net6.0</TargetFramework>
+    <PlatformTarget>x64</PlatformTarget>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <RepoRoot>$(MSBuildThisFileDirectory)</RepoRoot>
   </PropertyGroup>
+
   <PropertyGroup Label="Namespace">
     <RootPackageId>Woody230</RootPackageId>
     <RootNamespace>$(RootPackageId).$(MSBuildProjectName.Replace(".Library", ""))</RootNamespace>
   </PropertyGroup>
+  
+  <Choose>
+    <When Condition="$(MSBuildProjectName.Contains('.Tests'))" />
+    <Otherwise>
+      <PropertyGroup>
+        <Nullable>enable</Nullable>
+      </PropertyGroup>
+    </Otherwise>
+  </Choose>
+
+  <Choose>
+    <When Condition="$(MSBuildProjectName.Contains('.Library'))">
+      <PropertyGroup Label="Pack">
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+        <PackageVersion>$(Version)</PackageVersion>
+      </PropertyGroup>
+    </When>
+  </Choose>
+  
   <PropertyGroup Label="Package Versions">
     <FluentAssertionsPkgVer>6.10.0</FluentAssertionsPkgVer>
     <FluentValidationPkgVer>11.0.0</FluentValidationPkgVer>
