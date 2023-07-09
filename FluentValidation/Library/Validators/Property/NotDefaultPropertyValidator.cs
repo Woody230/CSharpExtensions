@@ -8,7 +8,7 @@ namespace Woody230.FluentValidation.Validators.Property;
 /// </summary>
 /// <typeparam name="T">The type of model.</typeparam>
 /// <typeparam name="TProperty">The type of property.</typeparam>
-public sealed class NonDefaultPropertyValidator<T, TProperty> : ExtensiblePropertyValidator<T, TProperty>
+public sealed class NotDefaultPropertyValidator<T, TProperty> : ExtensiblePropertyValidator<T, TProperty>
 {
     /// <summary>
     /// Validates that the <typeparamref name="TProperty"/> is not a null or default value.
