@@ -12,7 +12,7 @@ namespace Woody230.FluentValidation.Validators.Property;
 public sealed class DataAnnotationPropertyValidator<T, TProperty> : FriendlyPropertyValidator<T, TProperty>
 {
     private readonly ValidationAttribute _attribute;
-    private const string Result = "Result";
+    private const string ErrorMessage = "ErrorMessage";
 
     /// <summary>
     /// Initializes a new instance of the <see cref="DataAnnotationPropertyValidator{T, TProperty}"/>.
@@ -26,7 +26,7 @@ public sealed class DataAnnotationPropertyValidator<T, TProperty> : FriendlyProp
     /// <inheritdoc/>
     protected override ErrorMessageTemplateBuilder BuildDefaultErrorMessage(string errorCode)
     {
-        return new ErrorMessageTemplateBuilder().AppendPlaceholder(Result);
+        return new ErrorMessageTemplateBuilder().AppendPlaceholder(ErrorMessage);
     }
 
     /// <summary>
@@ -43,7 +43,7 @@ public sealed class DataAnnotationPropertyValidator<T, TProperty> : FriendlyProp
             return true;
         }
 
-        context.MessageFormatter.AppendArgument(Result, result.ErrorMessage);
+        context.MessageFormatter.AppendArgument(ErrorMessage, result.ErrorMessage);
         return false;
     }
 }
