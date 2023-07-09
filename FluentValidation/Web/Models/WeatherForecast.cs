@@ -31,9 +31,14 @@ public record WeatherForecast
     public string Summary { get; set; }
 
     /// <summary>
-    /// The events.
+    /// The required events.
     /// </summary>
-    public IList<Event> Events { get; init; }
+    public IList<Event> RequiredEvents { get; init; }
+
+    /// <summary>
+    /// The optional events.
+    /// </summary>
+    public IList<Event> OptionalEvents { get; init; }
 
     /// <summary>
     /// The optional event.

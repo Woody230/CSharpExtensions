@@ -49,7 +49,7 @@ public class CreateWeatherForecastTests : IntegrationTests
                 Description = "* Foo",
                 Name = "* Bar"
             },
-            Events = new List<Event>()
+            RequiredEvents = new List<Event>()
             {
                 new Event()
                 {
@@ -91,13 +91,33 @@ public class CreateWeatherForecastTests : IntegrationTests
                 Description = "Foo",
                 Name = "* Bar"
             },
-            Events = new List<Event>()
+            RequiredEvents = new List<Event>()
             {
+                new Event()
+                {
+                    Description = "* 1",
+                    Name = "* 2"
+                },
                 null,
                 new Event()
                 {
                     Description = "* Fizz",
                     Name = "Buzz"
+                },
+                null
+            },
+            OptionalEvents = new List<Event>()
+            {
+                null,
+                new Event()
+                {
+                    Description = "* 1",
+                    Name = "* 2"
+                },
+                new Event()
+                {
+                    Description = "* 5",
+                    Name = "678"
                 },
                 null
             }
@@ -115,7 +135,30 @@ public class CreateWeatherForecastTests : IntegrationTests
         var content = await response.Content.ReadAsStringAsync();
         scope.AddReportable("Content", content);
 
-        content.Should().Be("[OptionalEvent.Description] 'Description' must not be empty.\r\n[RequiredEvent.Description] 'Description' must start with *\r\n[Events[1].Name] 'Name' must start with *\r\n[TemperatureC] 'Temperature C' must be greater than '0'.");
+        content.Should().Be("[OptionalEvent.Description] 'Description' must not be empty.\r\n[RequiredEvent.Description] 'Description' must start with *\r\n[OptionalEvents[2].Name] 'Name' must start with *\r\n[RequiredEvents[2].Name] 'Name' must start with *\r\n[TemperatureC] 'Temperature C' must be greater than '0'.");
+    }
+
+    /// <summary>
+    /// Verifies that validation fails when an invalid model is used.
+    /// </summary>
+    [Fact]
+    public async Task Create_WithEmptyForecast_ReturnsBadRequest()
+    {
+        // Arrange
+        var forecast = new WeatherForecast();
+        var request = CreateRequest(forecast);
+
+        // Act
+        var response = await HttpClient.SendAsync(request);
+
+        // Assert
+        using var scope = new AssertionScope();
+        response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+
+        var content = await response.Content.ReadAsStringAsync();
+        scope.AddReportable("Content", content);
+
+        content.Should().Be("[RequiredEvent] 'Required Event' must not be empty.\r\n[RequiredEvents] 'Required Events' must not be empty.\r\n[TemperatureC] 'Temperature C' must be greater than '0'.");
     }
 
     /// <summary>

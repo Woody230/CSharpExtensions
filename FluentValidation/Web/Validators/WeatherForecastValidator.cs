@@ -13,7 +13,8 @@ public class WeatherForecastValidator : FriendlyValidator<WeatherForecast>
     {
         RuleFor(wf => wf.OptionalEvent).FriendlyValidator(new EventValidator());
         RuleFor(wf => wf.RequiredEvent).Required().FriendlyValidator(new EventValidator());
-        RuleFor(wf => wf.Events).Required().ForEach(wf => wf.FriendlyValidator(new EventValidator()));
+        RuleFor(wf => wf.OptionalEvents).ForEach(wf => wf.FriendlyValidator(new EventValidator()));
+        RuleFor(wf => wf.RequiredEvents).Required().ForEach(wf => wf.FriendlyValidator(new EventValidator()));
         RuleFor(wf => wf.TemperatureC).GreaterThan(0);
     }
 }
