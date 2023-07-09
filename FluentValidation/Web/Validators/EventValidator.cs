@@ -5,7 +5,7 @@ using Woody230.FluentValidation.Web.Models;
 namespace Woody230.FluentValidation.Web.Validators;
 
 /// <inheritdoc/>
-public class EventValidator: OptionalValidator<Event>
+public class EventValidator: FriendlyValidator<Event>
 {
     /// <inheritdoc/>
     public EventValidator()
