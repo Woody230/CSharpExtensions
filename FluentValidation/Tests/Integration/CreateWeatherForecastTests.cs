@@ -115,7 +115,7 @@ public class CreateWeatherForecastTests : IntegrationTests
         var content = await response.Content.ReadAsStringAsync();
         scope.AddReportable("Content", content);
 
-        content.Should().Be("'Description' must not be empty.\r\n'Description' must start with *\r\n'Name' must start with *\r\n'Temperature C' must be greater than '0'.");
+        content.Should().Be("[OptionalEvent.Description] 'Description' must not be empty.\r\n[RequiredEvent.Description] 'Description' must start with *\r\n[Events[1].Name] 'Name' must start with *\r\n[TemperatureC] 'Temperature C' must be greater than '0'.");
     }
 
     /// <summary>

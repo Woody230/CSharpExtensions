@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Woody230.FluentValidation.Results;
 using Woody230.FluentValidation.Web.Models;
 using Woody230.FluentValidation.Web.Validators;
 
@@ -62,7 +63,7 @@ public class WeatherForecastController : ControllerBase
         }
         else
         {
-            return new BadRequestObjectResult(result.ToString());
+            return new BadRequestObjectResult(result.GetErrorMessage());
         }
     }
 }
