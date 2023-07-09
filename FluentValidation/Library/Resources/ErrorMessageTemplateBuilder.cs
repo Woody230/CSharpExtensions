@@ -127,13 +127,9 @@ public class ErrorMessageTemplateBuilder : ExtensibleStringBuilder<ErrorMessageT
 
     #endregion PropertyValue
 
-    private static StringBuilder.AppendInterpolatedStringHandler CreatePlaceholder(string name)
+    private static string CreatePlaceholder(string name)
     {
-        var handler = new StringBuilder.AppendInterpolatedStringHandler();
-        handler.AppendLiteral("{");
-        handler.AppendLiteral(name);
-        handler.AppendLiteral("}");
-        return handler;
+        return $"{{{name}}}";
     }
 
     /// <summary>

@@ -3,6 +3,8 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Woody230.FluentValidation.Web.Models;
+using Woody230.FluentValidation.Web.Validators;
 
 namespace FluentValidation.Web.Controllers;
 
@@ -53,6 +55,14 @@ public class WeatherForecastController : ControllerBase
     [HttpPost(Name = "CreateWeatherForecast")]
     public IActionResult Post([FromBody] WeatherForecast forecast)
     {
-        return new OkObjectResult(forecast);
+        var result = new WeatherForecastValidator().Validate(forecast);
+        if (result.IsValid)
+        {
+            return new OkObjectResult(forecast);
+        }
+        else
+        {
+            return new BadRequestObjectResult(result.ToString());
+        }
     }
 }

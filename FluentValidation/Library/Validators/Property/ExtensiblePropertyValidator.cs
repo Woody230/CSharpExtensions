@@ -14,7 +14,8 @@ public abstract class ExtensiblePropertyValidator<T, TProperty> : PropertyValida
         get
         {
             var name = GetType().Name;
-            return name[..name.IndexOf('`')];
+            var genericIndex = name.IndexOf('`');
+            return genericIndex == -1 ? name : name[..name.IndexOf('`')];
         }
     }
 

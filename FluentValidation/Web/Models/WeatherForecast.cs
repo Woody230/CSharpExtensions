@@ -1,6 +1,7 @@
 using System;
+using System.Collections.Generic;
 
-namespace FluentValidation.Web;
+namespace Woody230.FluentValidation.Web.Models;
 
 /// <summary>
 /// Represents a weather forecast.
@@ -27,5 +28,20 @@ public record WeatherForecast
     /// <summary>
     /// The summary.
     /// </summary>
-    public string? Summary { get; set; }
+    public string Summary { get; set; }
+
+    /// <summary>
+    /// The events.
+    /// </summary>
+    public IList<Event> Events { get; init; }
+
+    /// <summary>
+    /// The optional event.
+    /// </summary>
+    public Event OptionalEvent { get; init; }
+
+    /// <summary>
+    /// The required event.
+    /// </summary>
+    public Event RequiredEvent { get; init; }
 }
