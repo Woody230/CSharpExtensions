@@ -1,7 +1,6 @@
 ﻿using FluentAssertions;
 using FluentAssertions.Execution;
 using Microsoft.AspNetCore.Mvc.Testing;
-using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
@@ -24,6 +23,7 @@ public class CreateWeatherForecastTests : IntegrationTests
     private readonly JsonSerializerOptions _options = new()
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.Never
     };
 
     /// <summary>
@@ -93,11 +93,13 @@ public class CreateWeatherForecastTests : IntegrationTests
             },
             Events = new List<Event>()
             {
+                null,
                 new Event()
                 {
                     Description = "* Fizz",
                     Name = "Buzz"
-                }
+                },
+                null
             }
         };
 

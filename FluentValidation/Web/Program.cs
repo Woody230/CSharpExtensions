@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 using System.IO;
 using System.Reflection;
 using System.Text.Json.Serialization;
-using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
