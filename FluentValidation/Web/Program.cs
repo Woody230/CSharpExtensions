@@ -1,3 +1,5 @@
+using FluentValidation;
+using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -15,18 +17,21 @@ builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializ
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
-var name = Assembly.GetExecutingAssembly().GetName().Name;
-var xmlPath = Path.Combine(AppContext.BaseDirectory, $"{name}.xml");
-options.IncludeXmlComments(xmlPath);
+    var name = Assembly.GetExecutingAssembly().GetName().Name;
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, $"{name}.xml");
+    options.IncludeXmlComments(xmlPath);
 });
+
+builder.Services.AddValidatorsFromAssemblyContaining<Program>();
+builder.Services.AddFluentValidationRulesToSwagger();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-app.UseSwagger();
-app.UseSwaggerUI();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();

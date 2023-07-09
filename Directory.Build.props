@@ -53,6 +53,8 @@
   <PropertyGroup Label="Package Versions">
     <FluentAssertionsPkgVer>6.10.0</FluentAssertionsPkgVer>
     <FluentValidationPkgVer>11.0.0</FluentValidationPkgVer>
+    <FluentValidationDependencyInjectionExtensionsPkgVer>11.0.0</FluentValidationDependencyInjectionExtensionsPkgVer>
+    <MicroElementsSwashbuckleFluentValidationPkgVer>6.0.0-beta.3</MicroElementsSwashbuckleFluentValidationPkgVer>
     <MicrosoftAspNetCoreMvcTestingPkgVer>6.0.8</MicrosoftAspNetCoreMvcTestingPkgVer>
     <MicrosoftNETTestSdkPkgVer>17.5.0</MicrosoftNETTestSdkPkgVer>
     <MicrosoftSourceLinkGitHubPkgVer>1.1.1</MicrosoftSourceLinkGitHubPkgVer>

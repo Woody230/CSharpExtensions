@@ -1,8 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <Nullable>disable</Nullable>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="$(FluentValidationDependencyInjectionExtensionsPkgVer)" />
+    <PackageReference Include="MicroElements.Swashbuckle.FluentValidation" Version="$(MicroElementsSwashbuckleFluentValidationPkgVer)" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Internal\Web\Internal.Web.csproj" />
     <ProjectReference Include="..\Library\FluentValidation.Library.csproj" />
