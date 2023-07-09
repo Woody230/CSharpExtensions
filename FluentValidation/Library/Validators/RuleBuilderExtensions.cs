@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Woody230.FluentValidation.Validators.Extensions;
+namespace Woody230.FluentValidation.Validators;
 
 /// <summary>
 /// Represents extensions for the <see cref="IRuleBuilder{T, TProperty}"/>.
@@ -18,11 +18,11 @@ public static class RuleBuilderExtensions
     /// <param name="ruleSets">The rule sets.</param>
     /// <returns>The rule builder options.</returns>
     public static IRuleBuilderOptions<T, TProperty> FriendlyValidator<T, TProperty, TValidator>(
-        this IRuleBuilder<T, TProperty> ruleBuilder, 
-        TValidator validator, 
+        this IRuleBuilder<T, TProperty> ruleBuilder,
+        TValidator validator,
         params string[] ruleSets
     ) where TValidator : FriendlyValidator<TProperty>
     {
         return ruleBuilder.SetValidator(validator, ruleSets).When(model => model != null, ApplyConditionTo.CurrentValidator);
-    } 
+    }
 }

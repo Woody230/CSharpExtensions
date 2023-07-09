@@ -2,7 +2,7 @@
 using FluentValidation.Validators;
 using System.ComponentModel.DataAnnotations;
 
-namespace Woody230.FluentValidation.Validators.Property.Extensions;
+namespace Woody230.FluentValidation.Validators.Property;
 
 /// <summary>
 /// Represents extensions for the <see cref="IRuleBuilder{T, TProperty}"/>.
@@ -20,7 +20,8 @@ public static class RuleBuilderExtensions
     public static IRuleBuilderOptions<T, TProperty> DataAnnotation<T, TProperty>(
         this IRuleBuilder<T, TProperty> ruleBuilder,
         ValidationAttribute attribute
-    ) {
+    )
+    {
         var validator = new DataAnnotationPropertyValidator<T, TProperty>(attribute);
         return ruleBuilder.SetValidator(validator);
     }

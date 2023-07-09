@@ -1,5 +1,5 @@
 ﻿using Woody230.FluentValidation.Validators;
-using Woody230.FluentValidation.Validators.Property.Extensions;
+using Woody230.FluentValidation.Validators.Property;
 using Woody230.FluentValidation.Web.Models;
 
 namespace Woody230.FluentValidation.Web.Validators;
