@@ -9,7 +9,7 @@ namespace Woody230.FluentValidation.Validators;
 /// </para>
 /// <para>
 /// When the model is null, then a validation failure is added to the result's errors.
-/// This is in constrast to the default behavior of throwing an exception.
+/// This is in contrast to the default behavior of throwing an exception.
 /// </para>
 /// </summary>
 /// <typeparam name="T">The type of model.</typeparam>
