@@ -1,12 +1,12 @@
 ﻿using FluentValidation;
-using Woody230.FluentValidation.Validators;
+using Woody230.FluentValidation.Validators.Model;
 using Woody230.FluentValidation.Validators.Property;
 using Woody230.FluentValidation.Web.Models;
 
 namespace Woody230.FluentValidation.Web.Validators;
 
 /// <inheritdoc/>
-public class WeatherForecastValidator : FriendlyValidator<WeatherForecast>
+public class WeatherForecastValidator : NullSafeModelValidator<WeatherForecast>
 {
     /// <inheritdoc/>
     public WeatherForecastValidator()

@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
 
-namespace Woody230.FluentValidation.Validators;
+namespace Woody230.FluentValidation.Validators.Model;
 
 /// <summary>
 /// <para>
@@ -13,7 +13,7 @@ namespace Woody230.FluentValidation.Validators;
 /// </para>
 /// </summary>
 /// <typeparam name="T">The type of model.</typeparam>
-public abstract class FriendlyValidator<T>: AbstractValidator<T>
+public abstract class NullSafeModelValidator<T> : AbstractValidator<T>
 {
     /// <summary>
     /// When the model is null, then a validation failure is added to the result's errors.

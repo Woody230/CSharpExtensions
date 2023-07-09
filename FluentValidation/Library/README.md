@@ -11,7 +11,7 @@ Extensions for the [FluentValidation](https://github.com/FluentValidation/Fluent
 
 | Name | Description | 
 | --- | --- |
-| FriendlyValidator | Base validator that adds an error to the result instead of throwing an exception when the model is null. |
+| NullSafeModelValidator | Base validator that adds an error to the result instead of throwing an exception when the model is null. |
 
 ## Property Validators
 | Name | Description | 

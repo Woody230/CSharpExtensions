@@ -1,11 +1,11 @@
-﻿using Woody230.FluentValidation.Validators;
+﻿using Woody230.FluentValidation.Validators.Model;
 using Woody230.FluentValidation.Validators.Property;
 using Woody230.FluentValidation.Web.Models;
 
 namespace Woody230.FluentValidation.Web.Validators;
 
 /// <inheritdoc/>
-public class EventValidator: FriendlyValidator<Event>
+public class EventValidator: NullSafeModelValidator<Event>
 {
     /// <inheritdoc/>
     public EventValidator()
