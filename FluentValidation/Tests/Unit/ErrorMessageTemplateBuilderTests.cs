@@ -27,22 +27,41 @@ public class ErrorMessageTemplateBuilderTests
     }
 
     /// <summary>
-    /// Verifies that the implicit conversions to/from a string are valid.
+    /// Verifies that the implicit conversions to a string is valid.
     /// </summary>
     [Fact]
-    public void StringImplicitConversions()
+    public void BuilderToStringConversion()
     {
         ErrorMessageTemplateBuilder builder = "foo bar";
         builder.ToString().Should().Be("foo bar");
 
         string str = builder;
         str.Should().Be("foo bar");
+    }
 
-        string nullStr = null;
-        builder = nullStr;
+    /// <summary>
+    /// Verifies that the implicit conversions from a string is valid.
+    /// </summary>
+    [Fact]
+    public void StringToBuilderConversion()
+    {
+        string str = null;
+        ErrorMessageTemplateBuilder builder = str;
         builder.ToString().Should().Be(string.Empty);
 
-        builder = null;
-        this.Invoking(_ => nullStr = builder).Should().Throw<NullReferenceException>();
+        str = "foo";
+        builder = str;
+        builder.ToString().Should().Be("foo");
+    }
+
+    /// <summary>
+    /// Verifies that the implicit conversions to a string is valid.
+    /// </summary>
+    [Fact]
+    public void NullableBuilderToStringConversion()
+    {
+        string str = string.Empty;
+        ErrorMessageTemplateBuilder builder = null;
+        this.Invoking(_ => str = builder).Should().Throw<NullReferenceException>();
     }
 }
