@@ -26,7 +26,7 @@ public abstract class ExtensiblePropertyValidator<T, TProperty> : PropertyValida
     /// <returns>The default error message.</returns>
     protected override string GetDefaultMessageTemplate(string errorCode)
     {
-        return BuildDefaultErrorMessage(errorCode).Prepend("'").PrependPropertyName().Prepend("'");
+        return BuildDefaultErrorMessage(errorCode).Prepend("' ").PrependPropertyName().Prepend("'");
     }
 
     /// <summary>
