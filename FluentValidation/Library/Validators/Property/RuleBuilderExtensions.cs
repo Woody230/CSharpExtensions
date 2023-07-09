@@ -36,7 +36,9 @@ public static class RuleBuilderExtensions
     public static IRuleBuilderOptions<T, TProperty> NotDefault<T, TProperty>(this IRuleBuilder<T, TProperty> ruleBuilder)
     {
         var validator = new NotDefaultPropertyValidator<T, TProperty>();
-        return ruleBuilder.SetValidator(validator);
+
+        // NOTE: including not null to be compatible with MicroElements.Swashbuckle.FluentValidation without the need to add a rule for updating the schema
+        return ruleBuilder.NotNull().SetValidator(validator);
     }
 
     /// <summary>
