@@ -9,7 +9,7 @@ namespace Woody230.FluentValidation.Validators.Property;
 /// </summary>
 /// <typeparam name="T">The type of model.</typeparam>
 /// <typeparam name="TProperty">The type of property.</typeparam>
-public sealed class DataAnnotationPropertyValidator<T, TProperty> : FriendlyPropertyValidator<T, TProperty>
+public sealed class DataAnnotationPropertyValidator<T, TProperty> : OptionalPropertyValidator<T, TProperty>
 {
     private readonly ValidationAttribute _attribute;
     private const string ErrorMessage = "ErrorMessage";

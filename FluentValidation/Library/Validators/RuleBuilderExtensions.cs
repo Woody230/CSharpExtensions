@@ -17,11 +17,11 @@ public static class RuleBuilderExtensions
     /// <param name="validator">The validator.</param>
     /// <param name="ruleSets">The rule sets.</param>
     /// <returns>The rule builder options.</returns>
-    public static IRuleBuilderOptions<T, TProperty> FriendlyValidator<T, TProperty, TValidator>(
+    public static IRuleBuilderOptions<T, TProperty> OptionalValidator<T, TProperty, TValidator>(
         this IRuleBuilder<T, TProperty> ruleBuilder,
         TValidator validator,
         params string[] ruleSets
-    ) where TValidator : FriendlyValidator<TProperty>
+    ) where TValidator : OptionalValidator<TProperty>
     {
         return ruleBuilder.SetValidator(validator, ruleSets).When(model => model != null, ApplyConditionTo.CurrentValidator);
     }

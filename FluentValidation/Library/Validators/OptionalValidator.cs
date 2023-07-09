@@ -13,7 +13,7 @@ namespace Woody230.FluentValidation.Validators;
 /// </para>
 /// </summary>
 /// <typeparam name="T">The type of model.</typeparam>
-public abstract class FriendlyValidator<T>: AbstractValidator<T>
+public abstract class OptionalValidator<T>: AbstractValidator<T>
 {
     /// <summary>
     /// When the model is null, then a validation failure is added to the result's errors.

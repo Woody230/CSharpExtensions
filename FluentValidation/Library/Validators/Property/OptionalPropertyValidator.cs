@@ -12,7 +12,7 @@ namespace Woody230.FluentValidation.Validators.Property;
 /// This allows the reuse of logic within an optional/required context where a <see cref="NotNullValidator{T, TProperty}"/> is used if the value should be considered required.
 /// </para>
 /// </summary>
-public abstract class FriendlyPropertyValidator<T, TProperty> : ExtensiblePropertyValidator<T, TProperty>
+public abstract class OptionalPropertyValidator<T, TProperty> : ExtensiblePropertyValidator<T, TProperty>
 {
     /// <summary>
     /// Validates whether the <paramref name="value"/> is valid.
