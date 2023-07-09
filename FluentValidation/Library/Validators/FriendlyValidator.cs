@@ -26,7 +26,7 @@ public abstract class FriendlyValidator<T>: AbstractValidator<T>
     {
         if (context.InstanceToValidate == null)
         {
-            result.Errors.Add(new ValidationFailure("", "Model is null."));
+            result.Errors.Add(new ValidationFailure("$", "Model is null."));
             return false;
         }
 

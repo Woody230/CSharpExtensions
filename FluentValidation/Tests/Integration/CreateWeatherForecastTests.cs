@@ -129,13 +129,7 @@ public class CreateWeatherForecastTests : IntegrationTests
         var response = await HttpClient.SendAsync(request);
 
         // Assert
-        using var scope = new AssertionScope();
-        response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
-
-        var content = await response.Content.ReadAsStringAsync();
-        scope.AddReportable("Content", content);
-
-        content.Should().Be("[OptionalEvent.Description] 'Description' must not be empty.\r\n[RequiredEvent.Description] 'Description' must start with *\r\n[OptionalEvents[2].Name] 'Name' must start with *\r\n[RequiredEvents[2].Name] 'Name' must start with *\r\n[TemperatureC] 'Temperature C' must be greater than '0'.");
+        await AssertBadResponse(response, "[OptionalEvent.Description] 'Description' must not be empty.\r\n[RequiredEvent.Description] 'Description' must start with *\r\n[OptionalEvents[2].Name] 'Name' must start with *\r\n[RequiredEvents[2].Name] 'Name' must start with *\r\n[TemperatureC] 'Temperature C' must be greater than '0'.");
     }
 
     /// <summary>
@@ -152,13 +146,34 @@ public class CreateWeatherForecastTests : IntegrationTests
         var response = await HttpClient.SendAsync(request);
 
         // Assert
+        await AssertBadResponse(response, "[RequiredEvent] 'Required Event' must not be empty.\r\n[RequiredEvents] 'Required Events' must not be empty.\r\n[TemperatureC] 'Temperature C' must be greater than '0'.");
+    }
+
+    /// <summary>
+    /// Verifies that validation fails when an invalid model is used.
+    /// </summary>
+    [Fact]
+    public async Task Create_WithNullForecast_ReturnsBadRequest()
+    {
+        // Arrange
+        var request = CreateRequest(null);
+
+        // Act
+        var response = await HttpClient.SendAsync(request);
+
+        // Assert
+        await AssertBadResponse(response, "[$] Model is null.");
+    }
+
+    private async Task AssertBadResponse(HttpResponseMessage response, string expectedContent)
+    {
         using var scope = new AssertionScope();
         response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
 
         var content = await response.Content.ReadAsStringAsync();
         scope.AddReportable("Content", content);
 
-        content.Should().Be("[RequiredEvent] 'Required Event' must not be empty.\r\n[RequiredEvents] 'Required Events' must not be empty.\r\n[TemperatureC] 'Temperature C' must be greater than '0'.");
+        content.Should().Be(expectedContent);
     }
 
     /// <summary>
