@@ -13,11 +13,10 @@ public static class RuleBuilderExtensions
     /// </summary>
     /// <typeparam name="T">The type of model.</typeparam>
     /// <typeparam name="TProperty">The type of property.</typeparam>
-    /// <typeparam name="TValidator">The type of validator.</typeparam>
     /// <param name="ruleBuilder">The rule builder.</param>
     /// <param name="attribute">The data annotation validation attribute.</param>
     /// <returns>The rule builder options.</returns>
-    public static IRuleBuilderOptions<T, TProperty> DataAnnotation<T, TProperty, TValidator>(
+    public static IRuleBuilderOptions<T, TProperty> DataAnnotation<T, TProperty>(
         this IRuleBuilder<T, TProperty> ruleBuilder,
         ValidationAttribute attribute
     ) {
