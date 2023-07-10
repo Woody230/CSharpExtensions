@@ -30,6 +30,7 @@
   <Choose>
     <When Condition="$(MSBuildProjectName.Contains('.Library'))">
       <PropertyGroup Label="Pack">
+        <PackageId>$(RootNamespace)</PackageId>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
