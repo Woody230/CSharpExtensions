@@ -10,7 +10,7 @@ namespace Woody230.FluentValidation.Validators.Property;
 public static class RuleBuilderExtensions
 {
     /// <summary>
-    /// Applies the <see cref="DataAnnotationPropertyValidator{T, TProperty}"/> with the given <paramref name="attribute"/>
+    /// Applies the <see cref="DataAnnotationPropertyValidator{T, TProperty}"/> with the given <paramref name="attribute"/>.
     /// </summary>
     /// <typeparam name="T">The type of model.</typeparam>
     /// <typeparam name="TProperty">The type of property.</typeparam>
@@ -36,9 +36,7 @@ public static class RuleBuilderExtensions
     public static IRuleBuilderOptions<T, TProperty> NotDefault<T, TProperty>(this IRuleBuilder<T, TProperty> ruleBuilder)
     {
         var validator = new NotDefaultPropertyValidator<T, TProperty>();
-
-        // NOTE: including not null to be compatible with MicroElements.Swashbuckle.FluentValidation without the need to add a rule for updating the schema
-        return ruleBuilder.NotNull().SetValidator(validator);
+        return ruleBuilder.SetValidator(validator);
     }
 
     /// <summary>
