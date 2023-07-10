@@ -43,4 +43,34 @@ public class ImplicitConversionTests
         nullableEnum = bindable;
         nullableEnum.Should().BeNull();
     }
+
+    /// <summary>
+    /// Verifies that a string can be implicitly converted to and back from a bindable enum implicitly.
+    /// </summary>
+    [Fact]
+    public void ConvertToAndFromString()
+    {
+        string @string = "Tuesday";
+        BindableEnum<DayOfWeek> bindable = @string;
+        bindable.Should().NotBeNull();
+        bindable.Binded.Should().BeTrue();
+        bindable.Enum.Should().Be(DayOfWeek.Tuesday);
+
+        @string = bindable;
+        @string.Should().Be("Tuesday");
+    }
+
+    /// <summary>
+    /// Verifies that a nullable string can be implicitly converted to and back from a bindable enum implicitly.
+    /// </summary>
+    [Fact]
+    public void ConvertToAndFromNullableString()
+    {
+        string @string = null;
+        BindableEnum<DayOfWeek> bindable = @string;
+        bindable.Should().BeNull();
+
+        @string = bindable;
+        @string.Should().BeNull();
+    }
 }
