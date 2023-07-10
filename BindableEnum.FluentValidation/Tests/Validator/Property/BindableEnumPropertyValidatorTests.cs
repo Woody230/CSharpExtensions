@@ -12,7 +12,7 @@ namespace Woody230.BindableEnum.FluentValidation.Tests.Validator.Property;
 public class BindableEnumPropertyValidatorTests
 {
     [Theory]
-    [InlineData(null, true)]
+    [InlineData(null, false, "'Enum' value `` must be one of the following Color values: Red, Blue")]
     [InlineData("", false, "'Enum' value `` must be one of the following Color values: Red, Blue")]
     [InlineData("Red", true)]
     [InlineData("Blue", true)]
@@ -21,7 +21,7 @@ public class BindableEnumPropertyValidatorTests
     {
         // Arrange
         var validator = new WrapperValidator();
-        var wrapper = new Wrapper() { Enum = @enum == null ? null : new BindableEnum<Color>(@enum) };
+        var wrapper = new Wrapper() { Enum = new BindableEnum<Color>(@enum) };
 
         // Act
         var result = validator.Validate(wrapper);
@@ -40,6 +40,20 @@ public class BindableEnumPropertyValidatorTests
             error.PropertyName.Should().Be("Enum");
             error.ErrorMessage.Should().Be(message);
         }
+    }
+
+    [Fact]
+    public void Null_BindableEnum_IsValid()
+    {
+        // Arrange
+        var validator = new WrapperValidator();
+        var wrapper = new Wrapper();
+
+        // Act
+        var result = validator.Validate(wrapper);
+
+        // Assert
+        result.IsValid.Should().Be(true);
     }
 
     private record Wrapper
