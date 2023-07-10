@@ -6,8 +6,6 @@
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="$(FluentValidationPkgVer)" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="$(MicrosoftSourceLinkGitHubPkgVer)" PrivateAssets="All" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Text\Library\Text.Library.csproj" />
+    <PackageReference Include="Woody230.Text" Version="1.0.0" />
   </ItemGroup>
 </Project>
