@@ -82,6 +82,18 @@ public class BindableEnum<T> : IBindableEnum<T> where T : struct, Enum
     public static implicit operator BindableEnum<T>?(T? @enum) => @enum.HasValue ? new(@enum.Value) : null;
 
     /// <summary>
+    /// Implicitly converts the bindable enum to a string.
+    /// </summary>
+    /// <param name="bindable">The bindable enum.</param>
+    public static implicit operator string?(BindableEnum<T>? bindable) => bindable?.String;
+
+    /// <summary>
+    /// Implicitly converts the string to a bindable enum.
+    /// </summary>
+    /// <param name="string">The string.</param>
+    public static implicit operator BindableEnum<T>?(string? @string) => @string == null ? null : new BindableEnum<T>(@string);
+
+    /// <summary>
     /// Tries to parse the enumeration from the string <paramref name="value"/>.
     /// </summary>
     /// <param name="value">The string value.</param>
