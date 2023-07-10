@@ -10,6 +10,7 @@ Extensions for the System.Text namespace.
 Wrapper around the System.Text.StringBuilder that is extensible since the System.Text.StringBuilder is sealed. 
 
 It contains the following additional methods, which can be accessed without creating an implementation using the `ExtendedStringBuilder`.
+
 | Name | Description |
 | --- | --- |
 | Prepend | Insert a string at the beginning of the string being built. |
