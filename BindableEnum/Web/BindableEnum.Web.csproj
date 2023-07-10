@@ -3,9 +3,7 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="$(SwashbuckleAspNetCorePkgVer)" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\..\Internal\Web\Internal.Web.csproj" />
     <ProjectReference Include="..\Library\BindableEnum.Library.csproj" />
   </ItemGroup>
 </Project>
