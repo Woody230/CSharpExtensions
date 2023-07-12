@@ -9,7 +9,7 @@ public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
 {
     /// <inheritdoc/>
     /// <exception cref="InvalidOperationException">When the result is a success.</exception>
-    public TFailure Failure 
+    public TFailure Failure
     {
         get
         {
@@ -24,7 +24,7 @@ public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
 
     /// <inheritdoc/>
     /// <exception cref="InvalidOperationException">When the result is a failure.</exception>
-    public TSuccess Success 
+    public TSuccess Success
     {
         get
         {
@@ -36,7 +36,7 @@ public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
             return Success;
         }
     }
-    
+
     /// <inheritdoc/>
     public bool IsSuccess { get; }
 
@@ -45,8 +45,15 @@ public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
     /// </summary>
     public bool IsFailure => !IsSuccess;
 
-    private readonly TFailure? _failure;
-    private readonly TSuccess? _success;
+    /// <summary>
+    /// The success state, or null if the result is a failure.
+    /// </summary>
+    public TSuccess? SuccessOrNull { get; }
+
+    /// <summary>
+    /// The failure state, or null if the result is a success.
+    /// </summary>
+    public TFailure? FailureOrNull { get; }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Result{TFailure, TSuccess}"/> class as a failure.
@@ -55,7 +62,7 @@ public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
     public Result(TFailure failure)
     {
         IsSuccess = false;
-        _failure = failure;
+        FailureOrNull = failure;
     }
 
     /// <summary>
@@ -65,7 +72,7 @@ public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
     public Result(TSuccess success)
     {
         IsSuccess = true;
-        _success = success;
+        SuccessOrNull = success;
     }
 
     /// <summary>
@@ -91,16 +98,6 @@ public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
     /// </summary>
     /// <param name="failure">The failure state.</param>
     public static implicit operator Result<TFailure, TSuccess>(TFailure failure) => new(failure);
-
-    /// <summary>
-    /// The success state, or null if the result is a failure.
-    /// </summary>
-    public TSuccess? SuccessOrNull() => _success;
-
-    /// <summary>
-    /// The failure state, or null if the result is a success.
-    /// </summary>
-    public TFailure? FailureOrNull() => _failure;
 
     /// <summary>
     /// Transforms the state depending on whether it is a failure or a success.
@@ -170,8 +167,8 @@ public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
     /// <summary>
     /// Applies an action depending on whether the result is a success or a failure.
     /// </summary>
-    /// <param name="onSuccess">The action to perform on success.</param>
     /// <param name="onFailure">The action to perform on failure.</param>
+    /// <param name="onSuccess">The action to perform on success.</param>
     /// <returns>This result.</returns>
     public Result<TFailure, TSuccess> Apply(Action<TFailure> onFailure, Action<TSuccess> onSuccess)
     {
@@ -181,9 +178,9 @@ public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
     /// <summary>
     /// Transforms either possible state into a designated value.
     /// </summary>
-    /// <typeparam name="TValue">T</typeparam>
-    /// <param name="onFailure"></param>
-    /// <param name="onSuccess"></param>
+    /// <typeparam name="TValue">The type of value.</typeparam>
+    /// <param name="onFailure">The delegate for transforming a failure into the value.</param>
+    /// <param name="onSuccess">The delegate for transforming a success into the value.</param>
     /// <returns></returns>
     public TValue Flatten<TValue>(Func<TFailure, TValue> onFailure, Func<TSuccess, TValue> onSuccess)
     {
@@ -193,19 +190,51 @@ public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
     /// <inheritdoc/>
     public override string? ToString() => IsSuccess ? Success?.ToString() : Failure?.ToString();
 
+    /// <summary>
+    /// Equality exists if <paramref name="obj"/> is a <see cref="Result{TFailure, TSuccess}"/> representing an equal success or failure state, or if the <paramref name="obj"/> is an equal success or failure state.
+    /// </summary>
+    /// <param name="obj">The object to compare.</param>
+    /// <returns>True if equal, otherwise false.</returns>
     public override bool Equals(object? obj)
     {
-        return base.Equals(obj);
+        if (obj is IResult<TFailure, TSuccess> result)
+        {
+            return result.IsSuccess ? result.Equals(Success) : result.Equals(Failure);
+        }
+
+        return IsSuccess switch
+        {
+            true => obj is TSuccess s && s.Equals(Success),
+            false => obj is TFailure f && f.Equals(Failure),
+        };
     }
 
+    /// <inheritdoc/>
     public override int GetHashCode()
     {
-        return Fol
+        var hashCode = IsSuccess ? Success?.GetHashCode() : Failure?.GetHashCode();
+        return hashCode ?? 0;
     }
 
+    /// <summary>
+    /// Equality exists if this result is a success and the success state is equal to the given <paramref name="success"/>.
+    /// </summary>
+    /// <param name="success">The success state to compare to.</param>
+    /// <returns>True if equal, otherwise false.</returns>
     public bool Equals(TSuccess success)
     {
-        return IsSuccess && Success.Equals(success);
+        var isNull = Success == null && success == null;
+        return IsSuccess && (isNull || Success?.Equals(success) == true);
     }
 
+    /// <summary>
+    /// Equality exists if this result is a failure and the failure state is equal to the given <paramref name="failure"/>.
+    /// </summary>
+    /// <param name="failure">The failure state to compare to.</param>
+    /// <returns>True if equal, otherwise false.</returns>
+    public bool Equals(TFailure failure)
+    {
+        var isNull = Failure == null && failure == null;
+        return IsFailure && (isNull || Failure?.Equals(failure) == true);
+    }
 }
