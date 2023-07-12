@@ -1,4 +1,6 @@
-﻿namespace Woody230.Monad.Result;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Woody230.Monad.Result;
 
 /// <summary>
 /// Represents a specific case of an either, where one state represents failure and the other state represents success.
@@ -247,4 +249,38 @@ public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
     /// The failure state, or default value if the result is a success.
     /// </summary>
     public TFailure? FailureOrDefault() => _failure;
+
+    /// <summary>
+    /// Gets the success state if the result represents a success.
+    /// </summary>
+    /// <param name="success">The success state, or default value is the result is a failure.</param>
+    /// <returns>True if the result represents a success.</returns>
+    public bool TrySuccess([NotNullWhen(returnValue: true)] out TSuccess? success)
+    {
+        if (IsSuccess)
+        {
+            success = Success!;
+            return true;
+        }
+
+        success = default;
+        return false;
+    }
+
+    /// <summary>
+    /// Gets the failure state if the result represents a failure.
+    /// </summary>
+    /// <param name="success">The failure state, or default value is the result is a success.</param>
+    /// <returns>True if the result represents a success.</returns>
+    public bool TryFailure([NotNullWhen(returnValue: true)] out TFailure? failure)
+    {
+        if (IsFailure)
+        {
+            failure = Failure!;
+            return true;
+        }
+
+        failure = default;
+        return false;
+    }
 }
