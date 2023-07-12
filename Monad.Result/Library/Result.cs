@@ -111,7 +111,7 @@ public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
     /// <param name="onFailure">The delegate for transforming a failure into the new failure state.</param>
     /// <param name="onSuccess">The delegate for transforming a success into a new success state.</param>
     /// <returns>The transformed result state.</returns>
-    public Result<TNewFailure, TNewSuccess> Fold<TNewFailure, TNewSuccess>(
+    public Result<TNewFailure, TNewSuccess> Map<TNewFailure, TNewSuccess>(
         Func<TFailure, TNewFailure> onFailure, 
         Func<TSuccess, TNewSuccess> onSuccess
     ) where TNewFailure: notnull where TNewSuccess: notnull
@@ -188,8 +188,8 @@ public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
     /// <typeparam name="TValue">The type of value.</typeparam>
     /// <param name="onFailure">The delegate for transforming a failure into the value.</param>
     /// <param name="onSuccess">The delegate for transforming a success into the value.</param>
-    /// <returns></returns>
-    public TValue Flatten<TValue>(Func<TFailure, TValue> onFailure, Func<TSuccess, TValue> onSuccess)
+    /// <returns>The value.</returns>
+    public TValue Fold<TValue>(Func<TFailure, TValue> onFailure, Func<TSuccess, TValue> onSuccess)
     {
         return IsSuccess ? onSuccess(Success) : onFailure(Failure);
     }
