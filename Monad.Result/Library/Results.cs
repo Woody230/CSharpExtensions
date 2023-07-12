@@ -3,9 +3,11 @@
 /// <summary>
 /// Represents a specific case of an either, where one state represents one or more failures and the other state represents one or more successes.
 /// </summary>
-/// <typeparam name="TFailure"></typeparam>
-/// <typeparam name="TSuccess"></typeparam>
+/// <typeparam name="TFailure">The type of failure.</typeparam>
+/// <typeparam name="TSuccess">The type of success.</typeparam>
 public class Results<TFailure, TSuccess>: IResult<IEnumerable<TFailure>, IEnumerable<TSuccess>>
+    where TFailure: notnull
+    where TSuccess: notnull
 {
     /// <inheritdoc/>
     public IEnumerable<TFailure> Failure => _failures;
@@ -14,17 +16,146 @@ public class Results<TFailure, TSuccess>: IResult<IEnumerable<TFailure>, IEnumer
     public IEnumerable<TSuccess> Success => _successes;
 
     /// <summary>
-    /// True if there are no failure states.
+    /// True if there are no failures.
     /// </summary>
     public bool IsSuccess => !Failure.Any();
 
     /// <summary>
-    /// True if there are any f
+    /// True if there are any failures.
     /// </summary>
     public bool IsFailure => !IsSuccess;
 
-    private readonly List<TFailure> _failures = new();
-    private readonly List<TSuccess> _successes = new();
+    private readonly List<TFailure> _failures;
+    private readonly List<TSuccess> _successes;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Results{TFailure, TSuccess}"/> class without any failures or successes.
+    /// </summary>
+    public Results(): this(new List<TFailure>(), new List<TSuccess>())
+    {
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Results{TFailure, TSuccess}"/> class with failures.
+    /// </summary>
+    /// <param name="failures">The failures.</param>
+    public Results(IEnumerable<TFailure> failures): this(failures, new List<TSuccess>())
+    {
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Results{TFailure, TSuccess}"/> class with successes.
+    /// </summary>
+    /// <param name="successes">The successes.</param>
+    public Results(IEnumerable<TSuccess> successes): this(new List<TFailure>(), successes)
+    {
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Results{TFailure, TSuccess}"/> class with failures and successes.
+    /// </summary>
+    /// <param name="failures">The failures.</param>
+    /// <param name="successes">The successes.</param>
+    public Results(IEnumerable<TFailure> failures, IEnumerable<TSuccess> successes)
+    {
+        _failures = failures.ToList();
+        _successes = successes.ToList();
+    }
+
+    /// <summary>
+    /// Transforms each failure and success into a new state.
+    /// </summary>
+    /// <typeparam name="TNewFailure">The type of new failure state.</typeparam>
+    /// <typeparam name="TNewSuccess">The type of new success state.</typeparam>
+    /// <param name="onFailure">The delegate for transforming a failure into a new failure state.</param>
+    /// <param name="onSuccess">The delegate for transforming a success into a new success state.</param>
+    /// <returns>The transformed result.</returns>
+    public Results<TNewFailure, TNewSuccess> Map<TNewFailure, TNewSuccess>(
+        Func<TFailure, TNewFailure> onFailure,
+        Func<TSuccess, TNewSuccess> onSuccess
+    ) where TNewFailure : notnull where TNewSuccess : notnull
+    {
+        return Map(onSuccess).Map(onFailure);
+    }
+
+    /// <summary>
+    /// Transforms each success into a new state.
+    /// </summary>
+    /// <typeparam name="TNewSuccess">The type of new success state.</typeparam>
+    /// <param name="onSuccess">The delegate for transforming a success into a new success state.</param>
+    /// <returns>The transformed result.</returns>
+    public Results<TFailure, TNewSuccess> Map<TNewSuccess>(Func<TSuccess, TNewSuccess> onSuccess) where TNewSuccess : notnull
+    {
+        var successes = Success.Select(onSuccess);
+        return new(Failure, successes);
+    }
+
+    /// <summary>
+    /// Transforms each failure into a new state.
+    /// </summary>
+    /// <typeparam name="TNewFailure">The type of new failure state.</typeparam>
+    /// <param name="onFailure">The delegate for transforming a failure into a new failure state.</param>
+    /// <returns>The transformed result.</returns>
+    public Results<TNewFailure, TSuccess> Map<TNewFailure>(Func<TFailure, TNewFailure> onFailure) where TNewFailure : notnull
+    {
+        var failures = Failure.Select(onFailure);
+        return new(failures, Success);
+    }
+
+    /// <summary>
+    /// Applies the action on each success.
+    /// </summary>
+    /// <param name="action">The action to perform on success.</param>
+    /// <returns>This result.</returns>
+    public Results<TFailure, TSuccess> OnSuccess(Action<TSuccess> action)
+    {
+        foreach (var success in Success)
+        {
+            action(success);
+        }
+
+        return this;
+    }
+
+    /// <summary>
+    /// Applies the action on each failure.
+    /// </summary>
+    /// <param name="action">The action to perform on failure.</param>
+    /// <returns>This result.</returns>
+    public Results<TFailure, TSuccess> OnFailure(Action<TFailure> action)
+    {
+        foreach (var failure in Failure)
+        {
+            action(failure);
+        }
+
+        return this;
+    }
+
+    /// <summary>
+    /// Applies an action on each failure and success state.
+    /// </summary>
+    /// <param name="onFailure">The action to perform on failure.</param>
+    /// <param name="onSuccess">The action to perform on success.</param>
+    /// <returns>This result.</returns>
+    public Results<TFailure, TSuccess> Apply(Action<TFailure> onFailure, Action<TSuccess> onSuccess)
+    {
+        return OnSuccess(onSuccess).OnFailure(onFailure);
+    }
+
+    /// <summary>
+    /// Transforms each failure and success state into the new value.
+    /// </summary>
+    /// <typeparam name="TValue">The type of value.</typeparam>
+    /// <param name="onFailure">The delegate for transforming a failure into the value.</param>
+    /// <param name="onSuccess">The delegate for transforming a success into the value.</param>
+    /// <returns>The value.</returns>
+    public IEnumerable<TValue> Fold<TValue>(Func<TFailure, TValue> onFailure, Func<TSuccess, TValue> onSuccess)
+    {
+        var newSuccesses = Success.Select(onSuccess);
+        var newFailures = Failure.Select(onFailure);
+        return newSuccesses.Concat(newFailures);
+    }
 
     /// <summary>
     /// Adds a failure state.

@@ -108,7 +108,7 @@ public sealed class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
     /// </summary>
     /// <typeparam name="TNewFailure">The type of new failure state.</typeparam>
     /// <typeparam name="TNewSuccess">The type of new success state.</typeparam>
-    /// <param name="onFailure">The delegate for transforming a failure into the new failure state.</param>
+    /// <param name="onFailure">The delegate for transforming a failure into a new failure state.</param>
     /// <param name="onSuccess">The delegate for transforming a success into a new success state.</param>
     /// <returns>The transformed result state.</returns>
     public Result<TNewFailure, TNewSuccess> Map<TNewFailure, TNewSuccess>(
@@ -134,7 +134,7 @@ public sealed class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
     /// Transforms the state when it is a failure.
     /// </summary>
     /// <typeparam name="TNewFailure">The type of new failure state.</typeparam>
-    /// <param name="onFailure">The delegate for transforming a failure into the new failure state.</param>
+    /// <param name="onFailure">The delegate for transforming a failure into a new failure state.</param>
     /// <returns>The transformed result state.</returns>
     public Result<TNewFailure, TSuccess> Map<TNewFailure>(Func<TFailure, TNewFailure> onFailure) where TNewFailure: notnull
     {
