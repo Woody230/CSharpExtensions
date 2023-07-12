@@ -69,7 +69,7 @@ public class Results<TFailure, TSuccess>: IResult<IEnumerable<TFailure>, IEnumer
     /// <typeparam name="TNewSuccess">The type of new success state.</typeparam>
     /// <param name="onFailure">The delegate for transforming a failure into a new failure state.</param>
     /// <param name="onSuccess">The delegate for transforming a success into a new success state.</param>
-    /// <returns>The transformed result.</returns>
+    /// <returns>The transformed results.</returns>
     public Results<TNewFailure, TNewSuccess> Map<TNewFailure, TNewSuccess>(
         Func<TFailure, TNewFailure> onFailure,
         Func<TSuccess, TNewSuccess> onSuccess
@@ -83,7 +83,7 @@ public class Results<TFailure, TSuccess>: IResult<IEnumerable<TFailure>, IEnumer
     /// </summary>
     /// <typeparam name="TNewSuccess">The type of new success state.</typeparam>
     /// <param name="onSuccess">The delegate for transforming a success into a new success state.</param>
-    /// <returns>The transformed result.</returns>
+    /// <returns>The transformed results.</returns>
     public Results<TFailure, TNewSuccess> Map<TNewSuccess>(Func<TSuccess, TNewSuccess> onSuccess) where TNewSuccess : notnull
     {
         var successes = Success.Select(onSuccess);
@@ -106,7 +106,7 @@ public class Results<TFailure, TSuccess>: IResult<IEnumerable<TFailure>, IEnumer
     /// Applies the action on each success.
     /// </summary>
     /// <param name="action">The action to perform on success.</param>
-    /// <returns>This result.</returns>
+    /// <returns>This results.</returns>
     public Results<TFailure, TSuccess> OnSuccess(Action<TSuccess> action)
     {
         foreach (var success in Success)
@@ -121,7 +121,7 @@ public class Results<TFailure, TSuccess>: IResult<IEnumerable<TFailure>, IEnumer
     /// Applies the action on each failure.
     /// </summary>
     /// <param name="action">The action to perform on failure.</param>
-    /// <returns>This result.</returns>
+    /// <returns>This results.</returns>
     public Results<TFailure, TSuccess> OnFailure(Action<TFailure> action)
     {
         foreach (var failure in Failure)
@@ -149,7 +149,7 @@ public class Results<TFailure, TSuccess>: IResult<IEnumerable<TFailure>, IEnumer
     /// <typeparam name="TValue">The type of value.</typeparam>
     /// <param name="onFailure">The delegate for transforming a failure into the value.</param>
     /// <param name="onSuccess">The delegate for transforming a success into the value.</param>
-    /// <returns>The value.</returns>
+    /// <returns>The values.</returns>
     public IEnumerable<TValue> Fold<TValue>(Func<TFailure, TValue> onFailure, Func<TSuccess, TValue> onSuccess)
     {
         var newSuccesses = Success.Select(onSuccess);
@@ -161,7 +161,7 @@ public class Results<TFailure, TSuccess>: IResult<IEnumerable<TFailure>, IEnumer
     /// Adds a failure state.
     /// </summary>
     /// <param name="failure">The failure state.</param>
-    /// <returns>This result.</returns>
+    /// <returns>This results.</returns>
     public Results<TFailure, TSuccess> Add(TFailure failure)
     {
         _failures.Add(failure);
@@ -172,7 +172,7 @@ public class Results<TFailure, TSuccess>: IResult<IEnumerable<TFailure>, IEnumer
     /// Adds a success state.
     /// </summary>
     /// <param name="success">The success state.</param>
-    /// <returns>This result.</returns>
+    /// <returns>This results.</returns>
     public Results<TFailure, TSuccess> Add(TSuccess success)
     {
         _successes.Add(success);
@@ -180,10 +180,10 @@ public class Results<TFailure, TSuccess>: IResult<IEnumerable<TFailure>, IEnumer
     }
 
     /// <summary>
-    /// Adds a failure or success state depending on the state of the result.
+    /// Adds a failure or success depending on the state of the result.
     /// </summary>
     /// <param name="result">The result.</param>
-    /// <returns>This result.</returns>
+    /// <returns>This results.</returns>
     public Results<TFailure, TSuccess> Add(IResult<TFailure, TSuccess> result)
     {
         if (result.IsSuccess)
@@ -193,6 +193,26 @@ public class Results<TFailure, TSuccess>: IResult<IEnumerable<TFailure>, IEnumer
         else
         {
             _failures.Add(result.Failure);
+        }
+
+        return this;
+    }
+
+    /// <summary>
+    /// Adds each failure and success to this result.
+    /// </summary>
+    /// <param name="results">The results.</param>
+    /// <returns>This results.</returns>
+    public Results<TFailure, TSuccess> Add(Results<TFailure, TSuccess> results)
+    {
+        foreach (var failure in results.Failure)
+        {
+            results.Add(failure);
+        }
+
+        foreach (var success in results.Success)
+        {
+            results.Add(success);
         }
 
         return this;
