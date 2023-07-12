@@ -7,7 +7,9 @@ namespace Woody230.Monad.Result;
 /// </summary>
 /// <typeparam name="TFailure">The type of failure.</typeparam>
 /// <typeparam name="TSuccess">The type of success.</typeparam>
-public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
+public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess> 
+    where TFailure: notnull
+    where TSuccess: notnull
 {
     /// <inheritdoc/>
     /// <exception cref="InvalidOperationException">When the result is a success.</exception>
@@ -109,7 +111,10 @@ public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
     /// <param name="onFailure">The delegate for transforming a failure into the new failure state.</param>
     /// <param name="onSuccess">The delegate for transforming a success into a new success state.</param>
     /// <returns>The transformed result state.</returns>
-    public Result<TNewFailure, TNewSuccess> Fold<TNewFailure, TNewSuccess>(Func<TFailure, TNewFailure> onFailure, Func<TSuccess, TNewSuccess> onSuccess)
+    public Result<TNewFailure, TNewSuccess> Fold<TNewFailure, TNewSuccess>(
+        Func<TFailure, TNewFailure> onFailure, 
+        Func<TSuccess, TNewSuccess> onSuccess
+    ) where TNewFailure: notnull where TNewSuccess: notnull
     {
         return Map(onSuccess).Map(onFailure);
     }
@@ -120,7 +125,7 @@ public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
     /// <typeparam name="TNewSuccess">The type of new success state.</typeparam>
     /// <param name="onSuccess">The delegate for transforming a success into a new success state.</param>
     /// <returns>The transformed result state.</returns>
-    public Result<TFailure, TNewSuccess> Map<TNewSuccess>(Func<TSuccess, TNewSuccess> onSuccess)
+    public Result<TFailure, TNewSuccess> Map<TNewSuccess>(Func<TSuccess, TNewSuccess> onSuccess) where TNewSuccess: notnull
     {
         return IsSuccess ? new(onSuccess(Success)) : new(Failure);
     }
@@ -131,7 +136,7 @@ public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
     /// <typeparam name="TNewFailure">The type of new failure state.</typeparam>
     /// <param name="onFailure">The delegate for transforming a failure into the new failure state.</param>
     /// <returns>The transformed result state.</returns>
-    public Result<TNewFailure, TSuccess> Map<TNewFailure>(Func<TFailure, TNewFailure> onFailure)
+    public Result<TNewFailure, TSuccess> Map<TNewFailure>(Func<TFailure, TNewFailure> onFailure) where TNewFailure: notnull
     {
         return IsSuccess ? new(Success) : new(onFailure(Failure));
     }
@@ -214,8 +219,7 @@ public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
     /// <inheritdoc/>
     public override int GetHashCode()
     {
-        var hashCode = IsSuccess ? Success?.GetHashCode() : Failure?.GetHashCode();
-        return hashCode ?? 0;
+        return IsSuccess ? Success.GetHashCode() : Failure.GetHashCode();
     }
 
     /// <summary>
@@ -259,7 +263,7 @@ public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
     {
         if (IsSuccess)
         {
-            success = Success!;
+            success = Success;
             return true;
         }
 
@@ -276,7 +280,7 @@ public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
     {
         if (IsFailure)
         {
-            failure = Failure!;
+            failure = Failure;
             return true;
         }
 
