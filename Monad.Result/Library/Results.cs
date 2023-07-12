@@ -180,6 +180,36 @@ public class Results<TFailure, TSuccess>: IResult<IEnumerable<TFailure>, IEnumer
     }
 
     /// <summary>
+    /// Adds failure states.
+    /// </summary>
+    /// <param name="failures">The failures.</param>
+    /// <returns>This results.</returns>
+    public Results<TFailure, TSuccess> Add(IEnumerable<TFailure> failures)
+    {
+        foreach (var failure in  failures)
+        {
+            Add(failure);
+        }
+
+        return this;
+    }
+
+    /// <summary>
+    /// Adds success states.
+    /// </summary>
+    /// <param name="successes">The successes.</param>
+    /// <returns>This results.</returns>
+    public Results<TFailure, TSuccess> Add(IEnumerable<TSuccess> successes)
+    {
+        foreach (var success in successes)
+        {
+            Add(success);
+        }
+
+        return this;
+    }
+
+    /// <summary>
     /// Adds a failure or success depending on the state of the result.
     /// </summary>
     /// <param name="result">The result.</param>
@@ -188,11 +218,11 @@ public class Results<TFailure, TSuccess>: IResult<IEnumerable<TFailure>, IEnumer
     {
         if (result.IsSuccess)
         {
-            _successes.Add(result.Success);
+            Add(result.Success);
         }
         else
         {
-            _failures.Add(result.Failure);
+            Add(result.Failure);
         }
 
         return this;
@@ -205,16 +235,6 @@ public class Results<TFailure, TSuccess>: IResult<IEnumerable<TFailure>, IEnumer
     /// <returns>This results.</returns>
     public Results<TFailure, TSuccess> Add(Results<TFailure, TSuccess> results)
     {
-        foreach (var failure in results.Failure)
-        {
-            results.Add(failure);
-        }
-
-        foreach (var success in results.Success)
-        {
-            results.Add(success);
-        }
-
-        return this;
+        return Add(results.Success).Add(results.Failure);
     }
 }
