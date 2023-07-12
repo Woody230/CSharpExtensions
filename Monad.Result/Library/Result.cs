@@ -258,7 +258,7 @@ public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
     /// Gets the success state if the result represents a success.
     /// </summary>
     /// <param name="success">The success state, or default value is the result is a failure.</param>
-    /// <returns>True if the result represents a success.</returns>
+    /// <returns>True if the result represents a success, otherwise false.</returns>
     public bool TrySuccess([NotNullWhen(returnValue: true)] out TSuccess? success)
     {
         if (IsSuccess)
@@ -274,8 +274,8 @@ public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
     /// <summary>
     /// Gets the failure state if the result represents a failure.
     /// </summary>
-    /// <param name="success">The failure state, or default value is the result is a success.</param>
-    /// <returns>True if the result represents a success.</returns>
+    /// <param name="failure">The failure state, or default value is the result is a success.</param>
+    /// <returns>True if the result represents a failure, otherwise false.</returns>
     public bool TryFailure([NotNullWhen(returnValue: true)] out TFailure? failure)
     {
         if (IsFailure)
