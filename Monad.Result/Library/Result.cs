@@ -7,7 +7,7 @@ namespace Woody230.Monad.Result;
 /// </summary>
 /// <typeparam name="TFailure">The type of failure.</typeparam>
 /// <typeparam name="TSuccess">The type of success.</typeparam>
-public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess> 
+public sealed class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess> 
     where TFailure: notnull
     where TSuccess: notnull
 {
@@ -195,7 +195,7 @@ public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
     }
 
     /// <inheritdoc/>
-    public override string? ToString() => IsSuccess ? Success?.ToString() : Failure?.ToString();
+    public override string? ToString() => IsSuccess ? Success.ToString() : Failure.ToString();
 
     /// <summary>
     /// Equality exists if <paramref name="obj"/> is a <see cref="Result{TFailure, TSuccess}"/> representing an equal success or failure state, or if the <paramref name="obj"/> is an equal success or failure state.
