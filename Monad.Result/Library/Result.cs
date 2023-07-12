@@ -114,4 +114,45 @@ public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
     {
         return IsSuccess ? new(Success) : new(onFailure(Failure));
     }
+
+    /// <summary>
+    /// Applies the action when the result is a success.
+    /// </summary>
+    /// <param name="action">The action to perform on success.</param>
+    /// <returns>This result.</returns>
+    public Result<TFailure, TSuccess> OnSuccess(Action<TSuccess> action)
+    {
+        if (IsSuccess)
+        {
+            action(Success);
+        }
+
+        return this;
+    }
+
+    /// <summary>
+    /// Applies the action when the result is a failure.
+    /// </summary>
+    /// <param name="action">The action to perform on failure.</param>
+    /// <returns>This result.</returns>
+    public Result<TFailure, TSuccess> OnFailure(Action<TFailure> action)
+    {
+        if (IsFailure)
+        {
+            action(Failure);
+        }
+
+        return this;
+    }
+
+    /// <summary>
+    /// Applies an action depending on whether the result is a success or a failure.
+    /// </summary>
+    /// <param name="onSuccess">The action to perform on success.</param>
+    /// <param name="onFailure">The action to perform on failure.</param>
+    /// <returns>This result.</returns>
+    public Result<TFailure, TSuccess> Apply(Action<TSuccess> onSuccess, Action<TFailure> onFailure)
+    {
+        return OnSuccess(onSuccess).OnFailure(onFailure);
+    }
 }
