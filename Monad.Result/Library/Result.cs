@@ -69,4 +69,49 @@ public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
     /// </summary>
     /// <param name="failure">The failure state.</param>
     public static implicit operator Result<TFailure, TSuccess>(TFailure failure) => new(failure);
+
+    /// <summary>
+    /// The success state, or null if the result is a failure.
+    /// </summary>
+    public TSuccess? SuccessOrNull() => _success;
+
+    /// <summary>
+    /// The failure state, or null if the result is a success.
+    /// </summary>
+    public TFailure? FailureOrNull() => _failure;
+
+    /// <summary>
+    /// Transforms the state depending on whether it is a failure or a success.
+    /// </summary>
+    /// <typeparam name="TNewFailure">The type of new failure state.</typeparam>
+    /// <typeparam name="TNewSuccess">The type of new success state.</typeparam>
+    /// <param name="onFailure">The delegate for transforming a failure into the new failure state.</param>
+    /// <param name="onSuccess">The delegate for transforming a success into a new success state.</param>
+    /// <returns>The transformed result state.</returns>
+    public Result<TNewFailure, TNewSuccess> Fold<TNewFailure, TNewSuccess>(Func<TFailure, TNewFailure> onFailure, Func<TSuccess, TNewSuccess> onSuccess)
+    {
+        return Map(onSuccess).Map(onFailure);
+    }
+
+    /// <summary>
+    /// Transforms the state when it is a success.
+    /// </summary>
+    /// <typeparam name="TNewSuccess">The type of new success state.</typeparam>
+    /// <param name="onSuccess">The delegate for transforming a success into a new success state.</param>
+    /// <returns>The transformed result state.</returns>
+    public Result<TFailure, TNewSuccess> Map<TNewSuccess>(Func<TSuccess, TNewSuccess> onSuccess)
+    {
+        return IsSuccess ? new(onSuccess(Success)) : new(Failure);
+    }
+
+    /// <summary>
+    /// Transforms the state when it is a failure.
+    /// </summary>
+    /// <typeparam name="TNewFailure">The type of new failure state.</typeparam>
+    /// <param name="onFailure">The delegate for transforming a failure into the new failure state.</param>
+    /// <returns>The transformed result state.</returns>
+    public Result<TNewFailure, TSuccess> Map<TNewFailure>(Func<TFailure, TNewFailure> onFailure)
+    {
+        return IsSuccess ? new(Success) : new(onFailure(Failure));
+    }
 }
