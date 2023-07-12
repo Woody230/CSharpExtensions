@@ -46,14 +46,14 @@ public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
     public bool IsFailure => !IsSuccess;
 
     /// <summary>
-    /// The success state, or null if the result is a failure.
+    /// The success state, or default value if the result is a failure.
     /// </summary>
-    public TSuccess? SuccessOrNull { get; }
+    private readonly TSuccess? _success;
 
     /// <summary>
-    /// The failure state, or null if the result is a success.
+    /// The failure state, or default value if the result is a success.
     /// </summary>
-    public TFailure? FailureOrNull { get; }
+    private readonly TFailure? _failure;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Result{TFailure, TSuccess}"/> class as a failure.
@@ -62,7 +62,7 @@ public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
     public Result(TFailure failure)
     {
         IsSuccess = false;
-        FailureOrNull = failure;
+        _failure = failure;
     }
 
     /// <summary>
@@ -72,7 +72,7 @@ public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
     public Result(TSuccess success)
     {
         IsSuccess = true;
-        SuccessOrNull = success;
+        _success = success;
     }
 
     /// <summary>
@@ -237,4 +237,14 @@ public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
         var isNull = Failure == null && failure == null;
         return IsFailure && (isNull || Failure?.Equals(failure) == true);
     }
+
+    /// <summary>
+    /// The success state, or default value if the result is a failure.
+    /// </summary>
+    public TSuccess? SuccessOrDefault() => _success;
+
+    /// <summary>
+    /// The failure state, or default value if the result is a success.
+    /// </summary>
+    public TFailure? FailureOrDefault() => _failure;
 }
