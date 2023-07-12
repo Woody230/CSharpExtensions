@@ -47,7 +47,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BindableEnum.FluentValidati
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Monad.Result", "Monad.Result", "{0E2E9FDF-96D0-4C39-9D50-5305DB3CC1BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monad.Result.Library", "Monad.Result\Library\Monad.Result.Library.csproj", "{667829B6-294B-42D4-97B6-66D46B855A59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monad.Result.Library", "Monad.Result\Library\Monad.Result.Library.csproj", "{667829B6-294B-42D4-97B6-66D46B855A59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
