@@ -9,11 +9,33 @@ public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
 {
     /// <inheritdoc/>
     /// <exception cref="InvalidOperationException">When the result is a success.</exception>
-    public TFailure Failure { get => _failure ?? throw new InvalidOperationException("Expected the result to be a failure but it is a success."); }
+    public TFailure Failure 
+    {
+        get
+        {
+            if (IsSuccess)
+            {
+                throw new InvalidOperationException("Expected the result to be a failure but it is a success.");
+            }
+
+            return Failure;
+        }
+    }
 
     /// <inheritdoc/>
     /// <exception cref="InvalidOperationException">When the result is a failure.</exception>
-    public TSuccess Success { get => _success ?? throw new InvalidOperationException("Expected the result to be a success but it is a failure."); }
+    public TSuccess Success 
+    {
+        get
+        {
+            if (IsFailure)
+            {
+                throw new InvalidOperationException("Expected the result to be a success but it is a failure.");
+            }
+
+            return Success;
+        }
+    }
     
     /// <inheritdoc/>
     public bool IsSuccess { get; }
@@ -151,8 +173,39 @@ public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
     /// <param name="onSuccess">The action to perform on success.</param>
     /// <param name="onFailure">The action to perform on failure.</param>
     /// <returns>This result.</returns>
-    public Result<TFailure, TSuccess> Apply(Action<TSuccess> onSuccess, Action<TFailure> onFailure)
+    public Result<TFailure, TSuccess> Apply(Action<TFailure> onFailure, Action<TSuccess> onSuccess)
     {
         return OnSuccess(onSuccess).OnFailure(onFailure);
     }
+
+    /// <summary>
+    /// Transforms either possible state into a designated value.
+    /// </summary>
+    /// <typeparam name="TValue">T</typeparam>
+    /// <param name="onFailure"></param>
+    /// <param name="onSuccess"></param>
+    /// <returns></returns>
+    public TValue Flatten<TValue>(Func<TFailure, TValue> onFailure, Func<TSuccess, TValue> onSuccess)
+    {
+        return IsSuccess ? onSuccess(Success) : onFailure(Failure);
+    }
+
+    /// <inheritdoc/>
+    public override string? ToString() => IsSuccess ? Success?.ToString() : Failure?.ToString();
+
+    public override bool Equals(object? obj)
+    {
+        return base.Equals(obj);
+    }
+
+    public override int GetHashCode()
+    {
+        return Fol
+    }
+
+    public bool Equals(TSuccess success)
+    {
+        return IsSuccess && Success.Equals(success);
+    }
+
 }
