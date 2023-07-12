@@ -158,6 +158,22 @@ public class Results<TFailure, TSuccess>: IResult<IEnumerable<TFailure>, IEnumer
     }
 
     /// <summary>
+    /// Transforms the collection of successes into a single success state of <typeparamref name="TNewSuccess"/>.
+    /// If there are any failures, then the failures are transformed into a single failure state of <typeparamref name="TNewFailure"/>.
+    /// </summary>
+    /// <typeparam name="TNewFailure">The type of new failure state.</typeparam>
+    /// <typeparam name="TNewSuccess">The type of new success state.</typeparam>
+    /// <param name="onFailure">The delegate for transforming the failures into a new failure state.</param>
+    /// <param name="onSuccess">The delegate for transforming the successes into a new success state.</param>
+    /// <returns>The transformed result.</returns>
+    public Result<TNewFailure, TNewSuccess> Flatten<TNewFailure, TNewSuccess>(Func<IEnumerable<TFailure>, TNewFailure> onFailure, Func<IEnumerable<TSuccess>, TNewSuccess> onSuccess)
+        where TNewFailure : notnull
+        where TNewSuccess : notnull
+    {
+        return IsSuccess ? onSuccess(Success) : onFailure(Failure);
+    }
+
+    /// <summary>
     /// Adds a failure state.
     /// </summary>
     /// <param name="failure">The failure state.</param>
