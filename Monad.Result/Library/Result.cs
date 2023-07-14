@@ -211,8 +211,8 @@ public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess>
 
         return IsSuccess switch
         {
-            true => obj is TSuccess s && s.Equals(Success),
-            false => obj is TFailure f && f.Equals(Failure),
+            true => obj is TSuccess success && success.Equals(Success),
+            false => obj is TFailure failure && failure.Equals(Failure),
         };
     }
 
