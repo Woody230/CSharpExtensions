@@ -7,7 +7,7 @@ namespace Woody230.Monad.Result;
 /// </summary>
 /// <typeparam name="TFailure">The type of failure.</typeparam>
 /// <typeparam name="TSuccess">The type of success.</typeparam>
-public sealed class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess> 
+public class Result<TFailure, TSuccess> : IResult<TFailure, TSuccess> 
     where TFailure: notnull
     where TSuccess: notnull
 {

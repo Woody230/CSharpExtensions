@@ -7,56 +7,49 @@
 /// <typeparam name="TResult">The type of base state.</typeparam>
 /// <typeparam name="TFailure">The type of failure.</typeparam>
 /// <typeparam name="TSuccess">The type of success.</typeparam>
-public class SealedResult<TResult, TFailure, TSuccess> : IResult<TFailure, TSuccess>
-    where TResult : notnull, SealedResult<TResult, TFailure, TSuccess>
+public class SealedResult<TResult, TFailure, TSuccess> : Result<TFailure, TSuccess>, ISealedResult<TResult, TFailure, TSuccess>
+    where TResult : notnull
     where TFailure : notnull, TResult
     where TSuccess : notnull, TResult
 {
-    /// <inheritdoc/>
-    public TFailure Failure
+    /// <summary>
+    /// Converts the <paramref name="result"/> is into a <see cref="SealedResult{TResult, TFailure, TSuccess}"/>.
+    /// </summary>
+    /// <param name="result">The result.</param>
+    /// <returns>The <see cref="SealedResult{TResult, TFailure, TSuccess}"/>.</returns>
+    /// <exception cref="InvalidOperationException">If the result is not a <typeparamref name="TFailure"/> or <typeparamref name="TSuccess"/>.</exception>
+    public static SealedResult<TResult, TFailure, TSuccess> Of(TResult result)
     {
-        get
+        if (result is TSuccess success)
         {
-            if (this is TFailure failure)
-            {
-                return failure;
-            }
-            else if (IsSuccess)
-            {
-                throw new InvalidOperationException("Expected the result to be a failure but it is a success.");
-            }
-            else
-            {
-                throw new InvalidOperationException($"Expected the result to be a failure but it is a {GetType().Name}.");
-            }
+            return new(success);
+        }
+        else if (result is TFailure failure)
+        {
+            return new(failure);
+        }
+        else
+        {
+            var successType = typeof(TSuccess).Name;
+            var failureType = typeof(TFailure).Name;
+            var actualType = result.GetType().Name;
+            throw new InvalidOperationException($"Expected the result to be a {successType} or {failureType} but it is a {actualType}.");
         }
     }
-
-    /// <inheritdoc/>
-    public TSuccess Success
-    {
-        get
-        {
-            if (this is TSuccess success)
-            {
-                return success;
-            }
-            else if (IsFailure)
-            {
-                throw new InvalidOperationException("Expected the result to be a success but it is a failure.");
-            }
-            else
-            {
-                throw new InvalidOperationException($"Expected the result to be a success but it is a {GetType().Name}.");
-            }
-        }
-    }
-
-    /// <inheritdoc/>
-    public bool IsSuccess => this is TSuccess;
 
     /// <summary>
-    /// Whether the result is a failure.
+    /// Initializes a new instance of the <see cref="SealedResult{TResult, TFailure, TSuccess}"/> class.
     /// </summary>
-    public bool IsFailure => this is TFailure;
+    /// <param name="failure">The failure state.</param>
+    public SealedResult(TFailure failure) : base(failure)
+    {
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SealedResult{TResult, TFailure, TSuccess}"/> class.
+    /// </summary>
+    /// <param name="success">The success state.</param>
+    public SealedResult(TSuccess success) : base(success)
+    {
+    }
 }
