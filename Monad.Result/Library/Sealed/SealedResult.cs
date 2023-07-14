@@ -1,4 +1,4 @@
-﻿namespace Woody230.Monad.Result;
+﻿namespace Woody230.Monad.Result.Sealed;
 
 /// <summary>
 /// Represents a specific case of an either, where one state represents failure and the other state represents success.
