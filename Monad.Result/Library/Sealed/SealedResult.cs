@@ -4,13 +4,13 @@
 /// Represents a specific case of an either, where one state represents failure and the other state represents success.
 /// Additionally, the failure and success states represent a base state.
 /// </summary>
-/// <typeparam name="TResult">The type of base state.</typeparam>
+/// <typeparam name="TRoot">The type of base state.</typeparam>
 /// <typeparam name="TFailure">The type of failure.</typeparam>
 /// <typeparam name="TSuccess">The type of success.</typeparam>
-public class SealedResult<TResult, TFailure, TSuccess> : Result<TFailure, TSuccess>, ISealedResult<TResult, TFailure, TSuccess>
-    where TResult : notnull
-    where TFailure : notnull, TResult
-    where TSuccess : notnull, TResult
+public class SealedResult<TRoot, TFailure, TSuccess> : Result<TFailure, TSuccess>, ISealedResult<TRoot, TFailure, TSuccess>
+    where TRoot : notnull
+    where TFailure : notnull, TRoot
+    where TSuccess : notnull, TRoot
 {
     /// <summary>
     /// Converts the <paramref name="result"/> is into a <see cref="SealedResult{TResult, TFailure, TSuccess}"/>.
@@ -18,7 +18,7 @@ public class SealedResult<TResult, TFailure, TSuccess> : Result<TFailure, TSucce
     /// <param name="result">The result.</param>
     /// <returns>The <see cref="SealedResult{TResult, TFailure, TSuccess}"/>.</returns>
     /// <exception cref="InvalidOperationException">If the result is not a <typeparamref name="TFailure"/> or <typeparamref name="TSuccess"/>.</exception>
-    public static SealedResult<TResult, TFailure, TSuccess> Of(TResult result)
+    public static SealedResult<TRoot, TFailure, TSuccess> Of(TRoot result)
     {
         if (result is TSuccess success)
         {
@@ -54,11 +54,47 @@ public class SealedResult<TResult, TFailure, TSuccess> : Result<TFailure, TSucce
     }
 
     /// <summary>
+    /// Implicit converts the result to a success state.
+    /// </summary>
+    /// <param name="result">The result.</param>
+    public static implicit operator TSuccess(SealedResult<TRoot, TFailure, TSuccess> result) => result.Success;
+
+    /// <summary>
+    /// Implicitly converts the result to a failure state.
+    /// </summary>
+    /// <param name="result">The result.</param>
+    public static implicit operator TFailure(SealedResult<TRoot, TFailure, TSuccess> result) => result.Failure;
+
+    /// <summary>
+    /// Implicitly converts the result to a root state.
+    /// </summary>
+    /// <param name="result">The result.</param>
+    public static implicit operator TRoot(SealedResult<TRoot, TFailure, TSuccess> result) => result.IsSuccess ? result.Success : result.Failure;
+
+    /// <summary>
+    /// Implicitly converts the success state to a result.
+    /// </summary>
+    /// <param name="success">The success state.</param>
+    public static implicit operator SealedResult<TRoot, TFailure, TSuccess>(TSuccess success) => new(success);
+
+    /// <summary>
+    /// Implicitly converts the failure state to a result.
+    /// </summary>
+    /// <param name="failure">The failure state.</param>
+    public static implicit operator SealedResult<TRoot, TFailure, TSuccess>(TFailure failure) => new(failure);
+
+    /// <summary>
+    /// Implicitly converts the root state to a result.
+    /// </summary>
+    /// <param name="root">The root state.</param>
+    public static implicit operator SealedResult<TRoot, TFailure, TSuccess>(TRoot root) => Of(root);
+
+    /// <summary>
     /// Applies an action on the result.
     /// </summary>
     /// <param name="onResult">The action to perform.</param>
     /// <returns>This result.</returns>
-    public SealedResult<TResult, TFailure, TSuccess> Apply(Action<TResult> onResult)
+    public SealedResult<TRoot, TFailure, TSuccess> Apply(Action<TRoot> onResult)
     {
         if (IsSuccess)
         {
@@ -78,7 +114,7 @@ public class SealedResult<TResult, TFailure, TSuccess> : Result<TFailure, TSucce
     /// <typeparam name="TValue">The type of value.</typeparam>
     /// <param name="onResult">The delegate for transforming the result into the value.</param>
     /// <returns>The value.</returns>
-    public TValue Fold<TValue>(Func<TResult, TValue> onResult)
+    public TValue Fold<TValue>(Func<TRoot, TValue> onResult)
     {
         return IsSuccess ? onResult(Success) : onResult(Failure);
     }
