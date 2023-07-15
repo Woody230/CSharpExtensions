@@ -7,7 +7,7 @@
 /// <typeparam name="TRoot">The type of base state.</typeparam>
 /// <typeparam name="TFailure">The type of failure.</typeparam>
 /// <typeparam name="TSuccess">The type of success.</typeparam>
-public class SealedResult<TRoot, TFailure, TSuccess> : Result<TFailure, TSuccess>, ISealedResult<TRoot, TFailure, TSuccess>
+public class SealedResult<TRoot, TFailure, TSuccess> : Result<TFailure, TSuccess>
     where TRoot : notnull
     where TFailure : notnull, TRoot
     where TSuccess : notnull, TRoot
