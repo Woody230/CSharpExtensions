@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Description>Extensions for the FluentValidations library.</Description>
-    <PackageReleaseNotes>Remove NotNull validator being invoked with the NotDefault validator extension.</PackageReleaseNotes>
+    <PackageReleaseNotes>Update assembly name to match namespace.</PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="$(FluentValidationPkgVer)" />

@@ -16,6 +16,7 @@
   <PropertyGroup Label="Namespace">
     <RootPackageId>Woody230</RootPackageId>
     <RootNamespace>$(RootPackageId).$(MSBuildProjectName.Replace(".Library", ""))</RootNamespace>
+    <AssemblyName>$(RootNamespace)</AssemblyName>
   </PropertyGroup>
   
   <Choose>
