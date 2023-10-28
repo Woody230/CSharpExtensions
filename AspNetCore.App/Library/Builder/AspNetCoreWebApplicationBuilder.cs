@@ -2,14 +2,14 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using System;
+using Woody230.AspNetCore.App.Configuration;
 
-namespace Woody230.AspNetCore.App;
+namespace Woody230.AspNetCore.App.Builder;
 
 /// <summary>
 /// Wraps the <see cref="WebApplicationBuilder"/> as a <see cref="IWebApplicationBuilder"/>.
 /// </summary>
-public sealed class AspNetCoreWebApplicationBuilder: IWebApplicationBuilder
+public sealed class AspNetCoreWebApplicationBuilder : IWebApplicationBuilder
 {
     private readonly WebApplicationBuilder _webApplicationBuilder;
     private readonly IConfigurationManager _configurationManager;

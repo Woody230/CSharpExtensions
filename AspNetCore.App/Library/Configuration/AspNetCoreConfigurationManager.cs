@@ -3,12 +3,12 @@ using Microsoft.Extensions.Primitives;
 using System;
 using System.Collections.Generic;
 
-namespace Woody230.AspNetCore.App;
+namespace Woody230.AspNetCore.App.Configuration;
 
 /// <summary>
 /// Wraps the <see cref="ConfigurationManager"/> as a <see cref="IConfigurationManager"/>.
 /// </summary>
-public sealed class AspNetCoreConfigurationManager: IConfigurationManager
+public sealed class AspNetCoreConfigurationManager : IConfigurationManager
 {
     private readonly ConfigurationManager _configurationManager;
     private readonly IConfigurationBuilder _configurationBuilder;

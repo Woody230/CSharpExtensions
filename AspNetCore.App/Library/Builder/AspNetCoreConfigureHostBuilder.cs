@@ -7,7 +7,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 
-namespace Woody230.AspNetCore.App;
+namespace Woody230.AspNetCore.App.Builder;
 
 /// <summary>
 /// Wraps a <see cref="ConfigureHostBuilder"/> as a <see cref="IConfigureHostBuilder"/>.

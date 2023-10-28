@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Woody230.AspNetCore.App;
+namespace Woody230.AspNetCore.App.Builder;
 
 /// <summary>
 /// Wraps a <see cref="WebApplication"/> as a <see cref="IWebApplication"/>.

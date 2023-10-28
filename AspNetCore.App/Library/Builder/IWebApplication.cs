@@ -4,12 +4,12 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Threading.Tasks;
 
-namespace Woody230.AspNetCore.App;
+namespace Woody230.AspNetCore.App.Builder;
 
 /// <summary>
 /// The web application used to configure the HTTP pipeline, and routes.
 /// </summary>
-public interface IWebApplication: IHost, IApplicationBuilder, IEndpointRouteBuilder, IAsyncDisposable
+public interface IWebApplication : IHost, IApplicationBuilder, IEndpointRouteBuilder, IAsyncDisposable
 {
     /// <summary>
     /// Runs an application and returns a Task that only completes when the token is triggered or shutdown is triggered.

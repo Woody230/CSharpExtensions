@@ -6,8 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Woody230.AspNetCore.App;
-public sealed class AspNetCoreConfigureWebHostBuilder: IConfigureWebHostBuilder
+namespace Woody230.AspNetCore.App.Builder;
+public sealed class AspNetCoreConfigureWebHostBuilder : IConfigureWebHostBuilder
 {
     private readonly IWebHostBuilder _webHostBuilder;
     private readonly ISupportsStartup _supportsStartup;
