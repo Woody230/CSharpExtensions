@@ -36,7 +36,6 @@ public sealed class AspNetCoreConfigurationManager: IConfigurationManager
     public void Dispose()
     {
         _configurationManager.Dispose();
-        GC.SuppressFinalize(this);
     }
 
     public IEnumerable<IConfigurationSection> GetChildren() => _configurationRoot.GetChildren();

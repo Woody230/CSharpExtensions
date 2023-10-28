@@ -36,8 +36,5 @@ public sealed class AspNetCoreWebApplicationBuilder: IWebApplicationBuilder
 
     public IConfigureHostBuilder Host => _configureHostBuilder;
 
-    public IWebApplication Build()
-    {
-        throw new NotImplementedException();
-    }
+    public IWebApplication Build() => new AspNetCoreWebApplication(_webApplicationBuilder.Build());
 }
