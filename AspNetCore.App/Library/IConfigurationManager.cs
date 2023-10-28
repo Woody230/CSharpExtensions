@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using System;
 
 namespace Woody230.AspNetCore.App;
 
@@ -6,6 +7,6 @@ namespace Woody230.AspNetCore.App;
 /// Configuration is mutable configuration object. It is both an <see cref="IConfigurationBuilder"/> and an <see cref="IConfigurationRoot"/>.
 /// As sources are added, it updates its current view of configuration.
 /// </summary>
-public interface IConfigurationManager: IConfigurationBuilder
+public interface IConfigurationManager: IConfigurationBuilder, IConfigurationRoot, IDisposable
 {
 }
