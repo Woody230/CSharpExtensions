@@ -21,7 +21,7 @@ public sealed class AspNetCoreConfigurationManager: IConfigurationManager
         _configurationRoot = configurationManager;
     }
 
-    public string this[string key] { get => _configurationManager[key]; set => _configurationManager[key] = value; }
+    public string this[string key] { get => _configurationRoot[key]; set => _configurationRoot[key] = value; }
 
     public IDictionary<string, object> Properties => _configurationBuilder.Properties;
 
@@ -39,11 +39,11 @@ public sealed class AspNetCoreConfigurationManager: IConfigurationManager
         GC.SuppressFinalize(this);
     }
 
-    public IEnumerable<IConfigurationSection> GetChildren() => _configurationManager.GetChildren();
+    public IEnumerable<IConfigurationSection> GetChildren() => _configurationRoot.GetChildren();
 
     public IChangeToken GetReloadToken() => _configurationRoot.GetReloadToken();
 
-    public IConfigurationSection GetSection(string key) => _configurationManager.GetSection(key);
+    public IConfigurationSection GetSection(string key) => _configurationRoot.GetSection(key);
 
     public void Reload()
     {
