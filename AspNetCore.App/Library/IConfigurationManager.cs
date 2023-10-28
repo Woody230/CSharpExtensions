@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Woody230.AspNetCore.App;
+
+/// <summary>
+/// Configuration is mutable configuration object. It is both an <see cref="IConfigurationBuilder"/> and an <see cref="IConfigurationRoot"/>.
+/// As sources are added, it updates its current view of configuration.
+/// </summary>
 public interface IConfigurationManager: IConfigurationBuilder
 {
 }
