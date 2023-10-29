@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Woody230.AspNetCore.App.Modules.Builder;
 
-namespace Woody230.AspNetCore.App.Modules;
-public class WebApplicationBuilderModuleCollection: IWebApplicationBuilderModuleCollection
+namespace Woody230.AspNetCore.App.Modules.Builder.Collection;
+public class WebApplicationBuilderModuleCollection : IWebApplicationBuilderModuleCollection
 {
     private readonly List<IWebApplicationBuilderModule> _list = new();
 

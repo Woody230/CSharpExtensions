@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Woody230.AspNetCore.App.Program.Modules;
 
 namespace Woody230.AspNetCore.App.Program;
 public interface IWebApplicationProgram

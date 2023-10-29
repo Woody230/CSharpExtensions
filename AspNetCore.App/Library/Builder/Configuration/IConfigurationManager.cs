@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System;
 
-namespace Woody230.AspNetCore.App.Configuration;
+namespace Woody230.AspNetCore.App.Builder.Configuration;
 
 /// <summary>
 /// Configuration is mutable configuration object. It is both an <see cref="IConfigurationBuilder"/> and an <see cref="IConfigurationRoot"/>.
