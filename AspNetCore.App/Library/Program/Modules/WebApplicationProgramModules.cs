@@ -1,6 +1,5 @@
-﻿using Woody230.AspNetCore.App.Modules;
-using Woody230.AspNetCore.App.Modules.Application.Collection;
-using Woody230.AspNetCore.App.Modules.Builder.Collection;
+﻿using Woody230.AspNetCore.App.Application.Modules.Collection;
+using Woody230.AspNetCore.App.Builder.Modules.Collection;
 
 namespace Woody230.AspNetCore.App.Program.Modules;
 public class WebApplicationProgramModules : IWebApplicationProgramModules

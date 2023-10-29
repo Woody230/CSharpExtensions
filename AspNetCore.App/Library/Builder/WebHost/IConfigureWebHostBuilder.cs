@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Hosting.Infrastructure;
-using Woody230.AspNetCore.App.Builder.Application;
 
 namespace Woody230.AspNetCore.App.Builder.WebHost;
 

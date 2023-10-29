@@ -1,6 +1,6 @@
-﻿using Woody230.AspNetCore.App.Builder.Application;
+﻿using Woody230.AspNetCore.App.Application;
 
-namespace Woody230.AspNetCore.App.Modules.Application;
+namespace Woody230.AspNetCore.App.Application.Modules;
 
 /// <summary>
 /// Represents a module that can apply settings to the web application.

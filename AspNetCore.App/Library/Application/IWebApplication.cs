@@ -4,7 +4,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Threading.Tasks;
 
-namespace Woody230.AspNetCore.App.Builder.Application;
+namespace Woody230.AspNetCore.App.Application;
 
 /// <summary>
 /// The web application used to configure the HTTP pipeline, and routes.

@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Woody230.AspNetCore.App.Modules.Application;
+using Woody230.AspNetCore.App.Application.Modules;
 
-namespace Woody230.AspNetCore.App.Modules.Application.Collection;
+namespace Woody230.AspNetCore.App.Application.Modules.Collection;
 public class WebApplicationModuleCollection : IWebApplicationModuleCollection
 {
     private readonly List<IWebApplicationModule> _list = new();

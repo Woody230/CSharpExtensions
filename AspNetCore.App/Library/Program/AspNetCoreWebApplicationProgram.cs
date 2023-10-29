@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using System;
 using System.Threading.Tasks;
+using Woody230.AspNetCore.App.Application;
 using Woody230.AspNetCore.App.Builder;
-using Woody230.AspNetCore.App.Builder.Application;
 using Woody230.AspNetCore.App.Program.Modules;
 
 namespace Woody230.AspNetCore.App.Program;

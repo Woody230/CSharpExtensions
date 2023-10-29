@@ -2,11 +2,12 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Woody230.AspNetCore.App.Application;
 using Woody230.AspNetCore.App.Builder.Configuration;
 using Woody230.AspNetCore.App.Builder.Host;
 using Woody230.AspNetCore.App.Builder.WebHost;
 
-namespace Woody230.AspNetCore.App.Builder.Application;
+namespace Woody230.AspNetCore.App.Builder;
 
 /// <summary>
 /// A builder for web applications and services.

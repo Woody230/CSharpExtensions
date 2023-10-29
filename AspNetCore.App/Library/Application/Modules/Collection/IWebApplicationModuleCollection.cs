@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Woody230.AspNetCore.App.Modules.Application;
 
-namespace Woody230.AspNetCore.App.Modules.Application.Collection;
+namespace Woody230.AspNetCore.App.Application.Modules.Collection;
 public interface IWebApplicationModuleCollection : ICollection<IWebApplicationModule>
 {
 }
