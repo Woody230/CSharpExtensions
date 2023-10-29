@@ -7,6 +7,10 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Woody230.AspNetCore.Application.Builder.WebHost;
+
+/// <summary>
+/// Wraps a <see cref="ConfigureWebHostBuilder"/> as a <see cref="IConfigureWebHostBuilder"/>.
+/// </summary>
 public sealed class AspNetCoreConfigureWebHostBuilder : IConfigureWebHostBuilder
 {
     private readonly IWebHostBuilder _webHostBuilder;

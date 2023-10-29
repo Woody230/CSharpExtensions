@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace Woody230.AspNetCore.Application.Builder.Modules.Collection;
-public class WebApplicationBuilderModuleCollection : IWebApplicationBuilderModuleCollection
+public sealed class WebApplicationBuilderModuleCollection : IWebApplicationBuilderModuleCollection
 {
     private readonly List<IWebApplicationBuilderModule> _list = new();
 
