@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting.Infrastructure;
 using Microsoft.Extensions.Hosting;
 
-namespace Woody230.AspNetCore.App.Builder.Host;
+namespace Woody230.AspNetCore.App.Application.Builder.Host;
 
 /// <summary>
 /// A non-buildable <see cref="IHostBuilder"/> for <see cref="IWebApplicationBuilder"/>.

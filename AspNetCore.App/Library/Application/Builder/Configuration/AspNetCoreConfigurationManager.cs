@@ -3,7 +3,7 @@ using Microsoft.Extensions.Primitives;
 using System;
 using System.Collections.Generic;
 
-namespace Woody230.AspNetCore.App.Builder.Configuration;
+namespace Woody230.AspNetCore.App.Application.Builder.Configuration;
 
 /// <summary>
 /// Wraps the <see cref="ConfigurationManager"/> as a <see cref="IConfigurationManager"/>.

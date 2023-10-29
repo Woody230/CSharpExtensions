@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Woody230.AspNetCore.App.Application;
-using Woody230.AspNetCore.App.Builder.Configuration;
-using Woody230.AspNetCore.App.Builder.Host;
-using Woody230.AspNetCore.App.Builder.WebHost;
+using Woody230.AspNetCore.App.Application.Builder.Configuration;
+using Woody230.AspNetCore.App.Application.Builder.Host;
+using Woody230.AspNetCore.App.Application.Builder.WebHost;
 
-namespace Woody230.AspNetCore.App.Builder;
+namespace Woody230.AspNetCore.App.Application.Builder;
 
 /// <summary>
 /// Wraps the <see cref="WebApplicationBuilder"/> as a <see cref="IWebApplicationBuilder"/>.
