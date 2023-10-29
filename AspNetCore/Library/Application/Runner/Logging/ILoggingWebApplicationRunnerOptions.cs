@@ -10,7 +10,7 @@ public interface ILoggingWebApplicationRunnerOptions
     /// <summary>
     /// Whether exceptions should be rethrown.
     /// </summary>
-    public bool RethrowExceptions { get; set; }
+    public bool RethrowExceptions { get; }
 
     /// <summary>
     /// The level to log the exceptions.
