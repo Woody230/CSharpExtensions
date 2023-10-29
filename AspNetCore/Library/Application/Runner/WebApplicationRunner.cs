@@ -3,7 +3,7 @@
 namespace Woody230.AspNetCore.Application.Runner;
 
 /// <inheritdoc/>
-public class WebApplicationRunner : IWebApplicationRunner
+public sealed class WebApplicationRunner : IWebApplicationRunner
 {
     /// <inheritdoc/>
     public void Run(IWebApplication application)

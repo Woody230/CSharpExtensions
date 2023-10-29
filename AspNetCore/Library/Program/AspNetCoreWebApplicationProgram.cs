@@ -13,7 +13,7 @@ namespace Woody230.AspNetCore.Program;
 /// <summary>
 /// Creates and builds a <see cref="WebApplication"/> from a <see cref="WebApplicationBuilder"/>.
 /// </summary>
-public class AspNetCoreWebApplicationProgram : IWebApplicationProgram
+public sealed class AspNetCoreWebApplicationProgram : IWebApplicationProgram
 {
     private readonly IWebApplicationOptions _applicationOptions;
     private readonly IWebApplicationRunner _applicationRunner;

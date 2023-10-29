@@ -3,7 +3,7 @@ using System;
 using Woody230.AspNetCore.Program.Arguments;
 
 namespace Woody230.AspNetCore.Application.Options;
-public class AspNetCoreWebApplicationOptions : IWebApplicationOptions
+public sealed class AspNetCoreWebApplicationOptions : IWebApplicationOptions
 {
     public AspNetCoreWebApplicationOptions(ICommandLineArguments arguments)
     {

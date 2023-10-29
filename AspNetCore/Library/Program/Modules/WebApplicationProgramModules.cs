@@ -2,7 +2,7 @@
 using Woody230.AspNetCore.Application.Modules.Collection;
 
 namespace Woody230.AspNetCore.Program.Modules;
-public class WebApplicationProgramModules : IWebApplicationProgramModules
+public sealed class WebApplicationProgramModules : IWebApplicationProgramModules
 {
     public WebApplicationProgramModules() : this(new WebApplicationBuilderModuleCollection(), new WebApplicationModuleCollection())
     {

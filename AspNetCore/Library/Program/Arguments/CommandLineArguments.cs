@@ -5,7 +5,7 @@ using System.Linq;
 namespace Woody230.AspNetCore.Program.Arguments;
 
 /// <inheritdoc/>
-public class CommandLineArguments: ICommandLineArguments
+public sealed class CommandLineArguments: ICommandLineArguments
 {
     private readonly List<string> _list = new();
 
