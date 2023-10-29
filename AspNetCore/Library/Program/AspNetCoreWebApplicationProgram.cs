@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Woody230.AspNetCore.Application;
 using Woody230.AspNetCore.Application.Builder;
+using Woody230.AspNetCore.Application.Options;
 using Woody230.AspNetCore.Application.Runner;
 using Woody230.AspNetCore.Program.Arguments;
 using Woody230.AspNetCore.Program.Modules;
@@ -14,19 +15,19 @@ namespace Woody230.AspNetCore.Program;
 /// </summary>
 public class AspNetCoreWebApplicationProgram : IWebApplicationProgram
 {
-    private readonly WebApplicationOptions _options;
+    private readonly IWebApplicationOptions _applicationOptions;
     private readonly IWebApplicationRunner _applicationRunner;
 
-    public AspNetCoreWebApplicationProgram(WebApplicationOptions options): this(options, new WebApplicationProgramModules(), new WebApplicationRunner())
+    public AspNetCoreWebApplicationProgram(IWebApplicationOptions applicationOptions): this(applicationOptions, new WebApplicationProgramModules(), new WebApplicationRunner())
     {
     }
 
-    public AspNetCoreWebApplicationProgram(WebApplicationOptions options, IWebApplicationProgramModules modules, IWebApplicationRunner applicationRunner)
+    public AspNetCoreWebApplicationProgram(IWebApplicationOptions applicationOptions, IWebApplicationProgramModules modules, IWebApplicationRunner applicationRunner)
     {
-        _options = options;
+        _applicationOptions = applicationOptions;
         _applicationRunner = applicationRunner;
         Modules = modules;
-        Arguments = new CommandLineArguments(options.Args ?? Array.Empty<string>());
+        Arguments = applicationOptions.Arguments;
     }
 
     public ICommandLineArguments Arguments { get; }
@@ -47,7 +48,16 @@ public class AspNetCoreWebApplicationProgram : IWebApplicationProgram
 
     private IWebApplication BuildApplication()
     {
-        var builder = new AspNetCoreWebApplicationBuilder(WebApplication.CreateBuilder(_options));
+        var options = new WebApplicationOptions()
+        {
+            ApplicationName = _applicationOptions.ApplicationName,
+            Args = _applicationOptions.Arguments.ToArray(),
+            ContentRootPath = _applicationOptions.ContentRootPath,
+            EnvironmentName = _applicationOptions.EnvironmentName,
+            WebRootPath = _applicationOptions.WebRootPath
+        };
+
+        var builder = new AspNetCoreWebApplicationBuilder(WebApplication.CreateBuilder(options));
         foreach (var module in Modules.Builder)
         {
             module.Apply(builder);
