@@ -45,9 +45,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BindableEnum.FluentValidati
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BindableEnum.FluentValidation.Tests", "BindableEnum.FluentValidation\Tests\BindableEnum.FluentValidation.Tests.csproj", "{9540FEB9-CD75-4471-AA64-0374246E6C6B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.App.Library", "AspNetCore.App\Library\AspNetCore.App.Library.csproj", "{C90EC901-8B35-427D-B826-71F6796DF7B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Library", "AspNetCore\Library\AspNetCore.Library.csproj", "{C90EC901-8B35-427D-B826-71F6796DF7B0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AspNetCore.App", "AspNetCore.App", "{9B00BFBF-BFDB-45AA-B639-F907B4D31F57}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AspNetCore", "AspNetCore", "{9B00BFBF-BFDB-45AA-B639-F907B4D31F57}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
