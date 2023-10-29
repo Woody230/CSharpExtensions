@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Woody230.AspNetCore.App.Program.Arguments;
 using Woody230.AspNetCore.App.Program.Modules;
 
 namespace Woody230.AspNetCore.App.Program;
@@ -11,7 +12,7 @@ public interface IWebApplicationProgram
     /// <summary>
     /// The command line arguments.
     /// </summary>
-    public string[] Arguments { get; }
+    public ICommandLineArguments Arguments { get; }
 
     /// <summary>
     /// The modules for building the program.

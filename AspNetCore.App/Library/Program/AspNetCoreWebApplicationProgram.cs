@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Woody230.AspNetCore.App.Application;
 using Woody230.AspNetCore.App.Application.Runner;
 using Woody230.AspNetCore.App.Builder;
+using Woody230.AspNetCore.App.Program.Arguments;
 using Woody230.AspNetCore.App.Program.Modules;
 
 namespace Woody230.AspNetCore.App.Program;
@@ -25,10 +26,10 @@ public class AspNetCoreWebApplicationProgram : IWebApplicationProgram
         _options = options;
         _applicationRunner = applicationRunner;
         Modules = modules;
-        Arguments = options.Args ?? Array.Empty<string>();
+        Arguments = new CommandLineArguments(options.Args ?? Array.Empty<string>());
     }
 
-    public string[] Arguments { get; }
+    public ICommandLineArguments Arguments { get; }
 
     public IWebApplicationProgramModules Modules { get; }
 
