@@ -2,19 +2,28 @@
 using System;
 using System.Threading.Tasks;
 using Woody230.AspNetCore.App.Application;
+using Woody230.AspNetCore.App.Application.Runner;
 using Woody230.AspNetCore.App.Builder;
 using Woody230.AspNetCore.App.Program.Modules;
 
 namespace Woody230.AspNetCore.App.Program;
 
-
+/// <summary>
+/// Creates and builds a <see cref="WebApplication"/> from a <see cref="WebApplicationBuilder"/>.
+/// </summary>
 public class AspNetCoreWebApplicationProgram : IWebApplicationProgram
 {
     private readonly WebApplicationOptions _options;
+    private readonly IWebApplicationRunner _applicationRunner;
 
-    public AspNetCoreWebApplicationProgram(WebApplicationOptions options, IWebApplicationProgramModules modules)
+    public AspNetCoreWebApplicationProgram(WebApplicationOptions options): this(options, new WebApplicationProgramModules(), new WebApplicationRunner())
+    {
+    }
+
+    public AspNetCoreWebApplicationProgram(WebApplicationOptions options, IWebApplicationProgramModules modules, IWebApplicationRunner applicationRunner)
     {
         _options = options;
+        _applicationRunner = applicationRunner;
         Modules = modules;
         Arguments = options.Args ?? Array.Empty<string>();
     }
@@ -25,12 +34,14 @@ public class AspNetCoreWebApplicationProgram : IWebApplicationProgram
 
     public void Run()
     {
-        BuildApplication().Run();
+        var application = BuildApplication();
+        _applicationRunner.Run(application);
     }
 
     public Task RunAsync()
     {
-        return BuildApplication().RunAsync();
+        var application = BuildApplication();
+        return _applicationRunner.RunAsync(application);
     }
 
     private IWebApplication BuildApplication()
