@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -39,6 +42,16 @@ public sealed class AspNetCoreWebApplication : IWebApplication
     public IServiceProvider ServiceProvider => _endpointRouteBuilder.ServiceProvider;
 
     public ICollection<EndpointDataSource> DataSources => _endpointRouteBuilder.DataSources;
+
+    public IConfiguration Configuration => _webApplication.Configuration;
+
+    public IWebHostEnvironment Environment => _webApplication.Environment;
+
+    public IHostApplicationLifetime Lifetime => _webApplication.Lifetime;
+
+    public ILogger Logger => _webApplication.Logger;
+
+    public ICollection<string> Urls => _webApplication.Urls;
 
     public RequestDelegate Build() => _applicationBuilder.Build();
 

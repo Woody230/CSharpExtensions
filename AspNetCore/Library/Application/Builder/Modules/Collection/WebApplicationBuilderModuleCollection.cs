@@ -6,6 +6,12 @@ public sealed class WebApplicationBuilderModuleCollection : IWebApplicationBuild
 {
     private readonly List<IWebApplicationBuilderModule> _list = new();
 
+    public IWebApplicationBuilderModuleCollection Apply(IWebApplicationBuilderModule module)
+    {
+        Add(module);
+        return this;
+    }
+
     #region Delegation
     public int Count => ((ICollection<IWebApplicationBuilderModule>)_list).Count;
 

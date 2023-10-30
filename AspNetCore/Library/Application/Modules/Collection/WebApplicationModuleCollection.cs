@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Woody230.AspNetCore.Application.Modules;
 
 namespace Woody230.AspNetCore.Application.Modules.Collection;
 public class WebApplicationModuleCollection : IWebApplicationModuleCollection
 {
     private readonly List<IWebApplicationModule> _list = new();
+
+    public IWebApplicationModuleCollection Apply(IWebApplicationModule module)
+    {
+        Add(module);
+        return this;
+    }
 
     #region Delegation
     public int Count => ((ICollection<IWebApplicationModule>)_list).Count;
