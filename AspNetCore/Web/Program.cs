@@ -11,19 +11,19 @@ var arguments = new CommandLineArguments(args);
 var options = new AspNetCoreWebApplicationOptions(arguments);
 var program = new AspNetCoreWebApplicationProgram(options);
 
-program.Modules.Builder
-    .Apply(new ControllerModule())
-    .Apply(new JsonOptionsModule())
-    .Apply(new SwaggerGenModule());
+var builder = program.Modules.Builder;
+builder.Add(new ControllerModule());
+builder.Add(new JsonOptionsModule());
+builder.Add(new SwaggerGenModule());
 
-program.Modules.Application
-    .Apply(new SwaggerUiModule())
-    .Apply((app) =>
-    {
-        app.UseHttpsRedirection();
-        app.UseAuthorization();
-        app.MapControllers();
-    });
+var app = program.Modules.Application;
+app.Add(new SwaggerUiModule());
+app.Add((app) =>
+{
+    app.UseHttpsRedirection();
+    app.UseAuthorization();
+    app.MapControllers();
+});
 
 program.Run();
 

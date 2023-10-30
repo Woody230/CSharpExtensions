@@ -7,8 +7,4 @@ namespace Woody230.AspNetCore.Application.Builder.Modules.Collection;
 /// </summary>
 public interface IWebApplicationBuilderModuleCollection : ICollection<IWebApplicationBuilderModule>
 {
-    /// <summary>
-    /// Adds the module to the collection and returns the collection.
-    /// </summary>
-    public IWebApplicationBuilderModuleCollection Apply(IWebApplicationBuilderModule module);
 }

@@ -10,7 +10,7 @@ public static class WebApplicationBuilderModuleCollectionExtensions
     /// <summary>
     /// Adds the delegated configuring of the <see cref="IWebApplicationBuilder"/> as a module to the collection.
     /// </summary>
-    public static TCollection Apply<TCollection>(this TCollection collection, Action<IWebApplicationBuilder> configure) where TCollection: IWebApplicationBuilderModuleCollection
+    public static TCollection Add<TCollection>(this TCollection collection, Action<IWebApplicationBuilder> configure) where TCollection: IWebApplicationBuilderModuleCollection
     {
         var module = new DelegatedWebApplicationBuilderModule(configure);
         collection.Add(module);
