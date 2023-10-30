@@ -1,41 +1,31 @@
 using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System;
-using System.IO;
-using System.Reflection;
-using System.Text.Json.Serialization;
+using Woody230.AspNetCore.Application.Modules.Collection;
+using Woody230.AspNetCore.Application.Options;
+using Woody230.AspNetCore.Program;
+using Woody230.AspNetCore.Program.Arguments;
+using Woody230.AspNetCore.Web.Modules;
+using Woody230.AspNetCore.Web.Modules.Application;
+using Woody230.AspNetCore.Web.Modules.Builder;
 
-var builder = WebApplication.CreateBuilder(args);
+var arguments = new CommandLineArguments(args);
+var options = new AspNetCoreWebApplicationOptions(arguments);
+var program = new AspNetCoreWebApplicationProgram(options);
 
-// Add services to the container.
+program.Modules.Builder
+    .Apply(new ControllerModule())
+    .Apply(new JsonOptionsModule())
+    .Apply(new SwaggerGenModule());
 
-builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(options =>
-{
-    var name = Assembly.GetExecutingAssembly().GetName().Name;
-    var xmlPath = Path.Combine(AppContext.BaseDirectory, $"{name}.xml");
-    options.IncludeXmlComments(xmlPath);
-});
+program.Modules.Application
+    .Apply(new SwaggerUiModule())
+    .Apply((app) =>
+    {
+        app.UseHttpsRedirection();
+        app.UseAuthorization();
+        app.MapControllers();
+    });
 
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();
+program.Run();
 
 /// <summary>
 /// The program.
