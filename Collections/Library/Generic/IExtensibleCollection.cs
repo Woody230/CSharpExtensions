@@ -28,4 +28,9 @@ public interface IExtensibleCollection<T>: ICollection<T>
     /// Applies the <paramref name="action"/> to each item in the collection.
     /// </summary>
     public IExtensibleCollection<T> ForEach(Action<T> action);
+
+    /// <summary>
+    /// Determines whether all items in the <paramref name="collection"/> are contained in this collection.
+    /// </summary>
+    public bool ContainsAll(IEnumerable<T> collection);
 }

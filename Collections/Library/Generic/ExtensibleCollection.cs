@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Woody230.Collections.Generic;
 
@@ -30,6 +31,11 @@ public abstract class ExtensibleCollection<T>: IExtensibleCollection<T>
     {
         _list.CopyTo(array, arrayIndex);
         return this;
+    }
+
+    public bool ContainsAll(IEnumerable<T> collection)
+    {
+        return collection.All(item => Contains(item));
     }
 
     #region Delegated
