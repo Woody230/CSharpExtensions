@@ -13,6 +13,16 @@ public abstract class ExtensibleCollection<T>: IExtensibleCollection<T>
         return this;
     }
 
+    /// <summary>
+    /// Adds each item in the <paramref name="other"/> collection to <paramref name="this"/> collection.
+    /// </summary>
+    public static ExtensibleCollection<T> operator +(ExtensibleCollection<T> @this, IEnumerable<T> other) => @this.AddAll(other);
+
+    /// <summary>
+    /// Removes each item in the <paramref name="other"/> collection from <paramref name="this"/> collection.
+    /// </summary>
+    public static ExtensibleCollection<T> operator -(ExtensibleCollection<T> @this, IEnumerable<T> other) => @this.RemoveAll(other);
+
     public IExtensibleCollection<T> CopyTo(T[] array, int arrayIndex)
     {
         _list.CopyTo(array, arrayIndex);

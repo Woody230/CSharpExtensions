@@ -23,6 +23,19 @@ public static class GenericCollectionExtensions
     }
 
     /// <summary>
+    /// Removes each item in the <paramref name="other"/> collection from <paramref name="this"/> collection.
+    /// </summary>
+    public static TCollection RemoveAll<T, TCollection>(this TCollection @this, IEnumerable<T> other) where TCollection: ICollection<T>
+    {
+        foreach (var item in other)
+        {
+            @this.Remove(item);
+        }
+
+        return @this;
+    }
+
+    /// <summary>
     /// Applies the <paramref name="action"/> to each item in the collection.
     /// </summary>
     public static TEnumerable ForEach<T, TEnumerable>(this TEnumerable @this, Action<T> action) where TEnumerable : IEnumerable<T>
