@@ -33,7 +33,7 @@ public static class GenericCollectionExtensions
     /// <summary>
     /// Removes each item in the <paramref name="other"/> collection from <paramref name="this"/> collection.
     /// </summary>
-    public static TCollection RemoveAll<T, TCollection>(this TCollection @this, IEnumerable<T> other) where TCollection: ICollection<T>
+    public static TCollection RemoveAll<T, TCollection>(this TCollection @this, IEnumerable<T> other) where TCollection : ICollection<T>
     {
         foreach (var item in other)
         {
@@ -103,5 +103,38 @@ public static class GenericCollectionExtensions
     public static bool None<T>(this IEnumerable<T> @this, Func<T, bool> filter)
     {
         return !@this.All(filter);
+    }
+    
+    /// <summary>
+    /// Concatenates all items in <paramref name="this"/> collection after converting them <paramref name="toString"/>, using the <paramref name="separator"/> between each item.
+    /// </summary>
+    public static string JoinToString<T>(this IEnumerable<T> @this, string separator, Func<T, string?> toString)
+    {
+        var stringified = @this.Select(toString);
+        return string.Join(separator, stringified);
+    }
+
+    /// <summary>
+    /// Concatenates all items in <paramref name="this"/> collection after converting them <paramref name="toString"/>, using a comma delimiter between each item.
+    /// </summary>
+    public static string JoinToString<T>(this IEnumerable<T> @this, Func<T, string?> toString)
+    {
+        return JoinToString(@this, ",", toString);
+    }
+
+    /// <summary>
+    /// Concatenates all items in <paramref name="this"/> collection after converting them to a string, using the <paramref name="separator"/> between each item.
+    /// </summary>
+    public static string JoinToString<T>(this IEnumerable<T> @this, string separator)
+    {
+        return JoinToString(@this, separator, item => item?.ToString());
+    }
+
+    /// <summary>
+    /// Concatenates all items in <paramref name="this"/> collection after converting them to a string, using a comma delimiter between each item.
+    /// </summary>
+    public static string JoinToString<T>(this IEnumerable<T> @this)
+    {
+        return JoinToString(@this, ",", item => item?.ToString());
     }
 }
