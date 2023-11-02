@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -158,5 +159,26 @@ public static class GenericCollectionExtensions
     {
         WithIndex(@this).ForEach(action);
         return @this;
+    }
+
+    /// <summary>
+    /// Filters <paramref name="this"/> collection based on the item being an instance of <typeparamref name="TInstance"/>.
+    public static IEnumerable<TInstance> WhereInstanceOf<TInstance>(this IEnumerable @this)
+    {
+        foreach (var item in @this)
+        {
+            if (item is TInstance instance)
+            {
+                yield return instance;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Filters <paramref name="this"/> collection based on the item NOT being a null value.
+    /// </summary>
+    public static IEnumerable<T> WhereNotNull<T>(this IEnumerable<T> @this)
+    {
+        return @this.Where(item => item != null);
     }
 }
