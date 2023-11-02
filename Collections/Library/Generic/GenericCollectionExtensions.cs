@@ -55,4 +55,21 @@ public static class GenericCollectionExtensions
     {
         return other.All(item => @this.Contains(item));
     }
+
+    /// <summary>
+    /// Determines whether <paramref name="this"/> collection is null or has no items.
+    /// </summary>
+    public static bool IsNullOrEmpty<T, TEnumerable>(this TEnumerable @this) where TEnumerable : IEnumerable<T>
+    {
+        return @this == null || !@this.Any();
+    }
+
+    /// <summary>
+    /// Filters <paramref name="this"/> collection based on the <paramref name="filter"/> being false.
+    /// </summary>
+    /// <returns>A new collection with items that did not pass the <paramref name="filter"/>.</returns>
+    public static IEnumerable<T> WhereNot<T, TEnumerable>(this TEnumerable @this, Func<T, bool> filter) where TEnumerable: IEnumerable<T>
+    {
+        return @this.Where(item => !filter(item));
+    }
 }
