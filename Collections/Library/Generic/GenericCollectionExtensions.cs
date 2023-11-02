@@ -96,4 +96,12 @@ public static class GenericCollectionExtensions
     {
         return @this.Where(item => !filter(item));
     }
+
+    /// <summary>
+    /// Determines whether all items in <paramref name="this"/> collection do NOT pass the <paramref name="filter"/>.
+    /// </summary>
+    public static bool None<T>(this IEnumerable<T> @this, Func<T, bool> filter)
+    {
+        return !@this.All(filter);
+    }
 }
