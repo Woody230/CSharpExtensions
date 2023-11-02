@@ -181,4 +181,13 @@ public static class GenericCollectionExtensions
     {
         return @this.Where(item => item != null);
     }
+
+    /// <summary>
+    /// Filters <paramref name="this"/> collection based on the item NOT being the default value of <typeparamref name="T"/>
+    /// </summary>
+    public static IEnumerable<T> WhereNotDefault<T>(this IEnumerable<T> @this)
+    {
+        var @default = default(T);
+        return @this.Where(item => @default == null ? item != null : !@default.Equals(item));
+    }
 }
