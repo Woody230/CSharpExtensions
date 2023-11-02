@@ -23,6 +23,14 @@ public static class GenericCollectionExtensions
     }
 
     /// <summary>
+    /// Adds each item in the <paramref name="other"/> collection to <paramref name="this"/> collection.
+    /// </summary>
+    public static TCollection AddAll<T, TCollection>(this TCollection @this, params T[] other) where TCollection : ICollection<T>
+    {
+        return AddAll(@this, other.ToList());
+    }
+
+    /// <summary>
     /// Removes each item in the <paramref name="other"/> collection from <paramref name="this"/> collection.
     /// </summary>
     public static TCollection RemoveAll<T, TCollection>(this TCollection @this, IEnumerable<T> other) where TCollection: ICollection<T>
@@ -33,6 +41,14 @@ public static class GenericCollectionExtensions
         }
 
         return @this;
+    }
+
+    /// <summary>
+    /// Removes each item in the <paramref name="other"/> collection from <paramref name="this"/> collection.
+    /// </summary>
+    public static TCollection RemoveAll<T, TCollection>(this TCollection @this, params T[] other) where TCollection : ICollection<T>
+    {
+        return RemoveAll(@this, other.ToList());
     }
 
     /// <summary>
@@ -51,7 +67,7 @@ public static class GenericCollectionExtensions
     /// <summary>
     /// Determines whether all items in the <paramref name="other"/> collection are contained in <paramref name="this"/> collection.
     /// </summary>
-    public static bool ContainsAll<T, TCollection>(this TCollection @this, IEnumerable<T> other) where TCollection : ICollection<T>
+    public static bool ContainsAll<T>(this ICollection<T> @this, IEnumerable<T> other)
     {
         return other.All(item => @this.Contains(item));
     }
@@ -59,16 +75,24 @@ public static class GenericCollectionExtensions
     /// <summary>
     /// Determines whether <paramref name="this"/> collection is null or has no items.
     /// </summary>
-    public static bool IsNullOrEmpty<T, TEnumerable>(this TEnumerable @this) where TEnumerable : IEnumerable<T>
+    public static bool IsNullOrEmpty<T>(this IEnumerable<T> @this)
     {
         return @this == null || !@this.Any();
+    }
+
+    /// <summary>
+    /// Determines whether <paramref name="this"/> collection is not null or has items.
+    /// </summary>
+    public static bool IsNotNullOrEmpty<T>(this IEnumerable<T> @this)
+    {
+        return !IsNullOrEmpty(@this);
     }
 
     /// <summary>
     /// Filters <paramref name="this"/> collection based on the <paramref name="filter"/> being false.
     /// </summary>
     /// <returns>A new collection with items that did not pass the <paramref name="filter"/>.</returns>
-    public static IEnumerable<T> WhereNot<T, TEnumerable>(this TEnumerable @this, Func<T, bool> filter) where TEnumerable: IEnumerable<T>
+    public static IEnumerable<T> WhereNot<T>(this IEnumerable<T> @this, Func<T, bool> filter)
     {
         return @this.Where(item => !filter(item));
     }
