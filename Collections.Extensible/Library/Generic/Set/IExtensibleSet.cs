@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Woody230.Collections.Generic;
 
 namespace Woody230.Collections.Extensible.Generic;
 
@@ -19,6 +20,21 @@ public interface IExtensibleSet<T> : IExtensibleCollection<T>, ISet<T>
     /// </summary>
     /// <returns>True if the <paramref name="item"/> is added to the set, otherwise false.</returns>
     public bool TryAdd(T item);
+
+    #region Operators
+    public static IExtensibleSet<T> operator +(IExtensibleSet<T> @this, IEnumerable<T> other) => @this.AddAll(other);
+    public static IExtensibleSet<T> operator -(IExtensibleSet<T> @this, IEnumerable<T> other) => @this.RemoveAll(other);
+    public static IExtensibleSet<T> operator +(IExtensibleSet<T> @this, T item)
+    {
+        @this.Add(item);
+        return @this;
+    }
+    public static IExtensibleSet<T> operator -(IExtensibleSet<T> @this, T item)
+    {
+        @this.Remove(item);
+        return @this;
+    }
+    #endregion Operators
 }
 
 /// <summary>
@@ -34,4 +50,24 @@ public interface IExtensibleSet<T, TCollection> : IExtensibleCollection<T, TColl
     public new TCollection Add(T item);
 
     IExtensibleSet<T> IExtensibleSet<T>.Add(T item) => Add(item);
+
+    #region Operators
+
+    public static TCollection operator +(IExtensibleSet<T, TCollection> @this, IEnumerable<T> other)
+    {
+        @this.AddAll(other);
+        return (TCollection)@this;
+    }
+
+    public static TCollection operator -(IExtensibleSet<T, TCollection> @this, IEnumerable<T> other)
+    {
+        @this.RemoveAll(other);
+        return (TCollection)@this;
+    }
+
+    public static TCollection operator +(IExtensibleSet<T, TCollection> @this, T item) => @this.Add(item);
+
+    public static TCollection operator -(IExtensibleSet<T, TCollection> @this, T item) => @this.Remove(item);
+
+    #endregion Operators
 }
