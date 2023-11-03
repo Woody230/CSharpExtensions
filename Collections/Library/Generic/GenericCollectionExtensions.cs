@@ -112,6 +112,53 @@ public static class GenericCollectionExtensions
     }
 
     /// <summary>
+    /// Filters <paramref name="this"/> collection based on the item being a null value.
+    /// </summary>
+    public static IEnumerable<T> WhereNull<T>(this IEnumerable<T> @this)
+    {
+        return @this.Where(item => item == null);
+    }
+
+    /// <summary>
+    /// Filters <paramref name="this"/> collection based on the item NOT being a null value.
+    /// </summary>
+    public static IEnumerable<T> WhereNotNull<T>(this IEnumerable<T> @this)
+    {
+        return @this.Where(item => item != null);
+    }
+
+    /// <summary>
+    /// Filters <paramref name="this"/> collection based on the item being the default value of <typeparamref name="T"/>
+    /// </summary>
+    public static IEnumerable<T> WhereDefault<T>(this IEnumerable<T> @this)
+    {
+        var @default = default(T);
+        return @this.Where(item => @default == null ? item == null : @default.Equals(item));
+    }
+
+    /// <summary>
+    /// Filters <paramref name="this"/> collection based on the item NOT being the default value of <typeparamref name="T"/>
+    /// </summary>
+    public static IEnumerable<T> WhereNotDefault<T>(this IEnumerable<T> @this)
+    {
+        var @default = default(T);
+        return @this.Where(item => @default == null ? item != null : !@default.Equals(item));
+    }
+
+    /// <summary>
+    /// Filters <paramref name="this"/> collection based on the item being an instance of <typeparamref name="TInstance"/>.
+    public static IEnumerable<TInstance> WhereInstanceOf<TInstance>(this IEnumerable @this)
+    {
+        foreach (var item in @this)
+        {
+            if (item is TInstance instance)
+            {
+                yield return instance;
+            }
+        }
+    }
+
+    /// <summary>
     /// Determines whether all items in <paramref name="this"/> collection do NOT pass the <paramref name="filter"/>.
     /// </summary>
     public static bool None<T>(this IEnumerable<T> @this, Func<T, bool> filter)
@@ -172,35 +219,5 @@ public static class GenericCollectionExtensions
     {
         WithIndex(@this).ForEach(action);
         return @this;
-    }
-
-    /// <summary>
-    /// Filters <paramref name="this"/> collection based on the item being an instance of <typeparamref name="TInstance"/>.
-    public static IEnumerable<TInstance> WhereInstanceOf<TInstance>(this IEnumerable @this)
-    {
-        foreach (var item in @this)
-        {
-            if (item is TInstance instance)
-            {
-                yield return instance;
-            }
-        }
-    }
-
-    /// <summary>
-    /// Filters <paramref name="this"/> collection based on the item NOT being a null value.
-    /// </summary>
-    public static IEnumerable<T> WhereNotNull<T>(this IEnumerable<T> @this)
-    {
-        return @this.Where(item => item != null);
-    }
-
-    /// <summary>
-    /// Filters <paramref name="this"/> collection based on the item NOT being the default value of <typeparamref name="T"/>
-    /// </summary>
-    public static IEnumerable<T> WhereNotDefault<T>(this IEnumerable<T> @this)
-    {
-        var @default = default(T);
-        return @this.Where(item => @default == null ? item != null : !@default.Equals(item));
     }
 }
