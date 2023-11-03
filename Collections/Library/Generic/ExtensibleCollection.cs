@@ -3,13 +3,22 @@ using System.Collections.Generic;
 
 namespace Woody230.Collections.Generic;
 
+/// <summary>
+/// Represents a <see cref="ICollection{T}"/> that is extended with additional functionality.
+/// </summary>
+/// <typeparam name="T">The type of model.</typeparam>
 public abstract class ExtensibleCollection<T>: IExtensibleCollection<T>
 {
-    private readonly List<T> _list = new();
+    private readonly ICollection<T> _collection;
+
+    public ExtensibleCollection(ICollection<T> collection)
+    {
+        _collection = collection;
+    }
 
     public IExtensibleCollection<T> Add(T item)
     {
-        _list.Add(item);
+        _collection.Add(item);
         return this;
     }
 
@@ -25,48 +34,48 @@ public abstract class ExtensibleCollection<T>: IExtensibleCollection<T>
 
     public IExtensibleCollection<T> CopyTo(T[] array, int arrayIndex)
     {
-        _list.CopyTo(array, arrayIndex);
+        _collection.CopyTo(array, arrayIndex);
         return this;
     }
 
     #region Delegated
-    public int Count => _list.Count;
+    public int Count => _collection.Count;
 
-    public bool IsReadOnly => ((ICollection<T>)_list).IsReadOnly;
+    public bool IsReadOnly => _collection.IsReadOnly;
 
     void ICollection<T>.Add(T item)
     {
-        _list.Add(item);
+        _collection.Add(item);
     }
 
     public void Clear()
     {
-        _list.Clear();
+        _collection.Clear();
     }
 
     public bool Contains(T item)
     {
-        return _list.Contains(item);
+        return _collection.Contains(item);
     }
 
     void ICollection<T>.CopyTo(T[] array, int arrayIndex)
     {
-        _list.CopyTo(array, arrayIndex);
+        _collection.CopyTo(array, arrayIndex);
     }
 
     public IEnumerator<T> GetEnumerator()
     {
-        return _list.GetEnumerator();
+        return _collection.GetEnumerator();
     }
 
     public bool Remove(T item)
     {
-        return _list.Remove(item);
+        return _collection.Remove(item);
     }
 
     IEnumerator IEnumerable.GetEnumerator()
     {
-        return _list.GetEnumerator();
+        return _collection.GetEnumerator();
     }
 
     #endregion Delegated
