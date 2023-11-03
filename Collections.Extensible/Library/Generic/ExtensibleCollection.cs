@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Woody230.Collections.Extensible.Generic;
 
-public abstract class ExtensibleCollection<T> : IExtensibleCollection<T>
+public abstract class ExtensibleCollection<T, TCollection> : IExtensibleCollection<T, TCollection> where TCollection : ExtensibleCollection<T, TCollection>
 {
     private readonly ICollection<T> _collection;
 
@@ -12,23 +12,24 @@ public abstract class ExtensibleCollection<T> : IExtensibleCollection<T>
         _collection = collection;
     }
 
-    public IExtensibleCollection<T> Add(T item)
+    public TCollection Add(T item)
     {
         _collection.Add(item);
-        return this;
+        return (TCollection)this;
     }
 
-    public IExtensibleCollection<T> Remove(T item)
+    public TCollection Remove(T item)
     {
         _collection.Remove(item);
-        return this;
+        return (TCollection)this;
     }
 
-    public IExtensibleCollection<T> CopyTo(T[] array, int arrayIndex)
+    public TCollection CopyTo(T[] array, int arrayIndex)
     {
         _collection.CopyTo(array, arrayIndex);
-        return this;
+        return (TCollection)this;
     }
+
 
     #region Delegated
     public int Count => _collection.Count;

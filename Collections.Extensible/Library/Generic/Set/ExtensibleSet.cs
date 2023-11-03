@@ -2,7 +2,7 @@
 
 namespace Woody230.Collections.Extensible.Generic;
 
-public class ExtensibleSet<T> : ExtensibleCollection<T>, IExtensibleSet<T>
+public abstract class ExtensibleSet<T, TCollection> : ExtensibleCollection<T, TCollection>, IExtensibleSet<T, TCollection> where TCollection: ExtensibleSet<T, TCollection>
 {
     private readonly ISet<T> _set;
 
@@ -15,10 +15,10 @@ public class ExtensibleSet<T> : ExtensibleCollection<T>, IExtensibleSet<T>
     {
     }
 
-    IExtensibleSet<T> IExtensibleSet<T>.Add(T item)
+    TCollection IExtensibleSet<T>.Add(T item)
     {
         _set.Add(item);
-        return this;
+        return (TCollection) this;
     }
 
     public bool TryAdd(T item)

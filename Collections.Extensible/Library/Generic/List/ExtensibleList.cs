@@ -2,7 +2,11 @@
 
 namespace Woody230.Collections.Extensible.Generic;
 
-public abstract class ExtensibleList<T> : ExtensibleCollection<T>, IExtensibleList<T>
+/// <summary>
+/// Represents a <see cref="IList{T}"/> that is extensible with additional functionality.
+/// </summary>
+/// <typeparam name="T">The type of model.</typeparam>
+public abstract class ExtensibleList<T, TCollection> : ExtensibleCollection<T, TCollection>, IExtensibleList<T, TCollection> where TCollection: ExtensibleList<T, TCollection>
 {
     private readonly IList<T> _list;
 
