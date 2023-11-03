@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Woody230.Collections.Generic;
 
 namespace Woody230.Collections.Extensible.Generic.Set;
 
@@ -16,15 +15,17 @@ public class ExtensibleSet<T> : ExtensibleCollection<T>, IExtensibleSet<T>
     {
     }
 
-    /// <summary>
-    /// Adds each item in the <paramref name="other"/> collection to <paramref name="this"/> collection.
-    /// </summary>
-    public static ExtensibleSet<T> operator +(ExtensibleSet<T> @this, IEnumerable<T> other) => @this.AddAll(other);
+    IExtensibleSet<T> IExtensibleSet<T>.Add(T item)
+    {
+        _set.Add(item);
+        return this;
+    }
 
-    /// <summary>
-    /// Removes each item in the <paramref name="other"/> collection from <paramref name="this"/> collection.
-    /// </summary>
-    public static ExtensibleSet<T> operator -(ExtensibleSet<T> @this, IEnumerable<T> other) => @this.RemoveAll(other);
+    public bool TryAdd(T item)
+    {
+        return _set.Add(item);
+    }
+
 
     #region Delegation
     bool ISet<T>.Add(T item)

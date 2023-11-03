@@ -18,4 +18,22 @@ public interface IExtensibleList<T> : IExtensibleCollection<T>, IList<T>
     /// Removes each item in the <paramref name="other"/> collection from <paramref name="this"/> collection.
     /// </summary>
     public static IExtensibleList<T> operator -(IExtensibleList<T> @this, IEnumerable<T> other) => @this.RemoveAll(other);
+
+    /// <summary>
+    /// Adds the <paramref name="item"/> to <paramref name="this"/> collection.
+    /// </summary>
+    public static IExtensibleList<T> operator +(IExtensibleList<T> @this, T item)
+    {
+        @this.Add(item);
+        return @this;
+    }
+
+    /// <summary>
+    /// Removes the <paramref name="item"/> from <paramref name="this"/> collection.
+    /// </summary>
+    public static IExtensibleList<T> operator -(IExtensibleList<T> @this, T item)
+    {
+        @this.Remove(item);
+        return @this;
+    }
 }

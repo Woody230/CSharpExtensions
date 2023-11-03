@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Woody230.Collections.Generic;
 
 namespace Woody230.Collections.Extensible.Generic.List;
 
@@ -15,17 +14,6 @@ public abstract class ExtensibleList<T> : ExtensibleCollection<T>, IExtensibleLi
     public ExtensibleList() : this(new List<T>())
     {
     }
-
-    /// <summary>
-    /// Adds each item in the <paramref name="other"/> collection to <paramref name="this"/> collection.
-    /// </summary>
-    public static ExtensibleList<T> operator +(ExtensibleList<T> @this, IEnumerable<T> other) => @this.AddAll(other);
-
-    /// <summary>
-    /// Removes each item in the <paramref name="other"/> collection from <paramref name="this"/> collection.
-    /// </summary>
-    public static ExtensibleList<T> operator -(ExtensibleList<T> @this, IEnumerable<T> other) => @this.RemoveAll(other);
-
 
     #region Delegation
     public T this[int index] { get => _list[index]; set => _list[index] = value; }

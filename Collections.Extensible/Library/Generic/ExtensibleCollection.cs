@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Woody230.Collections.Generic;
 
 namespace Woody230.Collections.Extensible.Generic;
 
@@ -19,15 +18,11 @@ public abstract class ExtensibleCollection<T> : IExtensibleCollection<T>
         return this;
     }
 
-    /// <summary>
-    /// Adds each item in the <paramref name="other"/> collection to <paramref name="this"/> collection.
-    /// </summary>
-    public static ExtensibleCollection<T> operator +(ExtensibleCollection<T> @this, IEnumerable<T> other) => @this.AddAll(other);
-
-    /// <summary>
-    /// Removes each item in the <paramref name="other"/> collection from <paramref name="this"/> collection.
-    /// </summary>
-    public static ExtensibleCollection<T> operator -(ExtensibleCollection<T> @this, IEnumerable<T> other) => @this.RemoveAll(other);
+    public IExtensibleCollection<T> Remove(T item)
+    {
+        _collection.Remove(item);
+        return this;
+    }
 
     public IExtensibleCollection<T> CopyTo(T[] array, int arrayIndex)
     {
@@ -65,7 +60,7 @@ public abstract class ExtensibleCollection<T> : IExtensibleCollection<T>
         return _collection.GetEnumerator();
     }
 
-    public bool Remove(T item)
+    public bool TryRemove(T item)
     {
         return _collection.Remove(item);
     }
@@ -74,6 +69,8 @@ public abstract class ExtensibleCollection<T> : IExtensibleCollection<T>
     {
         return _collection.GetEnumerator();
     }
+
+    bool ICollection<T>.Remove(T item) => TryRemove(item);
 
     #endregion Delegated
 }
