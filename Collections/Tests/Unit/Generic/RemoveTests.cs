@@ -1,9 +1,5 @@
 ﻿using FluentAssertions;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Woody230.Collections.Generic;
 using Xunit;
 
@@ -14,7 +10,7 @@ public class RemoveTests
     public void RemoveAll()
     {
         // Arrange / Act
-        var list = new List<int>()
+        List<int> list = new List<int>()
         {
             4, 99, 275, 82, 553, 281, 99, 9102
         }

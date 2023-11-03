@@ -19,7 +19,7 @@ public class ToDictionaryTests
         };
 
         // Act
-        var dictionary = tuples.ToDictionary();
+        IDictionary<string, int> dictionary = tuples.ToDictionary();
 
         // Assert
         dictionary.Should().BeEquivalentTo(new Dictionary<string, int>()

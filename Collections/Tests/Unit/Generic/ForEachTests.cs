@@ -13,11 +13,11 @@ public class ForEachTests
         // Arrange / Act
         var builder = new StringBuilder();
 
-        var list = new HashSet<int>() { 4, 7, 9 };
+        HashSet<int> list = new HashSet<int>() { 4, 7, 9 };
         list = list.ForEach((int item) => builder.Append(item));
 
         builder.Append(' ');
-        var enumerable = list.ForEach(item => builder.Append(item + 1));
+        IEnumerable<int> enumerable = list.ForEach(item => builder.Append(item + 1));
 
         // Assert
         builder.ToString().Should().BeEquivalentTo("479 5810");

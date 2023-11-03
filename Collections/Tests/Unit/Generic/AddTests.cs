@@ -10,7 +10,7 @@ public class AddTests
     public void AddAll()
     {
         // Arrange / Act
-        var list = new List<int>() { 4 }
+        List<int> list = new List<int>() { 4 }
             .AddAll(new List<int>() { 99, 275, 82 })
             .AddAll(553, 281, 99, 9102);
 

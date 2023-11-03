@@ -10,7 +10,7 @@ public class SelectTests
     public void SelectKeys()
     {
         // Arrange / Act
-        var dictionary = new Dictionary<string, int>()
+        IDictionary<string, int> dictionary = new Dictionary<string, int>()
         {
             ["Foo"] = 7,
             ["Bar"] = 1284,
@@ -36,7 +36,7 @@ public class SelectTests
     public void SelectValues()
     {
         // Arrange / Act
-        var dictionary = new Dictionary<string, int>()
+        IDictionary<string, decimal> dictionary = new Dictionary<string, int>()
         {
             ["Foo"] = 7,
             ["Bar"] = 1284,
