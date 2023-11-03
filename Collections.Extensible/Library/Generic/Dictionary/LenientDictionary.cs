@@ -23,7 +23,15 @@ public sealed class LenientDictionary<TKey, TValue>: ExtensibleDictionary<TKey, 
     /// </summary>
     public override LenientDictionary<TKey, TValue> Add(KeyValuePair<TKey, TValue> item)
     {
-        this.Put(item);
+        try
+        {
+            this.Put(item);
+        }
+        catch (KeyNotFoundException)
+        {
+            // With a typical dictionary indexing won't produce a key not found exception.
+        }
+
         return this;
     }
 
