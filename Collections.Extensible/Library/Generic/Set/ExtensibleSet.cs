@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Woody230.Collections.Extensible.Generic.Set;
+namespace Woody230.Collections.Extensible.Generic;
 
 public class ExtensibleSet<T> : ExtensibleCollection<T>, IExtensibleSet<T>
 {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Woody230.Collections.Extensible.Generic.List;
+namespace Woody230.Collections.Extensible.Generic;
 
 public abstract class ExtensibleList<T> : ExtensibleCollection<T>, IExtensibleList<T>
 {

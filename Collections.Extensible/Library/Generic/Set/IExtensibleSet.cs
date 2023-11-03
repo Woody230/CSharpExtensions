@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Woody230.Collections.Generic;
 
-namespace Woody230.Collections.Extensible.Generic.Set;
+namespace Woody230.Collections.Extensible.Generic;
 
 /// <summary>
 /// Represents a <see cref="ISet{T}"/> that is extensible with additional functionality.
