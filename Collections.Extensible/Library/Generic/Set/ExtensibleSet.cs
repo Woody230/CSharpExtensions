@@ -2,6 +2,11 @@
 
 namespace Woody230.Collections.Extensible.Generic;
 
+/// <summary>
+/// Represents a <see cref="ISet{T}"/> that is extensible with additional functionality.
+/// </summary>
+/// <typeparam name="T">The type of model.</typeparam>
+/// <typeparam name="TCollection">The type of the implementation of the interface.</typeparam>
 public abstract class ExtensibleSet<T, TCollection> : ExtensibleCollection<T, TCollection>, IExtensibleSet<T, TCollection> where TCollection: ExtensibleSet<T, TCollection>
 {
     private readonly ISet<T> _set;
@@ -15,7 +20,7 @@ public abstract class ExtensibleSet<T, TCollection> : ExtensibleCollection<T, TC
     {
     }
 
-    TCollection IExtensibleSet<T>.Add(T item)
+    TCollection IExtensibleSet<T, TCollection>.Add(T item)
     {
         _set.Add(item);
         return (TCollection) this;
