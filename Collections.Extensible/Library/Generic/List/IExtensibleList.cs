@@ -29,7 +29,7 @@ public interface IExtensibleList<T> : IExtensibleCollection<T>, IList<T>
 /// Represents a <see cref="IList{T}"/> that is extensible with additional functionality.
 /// </summary>
 /// <typeparam name="T">The type of model.</typeparam>
-/// /// <typeparam name="TCollection">The type of the implementation of the interface.</typeparam>
+/// <typeparam name="TCollection">The type of the implementation of the interface.</typeparam>
 public interface IExtensibleList<T, TCollection> : IExtensibleCollection<T, TCollection>, IExtensibleList<T> where TCollection : IExtensibleList<T, TCollection>
 {
     #region Operators
