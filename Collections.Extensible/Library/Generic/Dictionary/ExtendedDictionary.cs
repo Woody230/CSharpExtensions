@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Woody230.Collections.Generic;
 
-namespace Woody230.Collections.Extensible.Generic.Dictionary;
+namespace Woody230.Collections.Extensible.Generic;
 
 /// <inheritdoc/>
 public sealed class ExtendedDictionary<TKey, TValue> : ExtensibleDictionary<TKey, TValue, ExtendedDictionary<TKey, TValue>> where TKey: notnull
