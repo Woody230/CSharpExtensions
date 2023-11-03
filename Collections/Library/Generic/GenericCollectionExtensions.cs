@@ -163,7 +163,7 @@ public static class GenericCollectionExtensions
     /// </summary>
     public static bool None<T>(this IEnumerable<T> @this, Func<T, bool> filter)
     {
-        return !@this.All(filter);
+        return !@this.Any(filter);
     }
     
     /// <summary>
