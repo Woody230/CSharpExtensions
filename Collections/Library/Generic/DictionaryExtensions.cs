@@ -53,7 +53,7 @@ public static class DictionaryExtensions
     /// <summary>
     /// Adds the values from the <paramref name="other"/> collection if the keys do not exist, or replaces the existing values when the key exists in <paramref name="this"/> collection.
     /// </summary>
-    public static TDictionary PutAll<TKey, TValue, TDictionary>(this TDictionary @this, KeyValuePair<TKey, TValue>[] other)
+    public static TDictionary PutAll<TKey, TValue, TDictionary>(this TDictionary @this, params KeyValuePair<TKey, TValue>[] other)
         where TDictionary : IDictionary<TKey, TValue>
         where TKey : notnull
     {
