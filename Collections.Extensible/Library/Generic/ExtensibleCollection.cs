@@ -12,7 +12,7 @@ public abstract class ExtensibleCollection<T, TCollection> : IExtensibleCollecti
         _collection = collection;
     }
 
-    public TCollection Add(T item)
+    public virtual TCollection Add(T item)
     {
         _collection.Add(item);
         return (TCollection)this;
@@ -20,7 +20,7 @@ public abstract class ExtensibleCollection<T, TCollection> : IExtensibleCollecti
 
     public TCollection Remove(T item)
     {
-        _collection.Remove(item);
+        TryRemove(item);
         return (TCollection)this;
     }
 
@@ -38,7 +38,7 @@ public abstract class ExtensibleCollection<T, TCollection> : IExtensibleCollecti
 
     void ICollection<T>.Add(T item)
     {
-        _collection.Add(item);
+        Add(item);
     }
 
     public void Clear()
@@ -61,7 +61,7 @@ public abstract class ExtensibleCollection<T, TCollection> : IExtensibleCollecti
         return _collection.GetEnumerator();
     }
 
-    public bool TryRemove(T item)
+    public virtual bool TryRemove(T item)
     {
         return _collection.Remove(item);
     }
