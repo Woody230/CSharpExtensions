@@ -1,17 +1,18 @@
 ﻿using System.Collections.Generic;
+using Woody230.Collections.Generic;
 
-namespace Woody230.Collections.Generic;
+namespace Woody230.Collections.Extensible.Generic.Set;
 
-public class ExtensibleSet<T>: ExtensibleCollection<T>, IExtensibleSet<T>
+public class ExtensibleSet<T> : ExtensibleCollection<T>, IExtensibleSet<T>
 {
     private readonly ISet<T> _set;
 
-    public ExtensibleSet(ISet<T> set): base(set)
+    public ExtensibleSet(ISet<T> set) : base(set)
     {
         _set = set;
     }
 
-    public ExtensibleSet(): this(new HashSet<T>())
+    public ExtensibleSet() : this(new HashSet<T>())
     {
     }
 

@@ -1,17 +1,18 @@
 ﻿using System.Collections.Generic;
+using Woody230.Collections.Generic;
 
-namespace Woody230.Collections.Generic;
+namespace Woody230.Collections.Extensible.Generic.List;
 
 public abstract class ExtensibleList<T> : ExtensibleCollection<T>, IExtensibleList<T>
 {
     private readonly IList<T> _list;
 
-    public ExtensibleList(IList<T> list): base(list)
+    public ExtensibleList(IList<T> list) : base(list)
     {
         _list = list;
     }
 
-    public ExtensibleList(): this(new List<T>())
+    public ExtensibleList() : this(new List<T>())
     {
     }
 

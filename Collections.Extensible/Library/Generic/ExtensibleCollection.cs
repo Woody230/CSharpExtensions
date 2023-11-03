@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Woody230.Collections.Generic;
 
-namespace Woody230.Collections.Generic;
+namespace Woody230.Collections.Extensible.Generic;
 
-public abstract class ExtensibleCollection<T>: IExtensibleCollection<T>
+public abstract class ExtensibleCollection<T> : IExtensibleCollection<T>
 {
     private readonly ICollection<T> _collection;
 
