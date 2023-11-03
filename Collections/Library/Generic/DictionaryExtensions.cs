@@ -22,7 +22,6 @@ public static class DictionaryExtensions
     /// </summary>
     public static TDictionary Put<TKey, TValue, TDictionary>(this TDictionary @this, TKey key, TValue value) 
         where TDictionary : IDictionary<TKey, TValue>
-        where TKey : notnull
     {
         @this[key] = value;
         return @this;
@@ -33,7 +32,6 @@ public static class DictionaryExtensions
     /// </summary>
     public static TDictionary Put<TKey, TValue, TDictionary>(this TDictionary @this, KeyValuePair<TKey, TValue> pair)
         where TDictionary : IDictionary<TKey, TValue>
-        where TKey : notnull
     {
         return @this.Put(pair.Key, pair.Value);
     }
@@ -43,7 +41,6 @@ public static class DictionaryExtensions
     /// </summary>
     public static TDictionary PutAll<TKey, TValue, TDictionary>(this TDictionary @this, IEnumerable<KeyValuePair<TKey, TValue>> other)
         where TDictionary : IDictionary<TKey, TValue>
-        where TKey : notnull
     {
         foreach (var pair in other)
         {

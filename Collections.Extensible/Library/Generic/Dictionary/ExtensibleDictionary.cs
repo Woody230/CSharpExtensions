@@ -9,19 +9,14 @@ namespace Woody230.Collections.Extensible.Generic;
 /// <typeparam name="TKey">The type of the key.</typeparam>
 /// <typeparam name="TValue">The type of the value.</typeparam>
 /// <typeparam name="TCollection">The type of the implementation of the interface.</typeparam>
-public abstract class ExtensibleDictionary<TKey, TValue, TCollection>: ExtensibleCollection<KeyValuePair<TKey, TValue>, TCollection>, IExtensibleDictionary<TKey, TValue, TCollection>, IDictionary<TKey, TValue>
+public abstract class ExtensibleDictionary<TKey, TValue, TCollection>: ExtensibleCollection<KeyValuePair<TKey, TValue>, TCollection>, IExtensibleDictionary<TKey, TValue, TCollection>
     where TCollection: ExtensibleDictionary<TKey, TValue, TCollection>
-    where TKey: notnull
 {
     private readonly IDictionary<TKey, TValue> _dictionary;
 
     public ExtensibleDictionary(IDictionary<TKey, TValue> dictionary): base(dictionary)
     {
         _dictionary = dictionary;
-    }
-
-    public ExtensibleDictionary(): this(new Dictionary<TKey, TValue>())
-    {
     }
 
     public TCollection Add(TKey key, TValue value)
