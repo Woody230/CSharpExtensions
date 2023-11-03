@@ -6,6 +6,15 @@ namespace Woody230.Collections.Extensible.Generic;
 /// <inheritdoc/>
 public sealed class ExtendedSet<T>: ExtensibleSet<T, ExtendedSet<T>>
 {
+    public ExtendedSet(ISet<T> set): base(set)
+    {
+    }
+
+    public ExtendedSet(): base()
+    {
+    }
+
+
     #region Operators
     public static ExtendedSet<T> operator +(ExtendedSet<T> @this, IEnumerable<T> other) => @this.AddAll(other);
     public static ExtendedSet<T> operator -(ExtendedSet<T> @this, IEnumerable<T> other) => @this.RemoveAll(other);
