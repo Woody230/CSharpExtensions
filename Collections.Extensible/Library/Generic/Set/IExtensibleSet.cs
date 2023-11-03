@@ -10,6 +10,7 @@ namespace Woody230.Collections.Extensible.Generic;
 /// <typeparam name="TCollection">The type of the implementation of the interface.</typeparam>
 public interface IExtensibleSet<T> : IExtensibleCollection<T>, ISet<T>
 {
+    #region Extended
     /// <summary>
     /// Adds the <paramref name="item"/> to this collection if it is not present in the collection already.
     /// </summary>
@@ -20,6 +21,12 @@ public interface IExtensibleSet<T> : IExtensibleCollection<T>, ISet<T>
     /// </summary>
     /// <returns>True if the <paramref name="item"/> is added to the set, otherwise false.</returns>
     public bool TryAdd(T item);
+
+    #endregion Extended
+
+    #region Override
+    bool ISet<T>.Add(T item) => TryAdd(item);
+    #endregion Override
 
     #region Operators
     public static IExtensibleSet<T> operator +(IExtensibleSet<T> @this, IEnumerable<T> other) => @this.AddAll(other);
@@ -44,12 +51,17 @@ public interface IExtensibleSet<T> : IExtensibleCollection<T>, ISet<T>
 /// <typeparam name="TCollection">The type of the implementation of the interface.</typeparam>
 public interface IExtensibleSet<T, TCollection> : IExtensibleCollection<T, TCollection>, IExtensibleSet<T> where TCollection : IExtensibleSet<T, TCollection>
 {
+    #region Extended
     /// <summary>
     /// Adds the <paramref name="item"/> to this collection if it is not present in the collection already.
     /// </summary>
     public new TCollection Add(T item);
+    #endregion Extended
+
+    #region Override
 
     IExtensibleSet<T> IExtensibleSet<T>.Add(T item) => Add(item);
+    #endregion Override
 
     #region Operators
 

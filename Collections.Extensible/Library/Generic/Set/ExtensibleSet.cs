@@ -32,11 +32,7 @@ public abstract class ExtensibleSet<T, TCollection> : ExtensibleCollection<T, TC
     }
 
 
-    #region Delegation
-    bool ISet<T>.Add(T item)
-    {
-        return _set.Add(item);
-    }
+    #region Delegated
 
     public void ExceptWith(IEnumerable<T> other)
     {
@@ -88,5 +84,5 @@ public abstract class ExtensibleSet<T, TCollection> : ExtensibleCollection<T, TC
         _set.UnionWith(other);
     }
 
-    #endregion Delegation
+    #endregion Delegated
 }

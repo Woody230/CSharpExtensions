@@ -19,7 +19,7 @@ public abstract class ExtensibleList<T, TCollection> : ExtensibleCollection<T, T
     {
     }
 
-    #region Delegation
+    #region Delegated
     public T this[int index] { get => _list[index]; set => _list[index] = value; }
 
     public int IndexOf(T item) => _list.IndexOf(item);
@@ -27,5 +27,5 @@ public abstract class ExtensibleList<T, TCollection> : ExtensibleCollection<T, T
     public void Insert(int index, T item) => _list.Insert(index, item);
 
     public void RemoveAt(int index) => _list.RemoveAt(index);
-    #endregion Delegation
+    #endregion Delegated
 }
