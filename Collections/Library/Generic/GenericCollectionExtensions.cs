@@ -181,7 +181,7 @@ public static class GenericCollectionExtensions
     /// </summary>
     public static string JoinToString<T>(this IEnumerable<T> @this, Func<T, string?> toString)
     {
-        return JoinToString(@this, ",", toString);
+        return JoinToString(@this, ", ", toString);
     }
 
     /// <summary>
@@ -197,7 +197,7 @@ public static class GenericCollectionExtensions
     /// </summary>
     public static string JoinToString<T>(this IEnumerable<T> @this)
     {
-        return JoinToString(@this, ",", item => item?.ToString());
+        return JoinToString(@this, ", ", item => item?.ToString());
     }
 
     /// <summary>
