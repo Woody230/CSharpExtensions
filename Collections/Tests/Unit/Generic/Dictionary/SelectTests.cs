@@ -16,7 +16,7 @@ public class SelectTests
             ["Bar"] = 1284,
             ["Baz"] = 721
         }
-        .SelectKeys(pair => pair.Key)
+        .SelectKeys(key => key)
         .SelectKeys(Prefix)
         .SelectKeys(Postfix);
 
@@ -42,7 +42,7 @@ public class SelectTests
             ["Bar"] = 1284,
             ["Baz"] = 721
         }
-        .SelectValues(pair => pair.Value)
+        .SelectValues(value => value)
         .SelectValues(Add)
         .SelectValues(ToDecimal);
 
