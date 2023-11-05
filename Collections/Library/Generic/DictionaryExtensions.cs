@@ -18,6 +18,36 @@ public static class DictionaryExtensions
     }
 
     /// <summary>
+    /// Removes the key value pairs associated with each of the keys from the <paramref name="other"/> collection in <paramref name="this"/> collection.
+    /// </summary>
+    public static void RemoveKeys<TKey, TValue>(this IDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other)
+    {
+        foreach (var pair in other)
+        {
+            @this.RemoveKey(pair);
+        }
+    }
+
+    /// <summary>
+    /// Removes the key value pairs associated with each of the <paramref name="keys"/> in <paramref name="this"/> collection.
+    /// </summary>
+    public static void RemoveKeys<TKey, TValue>(this IDictionary<TKey, TValue> @this, IEnumerable<TKey> keys)
+    {
+        foreach (var key in keys)
+        {
+            @this.Remove(key);
+        }
+    }
+
+    /// <summary>
+    /// Removes the key value pair associated with the key of the <paramref name="pair"/> in <paramref name="this"/> collection.
+    /// </summary>
+    public static void RemoveKey<TKey, TValue>(this IDictionary<TKey, TValue> @this, KeyValuePair<TKey, TValue> pair)
+    {
+        @this.Remove(pair.Key);
+    }
+
+    /// <summary>
     /// Adds the <paramref name="value"/> if the <paramref name="key"/> does not exist, or replaces the existing value when the <paramref name="key"/> exists.
     /// </summary>
     public static void Put<TKey, TValue>(this IDictionary<TKey, TValue> @this, TKey key, TValue value) 

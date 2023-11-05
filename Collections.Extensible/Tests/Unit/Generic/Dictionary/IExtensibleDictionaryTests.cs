@@ -20,8 +20,9 @@ public class IExtensibleDictionaryTests
         {
             ["Fizz"] = 9,
             ["FooBar"] = 13,
+            ["Bar"] = 102,
             ["Buzz"] = 17,
-            ["FooBaz"] = 99
+            ["FooBaz"] = 99,
         };
 
         // Act
@@ -32,7 +33,7 @@ public class IExtensibleDictionaryTests
         merged.Should().BeEquivalentTo(new ExtendedDictionary<string, int>()
         {
             ["Foo"] = 5,
-            ["Bar"] = 8,
+            ["Bar"] = 102,
             ["Baz"] = 13,
             ["Fizz"] = 9,
             ["FooBar"] = 13,
@@ -49,6 +50,7 @@ public class IExtensibleDictionaryTests
         {
             ["Fizz"] = 9,
             ["FooBar"] = 13,
+            ["Bar"] = 102,
             ["Buzz"] = 17,
             ["FooBaz"] = 99
         };
@@ -89,7 +91,7 @@ public class IExtensibleDictionaryTests
         IExtensibleDictionary<string, int> second = new ExtendedDictionary<string, int>()
         {
             ["Fizz"] = 9,
-            ["Foo"] = 13,
+            ["Bar"] = 102,
             ["Buzz"] = 17,
             ["Baz"] = 13
         };
@@ -101,8 +103,7 @@ public class IExtensibleDictionaryTests
         merged.Should().BeSameAs(first);
         merged.Should().BeEquivalentTo(new ExtendedDictionary<string, int>()
         {
-            ["Foo"] = 5,
-            ["Bar"] = 8
+            ["Foo"] = 5
         });
     }
 
@@ -114,14 +115,15 @@ public class IExtensibleDictionaryTests
         {
             ["Fizz"] = 9,
             ["Foo"] = 13,
+            ["Bar"] = 102,
             ["Buzz"] = 17,
             ["Baz"] = 13
         };
         IExtensibleDictionary<string, int> second = new ExtendedDictionary<string, int>()
         {
-            ["Foo"] = 5,
             ["Bar"] = 8,
-            ["Baz"] = 13
+            ["Baz"] = 13,
+            ["FooBarBaz"] = 9102
         };
 
         // Act
@@ -147,7 +149,7 @@ public class IExtensibleDictionaryTests
             ["Bar"] = 8,
             ["Baz"] = 13
         };
-        KeyValuePair<string, int> second = KeyValuePair.Create("Fizz", 9);
+        KeyValuePair<string, int> second = KeyValuePair.Create("Foo", 9);
 
         // Act
         IExtensibleDictionary<string, int> merged = first + second;
@@ -156,15 +158,16 @@ public class IExtensibleDictionaryTests
         merged.Should().BeSameAs(first);
         merged.Should().BeEquivalentTo(new ExtendedDictionary<string, int>()
         {
-            ["Foo"] = 5,
+            ["Foo"] = 9,
             ["Bar"] = 8,
-            ["Baz"] = 13,
-            ["Fizz"] = 9
+            ["Baz"] = 13
         });
     }
 
-    [Fact]
-    public void SubtractItem()
+    [Theory]
+    [InlineData(13)]
+    [InlineData(17)]
+    public void SubtractItem(int value)
     {
         // Arrange
         IExtensibleDictionary<string, int> first = new ExtendedDictionary<string, int>()
@@ -173,7 +176,7 @@ public class IExtensibleDictionaryTests
             ["Bar"] = 8,
             ["Baz"] = 13
         };
-        KeyValuePair<string, int> second = KeyValuePair.Create("Baz", 13);
+        KeyValuePair<string, int> second = KeyValuePair.Create("Baz", value);
 
         // Act
         IExtensibleDictionary<string, int> merged = first - second;

@@ -17,22 +17,22 @@ public sealed class ExtendedDictionary<TKey, TValue> : ExtensibleDictionary<TKey
     #region Operators
     public static ExtendedDictionary<TKey, TValue> operator +(ExtendedDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other)
     {
-        @this.AddAll(other);
+        @this.PutAll(other);
         return @this;
     }
     public static ExtendedDictionary<TKey, TValue> operator -(ExtendedDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other)
     {
-        @this.RemoveAll(other);
+        @this.RemoveKeys(other);
         return @this;
     }
     public static ExtendedDictionary<TKey, TValue> operator +(ExtendedDictionary<TKey, TValue> @this, KeyValuePair<TKey, TValue> item)
     {
-        @this.Add(item);
+        @this.Put(item);
         return @this;
     }
     public static ExtendedDictionary<TKey, TValue> operator -(ExtendedDictionary<TKey, TValue> @this, KeyValuePair<TKey, TValue> item)
     {
-        @this.Remove(item);
+        @this.RemoveKey(item);
         return @this;
     }
     #endregion Operators

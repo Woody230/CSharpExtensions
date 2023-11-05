@@ -36,22 +36,22 @@ public sealed class LenientDictionary<TKey, TValue>: ExtensibleDictionary<TKey, 
     #region Operators
     public static LenientDictionary<TKey, TValue> operator +(LenientDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other)
     {
-        @this.AddAll(other);
+        @this.PutAll(other);
         return @this;
     }
     public static LenientDictionary<TKey, TValue> operator -(LenientDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other)
     {
-        @this.RemoveAll(other);
+        @this.RemoveKeys(other);
         return @this;
     }
     public static LenientDictionary<TKey, TValue> operator +(LenientDictionary<TKey, TValue> @this, KeyValuePair<TKey, TValue> item)
     {
-        @this.Add(item);
+        @this.Put(item);
         return @this;
     }
     public static LenientDictionary<TKey, TValue> operator -(LenientDictionary<TKey, TValue> @this, KeyValuePair<TKey, TValue> item)
     {
-        @this.Remove(item);
+        @this.RemoveKey(item);
         return @this;
     }
     #endregion Operators

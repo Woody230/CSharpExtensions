@@ -13,22 +13,22 @@ public interface IExtensibleDictionary<TKey, TValue>: IExtensibleCollection<KeyV
     #region Operators
     public static IExtensibleDictionary<TKey, TValue> operator +(IExtensibleDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other)
     {
-        @this.AddAll(other);
+        @this.PutAll(other);
         return @this;
     }
     public static IExtensibleDictionary<TKey, TValue> operator -(IExtensibleDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other)
     {
-        @this.RemoveAll(other);
+        @this.RemoveKeys(other);
         return @this;
     }
     public static IExtensibleDictionary<TKey, TValue> operator +(IExtensibleDictionary<TKey, TValue> @this, KeyValuePair<TKey, TValue> item)
     {
-        @this.Add(item);
+        @this.Put(item);
         return @this;
     }
     public static IExtensibleDictionary<TKey, TValue> operator -(IExtensibleDictionary<TKey, TValue> @this, KeyValuePair<TKey, TValue> item)
     {
-        @this.Remove(item);
+        @this.RemoveKey(item);
         return @this;
     }
     #endregion Operators
