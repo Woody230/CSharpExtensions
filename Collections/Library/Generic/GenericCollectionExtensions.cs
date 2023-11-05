@@ -13,69 +13,61 @@ public static class GenericCollectionExtensions
     /// <summary>
     /// Adds each item in the <paramref name="other"/> collection to <paramref name="this"/> collection.
     /// </summary>
-    public static TCollection AddAll<T, TCollection>(this TCollection @this, IEnumerable<T> other) where TCollection : ICollection<T>
+    public static void AddAll<T>(this ICollection<T> @this, IEnumerable<T> other)
     {
         foreach (var item in other)
         {
             @this.Add(item);
         }
-
-        return @this;
     }
 
     /// <summary>
     /// Adds each item in the <paramref name="other"/> collection to <paramref name="this"/> collection.
     /// </summary>
-    public static TCollection AddAll<T, TCollection>(this TCollection @this, params T[] other) where TCollection : ICollection<T>
+    public static void AddAll<T>(this ICollection<T> @this, params T[] other)
     {
-        return AddAll(@this, other.ToList());
+        AddAll(@this, other.ToList());
     }
 
     /// <summary>
     /// Removes each item in the <paramref name="other"/> collection from <paramref name="this"/> collection.
     /// </summary>
-    public static TCollection RemoveAll<T, TCollection>(this TCollection @this, IEnumerable<T> other) where TCollection : ICollection<T>
+    public static void RemoveAll<T>(this ICollection<T> @this, IEnumerable<T> other)
     {
         foreach (var item in other)
         {
             @this.Remove(item);
         }
-
-        return @this;
     }
 
     /// <summary>
     /// Removes each item in the <paramref name="other"/> collection from <paramref name="this"/> collection.
     /// </summary>
-    public static TCollection RemoveAll<T, TCollection>(this TCollection @this, params T[] other) where TCollection : ICollection<T>
+    public static void RemoveAll<T>(this ICollection<T> @this, params T[] other)
     {
-        return RemoveAll(@this, other.ToList());
+        RemoveAll(@this, other.ToList());
     }
 
     /// <summary>
     /// Applies the <paramref name="action"/> to each item in the collection.
     /// </summary>
-    public static IEnumerable<T> ForEach<T>(this IEnumerable<T> @this, Action<T> action)
+    public static void ForEach<T>(this IEnumerable<T> @this, Action<T> action)
     {
         foreach (var item in @this)
         {
             action(item);
         }
-
-        return @this;
     }
 
     /// <summary>
     /// Applies the <paramref name="action"/> to each item in the collection with the associated position in the iteration.
     /// </summary>
-    public static IEnumerable<T> ForEachIndexed<T>(this IEnumerable<T> @this, Action<int, T> action)
+    public static void ForEachIndexed<T>(this IEnumerable<T> @this, Action<int, T> action)
     {
         foreach (var (index, item) in WithIndex(@this)) 
         {
             action(index, item);
         }
-
-        return @this;
     }
 
     /// <summary>

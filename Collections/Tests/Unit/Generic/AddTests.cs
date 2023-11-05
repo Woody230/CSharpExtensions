@@ -10,9 +10,9 @@ public class AddTests
     public void AddAll()
     {
         // Arrange / Act
-        List<int> list = new List<int>() { 4 }
-            .AddAll(new List<int>() { 99, 275, 82 })
-            .AddAll(553, 281, 99, 9102);
+        List<int> list = new List<int>() { 4 };
+        list.AddAll(new List<int>() { 99, 275, 82 });
+        list.AddAll(553, 281, 99, 9102);
 
         // Assert
         list.Should().BeEquivalentTo(new List<int>()

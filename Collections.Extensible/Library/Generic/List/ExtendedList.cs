@@ -4,7 +4,7 @@ using Woody230.Collections.Generic;
 namespace Woody230.Collections.Extensible.Generic;
 
 /// <inheritdoc/>
-public sealed class ExtendedList<T>: ExtensibleList<T, ExtendedList<T>>
+public sealed class ExtendedList<T>: ExtensibleList<T>
 {
     public ExtendedList(IList<T> list) : base(list)
     {
@@ -15,9 +15,25 @@ public sealed class ExtendedList<T>: ExtensibleList<T, ExtendedList<T>>
     }
 
     #region Operators
-    public static ExtendedList<T> operator +(ExtendedList<T> @this, IEnumerable<T> other) => @this.AddAll(other);
-    public static ExtendedList<T> operator -(ExtendedList<T> @this, IEnumerable<T> other) => @this.RemoveAll(other);
-    public static ExtendedList<T> operator +(ExtendedList<T> @this, T item) => @this.Add(item);
-    public static ExtendedList<T> operator -(ExtendedList<T> @this, T item) => @this.Remove(item);
+    public static ExtendedList<T> operator +(ExtendedList<T> @this, IEnumerable<T> other)
+    {
+        @this.AddAll(other);
+        return @this;
+    }
+    public static ExtendedList<T> operator -(ExtendedList<T> @this, IEnumerable<T> other)
+    {
+        @this.RemoveAll(other);
+        return @this;
+    }
+    public static ExtendedList<T> operator +(ExtendedList<T> @this, T item)
+    {
+        @this.Add(item);
+        return @this;
+    }
+    public static ExtendedList<T> operator -(ExtendedList<T> @this, T item)
+    {
+        @this.Remove(item);
+        return @this;
+    }
     #endregion Operators
 }

@@ -8,7 +8,7 @@ namespace Woody230.Collections.Extensible.Generic;
 /// </summary>
 /// <typeparam name="TKey">The type of the key.</typeparam>
 /// <typeparam name="TValue">The type of the value.</typeparam>
-public sealed class LenientDictionary<TKey, TValue>: ExtensibleDictionary<TKey, TValue, LenientDictionary<TKey, TValue>> where TKey: notnull
+public sealed class LenientDictionary<TKey, TValue>: ExtensibleDictionary<TKey, TValue> where TKey: notnull
 {
     public LenientDictionary() : base(new Dictionary<TKey, TValue>())
     {
@@ -21,7 +21,7 @@ public sealed class LenientDictionary<TKey, TValue>: ExtensibleDictionary<TKey, 
     /// <summary>
     /// Adds the value if the key does not exist, or replaces the existing value when the key exists.
     /// </summary>
-    public override LenientDictionary<TKey, TValue> Add(KeyValuePair<TKey, TValue> item)
+    public override void Add(KeyValuePair<TKey, TValue> item)
     {
         try
         {
@@ -31,13 +31,19 @@ public sealed class LenientDictionary<TKey, TValue>: ExtensibleDictionary<TKey, 
         {
             // With a typical dictionary indexing won't produce a key not found exception.
         }
-
-        return this;
     }
 
     #region Operators
-    public static LenientDictionary<TKey, TValue> operator +(LenientDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other) => @this.AddAll(other);
-    public static LenientDictionary<TKey, TValue> operator -(LenientDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other) => @this.RemoveAll(other);
+    public static LenientDictionary<TKey, TValue> operator +(LenientDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other)
+    {
+        @this.AddAll(other);
+        return @this;
+    }
+    public static LenientDictionary<TKey, TValue> operator -(LenientDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other)
+    {
+        @this.RemoveAll(other);
+        return @this;
+    }
     public static LenientDictionary<TKey, TValue> operator +(LenientDictionary<TKey, TValue> @this, KeyValuePair<TKey, TValue> item)
     {
         @this.Add(item);

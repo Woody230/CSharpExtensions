@@ -14,7 +14,7 @@ public class ForEachTests
         var builder = new StringBuilder();
 
         HashSet<int> set = new HashSet<int>() { 4, 7, 9 };
-        IEnumerable<int> enumerable = set.ForEach((int item) => builder.Append(item));
+        set.ForEach((int item) => builder.Append(item));
 
         builder.Append(' ');
         set.ForEach((int item) => builder.Append(item + 1));
@@ -35,7 +35,7 @@ public class ForEachTests
         var builder = new StringBuilder();
 
         HashSet<int> set = new HashSet<int>() { 4, 7, 9 };
-        IEnumerable<int> enumerable = set.ForEachIndexed((int index, int item) => builder.Append(item + index));
+        set.ForEachIndexed((int index, int item) => builder.Append(item + index));
 
         builder.Append(' ');
         set.ForEachIndexed(Append);

@@ -10,14 +10,14 @@ public class PutTests
     public void Put_WithDuplicate_Updates()
     {
         // Arrange / Act
-        Dictionary<string, int> dictionary = new Dictionary<string, int>()
-            .Put("Foo", 5)
-            .Put("Bar", 7)
-            .Put("Baz", 1094)
-            .Put("Foo", 99)
-            .Put("Fizz", 159)
-            .Put(KeyValuePair.Create("Baz", 1021))
-            .Put("Buzz", 222);
+        Dictionary<string, int> dictionary = new Dictionary<string, int>();
+        dictionary.Put("Foo", 5);
+        dictionary.Put("Bar", 7);
+        dictionary.Put("Baz", 1094);
+        dictionary.Put("Foo", 99);
+        dictionary.Put("Fizz", 159);
+        dictionary.Put(KeyValuePair.Create("Baz", 1021));
+        dictionary.Put("Buzz", 222);
 
         // Assert
         dictionary.Should().BeEquivalentTo(new Dictionary<string, int>()
@@ -41,16 +41,16 @@ public class PutTests
             KeyValuePair.Create("Foo", 112233)
         };
 
-        Dictionary<string, int> dictionary = new Dictionary<string, int>()
-            .Put("Foo", 5)
-            .Put("Bar", 7)
-            .Put("Baz", 1094)
-            .Put("Foo", 99)
-            .Put("Fizz", 159)
-            .Put(KeyValuePair.Create("Baz", 1021))
-            .Put("Buzz", 222)
-            .PutAll(list)
-            .PutAll(KeyValuePair.Create("FizzBuzz", 9876), KeyValuePair.Create("Baz", 4758));
+        Dictionary<string, int> dictionary = new Dictionary<string, int>();
+        dictionary.Put("Foo", 5);
+        dictionary.Put("Bar", 7);
+        dictionary.Put("Baz", 1094);
+        dictionary.Put("Foo", 99);
+        dictionary.Put("Fizz", 159);
+        dictionary.Put(KeyValuePair.Create("Baz", 1021));
+        dictionary.Put("Buzz", 222);
+        dictionary.PutAll(list);
+        dictionary.PutAll(KeyValuePair.Create("FizzBuzz", 9876), KeyValuePair.Create("Baz", 4758));
 
         // Assert
         dictionary.Should().BeEquivalentTo(new Dictionary<string, int>()

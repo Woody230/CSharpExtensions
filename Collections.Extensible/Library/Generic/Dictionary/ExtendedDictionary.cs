@@ -4,7 +4,7 @@ using Woody230.Collections.Generic;
 namespace Woody230.Collections.Extensible.Generic;
 
 /// <inheritdoc/>
-public sealed class ExtendedDictionary<TKey, TValue> : ExtensibleDictionary<TKey, TValue, ExtendedDictionary<TKey, TValue>> where TKey: notnull
+public sealed class ExtendedDictionary<TKey, TValue> : ExtensibleDictionary<TKey, TValue> where TKey: notnull
 {
     public ExtendedDictionary(): base(new Dictionary<TKey, TValue>())
     {
@@ -15,8 +15,16 @@ public sealed class ExtendedDictionary<TKey, TValue> : ExtensibleDictionary<TKey
     }
 
     #region Operators
-    public static ExtendedDictionary<TKey, TValue> operator +(ExtendedDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other) => @this.AddAll(other);
-    public static ExtendedDictionary<TKey, TValue> operator -(ExtendedDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other) => @this.RemoveAll(other);
+    public static ExtendedDictionary<TKey, TValue> operator +(ExtendedDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other)
+    {
+        @this.AddAll(other);
+        return @this;
+    }
+    public static ExtendedDictionary<TKey, TValue> operator -(ExtendedDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other)
+    {
+        @this.RemoveAll(other);
+        return @this;
+    }
     public static ExtendedDictionary<TKey, TValue> operator +(ExtendedDictionary<TKey, TValue> @this, KeyValuePair<TKey, TValue> item)
     {
         @this.Add(item);
