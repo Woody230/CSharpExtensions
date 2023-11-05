@@ -6,7 +6,7 @@ namespace Woody230.Collections.Extensible.Tests.Unit.Generic.List;
 public class ExtendedListTests
 {
     [Fact]
-    public void Add()
+    public void AddCollection()
     {
         // Arrange
         ExtendedList<int> first = new ExtendedList<int>() { 5, 8, 13 };
@@ -21,7 +21,7 @@ public class ExtendedListTests
     }
 
     [Fact]
-    public void AddReverse()
+    public void AddCollection_Reverse()
     {
         // Arrange
         ExtendedList<int> first = new ExtendedList<int>() { 9, 13, 17 };
@@ -36,7 +36,7 @@ public class ExtendedListTests
     }
 
     [Fact]
-    public void Subtract()
+    public void SubtractCollection()
     {
         // Arrange
         ExtendedList<int> first = new ExtendedList<int>() { 5, 8, 13 };
@@ -51,7 +51,7 @@ public class ExtendedListTests
     }
 
     [Fact]
-    public void SubtractReverse()
+    public void SubtractCollection_Reverse()
     {
         // Arrange
         ExtendedList<int> first = new ExtendedList<int>() { 9, 13, 17 };

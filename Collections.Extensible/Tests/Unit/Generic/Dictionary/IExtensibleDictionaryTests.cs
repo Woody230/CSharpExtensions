@@ -6,7 +6,7 @@ namespace Woody230.Collections.Extensible.Tests.Unit.Generic.Dictionary;
 public class IExtensibleDictionaryTests
 {
     [Fact]
-    public void Add()
+    public void AddCollection()
     {
         // Arrange
         IExtensibleDictionary<string, int> first = new ExtendedDictionary<string, int>() 
@@ -41,7 +41,7 @@ public class IExtensibleDictionaryTests
     }
 
     [Fact]
-    public void AddReverse()
+    public void AddCollection_Reverse()
     {
         // Arrange
         IExtensibleDictionary<string, int> first = new ExtendedDictionary<string, int>()
@@ -76,7 +76,7 @@ public class IExtensibleDictionaryTests
     }
 
     [Fact]
-    public void Subtract()
+    public void SubtractCollection()
     {
         // Arrange
         IExtensibleDictionary<string, int> first = new ExtendedDictionary<string, int>()
@@ -106,7 +106,7 @@ public class IExtensibleDictionaryTests
     }
 
     [Fact]
-    public void SubtractReverse()
+    public void SubtractCollection_Reverse()
     {
         // Arrange
         IExtensibleDictionary<string, int> first = new ExtendedDictionary<string, int>()
