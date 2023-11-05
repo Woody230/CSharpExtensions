@@ -66,22 +66,9 @@ public static class GenericCollectionExtensions
     }
 
     /// <summary>
-    /// Applies the <paramref name="action"/> to each item in the collection.
-    /// </summary>
-    public static TEnumerable ForEach<T, TEnumerable>(this TEnumerable @this, Action<T> action) where TEnumerable : IEnumerable<T>
-    {
-        foreach (var item in @this)
-        {
-            action(item);
-        }
-
-        return @this;
-    }
-
-    /// <summary>
     /// Applies the <paramref name="action"/> to each item in the collection with the associated position in the iteration.
     /// </summary>
-    public static TEnumerable ForEachIndexed<T, TEnumerable>(this TEnumerable @this, Action<int, T> action) where TEnumerable : IEnumerable<T>
+    public static IEnumerable<T> ForEachIndexed<T>(this IEnumerable<T> @this, Action<int, T> action)
     {
         foreach (var (index, item) in WithIndex(@this)) 
         {

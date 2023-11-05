@@ -14,13 +14,18 @@ public class ForEachTests
         var builder = new StringBuilder();
 
         HashSet<int> set = new HashSet<int>() { 4, 7, 9 };
-        set = set.ForEach((int item) => builder.Append(item));
+        IEnumerable<int> enumerable = set.ForEach((int item) => builder.Append(item));
 
         builder.Append(' ');
-        IEnumerable<int> enumerable = set.ForEach(item => builder.Append(item + 1));
+        set.ForEach((int item) => builder.Append(item + 1));
+
+        builder.Append(' ');
+        set.ForEach(Append);
 
         // Assert
-        builder.ToString().Should().BeEquivalentTo("479 5810");
+        builder.ToString().Should().BeEquivalentTo("479 5810 6911");
+
+        void Append(int item) => builder.Append(item + 2);
     }
 
     [Fact]
@@ -30,9 +35,14 @@ public class ForEachTests
         var builder = new StringBuilder();
 
         HashSet<int> set = new HashSet<int>() { 4, 7, 9 };
-        set = set.ForEachIndexed((int index, int item) => builder.Append(item + index));
+        IEnumerable<int> enumerable = set.ForEachIndexed((int index, int item) => builder.Append(item + index));
+
+        builder.Append(' ');
+        set.ForEachIndexed(Append);
 
         // Assert
-        builder.ToString().Should().BeEquivalentTo("4811");
+        builder.ToString().Should().BeEquivalentTo("4811 5912");
+
+        void Append(int index, int item) => builder.Append(item + index + 1);
     }
 }
