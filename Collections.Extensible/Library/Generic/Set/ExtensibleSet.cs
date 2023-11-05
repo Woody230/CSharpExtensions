@@ -15,10 +15,6 @@ public abstract class ExtensibleSet<T> : ExtensibleCollection<T>, IExtensibleSet
         _set = set;
     }
 
-    public ExtensibleSet() : this(new HashSet<T>())
-    {
-    }
-
     public virtual new bool Add(T item)
     {
         return _set.Add(item);

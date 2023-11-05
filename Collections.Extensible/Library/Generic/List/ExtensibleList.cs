@@ -15,10 +15,6 @@ public abstract class ExtensibleList<T> : ExtensibleCollection<T>, IExtensibleLi
         _list = list;
     }
 
-    public ExtensibleList() : this(new List<T>())
-    {
-    }
-
     #region Delegated
     public virtual T this[int index] { get => _list[index]; set => _list[index] = value; }
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Woody230.Collections.Generic;
 
 namespace Woody230.Collections.Extensible.Generic;
@@ -6,11 +7,15 @@ namespace Woody230.Collections.Extensible.Generic;
 /// <inheritdoc/>
 public sealed class ExtendedList<T>: ExtensibleList<T>
 {
+    public ExtendedList(IEnumerable<T> collection): this(collection.ToList())
+    {
+    }
+
     public ExtendedList(IList<T> list) : base(list)
     {
     }
 
-    public ExtendedList(): base()
+    public ExtendedList(): this(new List<T>())
     {
     }
 

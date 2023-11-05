@@ -6,7 +6,7 @@ namespace Woody230.Collections.Extensible.Generic;
 /// <inheritdoc/>
 public sealed class ExtendedDictionary<TKey, TValue> : ExtensibleDictionary<TKey, TValue> where TKey: notnull
 {
-    public ExtendedDictionary(): base(new Dictionary<TKey, TValue>())
+    public ExtendedDictionary(): this(new Dictionary<TKey, TValue>())
     {
     }
 

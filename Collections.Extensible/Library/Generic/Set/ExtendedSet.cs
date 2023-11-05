@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Woody230.Collections.Generic;
 
 namespace Woody230.Collections.Extensible.Generic;
@@ -6,11 +7,15 @@ namespace Woody230.Collections.Extensible.Generic;
 /// <inheritdoc/>
 public sealed class ExtendedSet<T>: ExtensibleSet<T>
 {
+    public ExtendedSet(IEnumerable<T> collection): this(collection.ToHashSet())
+    {
+    }
+
     public ExtendedSet(ISet<T> set): base(set)
     {
     }
 
-    public ExtendedSet(): base()
+    public ExtendedSet(): this(new HashSet<T>())
     {
     }
 

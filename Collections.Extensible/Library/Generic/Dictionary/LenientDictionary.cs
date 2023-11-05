@@ -10,7 +10,7 @@ namespace Woody230.Collections.Extensible.Generic;
 /// <typeparam name="TValue">The type of the value.</typeparam>
 public sealed class LenientDictionary<TKey, TValue>: ExtensibleDictionary<TKey, TValue> where TKey: notnull
 {
-    public LenientDictionary() : base(new Dictionary<TKey, TValue>())
+    public LenientDictionary() : this(new Dictionary<TKey, TValue>())
     {
     }
 
