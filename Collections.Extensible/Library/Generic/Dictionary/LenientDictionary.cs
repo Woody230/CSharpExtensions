@@ -23,20 +23,13 @@ public sealed class LenientDictionary<TKey, TValue>: ExtensibleDictionary<TKey, 
     /// </summary>
     public override void Add(KeyValuePair<TKey, TValue> item)
     {
-        try
-        {
-            this.Put(item);
-        }
-        catch (KeyNotFoundException)
-        {
-            // With a typical dictionary indexing won't produce a key not found exception.
-        }
+        this.Put(item);
     }
 
     #region Operators
     public static LenientDictionary<TKey, TValue> operator +(LenientDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other)
     {
-        @this.PutAll(other);
+        @this.AddAll(other);
         return @this;
     }
     public static LenientDictionary<TKey, TValue> operator -(LenientDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other)
@@ -46,7 +39,7 @@ public sealed class LenientDictionary<TKey, TValue>: ExtensibleDictionary<TKey, 
     }
     public static LenientDictionary<TKey, TValue> operator +(LenientDictionary<TKey, TValue> @this, KeyValuePair<TKey, TValue> item)
     {
-        @this.Put(item);
+        @this.Add(item);
         return @this;
     }
     public static LenientDictionary<TKey, TValue> operator -(LenientDictionary<TKey, TValue> @this, KeyValuePair<TKey, TValue> item)

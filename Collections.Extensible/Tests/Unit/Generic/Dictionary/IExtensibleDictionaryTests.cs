@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using System;
 using System.Collections.Generic;
 using Woody230.Collections.Extensible.Generic;
 using Xunit;
@@ -10,7 +11,7 @@ public class IExtensibleDictionaryTests
     public void AddCollection()
     {
         // Arrange
-        IExtensibleDictionary<string, int> first = new ExtendedDictionary<string, int>() 
+        IExtensibleDictionary<string, int> first = new LenientDictionary<string, int>() 
         {
             ["Foo"] = 5,
             ["Bar"] = 8,
@@ -30,7 +31,7 @@ public class IExtensibleDictionaryTests
 
         // Assert
         merged.Should().BeSameAs(first);
-        merged.Should().BeEquivalentTo(new ExtendedDictionary<string, int>()
+        merged.Should().BeEquivalentTo(new LenientDictionary<string, int>()
         {
             ["Foo"] = 5,
             ["Bar"] = 102,
@@ -54,7 +55,7 @@ public class IExtensibleDictionaryTests
             ["Buzz"] = 17,
             ["FooBaz"] = 99
         };
-        IExtensibleDictionary<string, int> second = new ExtendedDictionary<string, int>()
+        IExtensibleDictionary<string, int> second = new LenientDictionary<string, int>()
         {
             ["Foo"] = 5,
             ["Bar"] = 8,
@@ -62,20 +63,10 @@ public class IExtensibleDictionaryTests
         };
 
         // Act
-        IExtensibleDictionary<string, int> merged = first + second;
+        Action action = () => _ = first + second;
 
         // Assert
-        merged.Should().BeSameAs(first);
-        merged.Should().BeEquivalentTo(new ExtendedDictionary<string, int>()
-        {
-            ["Foo"] = 5,
-            ["Bar"] = 8,
-            ["Baz"] = 13,
-            ["Fizz"] = 9,
-            ["FooBar"] = 13,
-            ["Buzz"] = 17,
-            ["FooBaz"] = 99
-        });
+        action.Should().ThrowExactly<ArgumentException>().WithMessage("An item with the same key has already been added. Key: Bar");
     }
 
     [Fact]
@@ -143,7 +134,7 @@ public class IExtensibleDictionaryTests
     public void AddItem()
     {
         // Arrange
-        IExtensibleDictionary<string, int> first = new ExtendedDictionary<string, int>()
+        IExtensibleDictionary<string, int> first = new LenientDictionary<string, int>()
         {
             ["Foo"] = 5,
             ["Bar"] = 8,
@@ -156,7 +147,7 @@ public class IExtensibleDictionaryTests
 
         // Assert
         merged.Should().BeSameAs(first);
-        merged.Should().BeEquivalentTo(new ExtendedDictionary<string, int>()
+        merged.Should().BeEquivalentTo(new LenientDictionary<string, int>()
         {
             ["Foo"] = 9,
             ["Bar"] = 8,
@@ -170,7 +161,7 @@ public class IExtensibleDictionaryTests
     public void SubtractItem(int value)
     {
         // Arrange
-        IExtensibleDictionary<string, int> first = new ExtendedDictionary<string, int>()
+        IExtensibleDictionary<string, int> first = new LenientDictionary<string, int>()
         {
             ["Foo"] = 5,
             ["Bar"] = 8,
@@ -183,7 +174,7 @@ public class IExtensibleDictionaryTests
 
         // Assert
         merged.Should().BeSameAs(first);
-        merged.Should().BeEquivalentTo(new ExtendedDictionary<string, int>()
+        merged.Should().BeEquivalentTo(new LenientDictionary<string, int>()
         {
             ["Foo"] = 5,
             ["Bar"] = 8

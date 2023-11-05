@@ -17,7 +17,7 @@ public sealed class ExtendedDictionary<TKey, TValue> : ExtensibleDictionary<TKey
     #region Operators
     public static ExtendedDictionary<TKey, TValue> operator +(ExtendedDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other)
     {
-        @this.PutAll(other);
+        @this.AddAll(other);
         return @this;
     }
     public static ExtendedDictionary<TKey, TValue> operator -(ExtendedDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other)
@@ -27,7 +27,7 @@ public sealed class ExtendedDictionary<TKey, TValue> : ExtensibleDictionary<TKey
     }
     public static ExtendedDictionary<TKey, TValue> operator +(ExtendedDictionary<TKey, TValue> @this, KeyValuePair<TKey, TValue> item)
     {
-        @this.Put(item);
+        @this.Add(item);
         return @this;
     }
     public static ExtendedDictionary<TKey, TValue> operator -(ExtendedDictionary<TKey, TValue> @this, KeyValuePair<TKey, TValue> item)
