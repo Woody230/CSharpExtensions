@@ -49,24 +49,30 @@ public static class GenericCollectionExtensions
     }
 
     /// <summary>
-    /// Applies the <paramref name="action"/> to each item in the collection.
+    /// Applies the <paramref name="actions"/> on each item in the collection.
     /// </summary>
-    public static void ForEach<T>(this IEnumerable<T> @this, Action<T> action)
+    public static void ForEach<T>(this IEnumerable<T> @this, params Action<T>[] actions)
     {
         foreach (var item in @this)
         {
-            action(item);
+            foreach (var action in actions)
+            {
+                action(item);
+            }
         }
     }
 
     /// <summary>
-    /// Applies the <paramref name="action"/> to each item in the collection with the associated position in the iteration.
+    /// Applies the <paramref name="actions"/> on each item in the collection with the associated position in the iteration.
     /// </summary>
-    public static void ForEachIndexed<T>(this IEnumerable<T> @this, Action<int, T> action)
+    public static void ForEachIndexed<T>(this IEnumerable<T> @this, params Action<int, T>[] actions)
     {
         foreach (var (index, item) in WithIndex(@this)) 
         {
-            action(index, item);
+            foreach (var action in actions)
+            {
+                action(index, item);
+            }
         }
     }
 

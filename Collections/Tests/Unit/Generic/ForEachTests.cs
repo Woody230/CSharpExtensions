@@ -15,16 +15,17 @@ public class ForEachTests
 
         HashSet<int> set = new HashSet<int>() { 4, 7, 9 };
         set.ForEach((int item) => builder.Append(item));
-
         builder.Append(' ');
-        set.ForEach((int item) => builder.Append(item + 1));
 
+        set.ForEach((int item) => builder.Append(item + 1), Postfix);
         builder.Append(' ');
+
         set.ForEach(Append);
 
         // Assert
-        builder.ToString().Should().BeEquivalentTo("479 5810 6911");
+        builder.ToString().Should().BeEquivalentTo("479 5-8-10- 6911");
 
+        void Postfix(int _) => builder.Append('-');
         void Append(int item) => builder.Append(item + 2);
     }
 
@@ -36,13 +37,14 @@ public class ForEachTests
 
         HashSet<int> set = new HashSet<int>() { 4, 7, 9 };
         set.ForEachIndexed((int index, int item) => builder.Append(item + index));
-
         builder.Append(' ');
-        set.ForEachIndexed(Append);
+
+        set.ForEachIndexed(Append, Postfix);
 
         // Assert
-        builder.ToString().Should().BeEquivalentTo("4811 5912");
+        builder.ToString().Should().BeEquivalentTo("4811 5-9-12-");
 
+        void Postfix(int _, int __) => builder.Append('-');
         void Append(int index, int item) => builder.Append(item + index + 1);
     }
 }
