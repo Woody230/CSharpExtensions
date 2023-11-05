@@ -64,4 +64,34 @@ public class ExtendedSetTests
         merged.Should().BeSameAs(first);
         merged.Should().BeEquivalentTo(new ExtendedSet<int>() { 9, 17 });
     }
+
+    [Fact]
+    public void AddItem()
+    {
+        // Arrange
+        ExtendedSet<int> first = new ExtendedSet<int>() { 5, 8, 13 };
+        int second = 14;
+
+        // Act
+        ExtendedSet<int> merged = first + second;
+
+        // Assert
+        merged.Should().BeSameAs(first);
+        merged.Should().BeEquivalentTo(new ExtendedSet<int>() { 5, 8, 13, 14 });
+    }
+
+    [Fact]
+    public void SubtractItem()
+    {
+        // Arrange
+        ExtendedSet<int> first = new ExtendedSet<int>() { 5, 8, 13 };
+        int second = 13;
+
+        // Act
+        ExtendedSet<int> merged = first - second;
+
+        // Assert
+        merged.Should().BeSameAs(first);
+        merged.Should().BeEquivalentTo(new ExtendedSet<int>() { 5, 8 });
+    }
 }

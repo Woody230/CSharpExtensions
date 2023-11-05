@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using System.Collections.Generic;
 using Woody230.Collections.Extensible.Generic;
 using Xunit;
 
@@ -133,6 +134,56 @@ public class IExtensibleDictionaryTests
             ["Fizz"] = 9,
             ["Foo"] = 13,
             ["Buzz"] = 17
+        });
+    }
+
+    [Fact]
+    public void AddItem()
+    {
+        // Arrange
+        IExtensibleDictionary<string, int> first = new ExtendedDictionary<string, int>()
+        {
+            ["Foo"] = 5,
+            ["Bar"] = 8,
+            ["Baz"] = 13
+        };
+        KeyValuePair<string, int> second = KeyValuePair.Create("Fizz", 9);
+
+        // Act
+        IExtensibleDictionary<string, int> merged = first + second;
+
+        // Assert
+        merged.Should().BeSameAs(first);
+        merged.Should().BeEquivalentTo(new ExtendedDictionary<string, int>()
+        {
+            ["Foo"] = 5,
+            ["Bar"] = 8,
+            ["Baz"] = 13,
+            ["Fizz"] = 9
+        });
+    }
+
+    [Fact]
+    public void SubtractItem()
+    {
+        // Arrange
+        IExtensibleDictionary<string, int> first = new ExtendedDictionary<string, int>()
+        {
+            ["Foo"] = 5,
+            ["Bar"] = 8,
+            ["Baz"] = 13
+        };
+        KeyValuePair<string, int> second = KeyValuePair.Create("Baz", 13);
+
+        // Act
+        IExtensibleDictionary<string, int> merged = first - second;
+
+        // Assert
+        merged.Should().BeSameAs(first);
+        merged.Should().BeEquivalentTo(new ExtendedDictionary<string, int>()
+        {
+            ["Foo"] = 5,
+            ["Bar"] = 8
         });
     }
 }
