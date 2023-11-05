@@ -7,7 +7,6 @@ namespace Woody230.Collections.Extensible.Generic;
 /// Represents a <see cref="ISet{T}"/> that is extensible with additional functionality.
 /// </summary>
 /// <typeparam name="T">The type of model.</typeparam>
-/// <typeparam name="TCollection">The type of the implementation of the interface.</typeparam>
 public interface IExtensibleSet<T> : IExtensibleCollection<T>, ISet<T>
 {
     #region Operators
