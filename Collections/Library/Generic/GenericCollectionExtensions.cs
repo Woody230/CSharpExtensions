@@ -147,6 +147,7 @@ public static class GenericCollectionExtensions
 
     /// <summary>
     /// Filters <paramref name="this"/> collection based on the item being an instance of <typeparamref name="TInstance"/>.
+    /// </summary>
     public static IEnumerable<TInstance> WhereInstanceOf<TInstance>(this IEnumerable @this)
     {
         foreach (var item in @this)
