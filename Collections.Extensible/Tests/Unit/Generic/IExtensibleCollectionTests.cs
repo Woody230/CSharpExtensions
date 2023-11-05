@@ -3,7 +3,7 @@ using Woody230.Collections.Extensible.Generic;
 using Xunit;
 
 namespace Woody230.Collections.Extensible.Tests.Unit.Generic;
-public class ExtensibleCollectionTests
+public class IExtensibleCollectionTests
 {
     [Fact]
     public void Add()
