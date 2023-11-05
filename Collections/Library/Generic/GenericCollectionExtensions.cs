@@ -79,6 +79,32 @@ public static class GenericCollectionExtensions
     }
 
     /// <summary>
+    /// Applies the <paramref name="action"/> to each item in the collection with the associated position in the iteration.
+    /// </summary>
+    public static TEnumerable ForEachIndexed<T, TEnumerable>(this TEnumerable @this, Action<int, T> action) where TEnumerable : IEnumerable<T>
+    {
+        foreach (var (index, item) in WithIndex(@this)) 
+        {
+            action(index, item);
+        }
+
+        return @this;
+    }
+
+    /// <summary>
+    /// Combines each item in <paramref name="this"/> collection with its position in the iteration.
+    /// </summary>
+    public static IEnumerable<(int, T)> WithIndex<T>(this IEnumerable<T> @this)
+    {
+        var index = 0;
+        foreach (var item in @this)
+        {
+            yield return (index, item);
+            index += 1;
+        }
+    }
+
+    /// <summary>
     /// Determines whether all items in the <paramref name="other"/> collection are contained in <paramref name="this"/> collection.
     /// </summary>
     public static bool ContainsAll<T>(this ICollection<T> @this, IEnumerable<T> other)
@@ -198,27 +224,5 @@ public static class GenericCollectionExtensions
     public static string JoinToString<T>(this IEnumerable<T> @this)
     {
         return JoinToString(@this, ", ", item => item?.ToString());
-    }
-
-    /// <summary>
-    /// Combines each item in <paramref name="this"/> collection with its position in the iteration.
-    /// </summary>
-    public static IEnumerable<(int, T)> WithIndex<T>(this IEnumerable<T> @this)
-    {
-        var index = 0;
-        foreach (var item in @this)
-        {
-            yield return (index, item);
-            index += 1;
-        }
-    }
-
-    /// <summary>
-    /// Applies the <paramref name="action"/> to each item in the collection with the associated position in the iteration.
-    /// </summary>
-    public static TEnumerable ForEachIndexed<T, TEnumerable>(this TEnumerable @this, Action<(int, T)> action) where TEnumerable: IEnumerable<T>
-    {
-        WithIndex(@this).ForEach(action);
-        return @this;
     }
 }

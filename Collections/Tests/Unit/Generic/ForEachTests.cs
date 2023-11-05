@@ -13,13 +13,26 @@ public class ForEachTests
         // Arrange / Act
         var builder = new StringBuilder();
 
-        HashSet<int> list = new HashSet<int>() { 4, 7, 9 };
-        list = list.ForEach((int item) => builder.Append(item));
+        HashSet<int> set = new HashSet<int>() { 4, 7, 9 };
+        set = set.ForEach((int item) => builder.Append(item));
 
         builder.Append(' ');
-        IEnumerable<int> enumerable = list.ForEach(item => builder.Append(item + 1));
+        IEnumerable<int> enumerable = set.ForEach(item => builder.Append(item + 1));
 
         // Assert
         builder.ToString().Should().BeEquivalentTo("479 5810");
+    }
+
+    [Fact]
+    public void ForEachIndexed()
+    {
+        // Arrange / Act
+        var builder = new StringBuilder();
+
+        HashSet<int> set = new HashSet<int>() { 4, 7, 9 };
+        set = set.ForEachIndexed((int index, int item) => builder.Append(item + index));
+
+        // Assert
+        builder.ToString().Should().BeEquivalentTo("4811");
     }
 }
