@@ -1,6 +1,4 @@
 ﻿using FluentValidation;
-using System;
-using System.Linq;
 using Woody230.BindableEnum.Models;
 using Woody230.FluentValidation.Resources;
 using Woody230.FluentValidation.Validators.Property;

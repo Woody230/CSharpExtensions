@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using System.Collections.Generic;
 using Woody230.Collections.Extensible.Generic;
 using Xunit;
 

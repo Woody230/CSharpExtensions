@@ -2,8 +2,6 @@
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using System;
-using System.Collections.Generic;
 using System.Text.Json;
 using Woody230.BindableEnum.Filters;
 using Woody230.BindableEnum.Models;

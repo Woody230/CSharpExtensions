@@ -1,8 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Woody230.FluentValidation.Results;
 using Woody230.FluentValidation.Web.Models;
 using Woody230.FluentValidation.Web.Validators;

@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace Woody230.FluentValidation.Web.Models;
 
 /// <summary>

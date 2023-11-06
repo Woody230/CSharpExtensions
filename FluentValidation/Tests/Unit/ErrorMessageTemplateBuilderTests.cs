@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using System;
 using Woody230.FluentValidation.Resources;
 using Xunit;
 

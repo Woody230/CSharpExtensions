@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using System;
 using Woody230.BindableEnum.Models;
 using Xunit;
 
