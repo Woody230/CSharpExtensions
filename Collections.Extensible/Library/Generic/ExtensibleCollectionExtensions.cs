@@ -9,6 +9,7 @@ namespace Woody230.Collections.Extensible.Generic;
 public static class ExtensibleCollectionExtensions
 {
     /// <summary>
+    /// <para>INTENDED FOR OPERATOR OVERLOADING</para>
     /// Adds each item in the <paramref name="other"/> collection to a copy of <paramref name="this"/> collection.
     /// </summary>
     public static TEnumerable Plus<T, TEnumerable>(this TEnumerable @this, IEnumerable<T> other) where TEnumerable : IExtensibleCollection<T>
@@ -19,6 +20,7 @@ public static class ExtensibleCollectionExtensions
     }
 
     /// <summary>
+    /// <para>INTENDED FOR OPERATOR OVERLOADING</para>
     /// Removes each item in the <paramref name="other"/> collection from a copy of <paramref name="this"/> collection.
     /// </summary>
     public static TEnumerable Minus<T, TEnumerable>(this TEnumerable @this, IEnumerable<T> other) where TEnumerable: IExtensibleCollection<T>
@@ -29,6 +31,7 @@ public static class ExtensibleCollectionExtensions
     }
 
     /// <summary>
+    /// <para>INTENDED FOR OPERATOR OVERLOADING</para>
     /// Adds the <paramref name="item"/> to a copy of <paramref name="this"/> collection.
     /// </summary>
     public static TEnumerable Plus<T, TEnumerable>(this TEnumerable @this, T item) where TEnumerable : IExtensibleCollection<T>
@@ -39,6 +42,7 @@ public static class ExtensibleCollectionExtensions
     }
 
     /// <summary>
+    /// <para>INTENDED FOR OPERATOR OVERLOADING</para>
     /// Removes the <paramref name="item"/> from a copy of <paramref name="this"/> collection.
     /// </summary>
     public static TEnumerable Minus<T, TEnumerable>(this TEnumerable @this, T item) where TEnumerable: IExtensibleCollection<T>

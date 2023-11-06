@@ -9,7 +9,7 @@ namespace Woody230.Collections.Extensible.Generic;
 public interface IExtensibleCollection<T>: ICollection<T>
 {
     /// <summary>
-    /// Creates a new instance of the collection with the same elements.
+    /// Creates a new instance of the same type of collection with the same elements.
     /// </summary>
     public IExtensibleCollection<T> ShallowCopy();
 
