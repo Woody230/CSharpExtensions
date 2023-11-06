@@ -1,6 +1,4 @@
-﻿using FluentAssertions;
-using Woody230.BindableEnum.Models;
-using Xunit;
+﻿using Woody230.BindableEnum.Models;
 
 namespace Woody230.BindableEnum.Tests.Unit;
 

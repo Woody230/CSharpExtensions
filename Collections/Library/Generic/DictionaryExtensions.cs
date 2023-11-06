@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Woody230.Collections.Generic;
+﻿namespace Woody230.Collections.Generic;
 
 /// <summary>
 /// Represents extensions for a <see cref="IDictionary{TKey, TValue}"/>.

@@ -1,7 +1,5 @@
-﻿using FluentAssertions;
-using System.Text;
+﻿using System.Text;
 using Woody230.Collections.Generic;
-using Xunit;
 
 namespace Woody230.Collections.Tests.Unit.Generic;
 public class ForEachTests

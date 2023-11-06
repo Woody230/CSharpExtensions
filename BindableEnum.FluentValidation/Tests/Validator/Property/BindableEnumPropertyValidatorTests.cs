@@ -1,8 +1,6 @@
-﻿using FluentAssertions;
-using FluentValidation;
+﻿using FluentValidation;
 using Woody230.BindableEnum.FluentValidation.Validators.Property;
 using Woody230.BindableEnum.Models;
-using Xunit;
 
 namespace Woody230.BindableEnum.FluentValidation.Tests.Validator.Property;
 

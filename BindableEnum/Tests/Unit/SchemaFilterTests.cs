@@ -1,12 +1,10 @@
-﻿using FluentAssertions;
-using Microsoft.OpenApi.Any;
+﻿using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Text.Json;
 using Woody230.BindableEnum.Filters;
 using Woody230.BindableEnum.Models;
 using Woody230.BindableEnum.Options;
-using Xunit;
 
 namespace Woody230.BindableEnum.Tests.Unit;
 
