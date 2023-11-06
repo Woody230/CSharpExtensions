@@ -4,7 +4,7 @@ using Woody230.Collections.Generic;
 namespace Woody230.Collections.Extensible.Generic;
 
 /// <summary>
-/// Represents a <see cref="IDictionary{TKey, TValue}"/> that does NOT throw an exception when adding duplicate keys.
+/// Represents a <see cref="IDictionary{TKey, TValue}"/> that does NOT throw an exception when adding duplicate keys and instead replaces the existing value.
 /// </summary>
 /// <typeparam name="TKey">The type of the key.</typeparam>
 /// <typeparam name="TValue">The type of the value.</typeparam>
