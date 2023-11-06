@@ -189,4 +189,36 @@ public class LenientDictionaryTests
             ["Bar"] = 8
         });
     }
+
+    [Fact]
+    public void ShallowCopy()
+    {
+        // Arrange
+        LenientDictionary<string, int> dictionary = new LenientDictionary<string, int>()
+        {
+            ["Foo"] = 5,
+            ["Bar"] = 8,
+            ["Baz"] = 13
+        };
+
+        // Act
+        LenientDictionary<string, int> copy = dictionary.ShallowCopy() + KeyValuePair.Create("Fizz", 45);
+
+        // Assert
+        copy.Should().NotBeSameAs(dictionary);
+
+        dictionary.Should().BeEquivalentTo(new Dictionary<string, int>()
+        {
+            ["Foo"] = 5,
+            ["Bar"] = 8,
+            ["Baz"] = 13
+        });
+        copy.Should().BeEquivalentTo(new Dictionary<string, int>()
+        {
+            ["Foo"] = 5,
+            ["Bar"] = 8,
+            ["Baz"] = 13,
+            ["Fizz"] = 45
+        });
+    }
 }

@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using System.Collections.Generic;
 using Woody230.Collections.Extensible.Generic;
 using Xunit;
 
@@ -93,5 +94,21 @@ public class ExtendedListTests
         // Assert
         merged.Should().NotBeSameAs(first);
         merged.Should().BeEquivalentTo(new ExtendedList<int>() { 5, 8 });
+    }
+
+    [Fact]
+    public void ShallowCopy()
+    {
+        // Arrange
+        ExtendedList<int> list = new ExtendedList<int>() { 5, 8, 13 };
+
+        // Act
+        ExtendedList<int> copy = list + 99;
+
+        // Assert
+        copy.Should().NotBeSameAs(list);
+
+        list.Should().BeEquivalentTo(new List<int>() { 5, 8, 13 });
+        copy.Should().BeEquivalentTo(new List<int>() { 5, 8, 13, 99 });
     }
 }

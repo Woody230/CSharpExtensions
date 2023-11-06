@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using System.Collections.Generic;
 using Woody230.Collections.Extensible.Generic;
 using Xunit;
 
@@ -93,5 +94,21 @@ public class ExtendedSetTests
         // Assert
         merged.Should().NotBeSameAs(first);
         merged.Should().BeEquivalentTo(new ExtendedSet<int>() { 5, 8 });
+    }
+
+    [Fact]
+    public void ShallowCopy()
+    {
+        // Arrange
+        ExtendedSet<int> set = new ExtendedSet<int>() { 5, 8, 13 };
+
+        // Act
+        ExtendedSet<int> copy = set + 99;
+
+        // Assert
+        copy.Should().NotBeSameAs(set);
+
+        set.Should().BeEquivalentTo(new HashSet<int>() { 5, 8, 13 });
+        copy.Should().BeEquivalentTo(new HashSet<int>() { 5, 8, 13, 99 });
     }
 }

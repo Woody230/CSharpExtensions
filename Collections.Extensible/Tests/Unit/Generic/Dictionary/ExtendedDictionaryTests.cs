@@ -181,4 +181,36 @@ public class ExtendedDictionaryTests
             ["Bar"] = 8
         });
     }
+
+    [Fact]
+    public void ShallowCopy()
+    {
+        // Arrange
+        ExtendedDictionary<string, int> dictionary = new ExtendedDictionary<string, int>()
+        {
+            ["Foo"] = 5,
+            ["Bar"] = 8,
+            ["Baz"] = 13
+        };
+
+        // Act
+        ExtendedDictionary<string, int> copy = dictionary.ShallowCopy() + KeyValuePair.Create("Fizz", 45);
+
+        // Assert
+        copy.Should().NotBeSameAs(dictionary);
+
+        dictionary.Should().BeEquivalentTo(new Dictionary<string, int>()
+        {
+            ["Foo"] = 5,
+            ["Bar"] = 8,
+            ["Baz"] = 13
+        });
+        copy.Should().BeEquivalentTo(new Dictionary<string, int>()
+        {
+            ["Foo"] = 5,
+            ["Bar"] = 8,
+            ["Baz"] = 13,
+            ["Fizz"] = 45
+        });
+    }
 }
