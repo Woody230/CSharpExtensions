@@ -26,26 +26,36 @@ public sealed class LenientDictionary<TKey, TValue>: ExtensibleDictionary<TKey, 
         this.Put(item);
     }
 
+    public override LenientDictionary<TKey, TValue> ShallowCopy()
+    {
+        var dictionary = new Dictionary<TKey, TValue>(this);
+        return new LenientDictionary<TKey, TValue>(dictionary);
+    }
+
     #region Operators
     public static LenientDictionary<TKey, TValue> operator +(LenientDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other)
     {
-        @this.AddAll(other);
-        return @this;
+        var copy = @this.ShallowCopy();
+        copy.AddAll(other);
+        return copy;
     }
     public static LenientDictionary<TKey, TValue> operator -(LenientDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other)
     {
-        @this.RemoveKeys(other);
-        return @this;
+        var copy = @this.ShallowCopy();
+        copy.RemoveKeys(other);
+        return copy;
     }
     public static LenientDictionary<TKey, TValue> operator +(LenientDictionary<TKey, TValue> @this, KeyValuePair<TKey, TValue> item)
     {
-        @this.Add(item);
-        return @this;
+        var copy = @this.ShallowCopy();
+        copy.Add(item);
+        return copy;
     }
     public static LenientDictionary<TKey, TValue> operator -(LenientDictionary<TKey, TValue> @this, KeyValuePair<TKey, TValue> item)
     {
-        @this.RemoveKey(item);
-        return @this;
+        var copy = @this.ShallowCopy();
+        copy.RemoveKey(item);
+        return copy;
     }
     #endregion Operators
 }

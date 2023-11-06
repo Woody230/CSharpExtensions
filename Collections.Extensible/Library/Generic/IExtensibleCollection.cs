@@ -10,38 +10,47 @@ namespace Woody230.Collections.Extensible.Generic;
 public interface IExtensibleCollection<T>: ICollection<T>
 {
     /// <summary>
-    /// Adds each item in the <paramref name="other"/> collection to <paramref name="this"/> collection.
+    /// Creates a new instance of the collection with the same elements.
+    /// </summary>
+    public IExtensibleCollection<T> ShallowCopy();
+
+    /// <summary>
+    /// Adds each item in the <paramref name="other"/> collection to a copy of <paramref name="this"/> collection.
     /// </summary>
     public static IExtensibleCollection<T> operator +(IExtensibleCollection<T> @this, IEnumerable<T> other)
     {
-        @this.AddAll(other);
-        return @this;
+        var copy = @this.ShallowCopy();
+        copy.AddAll(other);
+        return copy;
     }
 
     /// <summary>
-    /// Removes each item in the <paramref name="other"/> collection from <paramref name="this"/> collection.
+    /// Removes each item in the <paramref name="other"/> collection from a copy of <paramref name="this"/> collection.
     /// </summary>
     public static IExtensibleCollection<T> operator -(IExtensibleCollection<T> @this, IEnumerable<T> other)
     {
-        @this.RemoveAll(other);
-        return @this;
+        var copy = @this.ShallowCopy();
+        copy.RemoveAll(other);
+        return copy;
     }
 
     /// <summary>
-    /// Adds the <paramref name="item"/> to <paramref name="this"/> collection.
+    /// Adds the <paramref name="item"/> to a copy of <paramref name="this"/> collection.
     /// </summary>
     public static IExtensibleCollection<T> operator +(IExtensibleCollection<T> @this, T item)
     {
-        @this.Add(item);
-        return @this;
+        var copy = @this.ShallowCopy();
+        copy.Add(item);
+        return copy;
     }
 
     /// <summary>
-    /// Removes the <paramref name="item"/> from <paramref name="this"/> collection.
+    /// Removes the <paramref name="item"/> from a copy of <paramref name="this"/> collection.
     /// </summary>
     public static IExtensibleCollection<T> operator -(IExtensibleCollection<T> @this, T item)
     {
-        @this.Remove(item);
-        return @this;
+        var copy = @this.ShallowCopy();
+        copy.Remove(item);
+        return copy;
     }
 }

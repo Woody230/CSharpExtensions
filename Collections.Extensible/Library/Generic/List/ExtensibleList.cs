@@ -15,6 +15,8 @@ public abstract class ExtensibleList<T> : ExtensibleCollection<T>, IExtensibleLi
         _list = list;
     }
 
+    public override abstract IExtensibleList<T> ShallowCopy();
+
     #region Delegated
     public virtual T this[int index] { get => _list[index]; set => _list[index] = value; }
 
@@ -23,5 +25,6 @@ public abstract class ExtensibleList<T> : ExtensibleCollection<T>, IExtensibleLi
     public virtual void Insert(int index, T item) => _list.Insert(index, item);
 
     public virtual void RemoveAt(int index) => _list.RemoveAt(index);
+
     #endregion Delegated
 }

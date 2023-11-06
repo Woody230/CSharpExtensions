@@ -19,26 +19,36 @@ public sealed class ExtendedList<T>: ExtensibleList<T>
     {
     }
 
+    public override ExtendedList<T> ShallowCopy()
+    {
+        var list = new List<T>(this);
+        return new ExtendedList<T>(list);
+    }
+
     #region Operators
     public static ExtendedList<T> operator +(ExtendedList<T> @this, IEnumerable<T> other)
     {
-        @this.AddAll(other);
-        return @this;
+        var copy = @this.ShallowCopy();
+        copy.AddAll(other);
+        return copy;
     }
     public static ExtendedList<T> operator -(ExtendedList<T> @this, IEnumerable<T> other)
     {
-        @this.RemoveAll(other);
-        return @this;
+        var copy = @this.ShallowCopy();
+        copy.RemoveAll(other);
+        return copy;
     }
     public static ExtendedList<T> operator +(ExtendedList<T> @this, T item)
     {
-        @this.Add(item);
-        return @this;
+        var copy = @this.ShallowCopy();
+        copy.Add(item);
+        return copy;
     }
     public static ExtendedList<T> operator -(ExtendedList<T> @this, T item)
     {
-        @this.Remove(item);
-        return @this;
+        var copy = @this.ShallowCopy();
+        copy.Remove(item);
+        return copy;
     }
     #endregion Operators
 }

@@ -17,6 +17,8 @@ public abstract class ExtensibleDictionary<TKey, TValue>: ExtensibleCollection<K
         _dictionary = dictionary;
     }
 
+    public override abstract IExtensibleDictionary<TKey, TValue> ShallowCopy();
+
     #region Delegated
     public virtual bool ContainsKey(TKey key)
     {

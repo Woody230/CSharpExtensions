@@ -10,26 +10,37 @@ namespace Woody230.Collections.Extensible.Generic;
 /// <typeparam name="TValue">The type of the value.</typeparam>
 public interface IExtensibleDictionary<TKey, TValue>: IExtensibleCollection<KeyValuePair<TKey, TValue>>, IDictionary<TKey, TValue>
 {
+    /// <summary>
+    /// Creates a new instance of the collection.
+    /// </summary>
+    public new IExtensibleDictionary<TKey, TValue> ShallowCopy();
+
+    IExtensibleCollection<KeyValuePair<TKey, TValue>> IExtensibleCollection<KeyValuePair<TKey, TValue>>.ShallowCopy() => ShallowCopy();
+
     #region Operators
     public static IExtensibleDictionary<TKey, TValue> operator +(IExtensibleDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other)
     {
-        @this.AddAll(other);
-        return @this;
+        var copy = @this.ShallowCopy();
+        copy.AddAll(other);
+        return copy;
     }
     public static IExtensibleDictionary<TKey, TValue> operator -(IExtensibleDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other)
     {
-        @this.RemoveKeys(other);
-        return @this;
+        var copy = @this.ShallowCopy();
+        copy.RemoveKeys(other);
+        return copy;
     }
     public static IExtensibleDictionary<TKey, TValue> operator +(IExtensibleDictionary<TKey, TValue> @this, KeyValuePair<TKey, TValue> item)
     {
-        @this.Add(item);
-        return @this;
+        var copy = @this.ShallowCopy();
+        copy.Add(item);
+        return copy;
     }
     public static IExtensibleDictionary<TKey, TValue> operator -(IExtensibleDictionary<TKey, TValue> @this, KeyValuePair<TKey, TValue> item)
     {
-        @this.RemoveKey(item);
-        return @this;
+        var copy = @this.ShallowCopy();
+        copy.RemoveKey(item);
+        return copy;
     }
     #endregion Operators
 }

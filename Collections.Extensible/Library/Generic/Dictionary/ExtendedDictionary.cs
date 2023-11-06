@@ -14,26 +14,36 @@ public sealed class ExtendedDictionary<TKey, TValue> : ExtensibleDictionary<TKey
     {
     }
 
+    public override ExtendedDictionary<TKey, TValue> ShallowCopy()
+    {
+        var dictionary = new Dictionary<TKey, TValue>(this);
+        return new ExtendedDictionary<TKey, TValue>(dictionary);
+    }
+
     #region Operators
     public static ExtendedDictionary<TKey, TValue> operator +(ExtendedDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other)
     {
-        @this.AddAll(other);
-        return @this;
+        var copy = @this.ShallowCopy();
+        copy.AddAll(other);
+        return copy;
     }
     public static ExtendedDictionary<TKey, TValue> operator -(ExtendedDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other)
     {
-        @this.RemoveKeys(other);
-        return @this;
+        var copy = @this.ShallowCopy();
+        copy.RemoveKeys(other);
+        return copy;
     }
     public static ExtendedDictionary<TKey, TValue> operator +(ExtendedDictionary<TKey, TValue> @this, KeyValuePair<TKey, TValue> item)
     {
-        @this.Add(item);
-        return @this;
+        var copy = @this.ShallowCopy();
+        copy.Add(item);
+        return copy;
     }
     public static ExtendedDictionary<TKey, TValue> operator -(ExtendedDictionary<TKey, TValue> @this, KeyValuePair<TKey, TValue> item)
     {
-        @this.RemoveKey(item);
-        return @this;
+        var copy = @this.ShallowCopy();
+        copy.RemoveKey(item);
+        return copy;
     }
     #endregion Operators
 }

@@ -19,26 +19,37 @@ public sealed class ExtendedSet<T>: ExtensibleSet<T>
     {
     }
 
+    public override ExtendedSet<T> ShallowCopy()
+    {
+        var set = new HashSet<T>(this);
+        return new ExtendedSet<T>(set);
+    }
+
     #region Operators
     public static ExtendedSet<T> operator +(ExtendedSet<T> @this, IEnumerable<T> other)
     {
-        @this.AddAll(other);
-        return @this;
+        var copy = @this.ShallowCopy();
+        copy.AddAll(other);
+        return copy;
     }
     public static ExtendedSet<T> operator -(ExtendedSet<T> @this, IEnumerable<T> other)
     {
-        @this.RemoveAll(other);
-        return @this;
+        var copy = @this.ShallowCopy();
+        copy.RemoveAll(other);
+        return copy;
     }
     public static ExtendedSet<T> operator +(ExtendedSet<T> @this, T item)
     {
-        @this.Add(item);
-        return @this;
+        var copy = @this.ShallowCopy();
+        copy.Add(item);
+        return copy;
     }
     public static ExtendedSet<T> operator -(ExtendedSet<T> @this, T item)
     {
-        @this.Remove(item);
-        return @this;
+        var copy = @this.ShallowCopy();
+        copy.Remove(item);
+        return copy;
     }
+
     #endregion Operators
 }

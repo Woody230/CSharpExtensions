@@ -9,26 +9,37 @@ namespace Woody230.Collections.Extensible.Generic;
 /// <typeparam name="T">The type of model.</typeparam>
 public interface IExtensibleList<T> : IExtensibleCollection<T>, IList<T>
 {
+    /// <summary>
+    /// Creates a new instance of the collection.
+    /// </summary>
+    public new IExtensibleList<T> ShallowCopy();
+
+    IExtensibleCollection<T> IExtensibleCollection<T>.ShallowCopy() => ShallowCopy();
+
     #region Operators
     public static IExtensibleList<T> operator +(IExtensibleList<T> @this, IEnumerable<T> other)
     {
-        @this.AddAll(other);
-        return @this;
+        var copy = @this.ShallowCopy();
+        copy.AddAll(other);
+        return copy;
     }
     public static IExtensibleList<T> operator -(IExtensibleList<T> @this, IEnumerable<T> other)
     {
-        @this.RemoveAll(other);
-        return @this;
+        var copy = @this.ShallowCopy();
+        copy.RemoveAll(other);
+        return copy;
     }
     public static IExtensibleList<T> operator +(IExtensibleList<T> @this, T item)
     {
-        @this.Add(item);
-        return @this;
+        var copy = @this.ShallowCopy();
+        copy.Add(item);
+        return copy;
     }
     public static IExtensibleList<T> operator -(IExtensibleList<T> @this, T item)
     {
-        @this.Remove(item);
-        return @this;
+        var copy = @this.ShallowCopy();
+        copy.Remove(item);
+        return copy;
     }
     #endregion Operators
 }

@@ -16,7 +16,7 @@ public class IExtensibleSetTests
         IExtensibleSet<int> merged = first + second;
 
         // Assert
-        merged.Should().BeSameAs(first);
+        merged.Should().NotBeSameAs(first).And.NotBeSameAs(second);
         merged.Should().BeEquivalentTo(new ExtendedSet<int>() { 5, 8, 13, 9, 13, 17 });
     }
 
@@ -31,7 +31,7 @@ public class IExtensibleSetTests
         IExtensibleSet<int> merged = first + second;
 
         // Assert
-        merged.Should().BeSameAs(first);
+        merged.Should().NotBeSameAs(first).And.NotBeSameAs(second);
         merged.Should().BeEquivalentTo(new ExtendedSet<int>() { 5, 8, 13, 9, 17 });
     }
 
@@ -46,7 +46,7 @@ public class IExtensibleSetTests
         IExtensibleSet<int> merged = first - second;
 
         // Assert
-        merged.Should().BeSameAs(first);
+        merged.Should().NotBeSameAs(first).And.NotBeSameAs(second);
         merged.Should().BeEquivalentTo(new ExtendedSet<int>() { 5, 8 });
     }
 
@@ -61,7 +61,7 @@ public class IExtensibleSetTests
         IExtensibleSet<int> merged = first - second;
 
         // Assert
-        merged.Should().BeSameAs(first);
+        merged.Should().NotBeSameAs(first).And.NotBeSameAs(second);
         merged.Should().BeEquivalentTo(new ExtendedSet<int>() { 9, 17 });
     }
 
@@ -76,7 +76,7 @@ public class IExtensibleSetTests
         IExtensibleSet<int> merged = first + second;
 
         // Assert
-        merged.Should().BeSameAs(first);
+        merged.Should().NotBeSameAs(first);
         merged.Should().BeEquivalentTo(new ExtendedSet<int>() { 5, 8, 13, 14 });
     }
 
@@ -91,7 +91,7 @@ public class IExtensibleSetTests
         IExtensibleSet<int> merged = first - second;
 
         // Assert
-        merged.Should().BeSameAs(first);
+        merged.Should().NotBeSameAs(first);
         merged.Should().BeEquivalentTo(new ExtendedSet<int>() { 5, 8 });
     }
 }

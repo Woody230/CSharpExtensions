@@ -15,6 +15,8 @@ public abstract class ExtensibleSet<T> : ExtensibleCollection<T>, IExtensibleSet
         _set = set;
     }
 
+    public override abstract IExtensibleSet<T> ShallowCopy();
+
     public virtual new bool Add(T item)
     {
         return _set.Add(item);

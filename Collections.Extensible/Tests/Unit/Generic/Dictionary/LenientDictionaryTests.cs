@@ -29,7 +29,7 @@ public class LenientDictionaryTests
         LenientDictionary<string, int> merged = first + second;
 
         // Assert
-        merged.Should().BeSameAs(first);
+        merged.Should().NotBeSameAs(first).And.NotBeSameAs(second);
         merged.Should().BeEquivalentTo(new LenientDictionary<string, int>()
         {
             ["Foo"] = 5,
@@ -65,7 +65,7 @@ public class LenientDictionaryTests
         LenientDictionary<string, int> merged = first + second;
 
         // Assert
-        merged.Should().BeSameAs(first);
+        merged.Should().NotBeSameAs(first).And.NotBeSameAs(second);
         merged.Should().BeEquivalentTo(new LenientDictionary<string, int>()
         {
             ["Fizz"] = 9,
@@ -100,7 +100,7 @@ public class LenientDictionaryTests
         LenientDictionary<string, int> merged = first - second;
 
         // Assert
-        merged.Should().BeSameAs(first);
+        merged.Should().NotBeSameAs(first).And.NotBeSameAs(second);
         merged.Should().BeEquivalentTo(new LenientDictionary<string, int>()
         {
             ["Foo"] = 5
@@ -130,7 +130,7 @@ public class LenientDictionaryTests
         LenientDictionary<string, int> merged = first - second;
 
         // Assert
-        merged.Should().BeSameAs(first);
+        merged.Should().NotBeSameAs(first).And.NotBeSameAs(second);
         merged.Should().BeEquivalentTo(new LenientDictionary<string, int>()
         {
             ["Fizz"] = 9,
@@ -155,7 +155,7 @@ public class LenientDictionaryTests
         LenientDictionary<string, int> merged = first + second;
 
         // Assert
-        merged.Should().BeSameAs(first);
+        merged.Should().NotBeSameAs(first);
         merged.Should().BeEquivalentTo(new LenientDictionary<string, int>()
         {
             ["Foo"] = 9,
@@ -182,7 +182,7 @@ public class LenientDictionaryTests
         LenientDictionary<string, int> merged = first - second;
 
         // Assert
-        merged.Should().BeSameAs(first);
+        merged.Should().NotBeSameAs(first);
         merged.Should().BeEquivalentTo(new LenientDictionary<string, int>()
         {
             ["Foo"] = 5,

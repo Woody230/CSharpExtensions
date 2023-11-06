@@ -11,6 +11,7 @@ public abstract class ExtensibleCollection<T> : IExtensibleCollection<T>
     {
         _collection = collection;
     }
+    public abstract IExtensibleCollection<T> ShallowCopy();
 
     #region Delegated
     public virtual int Count => _collection.Count;
