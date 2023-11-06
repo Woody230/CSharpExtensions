@@ -1,11 +1,6 @@
 using FluentValidation;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System;
-using System.IO;
 using System.Reflection;
 using System.Text.Json.Serialization;
 

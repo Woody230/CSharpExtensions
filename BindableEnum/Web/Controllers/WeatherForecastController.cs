@@ -1,8 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Woody230.BindableEnum.Models;
 using Woody230.BindableEnum.Web.Models;
 

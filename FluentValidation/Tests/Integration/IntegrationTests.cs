@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc.Testing;
-using System.Net.Http;
-using Xunit;
 
 namespace Woody230.FluentValidation.Tests.Integration;
 
