@@ -3,7 +3,7 @@
 
 # Collections
 
-Extensions for System.Collections.
+Extensions for the System.Collections namespace.
 
 ## Generic
 
