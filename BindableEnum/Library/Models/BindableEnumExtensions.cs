@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Woody230.BindableEnum.Models;
+﻿namespace Woody230.BindableEnum.Models;
 
 /// <summary>
 /// Represents extensions for <see cref="IBindableEnum{T}"/> or <see cref="BindableEnum{T}"/>.

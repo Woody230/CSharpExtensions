@@ -1,6 +1,4 @@
-﻿using FluentAssertions;
-using Woody230.Text.StringBuilder;
-using Xunit;
+﻿using Woody230.Text.StringBuilder;
 
 namespace Woody230.Text.Tests.StringBuilder;
 

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Woody230.Collections.Extensible.Generic;
+﻿namespace Woody230.Collections.Extensible.Generic;
 
 /// <summary>
 /// Represents a <see cref="ISet{T}"/> that is extensible with additional functionality.

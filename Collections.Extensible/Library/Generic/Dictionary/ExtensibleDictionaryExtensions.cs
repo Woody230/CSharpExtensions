@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Woody230.Collections.Generic;
+﻿using Woody230.Collections.Generic;
 
 namespace Woody230.Collections.Extensible.Generic;
 

@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace Woody230.Collections.Extensible.Generic;
+﻿namespace Woody230.Collections.Extensible.Generic;
 
 /// <inheritdoc/>
 public sealed class ExtendedSet<T>: ExtensibleSet<T>

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using static System.Text.StringBuilder;
 
 namespace Woody230.Text.StringBuilder;
