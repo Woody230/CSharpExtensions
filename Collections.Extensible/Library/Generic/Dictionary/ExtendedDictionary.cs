@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Woody230.Collections.Generic;
 
 namespace Woody230.Collections.Extensible.Generic;
 
@@ -21,29 +20,9 @@ public sealed class ExtendedDictionary<TKey, TValue> : ExtensibleDictionary<TKey
     }
 
     #region Operators
-    public static ExtendedDictionary<TKey, TValue> operator +(ExtendedDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other)
-    {
-        var copy = @this.ShallowCopy();
-        copy.AddAll(other);
-        return copy;
-    }
-    public static ExtendedDictionary<TKey, TValue> operator -(ExtendedDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other)
-    {
-        var copy = @this.ShallowCopy();
-        copy.RemoveKeys(other);
-        return copy;
-    }
-    public static ExtendedDictionary<TKey, TValue> operator +(ExtendedDictionary<TKey, TValue> @this, KeyValuePair<TKey, TValue> item)
-    {
-        var copy = @this.ShallowCopy();
-        copy.Add(item);
-        return copy;
-    }
-    public static ExtendedDictionary<TKey, TValue> operator -(ExtendedDictionary<TKey, TValue> @this, KeyValuePair<TKey, TValue> item)
-    {
-        var copy = @this.ShallowCopy();
-        copy.RemoveKey(item);
-        return copy;
-    }
+    public static ExtendedDictionary<TKey, TValue> operator +(ExtendedDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other) => @this.Plus(other);
+    public static ExtendedDictionary<TKey, TValue> operator -(ExtendedDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other) => @this.Minus(other);
+    public static ExtendedDictionary<TKey, TValue> operator +(ExtendedDictionary<TKey, TValue> @this, KeyValuePair<TKey, TValue> item) => @this.Plus(item);
+    public static ExtendedDictionary<TKey, TValue> operator -(ExtendedDictionary<TKey, TValue> @this, KeyValuePair<TKey, TValue> item) => @this.Minus(item);
     #endregion Operators
 }

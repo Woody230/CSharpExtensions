@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Woody230.Collections.Generic;
 
 namespace Woody230.Collections.Extensible.Generic;
 
@@ -18,29 +17,9 @@ public interface IExtensibleDictionary<TKey, TValue>: IExtensibleCollection<KeyV
     IExtensibleCollection<KeyValuePair<TKey, TValue>> IExtensibleCollection<KeyValuePair<TKey, TValue>>.ShallowCopy() => ShallowCopy();
 
     #region Operators
-    public static IExtensibleDictionary<TKey, TValue> operator +(IExtensibleDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other)
-    {
-        var copy = @this.ShallowCopy();
-        copy.AddAll(other);
-        return copy;
-    }
-    public static IExtensibleDictionary<TKey, TValue> operator -(IExtensibleDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other)
-    {
-        var copy = @this.ShallowCopy();
-        copy.RemoveKeys(other);
-        return copy;
-    }
-    public static IExtensibleDictionary<TKey, TValue> operator +(IExtensibleDictionary<TKey, TValue> @this, KeyValuePair<TKey, TValue> item)
-    {
-        var copy = @this.ShallowCopy();
-        copy.Add(item);
-        return copy;
-    }
-    public static IExtensibleDictionary<TKey, TValue> operator -(IExtensibleDictionary<TKey, TValue> @this, KeyValuePair<TKey, TValue> item)
-    {
-        var copy = @this.ShallowCopy();
-        copy.RemoveKey(item);
-        return copy;
-    }
+    public static IExtensibleDictionary<TKey, TValue> operator +(IExtensibleDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other) => @this.Plus(other);
+    public static IExtensibleDictionary<TKey, TValue> operator -(IExtensibleDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other) => @this.Minus(other);
+    public static IExtensibleDictionary<TKey, TValue> operator +(IExtensibleDictionary<TKey, TValue> @this, KeyValuePair<TKey, TValue> item) => @this.Plus(item);
+    public static IExtensibleDictionary<TKey, TValue> operator -(IExtensibleDictionary<TKey, TValue> @this, KeyValuePair<TKey, TValue> item) => @this.Minus(item);
     #endregion Operators
 }

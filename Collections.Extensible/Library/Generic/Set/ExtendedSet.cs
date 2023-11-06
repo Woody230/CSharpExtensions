@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Woody230.Collections.Generic;
 
 namespace Woody230.Collections.Extensible.Generic;
 
@@ -26,30 +25,10 @@ public sealed class ExtendedSet<T>: ExtensibleSet<T>
     }
 
     #region Operators
-    public static ExtendedSet<T> operator +(ExtendedSet<T> @this, IEnumerable<T> other)
-    {
-        var copy = @this.ShallowCopy();
-        copy.AddAll(other);
-        return copy;
-    }
-    public static ExtendedSet<T> operator -(ExtendedSet<T> @this, IEnumerable<T> other)
-    {
-        var copy = @this.ShallowCopy();
-        copy.RemoveAll(other);
-        return copy;
-    }
-    public static ExtendedSet<T> operator +(ExtendedSet<T> @this, T item)
-    {
-        var copy = @this.ShallowCopy();
-        copy.Add(item);
-        return copy;
-    }
-    public static ExtendedSet<T> operator -(ExtendedSet<T> @this, T item)
-    {
-        var copy = @this.ShallowCopy();
-        copy.Remove(item);
-        return copy;
-    }
+    public static ExtendedSet<T> operator +(ExtendedSet<T> @this, IEnumerable<T> other) => @this.Plus(other);
+    public static ExtendedSet<T> operator -(ExtendedSet<T> @this, IEnumerable<T> other) => @this.Minus(other);
+    public static ExtendedSet<T> operator +(ExtendedSet<T> @this, T item) => @this.Plus(item);
+    public static ExtendedSet<T> operator -(ExtendedSet<T> @this, T item) => @this.Minus(item);
 
     #endregion Operators
 }

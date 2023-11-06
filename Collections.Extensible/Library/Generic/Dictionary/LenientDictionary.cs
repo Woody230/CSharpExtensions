@@ -33,29 +33,9 @@ public sealed class LenientDictionary<TKey, TValue>: ExtensibleDictionary<TKey, 
     }
 
     #region Operators
-    public static LenientDictionary<TKey, TValue> operator +(LenientDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other)
-    {
-        var copy = @this.ShallowCopy();
-        copy.AddAll(other);
-        return copy;
-    }
-    public static LenientDictionary<TKey, TValue> operator -(LenientDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other)
-    {
-        var copy = @this.ShallowCopy();
-        copy.RemoveKeys(other);
-        return copy;
-    }
-    public static LenientDictionary<TKey, TValue> operator +(LenientDictionary<TKey, TValue> @this, KeyValuePair<TKey, TValue> item)
-    {
-        var copy = @this.ShallowCopy();
-        copy.Add(item);
-        return copy;
-    }
-    public static LenientDictionary<TKey, TValue> operator -(LenientDictionary<TKey, TValue> @this, KeyValuePair<TKey, TValue> item)
-    {
-        var copy = @this.ShallowCopy();
-        copy.RemoveKey(item);
-        return copy;
-    }
+    public static LenientDictionary<TKey, TValue> operator +(LenientDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other) => @this.Plus(other);
+    public static LenientDictionary<TKey, TValue> operator -(LenientDictionary<TKey, TValue> @this, IEnumerable<KeyValuePair<TKey, TValue>> other) => @this.Minus(other);
+    public static LenientDictionary<TKey, TValue> operator +(LenientDictionary<TKey, TValue> @this, KeyValuePair<TKey, TValue> item) => @this.Plus(item);
+    public static LenientDictionary<TKey, TValue> operator -(LenientDictionary<TKey, TValue> @this, KeyValuePair<TKey, TValue> item) => @this.Minus(item);
     #endregion Operators
 }

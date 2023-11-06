@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Woody230.Collections.Generic;
 
 namespace Woody230.Collections.Extensible.Generic;
 
@@ -17,29 +16,9 @@ public interface IExtensibleList<T> : IExtensibleCollection<T>, IList<T>
     IExtensibleCollection<T> IExtensibleCollection<T>.ShallowCopy() => ShallowCopy();
 
     #region Operators
-    public static IExtensibleList<T> operator +(IExtensibleList<T> @this, IEnumerable<T> other)
-    {
-        var copy = @this.ShallowCopy();
-        copy.AddAll(other);
-        return copy;
-    }
-    public static IExtensibleList<T> operator -(IExtensibleList<T> @this, IEnumerable<T> other)
-    {
-        var copy = @this.ShallowCopy();
-        copy.RemoveAll(other);
-        return copy;
-    }
-    public static IExtensibleList<T> operator +(IExtensibleList<T> @this, T item)
-    {
-        var copy = @this.ShallowCopy();
-        copy.Add(item);
-        return copy;
-    }
-    public static IExtensibleList<T> operator -(IExtensibleList<T> @this, T item)
-    {
-        var copy = @this.ShallowCopy();
-        copy.Remove(item);
-        return copy;
-    }
+    public static IExtensibleList<T> operator +(IExtensibleList<T> @this, IEnumerable<T> other) => @this.Plus(other);
+    public static IExtensibleList<T> operator -(IExtensibleList<T> @this, IEnumerable<T> other) => @this.Minus(other);
+    public static IExtensibleList<T> operator +(IExtensibleList<T> @this, T item) => @this.Plus(item);
+    public static IExtensibleList<T> operator -(IExtensibleList<T> @this, T item) => @this.Minus(item);
     #endregion Operators
 }

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Woody230.Collections.Generic;
 
 namespace Woody230.Collections.Extensible.Generic;
 
@@ -17,40 +16,20 @@ public interface IExtensibleCollection<T>: ICollection<T>
     /// <summary>
     /// Adds each item in the <paramref name="other"/> collection to a copy of <paramref name="this"/> collection.
     /// </summary>
-    public static IExtensibleCollection<T> operator +(IExtensibleCollection<T> @this, IEnumerable<T> other)
-    {
-        var copy = @this.ShallowCopy();
-        copy.AddAll(other);
-        return copy;
-    }
+    public static IExtensibleCollection<T> operator +(IExtensibleCollection<T> @this, IEnumerable<T> other) => @this.Plus(other);
 
     /// <summary>
     /// Removes each item in the <paramref name="other"/> collection from a copy of <paramref name="this"/> collection.
     /// </summary>
-    public static IExtensibleCollection<T> operator -(IExtensibleCollection<T> @this, IEnumerable<T> other)
-    {
-        var copy = @this.ShallowCopy();
-        copy.RemoveAll(other);
-        return copy;
-    }
+    public static IExtensibleCollection<T> operator -(IExtensibleCollection<T> @this, IEnumerable<T> other) => @this.Minus(other);
 
     /// <summary>
     /// Adds the <paramref name="item"/> to a copy of <paramref name="this"/> collection.
     /// </summary>
-    public static IExtensibleCollection<T> operator +(IExtensibleCollection<T> @this, T item)
-    {
-        var copy = @this.ShallowCopy();
-        copy.Add(item);
-        return copy;
-    }
+    public static IExtensibleCollection<T> operator +(IExtensibleCollection<T> @this, T item) => @this.Plus(item);
 
     /// <summary>
     /// Removes the <paramref name="item"/> from a copy of <paramref name="this"/> collection.
     /// </summary>
-    public static IExtensibleCollection<T> operator -(IExtensibleCollection<T> @this, T item)
-    {
-        var copy = @this.ShallowCopy();
-        copy.Remove(item);
-        return copy;
-    }
+    public static IExtensibleCollection<T> operator -(IExtensibleCollection<T> @this, T item) => @this.Minus(item);
 }
