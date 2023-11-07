@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Woody230.AspNetCore.Application.Builder.Modules.Collection;
+﻿namespace Woody230.AspNetCore.Application.Builder.Modules.Collection;
 
 /// <summary>
 /// Represents a collection of <see cref="IWebApplicationBuilderModule"/>.

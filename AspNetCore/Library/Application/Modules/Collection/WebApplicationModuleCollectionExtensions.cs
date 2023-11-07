@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Woody230.AspNetCore.Application.Modules.Collection;
+﻿namespace Woody230.AspNetCore.Application.Modules.Collection;
 
 /// <summary>
 /// Represents extensions for a <see cref="IWebApplicationModuleCollection"/>

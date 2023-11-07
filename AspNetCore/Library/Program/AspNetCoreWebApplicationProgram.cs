@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using System.Linq;
-using System.Threading.Tasks;
 using Woody230.AspNetCore.Application;
 using Woody230.AspNetCore.Application.Builder;
 using Woody230.AspNetCore.Application.Options;

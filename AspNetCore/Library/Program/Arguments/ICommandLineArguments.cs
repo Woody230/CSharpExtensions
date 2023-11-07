@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Woody230.AspNetCore.Program.Arguments;
+﻿namespace Woody230.AspNetCore.Program.Arguments;
 
 /// <summary>
 /// Represents a collection of arguments from the command line.

@@ -1,5 +1,3 @@
-using System;
-
 namespace Woody230.AspNetCore.Web.Models;
 
 /// <summary>

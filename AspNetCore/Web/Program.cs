@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Builder;
 using Woody230.AspNetCore.Application.Modules.Collection;
 using Woody230.AspNetCore.Application.Options;
 using Woody230.AspNetCore.Program;

@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Configuration;
-using System;
 
 namespace Woody230.AspNetCore.Application.Builder.Configuration;
 

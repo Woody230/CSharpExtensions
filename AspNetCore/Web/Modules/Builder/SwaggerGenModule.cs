@@ -1,9 +1,6 @@
-﻿using System.IO;
-using System.Reflection;
-using System;
+﻿using System.Reflection;
 using Woody230.AspNetCore.Application.Builder;
 using Woody230.AspNetCore.Application.Builder.Modules;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Woody230.AspNetCore.Web.Modules.Builder;
 

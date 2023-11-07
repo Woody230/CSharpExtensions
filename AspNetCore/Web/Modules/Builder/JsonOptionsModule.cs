@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using Woody230.AspNetCore.Application.Builder;
 using Woody230.AspNetCore.Application.Builder.Modules;
 

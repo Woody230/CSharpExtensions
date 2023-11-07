@@ -4,8 +4,6 @@ using Microsoft.AspNetCore.Hosting.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
 
 namespace Woody230.AspNetCore.Application.Builder.Host;
 

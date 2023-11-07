@@ -1,6 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using System;
-using System.Threading.Tasks;
 
 namespace Woody230.AspNetCore.Application.Runner.Logging;
 

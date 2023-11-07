@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace Woody230.AspNetCore.Application.Runner;
+﻿namespace Woody230.AspNetCore.Application.Runner;
 
 /// <inheritdoc/>
 public sealed class WebApplicationRunner : IWebApplicationRunner

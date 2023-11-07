@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 
 namespace Woody230.AspNetCore.Application.Modules.Collection;
 public class WebApplicationModuleCollection : IWebApplicationModuleCollection

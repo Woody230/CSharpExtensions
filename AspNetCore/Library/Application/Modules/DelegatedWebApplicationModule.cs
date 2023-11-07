@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Woody230.AspNetCore.Application.Modules;
+﻿namespace Woody230.AspNetCore.Application.Modules;
 internal sealed class DelegatedWebApplicationModule : IWebApplicationModule
 {
     private readonly Action<IWebApplication> _configure;

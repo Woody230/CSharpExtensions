@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using System;
 using Woody230.AspNetCore.Program.Arguments;
 
 namespace Woody230.AspNetCore.Application.Options;

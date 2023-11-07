@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Woody230.AspNetCore.Program.Arguments;
+﻿using Woody230.AspNetCore.Program.Arguments;
 using Woody230.AspNetCore.Program.Modules;
 
 namespace Woody230.AspNetCore.Program;
