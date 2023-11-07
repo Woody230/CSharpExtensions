@@ -177,37 +177,30 @@ public class Results<TFailure, TSuccess>: IResult<IEnumerable<TFailure>, IEnumer
     /// Adds a failure state.
     /// </summary>
     /// <param name="failure">The failure state.</param>
-    /// <returns>This results.</returns>
-    public Results<TFailure, TSuccess> Add(TFailure failure)
+    public void Add(TFailure failure)
     {
         _failures.Add(failure);
-        return this;
     }
 
     /// <summary>
     /// Adds a success state.
     /// </summary>
     /// <param name="success">The success state.</param>
-    /// <returns>This results.</returns>
-    public Results<TFailure, TSuccess> Add(TSuccess success)
+    public void Add(TSuccess success)
     {
         _successes.Add(success);
-        return this;
     }
 
     /// <summary>
     /// Adds failure states.
     /// </summary>
     /// <param name="failures">The failures.</param>
-    /// <returns>This results.</returns>
-    public Results<TFailure, TSuccess> Add(IEnumerable<TFailure> failures)
+    public void AddAll(IEnumerable<TFailure> failures)
     {
-        foreach (var failure in  failures)
+        foreach (var failure in failures)
         {
             Add(failure);
         }
-
-        return this;
     }
 
     /// <summary>
@@ -215,14 +208,12 @@ public class Results<TFailure, TSuccess>: IResult<IEnumerable<TFailure>, IEnumer
     /// </summary>
     /// <param name="successes">The successes.</param>
     /// <returns>This results.</returns>
-    public Results<TFailure, TSuccess> Add(IEnumerable<TSuccess> successes)
+    public void AddAll(IEnumerable<TSuccess> successes)
     {
         foreach (var success in successes)
         {
             Add(success);
         }
-
-        return this;
     }
 
     /// <summary>
@@ -230,7 +221,7 @@ public class Results<TFailure, TSuccess>: IResult<IEnumerable<TFailure>, IEnumer
     /// </summary>
     /// <param name="result">The result.</param>
     /// <returns>This results.</returns>
-    public Results<TFailure, TSuccess> Add(IResult<TFailure, TSuccess> result)
+    public void Add(IResult<TFailure, TSuccess> result)
     {
         if (result.IsSuccess)
         {
@@ -240,8 +231,6 @@ public class Results<TFailure, TSuccess>: IResult<IEnumerable<TFailure>, IEnumer
         {
             Add(result.Failure);
         }
-
-        return this;
     }
 
     /// <summary>
@@ -249,8 +238,9 @@ public class Results<TFailure, TSuccess>: IResult<IEnumerable<TFailure>, IEnumer
     /// </summary>
     /// <param name="results">The results.</param>
     /// <returns>This results.</returns>
-    public Results<TFailure, TSuccess> Add(Results<TFailure, TSuccess> results)
+    public void AddAll(Results<TFailure, TSuccess> results)
     {
-        return Add(results.Success).Add(results.Failure);
+        AddAll(results.Success);
+        AddAll(results.Failure);
     }
 }
