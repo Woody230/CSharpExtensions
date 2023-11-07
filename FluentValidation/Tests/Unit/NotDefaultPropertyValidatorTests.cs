@@ -1,8 +1,6 @@
-﻿using FluentAssertions;
-using FluentValidation;
+﻿using FluentValidation;
 using System.Net;
 using Woody230.FluentValidation.Validators.Property;
-using Xunit;
 
 namespace Woody230.FluentValidation.Tests.Unit;
 

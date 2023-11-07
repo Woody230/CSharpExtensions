@@ -1,4 +1,3 @@
-using System;
 using System.ComponentModel.DataAnnotations;
 using Woody230.BindableEnum.Attributes;
 using Woody230.BindableEnum.Models;

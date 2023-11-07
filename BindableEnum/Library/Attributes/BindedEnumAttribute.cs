@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
+﻿using System.ComponentModel.DataAnnotations;
 using Woody230.BindableEnum.Models;
 
 namespace Woody230.BindableEnum.Attributes;

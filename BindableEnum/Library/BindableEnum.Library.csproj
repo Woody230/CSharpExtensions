@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>1.4.0</Version>
+    <Version>1.4.1</Version>
     <Description>Enumeration wrapper for manual model state validation in ASP.NET Core.</Description>
-    <PackageReleaseNotes>Add implicit conversions: from a BindableEnum to a string and from a string to a BindableEnum.</PackageReleaseNotes>
+    <PackageReleaseNotes>Update assembly name to match namespace.</PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="$(SwashbuckleAspNetCoreSwaggerGenPkgVer)" />

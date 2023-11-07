@@ -1,9 +1,7 @@
-﻿using FluentAssertions;
-using FluentValidation.Validators;
+﻿using FluentValidation.Validators;
 using Woody230.FluentValidation.Validators.Property;
 using Woody230.FluentValidation.Web.Models;
 using Woody230.FluentValidation.Web.Validators;
-using Xunit;
 
 namespace Woody230.FluentValidation.Tests.Unit;
 
