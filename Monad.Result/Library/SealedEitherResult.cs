@@ -1,4 +1,4 @@
-﻿namespace Woody230.Monad.Result.Sealed;
+﻿namespace Woody230.Monad.Result;
 
 /// <summary>
 /// Represents a specific case of an either, where one state represents failure and the other state represents success.
@@ -7,18 +7,18 @@
 /// <typeparam name="TState">The type of base state.</typeparam>
 /// <typeparam name="TFailure">The type of failure.</typeparam>
 /// <typeparam name="TSuccess">The type of success.</typeparam>
-public class SealedResult<TState, TFailure, TSuccess> : Result<TFailure, TSuccess>
+public class SealedEitherResult<TState, TFailure, TSuccess> : EitherResult<TFailure, TSuccess>
     where TState : notnull
     where TFailure : notnull, TState
     where TSuccess : notnull, TState
 {
     /// <summary>
-    /// Converts the <paramref name="state"/> is into a <see cref="SealedResult{TResult, TFailure, TSuccess}"/>.
+    /// Converts the <paramref name="state"/> is into a <see cref="SealedEitherResult{TResult, TFailure, TSuccess}"/>.
     /// </summary>
     /// <param name="state">The result.</param>
-    /// <returns>The <see cref="SealedResult{TResult, TFailure, TSuccess}"/>.</returns>
+    /// <returns>The <see cref="SealedEitherResult{TResult, TFailure, TSuccess}"/>.</returns>
     /// <exception cref="InvalidOperationException">If the result is not a <typeparamref name="TFailure"/> or <typeparamref name="TSuccess"/>.</exception>
-    public static SealedResult<TState, TFailure, TSuccess> Of(TState state)
+    public static SealedEitherResult<TState, TFailure, TSuccess> Of(TState state)
     {
         if (state is TSuccess success)
         {
@@ -38,18 +38,18 @@ public class SealedResult<TState, TFailure, TSuccess> : Result<TFailure, TSucces
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="SealedResult{TResult, TFailure, TSuccess}"/> class.
+    /// Initializes a new instance of the <see cref="SealedEitherResult{TResult, TFailure, TSuccess}"/> class.
     /// </summary>
     /// <param name="failure">The failure state.</param>
-    public SealedResult(TFailure failure) : base(failure)
+    public SealedEitherResult(TFailure failure) : base(failure)
     {
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="SealedResult{TResult, TFailure, TSuccess}"/> class.
+    /// Initializes a new instance of the <see cref="SealedEitherResult{TResult, TFailure, TSuccess}"/> class.
     /// </summary>
     /// <param name="success">The success state.</param>
-    public SealedResult(TSuccess success) : base(success)
+    public SealedEitherResult(TSuccess success) : base(success)
     {
     }
 
@@ -57,44 +57,44 @@ public class SealedResult<TState, TFailure, TSuccess> : Result<TFailure, TSucces
     /// Implicit converts the result to a success state.
     /// </summary>
     /// <param name="result">The result.</param>
-    public static implicit operator TSuccess(SealedResult<TState, TFailure, TSuccess> result) => result.Success;
+    public static implicit operator TSuccess(SealedEitherResult<TState, TFailure, TSuccess> result) => result.Success;
 
     /// <summary>
     /// Implicitly converts the result to a failure state.
     /// </summary>
     /// <param name="result">The result.</param>
-    public static implicit operator TFailure(SealedResult<TState, TFailure, TSuccess> result) => result.Failure;
+    public static implicit operator TFailure(SealedEitherResult<TState, TFailure, TSuccess> result) => result.Failure;
 
     /// <summary>
     /// Implicitly converts the result to a root state.
     /// </summary>
     /// <param name="result">The result.</param>
-    public static implicit operator TState(SealedResult<TState, TFailure, TSuccess> result) => result.IsSuccess ? result.Success : result.Failure;
+    public static implicit operator TState(SealedEitherResult<TState, TFailure, TSuccess> result) => result.IsSuccess ? result.Success : result.Failure;
 
     /// <summary>
     /// Implicitly converts the success state to a result.
     /// </summary>
     /// <param name="success">The success state.</param>
-    public static implicit operator SealedResult<TState, TFailure, TSuccess>(TSuccess success) => new(success);
+    public static implicit operator SealedEitherResult<TState, TFailure, TSuccess>(TSuccess success) => new(success);
 
     /// <summary>
     /// Implicitly converts the failure state to a result.
     /// </summary>
     /// <param name="failure">The failure state.</param>
-    public static implicit operator SealedResult<TState, TFailure, TSuccess>(TFailure failure) => new(failure);
+    public static implicit operator SealedEitherResult<TState, TFailure, TSuccess>(TFailure failure) => new(failure);
 
     /// <summary>
     /// Implicitly converts the root state to a result.
     /// </summary>
     /// <param name="root">The root state.</param>
-    public static implicit operator SealedResult<TState, TFailure, TSuccess>(TState root) => Of(root);
+    public static implicit operator SealedEitherResult<TState, TFailure, TSuccess>(TState root) => Of(root);
 
     /// <summary>
     /// Applies an action on the result.
     /// </summary>
     /// <param name="onResult">The action to perform.</param>
     /// <returns>This result.</returns>
-    public SealedResult<TState, TFailure, TSuccess> Apply(Action<TState> onResult)
+    public SealedEitherResult<TState, TFailure, TSuccess> Apply(Action<TState> onResult)
     {
         if (IsSuccess)
         {
