@@ -218,6 +218,6 @@ public static class EitherResultExtensions
 
         var thisFailure = @this.FailureOrNull;
         var isNull = thisFailure == null && failure == null;
-        return isNull || thisFailure?.Equals(failure) == true);
+        return isNull || thisFailure?.Equals(failure) == true;
     }
 }
