@@ -109,7 +109,7 @@ public interface IEitherResult<TFailure, TSuccess> : IFailureResult<TFailure>, I
     /// <summary>
     /// Gets the success state if the result represents a success.
     /// </summary>
-    /// <param name="success">The success state, or default value is the result is a failure.</param>
+    /// <param name="success">The success state, or null if the result is a failure.</param>
     /// <returns>True if the result represents a success, otherwise false.</returns>
     public bool TrySuccess([NotNullWhen(returnValue: true)] out TSuccess? success)
     {
@@ -126,7 +126,7 @@ public interface IEitherResult<TFailure, TSuccess> : IFailureResult<TFailure>, I
     /// <summary>
     /// Gets the failure state if the result represents a failure.
     /// </summary>
-    /// <param name="failure">The failure state, or default value is the result is a success.</param>
+    /// <param name="failure">The failure state, or null if the result is a success.</param>
     /// <returns>True if the result represents a failure, otherwise false.</returns>
     public bool TryFailure([NotNullWhen(returnValue: true)] out TFailure? failure)
     {
