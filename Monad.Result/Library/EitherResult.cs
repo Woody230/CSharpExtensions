@@ -79,34 +79,6 @@ public class EitherResult<TFailure, TSuccess> : IEitherResult<TFailure, TSuccess
     public TFailure? FailureOrNull { get; }
 
     /// <inheritdoc/>
-    public IEitherResult<TFailure, TNewSuccess> Map<TNewSuccess>(Func<TSuccess, TNewSuccess> onSuccess) where TNewSuccess: notnull
-    {
-        if (IsSuccess)
-        {
-            var newSuccess = onSuccess(Success);
-            return new EitherResult<TFailure, TNewSuccess>(newSuccess);
-        }
-        else
-        {
-            return new EitherResult<TFailure, TNewSuccess>(Failure);
-        }
-    }
-
-    /// <inheritdoc/>
-    public IEitherResult<TNewFailure, TSuccess> Map<TNewFailure>(Func<TFailure, TNewFailure> onFailure) where TNewFailure: notnull
-    {
-        if (IsSuccess)
-        {
-            return new EitherResult<TNewFailure, TSuccess>(Success);
-        }
-        else
-        {
-            var newFailure = onFailure(Failure);
-            return new EitherResult<TNewFailure, TSuccess>(newFailure);
-        }
-    }
-
-    /// <inheritdoc/>
     public override string? ToString() => IsSuccess ? Success.ToString() : Failure.ToString();
 
     /// <summary>
