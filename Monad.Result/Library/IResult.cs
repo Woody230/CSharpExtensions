@@ -9,4 +9,9 @@ public interface IResult
     /// Whether the result is a success.
     /// </summary>
     public bool IsSuccess { get; }
+
+    /// <summary>
+    /// Whether the result is a failure.
+    /// </summary>
+    public bool IsFailure => !IsSuccess;
 }

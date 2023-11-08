@@ -5,7 +5,7 @@
 /// </summary>
 /// <typeparam name="TFailure">The type of failure.</typeparam>
 /// <typeparam name="TSuccess">The type of success.</typeparam>
-public class EitherResults<TFailure, TSuccess>: IEitherResult<IEnumerable<TFailure>, IEnumerable<TSuccess>>
+public class EitherResults<TFailure, TSuccess>
     where TFailure: notnull
     where TSuccess: notnull
 {
