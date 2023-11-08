@@ -7,7 +7,7 @@
 /// <typeparam name="TState">The type of base state.</typeparam>
 /// <typeparam name="TFailure">The type of failure.</typeparam>
 /// <typeparam name="TSuccess">The type of success.</typeparam>
-public class SealedEitherResult<TState, TFailure, TSuccess> : EitherResult<TFailure, TSuccess>
+public class SealedEitherResult<TState, TFailure, TSuccess> : EitherResult<TFailure, TSuccess>, ISealedEitherResult<TState, TFailure, TSuccess>
     where TState : notnull
     where TFailure : notnull, TState
     where TSuccess : notnull, TState
@@ -53,69 +53,10 @@ public class SealedEitherResult<TState, TFailure, TSuccess> : EitherResult<TFail
     {
     }
 
-    /// <summary>
-    /// Implicit converts the result to a success state.
-    /// </summary>
-    /// <param name="result">The result.</param>
     public static implicit operator TSuccess(SealedEitherResult<TState, TFailure, TSuccess> result) => result.Success;
-
-    /// <summary>
-    /// Implicitly converts the result to a failure state.
-    /// </summary>
-    /// <param name="result">The result.</param>
     public static implicit operator TFailure(SealedEitherResult<TState, TFailure, TSuccess> result) => result.Failure;
-
-    /// <summary>
-    /// Implicitly converts the result to a root state.
-    /// </summary>
-    /// <param name="result">The result.</param>
     public static implicit operator TState(SealedEitherResult<TState, TFailure, TSuccess> result) => result.IsSuccess ? result.Success : result.Failure;
-
-    /// <summary>
-    /// Implicitly converts the success state to a result.
-    /// </summary>
-    /// <param name="success">The success state.</param>
     public static implicit operator SealedEitherResult<TState, TFailure, TSuccess>(TSuccess success) => new(success);
-
-    /// <summary>
-    /// Implicitly converts the failure state to a result.
-    /// </summary>
-    /// <param name="failure">The failure state.</param>
     public static implicit operator SealedEitherResult<TState, TFailure, TSuccess>(TFailure failure) => new(failure);
-
-    /// <summary>
-    /// Implicitly converts the root state to a result.
-    /// </summary>
-    /// <param name="root">The root state.</param>
     public static implicit operator SealedEitherResult<TState, TFailure, TSuccess>(TState root) => Of(root);
-
-    /// <summary>
-    /// Applies an action on the result.
-    /// </summary>
-    /// <param name="onResult">The action to perform.</param>
-    /// <returns>This result.</returns>
-    public SealedEitherResult<TState, TFailure, TSuccess> Apply(Action<TState> onResult)
-    {
-        if (IsSuccess)
-        {
-            onResult(Success);
-        }
-        else
-        {
-            onResult(Failure);
-        }
-
-        return this;
-    }
-
-    /// <summary>
-    /// Transforms either possible state into a designated value.
-    /// </summary>
-    /// <typeparam name="TValue">The type of value.</typeparam>
-    /// <param name="onResult">The delegate for transforming the result into the value.</param>
-    /// <returns>The value.</returns>
-    public TValue Fold<TValue>(Func<TState, TValue> onResult)
-    {
-        return IsSuccess ? onResult(Success) : onResult(Failure);
-    }
 }
