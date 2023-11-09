@@ -9,13 +9,4 @@ public interface IEithult<TFailure, TSuccess> : IFailureResult<TFailure>, ISucce
     where TFailure: notnull
     where TSuccess: notnull
 {
-    /// <summary>
-    /// The success state, or null if the result is a failure.
-    /// </summary>
-    public TSuccess? SuccessOrNull { get; }
-
-    /// <summary>
-    /// The failure state, or null if the result is a success.
-    /// </summary>
-    public TFailure? FailureOrNull { get; }
 }

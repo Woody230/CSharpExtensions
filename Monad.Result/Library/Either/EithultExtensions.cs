@@ -182,42 +182,4 @@ public static class EithultExtensions
         failure = default;
         return false;
     }
-
-    /// <summary>
-    /// Equality exists if this result is a success and the success state is equal to the given <paramref name="success"/>.
-    /// </summary>
-    /// <param name="success">The success state to compare to.</param>
-    /// <returns>True if equal, otherwise false.</returns>
-    public static bool Equals<TFailure, TSuccess>(this IEithult<TFailure, TSuccess> @this, TSuccess success)
-        where TFailure : notnull
-        where TSuccess : notnull
-    {
-        if (@this.IsFailure)
-        {
-            return false;
-        }
-
-        var thisSuccess = @this.SuccessOrNull;
-        var isNull = thisSuccess == null && success == null;
-        return isNull || thisSuccess?.Equals(success) == true;
-    }
-
-    /// <summary>
-    /// Equality exists if this result is a failure and the failure state is equal to the given <paramref name="failure"/>.
-    /// </summary>
-    /// <param name="failure">The failure state to compare to.</param>
-    /// <returns>True if equal, otherwise false.</returns>
-    public static bool Equals<TFailure, TSuccess>(this IEithult<TFailure, TSuccess> @this, TFailure failure)
-        where TFailure : notnull
-        where TSuccess : notnull
-    {
-        if (@this.IsSuccess)
-        {
-            return false;
-        }
-
-        var thisFailure = @this.FailureOrNull;
-        var isNull = thisFailure == null && failure == null;
-        return isNull || thisFailure?.Equals(failure) == true;
-    }
 }

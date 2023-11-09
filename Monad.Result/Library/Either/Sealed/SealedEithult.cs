@@ -26,12 +26,6 @@ public sealed class SealedEithult<TRoot, TFailure, TSuccess> : ISealedEithult<TR
     /// <inheritdoc/>
     public TSuccess Success => _result.Success;
 
-    /// <inheritdoc/>
-    public TFailure? FailureOrNull => _result.FailureOrNull;
-
-    /// <inheritdoc/>
-    public TSuccess? SuccessOrNull => _result.SuccessOrNull;
-
     /// <summary>
     /// Initializes a new instance of the <see cref="SealedEithult{TResult, TFailure, TSuccess}"/> class.
     /// </summary>

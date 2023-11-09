@@ -1,4 +1,6 @@
-﻿namespace Woody230.Monad.Result;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Woody230.Monad.Result;
 
 /// <summary>
 /// Represents a specific case of an either, where one state represents failure and the other state represents success.
@@ -20,7 +22,7 @@ public sealed class Eithult<TFailure, TSuccess> : IEithult<TFailure, TSuccess>
                 throw new InvalidOperationException("Expected the result to be a failure but it is a success.");
             }
 
-            return Failure;
+            return _failure;
         }
     }
 
@@ -35,15 +37,22 @@ public sealed class Eithult<TFailure, TSuccess> : IEithult<TFailure, TSuccess>
                 throw new InvalidOperationException("Expected the result to be a success but it is a failure.");
             }
 
-            return Success;
+            return _success;
         }
     }
 
     /// <inheritdoc/>
+    [MemberNotNullWhen(returnValue: true, nameof(_success))]
+    [MemberNotNullWhen(returnValue: false, nameof(_failure))]
     public bool IsSuccess { get; }
 
     /// <inheritdoc/>
+    [MemberNotNullWhen(returnValue: false, nameof(_success))]
+    [MemberNotNullWhen(returnValue: true, nameof(_failure))]
     public bool IsFailure => !IsSuccess;
+
+    private readonly TSuccess? _success;
+    private readonly TFailure? _failure;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Eithult{TFailure, TSuccess}"/> class as a failure.
@@ -52,7 +61,7 @@ public sealed class Eithult<TFailure, TSuccess> : IEithult<TFailure, TSuccess>
     public Eithult(TFailure failure)
     {
         IsSuccess = false;
-        FailureOrNull = failure;
+        _failure = failure;
     }
 
     /// <summary>
@@ -62,19 +71,13 @@ public sealed class Eithult<TFailure, TSuccess> : IEithult<TFailure, TSuccess>
     public Eithult(TSuccess success)
     {
         IsSuccess = true;
-        SuccessOrNull = success;
+        _success = success;
     }
 
     public static implicit operator TSuccess(Eithult<TFailure, TSuccess> result) => result.Success;
     public static implicit operator TFailure(Eithult<TFailure, TSuccess> result) => result.Failure;
     public static implicit operator Eithult<TFailure, TSuccess>(TSuccess success) => new(success);
     public static implicit operator Eithult<TFailure, TSuccess>(TFailure failure) => new(failure);
-
-    /// <inheritdoc/>
-    public TSuccess? SuccessOrNull { get; }
-
-    /// <inheritdoc/>
-    public TFailure? FailureOrNull { get; }
 
     /// <inheritdoc/>
     public override string? ToString() => IsSuccess ? Success.ToString() : Failure.ToString();
@@ -88,7 +91,7 @@ public sealed class Eithult<TFailure, TSuccess> : IEithult<TFailure, TSuccess>
     {
         if (obj is IEithult<TFailure, TSuccess> result)
         {
-            return result.IsSuccess ? result.Equals(Success) : result.Equals(Failure);
+            return result.IsSuccess ? Success.Equals(result.Success) : Failure.Equals(result.Failure);
         }
 
         return IsSuccess switch
