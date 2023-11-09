@@ -1,7 +1,7 @@
 ﻿namespace Woody230.Monad.Result;
 
 /// <summary>
-/// Represents extensions for a <see cref="ISealedEithult{TState, TFailure, TSuccess}"/>.
+/// Represents extensions for a <see cref="ISealedEithult{TRoot, TFailure, TSuccess}"/>.
 /// </summary>
 public static class SealedEithultExtensions
 {
@@ -10,13 +10,13 @@ public static class SealedEithultExtensions
     /// </summary>
     /// <param name="onResult">The action to perform.</param>
     /// <returns>This result.</returns>
-    public static ISealedEithult<TState, TFailure, TSuccess> Apply<TState, TFailure, TSuccess>(
-        this ISealedEithult<TState, TFailure, TSuccess> @this,
-        Action<TState> onResult
+    public static ISealedEithult<TRoot, TFailure, TSuccess> Apply<TRoot, TFailure, TSuccess>(
+        this ISealedEithult<TRoot, TFailure, TSuccess> @this,
+        Action<TRoot> onResult
     )
-        where TState: notnull
-        where TFailure : notnull, TState
-        where TSuccess : notnull, TState
+        where TRoot: notnull
+        where TFailure : notnull, TRoot
+        where TSuccess : notnull, TRoot
     {
         if (@this.IsSuccess)
         {
@@ -36,13 +36,13 @@ public static class SealedEithultExtensions
     /// <typeparam name="TValue">The type of value.</typeparam>
     /// <param name="onResult">The delegate for transforming the result into the value.</param>
     /// <returns>The value.</returns>
-    public static TValue Fold<TState, TFailure, TSuccess, TValue>(
-        this ISealedEithult<TState, TFailure, TSuccess> @this,
-        Func<TState, TValue> onResult
+    public static TValue Fold<TRoot, TFailure, TSuccess, TValue>(
+        this ISealedEithult<TRoot, TFailure, TSuccess> @this,
+        Func<TRoot, TValue> onResult
     )
-        where TState : notnull
-        where TFailure : notnull, TState
-        where TSuccess : notnull, TState
+        where TRoot : notnull
+        where TFailure : notnull, TRoot
+        where TSuccess : notnull, TRoot
     {
         return onResult(@this.IsSuccess ? @this.Success : @this.Failure);
     }

@@ -4,13 +4,13 @@
 /// Represents a specific case of an either, where one state represents failure and the other state represents success.
 /// Additionally, the failure and success states represent a base state.
 /// </summary>
-/// <typeparam name="TState">The type of base state.</typeparam>
+/// <typeparam name="TRoot">The type of base state.</typeparam>
 /// <typeparam name="TFailure">The type of failure.</typeparam>
 /// <typeparam name="TSuccess">The type of success.</typeparam>
-public sealed class SealedEithult<TState, TFailure, TSuccess> : ISealedEithult<TState, TFailure, TSuccess>
-    where TState : notnull
-    where TFailure : notnull, TState
-    where TSuccess : notnull, TState
+public sealed class SealedEithult<TRoot, TFailure, TSuccess> : ISealedEithult<TRoot, TFailure, TSuccess>
+    where TRoot : notnull
+    where TFailure : notnull, TRoot
+    where TSuccess : notnull, TRoot
 {
     private readonly Eithult<TFailure, TSuccess> _result;
 
@@ -36,7 +36,7 @@ public sealed class SealedEithult<TState, TFailure, TSuccess> : ISealedEithult<T
     /// Initializes a new instance of the <see cref="SealedEithult{TResult, TFailure, TSuccess}"/> class.
     /// </summary>
     /// <param name="state">The base state.</param>
-    public SealedEithult(TState state)
+    public SealedEithult(TRoot state)
     {
         _result = state switch
         {
@@ -72,12 +72,12 @@ public sealed class SealedEithult<TState, TFailure, TSuccess> : ISealedEithult<T
         _result = new(success);
     }
 
-    public static implicit operator TSuccess(SealedEithult<TState, TFailure, TSuccess> result) => result._result.Success;
-    public static implicit operator TFailure(SealedEithult<TState, TFailure, TSuccess> result) => result._result.Failure;
-    public static implicit operator TState(SealedEithult<TState, TFailure, TSuccess> result) => result.IsSuccess ? result.Success : result.Failure;
-    public static implicit operator SealedEithult<TState, TFailure, TSuccess>(TSuccess success) => new(success);
-    public static implicit operator SealedEithult<TState, TFailure, TSuccess>(TFailure failure) => new(failure);
-    public static implicit operator SealedEithult<TState, TFailure, TSuccess>(TState root) => Of(root);
+    public static implicit operator TSuccess(SealedEithult<TRoot, TFailure, TSuccess> result) => result._result.Success;
+    public static implicit operator TFailure(SealedEithult<TRoot, TFailure, TSuccess> result) => result._result.Failure;
+    public static implicit operator TRoot(SealedEithult<TRoot, TFailure, TSuccess> result) => result.IsSuccess ? result.Success : result.Failure;
+    public static implicit operator SealedEithult<TRoot, TFailure, TSuccess>(TSuccess success) => new(success);
+    public static implicit operator SealedEithult<TRoot, TFailure, TSuccess>(TFailure failure) => new(failure);
+    public static implicit operator SealedEithult<TRoot, TFailure, TSuccess>(TRoot root) => new(root);
 
     /// <inheritdoc/>
     public override string? ToString() => _result.ToString();
