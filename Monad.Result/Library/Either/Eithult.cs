@@ -5,7 +5,7 @@
 /// </summary>
 /// <typeparam name="TFailure">The type of failure.</typeparam>
 /// <typeparam name="TSuccess">The type of success.</typeparam>
-public class Eithult<TFailure, TSuccess> : IEithult<TFailure, TSuccess> 
+public sealed class Eithult<TFailure, TSuccess> : IEithult<TFailure, TSuccess> 
     where TFailure: notnull
     where TSuccess: notnull
 {
@@ -42,9 +42,7 @@ public class Eithult<TFailure, TSuccess> : IEithult<TFailure, TSuccess>
     /// <inheritdoc/>
     public bool IsSuccess { get; }
 
-    /// <summary>
-    /// Whether the result is a failure.
-    /// </summary>
+    /// <inheritdoc/>
     public bool IsFailure => !IsSuccess;
 
     /// <summary>
@@ -82,7 +80,7 @@ public class Eithult<TFailure, TSuccess> : IEithult<TFailure, TSuccess>
     public override string? ToString() => IsSuccess ? Success.ToString() : Failure.ToString();
 
     /// <summary>
-    /// Equality exists if <paramref name="obj"/> is a <see cref="Eithult{TFailure, TSuccess}"/> representing an equal success or failure state, or if the <paramref name="obj"/> is an equal success or failure state.
+    /// Equality exists if <paramref name="obj"/> is a <see cref="IEithult{TFailure, TSuccess}"/> representing an equal success or failure state, or if the <paramref name="obj"/> is an equal success or failure state.
     /// </summary>
     /// <param name="obj">The object to compare.</param>
     /// <returns>True if equal, otherwise false.</returns>
