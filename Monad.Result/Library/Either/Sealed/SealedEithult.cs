@@ -7,18 +7,18 @@
 /// <typeparam name="TState">The type of base state.</typeparam>
 /// <typeparam name="TFailure">The type of failure.</typeparam>
 /// <typeparam name="TSuccess">The type of success.</typeparam>
-public class SealedEitherResult<TState, TFailure, TSuccess> : EitherResult<TFailure, TSuccess>, ISealedEitherResult<TState, TFailure, TSuccess>
+public class SealedEithult<TState, TFailure, TSuccess> : Eithult<TFailure, TSuccess>, ISealedEithult<TState, TFailure, TSuccess>
     where TState : notnull
     where TFailure : notnull, TState
     where TSuccess : notnull, TState
 {
     /// <summary>
-    /// Converts the <paramref name="state"/> is into a <see cref="SealedEitherResult{TResult, TFailure, TSuccess}"/>.
+    /// Converts the <paramref name="state"/> is into a <see cref="SealedEithult{TResult, TFailure, TSuccess}"/>.
     /// </summary>
     /// <param name="state">The result.</param>
-    /// <returns>The <see cref="SealedEitherResult{TResult, TFailure, TSuccess}"/>.</returns>
+    /// <returns>The <see cref="SealedEithult{TResult, TFailure, TSuccess}"/>.</returns>
     /// <exception cref="InvalidOperationException">If the result is not a <typeparamref name="TFailure"/> or <typeparamref name="TSuccess"/>.</exception>
-    public static SealedEitherResult<TState, TFailure, TSuccess> Of(TState state)
+    public static SealedEithult<TState, TFailure, TSuccess> Of(TState state)
     {
         if (state is TSuccess success)
         {
@@ -38,25 +38,25 @@ public class SealedEitherResult<TState, TFailure, TSuccess> : EitherResult<TFail
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="SealedEitherResult{TResult, TFailure, TSuccess}"/> class.
+    /// Initializes a new instance of the <see cref="SealedEithult{TResult, TFailure, TSuccess}"/> class.
     /// </summary>
     /// <param name="failure">The failure state.</param>
-    public SealedEitherResult(TFailure failure) : base(failure)
+    public SealedEithult(TFailure failure) : base(failure)
     {
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="SealedEitherResult{TResult, TFailure, TSuccess}"/> class.
+    /// Initializes a new instance of the <see cref="SealedEithult{TResult, TFailure, TSuccess}"/> class.
     /// </summary>
     /// <param name="success">The success state.</param>
-    public SealedEitherResult(TSuccess success) : base(success)
+    public SealedEithult(TSuccess success) : base(success)
     {
     }
 
-    public static implicit operator TSuccess(SealedEitherResult<TState, TFailure, TSuccess> result) => result.Success;
-    public static implicit operator TFailure(SealedEitherResult<TState, TFailure, TSuccess> result) => result.Failure;
-    public static implicit operator TState(SealedEitherResult<TState, TFailure, TSuccess> result) => result.IsSuccess ? result.Success : result.Failure;
-    public static implicit operator SealedEitherResult<TState, TFailure, TSuccess>(TSuccess success) => new(success);
-    public static implicit operator SealedEitherResult<TState, TFailure, TSuccess>(TFailure failure) => new(failure);
-    public static implicit operator SealedEitherResult<TState, TFailure, TSuccess>(TState root) => Of(root);
+    public static implicit operator TSuccess(SealedEithult<TState, TFailure, TSuccess> result) => result.Success;
+    public static implicit operator TFailure(SealedEithult<TState, TFailure, TSuccess> result) => result.Failure;
+    public static implicit operator TState(SealedEithult<TState, TFailure, TSuccess> result) => result.IsSuccess ? result.Success : result.Failure;
+    public static implicit operator SealedEithult<TState, TFailure, TSuccess>(TSuccess success) => new(success);
+    public static implicit operator SealedEithult<TState, TFailure, TSuccess>(TFailure failure) => new(failure);
+    public static implicit operator SealedEithult<TState, TFailure, TSuccess>(TState root) => Of(root);
 }

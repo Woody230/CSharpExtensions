@@ -1,17 +1,17 @@
 ﻿namespace Woody230.Monad.Result;
 
 /// <summary>
-/// Represents extensions for a <see cref="ISealedEitherResult{TState, TFailure, TSuccess}"/>.
+/// Represents extensions for a <see cref="ISealedEithult{TState, TFailure, TSuccess}"/>.
 /// </summary>
-public static class SealedEitherResultExtensions
+public static class SealedEithultExtensions
 {
     /// <summary>
     /// Applies an action on the result.
     /// </summary>
     /// <param name="onResult">The action to perform.</param>
     /// <returns>This result.</returns>
-    public static ISealedEitherResult<TState, TFailure, TSuccess> Apply<TState, TFailure, TSuccess>(
-        this ISealedEitherResult<TState, TFailure, TSuccess> @this,
+    public static ISealedEithult<TState, TFailure, TSuccess> Apply<TState, TFailure, TSuccess>(
+        this ISealedEithult<TState, TFailure, TSuccess> @this,
         Action<TState> onResult
     )
         where TState: notnull
@@ -37,7 +37,7 @@ public static class SealedEitherResultExtensions
     /// <param name="onResult">The delegate for transforming the result into the value.</param>
     /// <returns>The value.</returns>
     public static TValue Fold<TState, TFailure, TSuccess, TValue>(
-        this ISealedEitherResult<TState, TFailure, TSuccess> @this,
+        this ISealedEithult<TState, TFailure, TSuccess> @this,
         Func<TState, TValue> onResult
     )
         where TState : notnull

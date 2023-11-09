@@ -5,7 +5,7 @@
 /// </summary>
 /// <typeparam name="TFailure">The type of failure.</typeparam>
 /// <typeparam name="TSuccess">The type of success.</typeparam>
-public class EitherResult<TFailure, TSuccess> : IEitherResult<TFailure, TSuccess> 
+public class Eithult<TFailure, TSuccess> : IEithult<TFailure, TSuccess> 
     where TFailure: notnull
     where TSuccess: notnull
 {
@@ -48,29 +48,29 @@ public class EitherResult<TFailure, TSuccess> : IEitherResult<TFailure, TSuccess
     public bool IsFailure => !IsSuccess;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="EitherResult{TFailure, TSuccess}"/> class as a failure.
+    /// Initializes a new instance of the <see cref="Eithult{TFailure, TSuccess}"/> class as a failure.
     /// </summary>
     /// <param name="failure">The failure state.</param>
-    public EitherResult(TFailure failure)
+    public Eithult(TFailure failure)
     {
         IsSuccess = false;
         FailureOrNull = failure;
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="EitherResult{TFailure, TSuccess}"/> class as a success.
+    /// Initializes a new instance of the <see cref="Eithult{TFailure, TSuccess}"/> class as a success.
     /// </summary>
     /// <param name="success">The success state.</param>
-    public EitherResult(TSuccess success)
+    public Eithult(TSuccess success)
     {
         IsSuccess = true;
         SuccessOrNull = success;
     }
 
-    public static implicit operator TSuccess(EitherResult<TFailure, TSuccess> result) => result.Success;
-    public static implicit operator TFailure(EitherResult<TFailure, TSuccess> result) => result.Failure;
-    public static implicit operator EitherResult<TFailure, TSuccess>(TSuccess success) => new(success);
-    public static implicit operator EitherResult<TFailure, TSuccess>(TFailure failure) => new(failure);
+    public static implicit operator TSuccess(Eithult<TFailure, TSuccess> result) => result.Success;
+    public static implicit operator TFailure(Eithult<TFailure, TSuccess> result) => result.Failure;
+    public static implicit operator Eithult<TFailure, TSuccess>(TSuccess success) => new(success);
+    public static implicit operator Eithult<TFailure, TSuccess>(TFailure failure) => new(failure);
 
     /// <inheritdoc/>
     public TSuccess? SuccessOrNull { get; }
@@ -82,13 +82,13 @@ public class EitherResult<TFailure, TSuccess> : IEitherResult<TFailure, TSuccess
     public override string? ToString() => IsSuccess ? Success.ToString() : Failure.ToString();
 
     /// <summary>
-    /// Equality exists if <paramref name="obj"/> is a <see cref="EitherResult{TFailure, TSuccess}"/> representing an equal success or failure state, or if the <paramref name="obj"/> is an equal success or failure state.
+    /// Equality exists if <paramref name="obj"/> is a <see cref="Eithult{TFailure, TSuccess}"/> representing an equal success or failure state, or if the <paramref name="obj"/> is an equal success or failure state.
     /// </summary>
     /// <param name="obj">The object to compare.</param>
     /// <returns>True if equal, otherwise false.</returns>
     public override bool Equals(object? obj)
     {
-        if (obj is IEitherResult<TFailure, TSuccess> result)
+        if (obj is IEithult<TFailure, TSuccess> result)
         {
             return result.IsSuccess ? result.Equals(Success) : result.Equals(Failure);
         }

@@ -3,9 +3,9 @@
 namespace Woody230.Monad.Result;
 
 /// <summary>
-/// Represents extensions for an <see cref="IEitherResult{TFailure, TSuccess}"/>.
+/// Represents extensions for an <see cref="IEithult{TFailure, TSuccess}"/>.
 /// </summary>
-public static class EitherResultExtensions
+public static class EithultExtensions
 {
     /// <summary>
     /// Transforms the state when it is a success.
@@ -13,8 +13,8 @@ public static class EitherResultExtensions
     /// <typeparam name="TNewSuccess">The type of new success state.</typeparam>
     /// <param name="onSuccess">The delegate for transforming a success into a new success state.</param>
     /// <returns>The transformed result state.</returns>
-    public static IEitherResult<TFailure, TNewSuccess> MapSuccess<TFailure, TSuccess, TNewSuccess>(
-        this IEitherResult<TFailure, TSuccess> @this, 
+    public static IEithult<TFailure, TNewSuccess> MapSuccess<TFailure, TSuccess, TNewSuccess>(
+        this IEithult<TFailure, TSuccess> @this, 
         Func<TSuccess, TNewSuccess> onSuccess
     )
         where TFailure : notnull
@@ -24,11 +24,11 @@ public static class EitherResultExtensions
         if (@this.IsSuccess)
         {
             var newSuccess = onSuccess(@this.Success);
-            return new EitherResult<TFailure, TNewSuccess>(newSuccess);
+            return new Eithult<TFailure, TNewSuccess>(newSuccess);
         }
         else
         {
-            return new EitherResult<TFailure, TNewSuccess>(@this.Failure);
+            return new Eithult<TFailure, TNewSuccess>(@this.Failure);
         }
     }
 
@@ -38,8 +38,8 @@ public static class EitherResultExtensions
     /// <typeparam name="TNewFailure">The type of new failure state.</typeparam>
     /// <param name="onFailure">The delegate for transforming a failure into a new failure state.</param>
     /// <returns>The transformed result state.</returns>
-    public static IEitherResult<TNewFailure, TSuccess> MapFailure<TFailure, TSuccess, TNewFailure>(
-        this IEitherResult<TFailure, TSuccess> @this, 
+    public static IEithult<TNewFailure, TSuccess> MapFailure<TFailure, TSuccess, TNewFailure>(
+        this IEithult<TFailure, TSuccess> @this, 
         Func<TFailure, TNewFailure> onFailure
     )
         where TFailure: notnull
@@ -48,12 +48,12 @@ public static class EitherResultExtensions
     {
         if (@this.IsSuccess)
         {
-            return new EitherResult<TNewFailure, TSuccess>(@this.Success);
+            return new Eithult<TNewFailure, TSuccess>(@this.Success);
         }
         else
         {
             var newFailure = onFailure(@this.Failure);
-            return new EitherResult<TNewFailure, TSuccess>(newFailure);
+            return new Eithult<TNewFailure, TSuccess>(newFailure);
         }
     }
 
@@ -65,8 +65,8 @@ public static class EitherResultExtensions
     /// <param name="onFailure">The delegate for transforming a failure into a new failure state.</param>
     /// <param name="onSuccess">The delegate for transforming a success into a new success state.</param>
     /// <returns>The transformed result state.</returns>
-    public static IEitherResult<TNewFailure, TNewSuccess> Map<TFailure, TSuccess, TNewFailure, TNewSuccess>(
-        this IEitherResult<TFailure, TSuccess> @this,
+    public static IEithult<TNewFailure, TNewSuccess> Map<TFailure, TSuccess, TNewFailure, TNewSuccess>(
+        this IEithult<TFailure, TSuccess> @this,
         Func<TFailure, TNewFailure> onFailure,
         Func<TSuccess, TNewSuccess> onSuccess
     )
@@ -86,7 +86,7 @@ public static class EitherResultExtensions
     /// <param name="onSuccess">The delegate for transforming a success into the value.</param>
     /// <returns>The value.</returns>
     public static TValue Fold<TFailure, TSuccess, TValue>(
-        this IEitherResult<TFailure, TSuccess> @this,
+        this IEithult<TFailure, TSuccess> @this,
         Func<TFailure, TValue> onFailure,
         Func<TSuccess, TValue> onSuccess
     )
@@ -103,7 +103,7 @@ public static class EitherResultExtensions
     /// </summary>
     /// <param name="action">The action to perform on success.</param>
     /// <returns>This result.</returns>
-    public static IEitherResult<TFailure, TSuccess> OnSuccess<TFailure, TSuccess>(this IEitherResult<TFailure, TSuccess> @this, Action<TSuccess> action)
+    public static IEithult<TFailure, TSuccess> OnSuccess<TFailure, TSuccess>(this IEithult<TFailure, TSuccess> @this, Action<TSuccess> action)
         where TFailure: notnull
         where TSuccess: notnull
     {
@@ -120,7 +120,7 @@ public static class EitherResultExtensions
     /// </summary>
     /// <param name="action">The action to perform on failure.</param>
     /// <returns>This result.</returns>
-    public static IEitherResult<TFailure, TSuccess> OnFailure<TFailure, TSuccess>(this IEitherResult<TFailure, TSuccess> @this, Action<TFailure> action)
+    public static IEithult<TFailure, TSuccess> OnFailure<TFailure, TSuccess>(this IEithult<TFailure, TSuccess> @this, Action<TFailure> action)
         where TFailure : notnull
         where TSuccess : notnull
     {
@@ -138,7 +138,7 @@ public static class EitherResultExtensions
     /// <param name="onFailure">The action to perform on failure.</param>
     /// <param name="onSuccess">The action to perform on success.</param>
     /// <returns>This result.</returns>
-    public static IEitherResult<TFailure, TSuccess> Apply<TFailure, TSuccess>(this IEitherResult<TFailure, TSuccess> @this, Action<TFailure> onFailure, Action<TSuccess> onSuccess)
+    public static IEithult<TFailure, TSuccess> Apply<TFailure, TSuccess>(this IEithult<TFailure, TSuccess> @this, Action<TFailure> onFailure, Action<TSuccess> onSuccess)
         where TFailure : notnull
         where TSuccess : notnull
     {
@@ -150,7 +150,7 @@ public static class EitherResultExtensions
     /// </summary>
     /// <param name="success">The success state, or null if the result is a failure.</param>
     /// <returns>True if the result represents a success, otherwise false.</returns>
-    public static bool TrySuccess<TFailure, TSuccess>(this IEitherResult<TFailure, TSuccess> @this, [NotNullWhen(returnValue: true)] out TSuccess? success)
+    public static bool TrySuccess<TFailure, TSuccess>(this IEithult<TFailure, TSuccess> @this, [NotNullWhen(returnValue: true)] out TSuccess? success)
         where TFailure : notnull
         where TSuccess : notnull
     {
@@ -169,7 +169,7 @@ public static class EitherResultExtensions
     /// </summary>
     /// <param name="failure">The failure state, or null if the result is a success.</param>
     /// <returns>True if the result represents a failure, otherwise false.</returns>
-    public static bool TryFailure<TFailure, TSuccess>(this IEitherResult<TFailure, TSuccess> @this, [NotNullWhen(returnValue: true)] out TFailure? failure)
+    public static bool TryFailure<TFailure, TSuccess>(this IEithult<TFailure, TSuccess> @this, [NotNullWhen(returnValue: true)] out TFailure? failure)
         where TFailure : notnull
         where TSuccess : notnull
     {
@@ -188,7 +188,7 @@ public static class EitherResultExtensions
     /// </summary>
     /// <param name="success">The success state to compare to.</param>
     /// <returns>True if equal, otherwise false.</returns>
-    public static bool Equals<TFailure, TSuccess>(this IEitherResult<TFailure, TSuccess> @this, TSuccess success)
+    public static bool Equals<TFailure, TSuccess>(this IEithult<TFailure, TSuccess> @this, TSuccess success)
         where TFailure : notnull
         where TSuccess : notnull
     {
@@ -207,7 +207,7 @@ public static class EitherResultExtensions
     /// </summary>
     /// <param name="failure">The failure state to compare to.</param>
     /// <returns>True if equal, otherwise false.</returns>
-    public static bool Equals<TFailure, TSuccess>(this IEitherResult<TFailure, TSuccess> @this, TFailure failure)
+    public static bool Equals<TFailure, TSuccess>(this IEithult<TFailure, TSuccess> @this, TFailure failure)
         where TFailure : notnull
         where TSuccess : notnull
     {

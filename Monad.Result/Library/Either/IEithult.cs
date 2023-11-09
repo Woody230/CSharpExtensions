@@ -5,7 +5,7 @@
 /// </summary>
 /// <typeparam name="TFailure">The type of failure.</typeparam>
 /// <typeparam name="TSuccess">The type of success.</typeparam>
-public interface IEitherResult<TFailure, TSuccess> : IFailureResult<TFailure>, ISuccessResult<TSuccess>
+public interface IEithult<TFailure, TSuccess> : IFailureResult<TFailure>, ISuccessResult<TSuccess>
     where TFailure: notnull
     where TSuccess: notnull
 {

@@ -5,7 +5,7 @@
 /// </summary>
 /// <typeparam name="TFailure">The type of failure.</typeparam>
 /// <typeparam name="TSuccess">The type of success.</typeparam>
-public class EitherResults<TFailure, TSuccess>
+public class Eithults<TFailure, TSuccess>
     where TFailure: notnull
     where TSuccess: notnull
 {
@@ -29,34 +29,34 @@ public class EitherResults<TFailure, TSuccess>
     private readonly List<TSuccess> _successes;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="EitherResults{TFailure, TSuccess}"/> class without any failures or successes.
+    /// Initializes a new instance of the <see cref="Eithults{TFailure, TSuccess}"/> class without any failures or successes.
     /// </summary>
-    public EitherResults(): this(new List<TFailure>(), new List<TSuccess>())
+    public Eithults(): this(new List<TFailure>(), new List<TSuccess>())
     {
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="EitherResults{TFailure, TSuccess}"/> class with failures.
+    /// Initializes a new instance of the <see cref="Eithults{TFailure, TSuccess}"/> class with failures.
     /// </summary>
     /// <param name="failures">The failures.</param>
-    public EitherResults(IEnumerable<TFailure> failures): this(failures, new List<TSuccess>())
+    public Eithults(IEnumerable<TFailure> failures): this(failures, new List<TSuccess>())
     {
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="EitherResults{TFailure, TSuccess}"/> class with successes.
+    /// Initializes a new instance of the <see cref="Eithults{TFailure, TSuccess}"/> class with successes.
     /// </summary>
     /// <param name="successes">The successes.</param>
-    public EitherResults(IEnumerable<TSuccess> successes): this(new List<TFailure>(), successes)
+    public Eithults(IEnumerable<TSuccess> successes): this(new List<TFailure>(), successes)
     {
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="EitherResults{TFailure, TSuccess}"/> class with failures and successes.
+    /// Initializes a new instance of the <see cref="Eithults{TFailure, TSuccess}"/> class with failures and successes.
     /// </summary>
     /// <param name="failures">The failures.</param>
     /// <param name="successes">The successes.</param>
-    public EitherResults(IEnumerable<TFailure> failures, IEnumerable<TSuccess> successes)
+    public Eithults(IEnumerable<TFailure> failures, IEnumerable<TSuccess> successes)
     {
         _failures = failures.ToList();
         _successes = successes.ToList();
@@ -70,7 +70,7 @@ public class EitherResults<TFailure, TSuccess>
     /// <param name="onFailure">The delegate for transforming a failure into a new failure state.</param>
     /// <param name="onSuccess">The delegate for transforming a success into a new success state.</param>
     /// <returns>The transformed results.</returns>
-    public EitherResults<TNewFailure, TNewSuccess> Map<TNewFailure, TNewSuccess>(
+    public Eithults<TNewFailure, TNewSuccess> Map<TNewFailure, TNewSuccess>(
         Func<TFailure, TNewFailure> onFailure,
         Func<TSuccess, TNewSuccess> onSuccess
     ) where TNewFailure : notnull where TNewSuccess : notnull
@@ -84,7 +84,7 @@ public class EitherResults<TFailure, TSuccess>
     /// <typeparam name="TNewSuccess">The type of new success state.</typeparam>
     /// <param name="onSuccess">The delegate for transforming a success into a new success state.</param>
     /// <returns>The transformed results.</returns>
-    public EitherResults<TFailure, TNewSuccess> Map<TNewSuccess>(Func<TSuccess, TNewSuccess> onSuccess) where TNewSuccess : notnull
+    public Eithults<TFailure, TNewSuccess> Map<TNewSuccess>(Func<TSuccess, TNewSuccess> onSuccess) where TNewSuccess : notnull
     {
         var successes = Success.Select(onSuccess);
         return new(Failure, successes);
@@ -96,7 +96,7 @@ public class EitherResults<TFailure, TSuccess>
     /// <typeparam name="TNewFailure">The type of new failure state.</typeparam>
     /// <param name="onFailure">The delegate for transforming a failure into a new failure state.</param>
     /// <returns>The transformed result.</returns>
-    public EitherResults<TNewFailure, TSuccess> Map<TNewFailure>(Func<TFailure, TNewFailure> onFailure) where TNewFailure : notnull
+    public Eithults<TNewFailure, TSuccess> Map<TNewFailure>(Func<TFailure, TNewFailure> onFailure) where TNewFailure : notnull
     {
         var failures = Failure.Select(onFailure);
         return new(failures, Success);
@@ -107,7 +107,7 @@ public class EitherResults<TFailure, TSuccess>
     /// </summary>
     /// <param name="action">The action to perform on success.</param>
     /// <returns>This results.</returns>
-    public EitherResults<TFailure, TSuccess> OnSuccess(Action<TSuccess> action)
+    public Eithults<TFailure, TSuccess> OnSuccess(Action<TSuccess> action)
     {
         foreach (var success in Success)
         {
@@ -122,7 +122,7 @@ public class EitherResults<TFailure, TSuccess>
     /// </summary>
     /// <param name="action">The action to perform on failure.</param>
     /// <returns>This results.</returns>
-    public EitherResults<TFailure, TSuccess> OnFailure(Action<TFailure> action)
+    public Eithults<TFailure, TSuccess> OnFailure(Action<TFailure> action)
     {
         foreach (var failure in Failure)
         {
@@ -138,7 +138,7 @@ public class EitherResults<TFailure, TSuccess>
     /// <param name="onFailure">The action to perform on failure.</param>
     /// <param name="onSuccess">The action to perform on success.</param>
     /// <returns>This result.</returns>
-    public EitherResults<TFailure, TSuccess> Apply(Action<TFailure> onFailure, Action<TSuccess> onSuccess)
+    public Eithults<TFailure, TSuccess> Apply(Action<TFailure> onFailure, Action<TSuccess> onSuccess)
     {
         return OnSuccess(onSuccess).OnFailure(onFailure);
     }
@@ -166,7 +166,7 @@ public class EitherResults<TFailure, TSuccess>
     /// <param name="onFailure">The delegate for transforming the failures into a new failure state.</param>
     /// <param name="onSuccess">The delegate for transforming the successes into a new success state.</param>
     /// <returns>The transformed result.</returns>
-    public EitherResult<TNewFailure, TNewSuccess> Flatten<TNewFailure, TNewSuccess>(Func<IEnumerable<TFailure>, TNewFailure> onFailure, Func<IEnumerable<TSuccess>, TNewSuccess> onSuccess)
+    public Eithult<TNewFailure, TNewSuccess> Flatten<TNewFailure, TNewSuccess>(Func<IEnumerable<TFailure>, TNewFailure> onFailure, Func<IEnumerable<TSuccess>, TNewSuccess> onSuccess)
         where TNewFailure : notnull
         where TNewSuccess : notnull
     {
@@ -221,7 +221,7 @@ public class EitherResults<TFailure, TSuccess>
     /// </summary>
     /// <param name="result">The result.</param>
     /// <returns>This results.</returns>
-    public void Add(IEitherResult<TFailure, TSuccess> result)
+    public void Add(IEithult<TFailure, TSuccess> result)
     {
         if (result.IsSuccess)
         {
@@ -238,7 +238,7 @@ public class EitherResults<TFailure, TSuccess>
     /// </summary>
     /// <param name="results">The results.</param>
     /// <returns>This results.</returns>
-    public void AddAll(EitherResults<TFailure, TSuccess> results)
+    public void AddAll(Eithults<TFailure, TSuccess> results)
     {
         AddAll(results.Success);
         AddAll(results.Failure);
