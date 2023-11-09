@@ -6,6 +6,17 @@
 public static class SealedEithultExtensions
 {
     /// <summary>
+    /// Converts an <see cref="ISealedResult{TFailure, TSuccess}"/> to an <see cref="ISealedEithult{TRoot, TFailure, TSuccess}"/>.
+    /// </summary>
+    public static ISealedEithult<TRoot, TFailure, TSuccess> ToEithult<TRoot, TFailure, TSuccess>(this TRoot @this) 
+        where TRoot: ISealedResult<TFailure, TSuccess>
+        where TFailure: notnull, IFailureResult, TRoot
+        where TSuccess: notnull, ISuccessResult, TRoot
+    {
+        return new SealedEithult<TRoot, TFailure, TSuccess>(@this);
+    }
+
+    /// <summary>
     /// Applies an action on the result.
     /// </summary>
     /// <param name="onResult">The action to perform.</param>
