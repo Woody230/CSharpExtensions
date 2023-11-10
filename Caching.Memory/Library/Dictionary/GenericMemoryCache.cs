@@ -4,18 +4,18 @@ using System.Diagnostics.CodeAnalysis;
 namespace Woody230.Caching.Memory;
 
 /// <summary>
-/// Represents a memory cache that is typed like a dictionary.
+/// Represents a memory cache that is typed.
 /// </summary>
 /// <typeparam name="TKey">The type of key.</typeparam>
 /// <typeparam name="TValue">The type of value.</typeparam>
-public sealed class MemoryCacheDictionary<TKey, TValue> : IMemoryCacheDictionary<TKey, TValue>
+public sealed class GenericMemoryCache<TKey, TValue> : IGenericMemoryCache<TKey, TValue>
     where TKey : notnull
 {
     private readonly IMemoryCache _memoryCache;
     private readonly HashSet<TKey> _keys = new();
     private readonly SemaphoreSlim _semaphore = new(1);
 
-    public MemoryCacheDictionary(IMemoryCache memoryCache)
+    public GenericMemoryCache(IMemoryCache memoryCache)
     {
         _memoryCache = memoryCache;
     }

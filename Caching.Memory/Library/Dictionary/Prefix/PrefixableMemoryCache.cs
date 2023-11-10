@@ -5,13 +5,13 @@ namespace Woody230.Caching.Memory;
 /// <summary>
 /// Represents a memory cache with a prefixed key. 
 /// </summary>
-public abstract class PrefixableMemoryCacheDictionary<TKey, TValue>: IPrefixableMemoryCacheDictionary<TKey, TValue>
+public abstract class PrefixableMemoryCache<TKey, TValue>: IPrefixableMemoryCache<TKey, TValue>
 {
-    private readonly IMemoryCacheDictionary<string, TValue> _cache;
+    private readonly IGenericMemoryCache<string, TValue> _cache;
     private readonly HashSet<TKey> _keys = new();
     private readonly SemaphoreSlim _semaphore = new(1);
 
-    public PrefixableMemoryCacheDictionary(IMemoryCacheDictionary<string, TValue> cache)
+    public PrefixableMemoryCache(IGenericMemoryCache<string, TValue> cache)
     {
         _cache = cache;
     }

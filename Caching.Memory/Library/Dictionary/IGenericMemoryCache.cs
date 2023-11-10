@@ -3,11 +3,11 @@
 namespace Woody230.Caching.Memory;
 
 /// <summary>
-/// Represents a memory cache that is typed like a dictionary.
+/// Represents a memory cache that is typed.
 /// </summary>
 /// <typeparam name="TKey">The type of key.</typeparam>
 /// <typeparam name="TValue">The type of value.</typeparam>
-public interface IMemoryCacheDictionary<TKey, TValue>
+public interface IGenericMemoryCache<TKey, TValue>
 {
     /// <summary>
     /// The keys in the cache.
