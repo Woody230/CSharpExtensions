@@ -15,9 +15,9 @@ public interface IMemoryCacheDictionary<TKey, TValue>
     public IEnumerable<TKey> Keys { get; }
 
     /// <summary>
-    /// Adds or replaces the <paramref name="key"/> <paramref name="value"/> entry in the cache.
+    /// Adds or replaces the <paramref name="key"/> <paramref name="value"/> entry in the cache with the given <paramref name="options"/>.
     /// </summary>
-    public void Set(TKey key, TValue value);
+    public void Set(TKey key, TValue value, IMemoryCacheEntryOptions options);
 
     /// <summary>
     /// Removes the value associated with the <paramref name="key"/> if it exists in the cache.

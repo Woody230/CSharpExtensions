@@ -30,14 +30,14 @@ public class MemoryCacheDictionary<TKey, TValue> : IMemoryCacheDictionary<TKey, 
     }
 
     /// <inheritdoc/>
-    public void Set(TKey key, TValue value)
+    public void Set(TKey key, TValue value, IMemoryCacheEntryOptions options)
     {
         _semaphore.Wait();
         try
         {
             _keys.Add(key);
 
-            _memoryCache.Set(key, value);
+            _memoryCache.Set(key, value, Convert(options));
         }
         finally
         {
@@ -59,5 +59,25 @@ public class MemoryCacheDictionary<TKey, TValue> : IMemoryCacheDictionary<TKey, 
         {
             _semaphore.Release();
         }
+    }
+
+    private Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions Convert(IMemoryCacheEntryOptions options)
+    {
+
+        var microsoftOptions = new Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions()
+        {
+            AbsoluteExpiration = options.AbsoluteExpiration,
+            AbsoluteExpirationRelativeToNow = options.AbsoluteExpirationRelativeToNow,
+            SlidingExpiration = options.SlidingExpiration,
+            Priority = options.Priority,
+            Size = options.Size,
+        };
+        
+        foreach (var expirationToken in options.ExpirationTokens)
+        {
+            microsoftOptions.AddExpirationToken(expirationToken);
+        }
+
+        return microsoftOptions;
     }
 }
