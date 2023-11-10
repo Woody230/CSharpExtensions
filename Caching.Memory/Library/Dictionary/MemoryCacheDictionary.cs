@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Woody230.Caching.Memory;
 
@@ -23,9 +24,9 @@ public class MemoryCacheDictionary<TKey, TValue> : IMemoryCacheDictionary<TKey, 
     public IEnumerable<TKey> Keys => _keys;
 
     /// <inheritdoc/>
-    public bool TryGetValue(TKey key, out TValue value)
+    public bool TryGetValue(TKey key, [MaybeNullWhen(false)] out TValue value)
     {
-        return !_memoryCache.TryGetValue(key, out value);
+        return _memoryCache.TryGetValue(key, out value);
     }
 
     /// <inheritdoc/>

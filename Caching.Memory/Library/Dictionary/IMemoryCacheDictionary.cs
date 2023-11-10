@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Caching.Memory;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 
 namespace Woody230.Caching.Memory;
 
@@ -18,7 +17,6 @@ public interface IMemoryCacheDictionary<TKey, TValue>
     /// <summary>
     /// Adds or replaces the <paramref name="key"/> <paramref name="value"/> entry in the cache.
     /// </summary>
-    /// <returns>The cache entry associated with the entry.</returns>
     public void Put(TKey key, TValue value);
 
     /// <summary>
