@@ -64,6 +64,7 @@
     <FluentValidationDependencyInjectionExtensionsPkgVer>11.0.0</FluentValidationDependencyInjectionExtensionsPkgVer>
     <MicroElementsSwashbuckleFluentValidationPkgVer>6.0.0-beta.3</MicroElementsSwashbuckleFluentValidationPkgVer>
     <MicrosoftAspNetCoreMvcTestingPkgVer>6.0.8</MicrosoftAspNetCoreMvcTestingPkgVer>
+    <MicrosoftExtensionsCachingAbstractionsPkgVer>6.0.0</MicrosoftExtensionsCachingAbstractionsPkgVer>
     <MicrosoftNETTestSdkPkgVer>17.5.0</MicrosoftNETTestSdkPkgVer>
     <MicrosoftSourceLinkGitHubPkgVer>1.1.1</MicrosoftSourceLinkGitHubPkgVer>
     <SwashbuckleAspNetCorePkgVer>6.4.0</SwashbuckleAspNetCorePkgVer>
