@@ -1,40 +1,35 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿namespace Woody230.Caching.Memory;
 
-namespace Woody230.Caching.Memory;
-
-/// <summary>
-/// Represents a memory cache with a prefixed key. 
-/// </summary>
-public sealed class PrefixedMemoryCache<TValue> : IPrefixableMemoryCache<string, TValue>
+/// <inheritdoc/>
+public sealed class PrefixedMemoryCache<TKey, TValue> : PrefixableMemoryCache<TKey, TValue>
 {
-    private readonly IGenericMemoryCache<string, TValue> _cache;
     private readonly string _prefix;
 
-    public PrefixedMemoryCache(IGenericMemoryCache<string, TValue> cache, string prefix)
+    public PrefixedMemoryCache(IGenericMemoryCache<string, TValue> cache, string prefix) : base(cache)
     {
-        _cache = cache;
         _prefix = prefix;
     }
 
-    public IEnumerable<string> Keys => _cache.Keys.Select(GetPrefixedKey);
-
-    public void Remove(string key)
+    public PrefixedMemoryCache(IGenericMemoryCache<string, TValue> cache) : this(cache, typeof(TValue).Name)
     {
-        var prefixedKey = GetPrefixedKey(key);
-        _cache.Remove(prefixedKey);
     }
 
-    public void Set(string key, TValue value, IMemoryCacheEntryOptions options)
+    protected override string GetPrefix(TKey key) => _prefix;
+}
+
+/// <inheritdoc/>
+public sealed class PrefixedMemoryCache<TValue> : PrefixableMemoryCache<TValue>
+{
+    private readonly string _prefix;
+
+    public PrefixedMemoryCache(IGenericMemoryCache<string, TValue> cache, string prefix): base(cache)
     {
-        var prefixedKey = GetPrefixedKey(key);
-        _cache.Set(prefixedKey, value, options);
+        _prefix = prefix;
     }
 
-    public bool TryGetValue(string key, [MaybeNullWhen(false)] out TValue value)
+    public PrefixedMemoryCache(IGenericMemoryCache<string, TValue> cache) : this(cache, typeof(TValue).Name)
     {
-        var prefixedKey = GetPrefixedKey(key);
-        return _cache.TryGetValue(prefixedKey, out value);
     }
 
-    private string GetPrefixedKey(string key) => _prefix + key;
+    protected override string GetPrefix(string key) => _prefix;
 }
