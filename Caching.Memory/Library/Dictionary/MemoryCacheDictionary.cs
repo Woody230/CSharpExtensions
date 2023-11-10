@@ -8,7 +8,7 @@ namespace Woody230.Caching.Memory;
 /// </summary>
 /// <typeparam name="TKey">The type of key.</typeparam>
 /// <typeparam name="TValue">The type of value.</typeparam>
-public class MemoryCacheDictionary<TKey, TValue> : IMemoryCacheDictionary<TKey, TValue>
+public sealed class MemoryCacheDictionary<TKey, TValue> : IMemoryCacheDictionary<TKey, TValue>
     where TKey : notnull
 {
     private readonly IMemoryCache _memoryCache;
