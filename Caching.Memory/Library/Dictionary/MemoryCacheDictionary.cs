@@ -30,15 +30,14 @@ public class MemoryCacheDictionary<TKey, TValue> : IMemoryCacheDictionary<TKey, 
     }
 
     /// <inheritdoc/>
-    public void Put(TKey key, TValue value)
+    public void Set(TKey key, TValue value)
     {
         _semaphore.Wait();
         try
         {
             _keys.Add(key);
 
-            var entry = _memoryCache.CreateEntry(key);
-            entry.Value = value;
+            _memoryCache.Set(key, value);
         }
         finally
         {

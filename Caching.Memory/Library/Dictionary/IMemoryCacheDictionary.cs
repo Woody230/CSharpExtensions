@@ -17,7 +17,7 @@ public interface IMemoryCacheDictionary<TKey, TValue>
     /// <summary>
     /// Adds or replaces the <paramref name="key"/> <paramref name="value"/> entry in the cache.
     /// </summary>
-    public void Put(TKey key, TValue value);
+    public void Set(TKey key, TValue value);
 
     /// <summary>
     /// Removes the value associated with the <paramref name="key"/> if it exists in the cache.
