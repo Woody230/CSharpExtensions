@@ -3,4 +3,4 @@
 
 # Caching.Memory
  
-Extensions for a System.Runtime.Caching.MemoryCache.
+Extensions for a Microsoft.Extensions.Caching.Memory.MemoryCache.
