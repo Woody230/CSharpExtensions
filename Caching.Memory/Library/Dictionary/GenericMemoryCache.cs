@@ -8,8 +8,7 @@ namespace Woody230.Caching.Memory;
 /// </summary>
 /// <typeparam name="TKey">The type of key.</typeparam>
 /// <typeparam name="TValue">The type of value.</typeparam>
-public sealed class GenericMemoryCache<TKey, TValue> : IGenericMemoryCache<TKey, TValue>
-    where TKey : notnull
+public sealed class GenericMemoryCache<TKey, TValue> : IGenericMemoryCache<TKey, TValue> where TKey : notnull
 {
     private readonly IMemoryCache _memoryCache;
     private readonly HashSet<TKey> _keys = new();
@@ -61,7 +60,7 @@ public sealed class GenericMemoryCache<TKey, TValue> : IGenericMemoryCache<TKey,
         }
     }
 
-    private Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions Convert(IMemoryCacheEntryOptions options)
+    private static Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions Convert(IMemoryCacheEntryOptions options)
     {
 
         var microsoftOptions = new Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions()

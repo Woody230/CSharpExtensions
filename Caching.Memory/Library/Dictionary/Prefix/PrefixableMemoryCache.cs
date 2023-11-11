@@ -5,7 +5,7 @@ namespace Woody230.Caching.Memory;
 /// <summary>
 /// Represents a memory cache with a prefixed key specific to the type of key.
 /// </summary>
-public abstract class PrefixableMemoryCache<TKey, TValue>: IPrefixableMemoryCache<TKey, TValue>
+public abstract class PrefixableMemoryCache<TKey, TValue>: IPrefixableMemoryCache<TKey, TValue> where TKey : notnull
 {
     private readonly IGenericMemoryCache<string, TValue> _cache;
     private readonly HashSet<TKey> _keys = new();
@@ -51,11 +51,9 @@ public abstract class PrefixableMemoryCache<TKey, TValue>: IPrefixableMemoryCach
     }
 
     /// <summary>
-    /// Gets the prefix associated with the <paramref name="key"/>.
+    /// Gets the prefixed string key associated with the <paramref name="key"/>.
     /// </summary>
-    protected abstract string GetPrefix(TKey key);
-
-    private string GetPrefixedKey(TKey key) => GetPrefix(key) + key;
+    protected abstract string GetPrefixedKey(TKey key);
 }
 
 /// <summary>
@@ -91,9 +89,7 @@ public abstract class PrefixableMemoryCache<TValue> : IPrefixableMemoryCache<str
     }
 
     /// <summary>
-    /// Gets the prefix associated with the <paramref name="key"/>.
+    /// Gets the prefixed key associated with the <paramref name="key"/>.
     /// </summary>
-    protected abstract string GetPrefix(string key);
-
-    private string GetPrefixedKey(string key) => GetPrefix(key) + key;
+    protected abstract string GetPrefixedKey(string key);
 }

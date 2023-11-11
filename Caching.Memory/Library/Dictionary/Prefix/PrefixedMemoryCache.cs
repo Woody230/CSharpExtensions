@@ -1,7 +1,9 @@
 ﻿namespace Woody230.Caching.Memory;
 
-/// <inheritdoc/>
-public sealed class PrefixedMemoryCache<TKey, TValue> : PrefixableMemoryCache<TKey, TValue>
+/// <summary>
+/// Represents a memory cache with a constant
+/// </summary>
+public sealed class PrefixedMemoryCache<TKey, TValue> : PrefixableMemoryCache<TKey, TValue> where TKey : notnull
 {
     private readonly string _prefix;
 
@@ -14,7 +16,7 @@ public sealed class PrefixedMemoryCache<TKey, TValue> : PrefixableMemoryCache<TK
     {
     }
 
-    protected override string GetPrefix(TKey key) => _prefix;
+    protected override string GetPrefixedKey(TKey key) => _prefix + key;
 }
 
 /// <inheritdoc/>
@@ -31,5 +33,5 @@ public sealed class PrefixedMemoryCache<TValue> : PrefixableMemoryCache<TValue>
     {
     }
 
-    protected override string GetPrefix(string key) => _prefix;
+    protected override string GetPrefixedKey(string key) => _prefix + key;
 }
