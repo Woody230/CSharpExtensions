@@ -3,67 +3,13 @@
 namespace Woody230.Caching.Memory;
 
 /// <summary>
-/// Represents a memory cache with a morpheme attached to the key.
-/// </summary>
-public abstract class AffixableMemoryCache<TKey, TValue>: IAffixableMemoryCache<TKey, TValue> where TKey : notnull
-{
-    private readonly IGenericMemoryCache<string, TValue> _cache;
-    private readonly HashSet<TKey> _keys = new();
-    private readonly SemaphoreSlim _semaphore = new(1);
-
-    public AffixableMemoryCache(IGenericMemoryCache<string, TValue> cache)
-    {
-        _cache = cache;
-    }
-
-    /// <inheritdoc/>
-    public IEnumerable<TKey> Keys => _keys;
-
-    /// <inheritdoc/>
-    public void Remove(TKey key)
-    {
-        var affixedKey = GetAffixedKey(key);
-
-        _semaphore.Wait();
-        try
-        {
-            _keys.Add(key);
-            _cache.Remove(affixedKey);
-        }
-        finally
-        {
-            _semaphore.Release();
-        }
-    }
-
-    /// <inheritdoc/>
-    public void Set(TKey key, TValue value, IMemoryCacheEntryOptions options)
-    {
-        var affixedKey = GetAffixedKey(key);
-        _cache.Set(affixedKey, value, options);
-    }
-
-    /// <inheritdoc/>
-    public bool TryGetValue(TKey key, [MaybeNullWhen(false)] out TValue value)
-    {
-        var affixedKey = GetAffixedKey(key);
-        return _cache.TryGetValue(affixedKey, out value);
-    }
-
-    /// <summary>
-    /// Gets the affixed string key associated with the <paramref name="key"/>.
-    /// </summary>
-    protected abstract string GetAffixedKey(TKey key);
-}
-
-/// <summary>
 /// Represents a memory cache with a morpheme attached to the key. 
 /// </summary>
-public abstract class PrefixableMemoryCache<TValue> : IAffixableMemoryCache<string, TValue>
+public abstract class AffixableMemoryCache<TValue> : IAffixableMemoryCache<TValue>
 {
     private readonly IGenericMemoryCache<string, TValue> _cache;
 
-    public PrefixableMemoryCache(IGenericMemoryCache<string, TValue> cache)
+    public AffixableMemoryCache(IGenericMemoryCache<string, TValue> cache)
     {
         _cache = cache;
     }

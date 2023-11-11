@@ -3,6 +3,6 @@
 /// <summary>
 /// Represents a memory cache with a morpheme attached to the key.
 /// </summary>
-public interface IAffixableMemoryCache<TKey, TValue>: IGenericMemoryCache<TKey, TValue>
+public interface IAffixableMemoryCache<TValue>: IGenericMemoryCache<string, TValue>
 {
 }
