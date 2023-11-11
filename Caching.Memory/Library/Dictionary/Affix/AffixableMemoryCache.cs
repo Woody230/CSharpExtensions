@@ -3,15 +3,15 @@
 namespace Woody230.Caching.Memory;
 
 /// <summary>
-/// Represents a memory cache with a prefixed key specific to the type of key.
+/// Represents a memory cache with a morpheme attached to the key.
 /// </summary>
-public abstract class PrefixableMemoryCache<TKey, TValue>: IPrefixableMemoryCache<TKey, TValue> where TKey : notnull
+public abstract class AffixableMemoryCache<TKey, TValue>: IAffixableMemoryCache<TKey, TValue> where TKey : notnull
 {
     private readonly IGenericMemoryCache<string, TValue> _cache;
     private readonly HashSet<TKey> _keys = new();
     private readonly SemaphoreSlim _semaphore = new(1);
 
-    public PrefixableMemoryCache(IGenericMemoryCache<string, TValue> cache)
+    public AffixableMemoryCache(IGenericMemoryCache<string, TValue> cache)
     {
         _cache = cache;
     }
@@ -22,13 +22,13 @@ public abstract class PrefixableMemoryCache<TKey, TValue>: IPrefixableMemoryCach
     /// <inheritdoc/>
     public void Remove(TKey key)
     {
-        var prefixedKey = GetPrefixedKey(key);
+        var affixedKey = GetAffixedKey(key);
 
         _semaphore.Wait();
         try
         {
             _keys.Add(key);
-            _cache.Remove(prefixedKey);
+            _cache.Remove(affixedKey);
         }
         finally
         {
@@ -39,27 +39,27 @@ public abstract class PrefixableMemoryCache<TKey, TValue>: IPrefixableMemoryCach
     /// <inheritdoc/>
     public void Set(TKey key, TValue value, IMemoryCacheEntryOptions options)
     {
-        var prefixedKey = GetPrefixedKey(key);
-        _cache.Set(prefixedKey, value, options);
+        var affixedKey = GetAffixedKey(key);
+        _cache.Set(affixedKey, value, options);
     }
 
     /// <inheritdoc/>
     public bool TryGetValue(TKey key, [MaybeNullWhen(false)] out TValue value)
     {
-        var prefixedKey = GetPrefixedKey(key);
-        return _cache.TryGetValue(prefixedKey, out value);
+        var affixedKey = GetAffixedKey(key);
+        return _cache.TryGetValue(affixedKey, out value);
     }
 
     /// <summary>
-    /// Gets the prefixed string key associated with the <paramref name="key"/>.
+    /// Gets the affixed string key associated with the <paramref name="key"/>.
     /// </summary>
-    protected abstract string GetPrefixedKey(TKey key);
+    protected abstract string GetAffixedKey(TKey key);
 }
 
 /// <summary>
-/// Represents a memory cache with a prefixed key. 
+/// Represents a memory cache with a morpheme attached to the key. 
 /// </summary>
-public abstract class PrefixableMemoryCache<TValue> : IPrefixableMemoryCache<string, TValue>
+public abstract class PrefixableMemoryCache<TValue> : IAffixableMemoryCache<string, TValue>
 {
     private readonly IGenericMemoryCache<string, TValue> _cache;
 
@@ -68,28 +68,28 @@ public abstract class PrefixableMemoryCache<TValue> : IPrefixableMemoryCache<str
         _cache = cache;
     }
 
-    public IEnumerable<string> Keys => _cache.Keys.Select(GetPrefixedKey);
+    public IEnumerable<string> Keys => _cache.Keys.Select(GetAffixedKey);
 
     public void Remove(string key)
     {
-        var prefixedKey = GetPrefixedKey(key);
-        _cache.Remove(prefixedKey);
+        var affixedKey = GetAffixedKey(key);
+        _cache.Remove(affixedKey);
     }
 
     public void Set(string key, TValue value, IMemoryCacheEntryOptions options)
     {
-        var prefixedKey = GetPrefixedKey(key);
-        _cache.Set(prefixedKey, value, options);
+        var affixedKey = GetAffixedKey(key);
+        _cache.Set(affixedKey, value, options);
     }
 
     public bool TryGetValue(string key, [MaybeNullWhen(false)] out TValue value)
     {
-        var prefixedKey = GetPrefixedKey(key);
-        return _cache.TryGetValue(prefixedKey, out value);
+        var affixedKey = GetAffixedKey(key);
+        return _cache.TryGetValue(affixedKey, out value);
     }
 
     /// <summary>
-    /// Gets the prefixed key associated with the <paramref name="key"/>.
+    /// Gets the affixed key associated with the <paramref name="key"/>.
     /// </summary>
-    protected abstract string GetPrefixedKey(string key);
+    protected abstract string GetAffixedKey(string key);
 }
