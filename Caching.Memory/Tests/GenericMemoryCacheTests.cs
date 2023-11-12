@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Primitives;
+using Moq;
 
 namespace Woody230.Caching.Memory.Tests;
 
@@ -16,7 +18,6 @@ public class GenericMemoryCacheTests
         _genericCache = new GenericMemoryCache<string, int>(_memoryCache);
     }
 
-
     [Fact]
     public void Add_DoesNotExist()
     {
@@ -31,6 +32,44 @@ public class GenericMemoryCacheTests
         intValue.Should().Be(99);
 
         _genericCache.Keys.Should().BeEquivalentTo(new List<string>() { "Foo" });
+    }
+
+    [Fact]
+    public void Add_SetsEntryOptions()
+    {
+        // Arrange
+        var mockMemoryCache = new Mock<IMemoryCache>();
+
+        var mockCacheEntry = new Mock<ICacheEntry>();
+        var mockCacheEntryTokens = new List<IChangeToken>();
+        mockCacheEntry.SetupGet(entry => entry.ExpirationTokens).Returns(mockCacheEntryTokens);
+
+        var mockChangeToken = new Mock<IChangeToken>();
+
+        var genericCache = new GenericMemoryCache<string, int>(mockMemoryCache.Object);
+
+        mockMemoryCache.Setup(cache => cache.CreateEntry("Foo")).Returns(mockCacheEntry.Object);
+
+        // Act
+        genericCache.Set("Foo", 99, new MemoryCacheEntryOptions()
+        {
+            AbsoluteExpiration = new DateTime(2015, 5, 6),
+            AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(1),
+            ExpirationTokens = new List<IChangeToken>() { mockChangeToken.Object },
+            Priority = CacheItemPriority.NeverRemove,
+            Size = 1234,
+            SlidingExpiration = TimeSpan.FromMinutes(30)
+        });
+
+        // Assert
+        mockMemoryCache.Verify(cache => cache.CreateEntry("Foo"), Times.Once);
+
+        mockCacheEntry.VerifySet(entry => entry.AbsoluteExpiration = new DateTime(2015, 5, 6));
+        mockCacheEntry.VerifySet(entry => entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(1));
+        mockCacheEntryTokens.Should().BeEquivalentTo(new List<IChangeToken>() { mockChangeToken.Object });
+        mockCacheEntry.VerifySet(entry => entry.Priority = CacheItemPriority.NeverRemove);
+        mockCacheEntry.VerifySet(entry => entry.Size = 1234);
+        mockCacheEntry.VerifySet(entry => entry.SlidingExpiration = TimeSpan.FromMinutes(30));
     }
 
     [Fact]
