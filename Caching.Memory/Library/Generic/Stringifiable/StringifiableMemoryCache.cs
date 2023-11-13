@@ -5,7 +5,7 @@ namespace Woody230.Caching.Memory;
 /// <summary>
 /// Represents a memory cache where the key is converted to a string.
 /// </summary>
-public abstract class StringifiableMemoryCache<TKey, TValue> : IStringifiableMemoryCache<TKey, TValue> where TKey : notnull
+public abstract class StringifiableMemoryCache<TKey, TValue> : IGenericMemoryCache<TKey, TValue> where TKey : notnull
 {
     private readonly IGenericMemoryCache<string, TValue> _cache;
     private readonly HashSet<TKey> _keys = new();
