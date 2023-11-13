@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Primitives;
 using Moq;
 
-namespace Woody230.Caching.Memory.Tests;
+namespace Woody230.Caching.Memory.Tests.Unit;
 
 /// <summary>
 /// Represents tests for the <see cref="GenericMemoryCacheTests{TKey, TValue}"/>
