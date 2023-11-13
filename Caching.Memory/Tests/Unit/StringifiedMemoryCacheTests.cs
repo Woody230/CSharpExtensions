@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Primitives;
-using Moq;
 
 namespace Woody230.Caching.Memory.Tests.Unit;
 
