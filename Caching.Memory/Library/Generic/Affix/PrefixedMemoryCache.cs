@@ -17,4 +17,5 @@ public sealed class PrefixedMemoryCache<TValue> : AffixableMemoryCache<TValue>
     }
 
     protected override string GetAffixedKey(string key) => _prefix + key;
+    protected override string GetUnaffixedKey(string key) => key.Substring(_prefix.Length);
 }

@@ -34,7 +34,8 @@ public class PrefixedMemoryCacheTests
         _prefixedCache.TryGetValue("Foo", out int intValue).Should().BeTrue();
         intValue.Should().Be(99);
 
-        _prefixedCache.Keys.Should().BeEquivalentTo(new List<string>() { $"{_prefix}Foo" });
+        _prefixedCache.AffixedKeys.Should().BeEquivalentTo(new List<string>() { $"{_prefix}Foo" });
+        _prefixedCache.UnaffixedKeys.Should().BeEquivalentTo(new List<string>() { "Foo" });
     }
 
     [Fact]
@@ -92,7 +93,8 @@ public class PrefixedMemoryCacheTests
         _prefixedCache.TryGetValue($"Foo", out int intValue).Should().BeTrue();
         intValue.Should().Be(99);
 
-        _prefixedCache.Keys.Should().BeEquivalentTo(new List<string>() { $"{_prefix}Foo" });
+        _prefixedCache.AffixedKeys.Should().BeEquivalentTo(new List<string>() { $"{_prefix}Foo" });
+        _prefixedCache.UnaffixedKeys.Should().BeEquivalentTo(new List<string>() { "Foo" });
     }
 
     [Fact]
@@ -105,7 +107,8 @@ public class PrefixedMemoryCacheTests
         _prefixedCache.Remove("Foo");
 
         // Assert
-        _prefixedCache.Keys.Should().BeEquivalentTo(new List<string>() { $"{_prefix}Bar" });
+        _prefixedCache.AffixedKeys.Should().BeEquivalentTo(new List<string>() { $"{_prefix}Bar" });
+        _prefixedCache.UnaffixedKeys.Should().BeEquivalentTo(new List<string>() { "Bar" });
     }
 
     [Fact]
@@ -118,7 +121,8 @@ public class PrefixedMemoryCacheTests
         _prefixedCache.Remove("Foo");
 
         // Assert
-        _prefixedCache.Keys.Should().BeEmpty();
+        _prefixedCache.AffixedKeys.Should().BeEmpty();
+        _prefixedCache.UnaffixedKeys.Should().BeEmpty();
     }
 
     [Fact]
@@ -137,6 +141,7 @@ public class PrefixedMemoryCacheTests
         prefixedCache.TryGetValue("Foo", out int intValue).Should().BeTrue();
         intValue.Should().Be(99);
 
-        prefixedCache.Keys.Should().BeEquivalentTo(new List<string>() { "Int32-Foo" });
+        prefixedCache.AffixedKeys.Should().BeEquivalentTo(new List<string>() { "Int32-Foo" });
+        prefixedCache.UnaffixedKeys.Should().BeEquivalentTo(new List<string>() { "Foo" });
     }
 }

@@ -5,7 +5,7 @@ namespace Woody230.Caching.Memory;
 /// <summary>
 /// Represents a memory cache with a morpheme attached to the key. 
 /// </summary>
-public abstract class AffixableMemoryCache<TValue> : IGenericMemoryCache<string, TValue>
+public abstract class AffixableMemoryCache<TValue> : IAffixableMemoryCache<TValue>
 {
     private readonly IGenericMemoryCache<string, TValue> _cache;
 
@@ -14,7 +14,8 @@ public abstract class AffixableMemoryCache<TValue> : IGenericMemoryCache<string,
         _cache = cache;
     }
 
-    public IEnumerable<string> Keys => _cache.Keys;
+    public IEnumerable<string> AffixedKeys => _cache.Keys;
+    public IEnumerable<string> UnaffixedKeys => _cache.Keys.Select(GetUnaffixedKey);
 
     public void Remove(string key)
     {
@@ -35,7 +36,12 @@ public abstract class AffixableMemoryCache<TValue> : IGenericMemoryCache<string,
     }
 
     /// <summary>
-    /// Gets the affixed key associated with the <paramref name="key"/>.
+    /// Gets the <paramref name="key"/> with the affix.
     /// </summary>
     protected abstract string GetAffixedKey(string key);
+
+    /// <summary>
+    /// Gets the <paramref name="key"/> without the affix.
+    /// </summary>
+    protected abstract string GetUnaffixedKey(string key);
 }
