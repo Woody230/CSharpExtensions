@@ -14,7 +14,7 @@ public abstract class AffixableMemoryCache<TValue> : IGenericMemoryCache<string,
         _cache = cache;
     }
 
-    public IEnumerable<string> Keys => _cache.Keys.Select(GetAffixedKey);
+    public IEnumerable<string> Keys => _cache.Keys;
 
     public void Remove(string key)
     {
