@@ -27,7 +27,8 @@ public abstract class StringifiableMemoryCache<TKey, TValue> : IGenericMemoryCac
         _semaphore.Wait();
         try
         {
-            _keys.Add(key);
+            _keys.Remove(key);
+
             _cache.Remove(stringifiedKey);
         }
         finally
@@ -40,7 +41,18 @@ public abstract class StringifiableMemoryCache<TKey, TValue> : IGenericMemoryCac
     public void Set(TKey key, TValue value, IMemoryCacheEntryOptions options)
     {
         var stringifiedKey = Stringify(key);
-        _cache.Set(stringifiedKey, value, options);
+
+        _semaphore.Wait();
+        try
+        {
+            _keys.Add(key);
+
+            _cache.Set(stringifiedKey, value, options);
+        } 
+        finally
+        {
+            _semaphore.Release();
+        }
     }
 
     /// <inheritdoc/>

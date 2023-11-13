@@ -5,7 +5,7 @@ using Moq;
 namespace Woody230.Caching.Memory.Tests.Unit;
 
 /// <summary>
-/// Represents tests for the <see cref="PrefixedMemoryCacheTests{TKey, TValue}"/>
+/// Represents tests for the <see cref="PrefixedMemoryCache{TValue}"/>
 /// </summary>
 public class PrefixedMemoryCacheTests
 {
