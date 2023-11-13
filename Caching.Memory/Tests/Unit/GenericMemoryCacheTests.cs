@@ -172,6 +172,16 @@ public class GenericMemoryCacheTests
     }
 
     [Fact]
+    public void GetOrCreate_SetsEntryOptions()
+    {
+        // Act
+        _mockGenericCache.GetOrCreate("Foo", _entryOptions, () => 5);
+
+        // Assert
+        AssertEntryOptions();
+    }
+
+    [Fact]
     public void GetOrCreate_NoEntryOptions_DoesNotExist()
     {
         // Act
@@ -194,6 +204,16 @@ public class GenericMemoryCacheTests
 
         // Assert
         value.Should().Be(99);
+    }
+
+    [Fact]
+    public void GetOrCreate_NoEntryOptions_SetsNoEntryOptions()
+    {
+        // Act
+        _mockGenericCache.GetOrCreate("Foo", () => 5);
+
+        // Assert
+        AssertNoEntryOptions();
     }
 
     #endregion Extensions
