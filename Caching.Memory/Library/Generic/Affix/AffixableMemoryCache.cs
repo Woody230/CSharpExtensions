@@ -14,21 +14,27 @@ public abstract class AffixableMemoryCache<TValue> : IAffixableMemoryCache<TValu
         _cache = cache;
     }
 
+    /// <inheritdoc/>
     public IEnumerable<string> AffixedKeys => _cache.Keys;
+
+    /// <inheritdoc/>
     public IEnumerable<string> UnaffixedKeys => _cache.Keys.Select(GetUnaffixedKey);
 
+    /// <inheritdoc/>
     public void Remove(string key)
     {
         var affixedKey = GetAffixedKey(key);
         _cache.Remove(affixedKey);
     }
 
+    /// <inheritdoc/>
     public void Set(string key, TValue value, IMemoryCacheEntryOptions options)
     {
         var affixedKey = GetAffixedKey(key);
         _cache.Set(affixedKey, value, options);
     }
 
+    /// <inheritdoc/>
     public bool TryGetValue(string key, [MaybeNullWhen(false)] out TValue value)
     {
         var affixedKey = GetAffixedKey(key);
