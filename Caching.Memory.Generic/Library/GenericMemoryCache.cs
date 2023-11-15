@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Woody230.Caching.Memory;
+namespace Woody230.Caching.Memory.Generic;
 
 /// <summary>
 /// Represents a memory cache that is typed.
@@ -29,7 +29,7 @@ public sealed class GenericMemoryCache<TKey, TValue> : IGenericMemoryCache<TKey,
     }
 
     /// <inheritdoc/>
-    public void Set(TKey key, TValue value, IMemoryCacheEntryOptions options)
+    public void Set(TKey key, TValue value, IGenericMemoryCacheEntryOptions options)
     {
         _semaphore.Wait();
         try
@@ -60,10 +60,9 @@ public sealed class GenericMemoryCache<TKey, TValue> : IGenericMemoryCache<TKey,
         }
     }
 
-    private static Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions Convert(IMemoryCacheEntryOptions options)
+    private static MemoryCacheEntryOptions Convert(IGenericMemoryCacheEntryOptions options)
     {
-
-        var microsoftOptions = new Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions()
+        var microsoftOptions = new MemoryCacheEntryOptions()
         {
             AbsoluteExpiration = options.AbsoluteExpiration,
             AbsoluteExpirationRelativeToNow = options.AbsoluteExpirationRelativeToNow,

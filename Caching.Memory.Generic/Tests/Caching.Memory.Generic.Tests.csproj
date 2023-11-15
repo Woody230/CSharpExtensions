@@ -4,6 +4,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Internal\Tests\Internal.Tests.csproj" />
-    <ProjectReference Include="..\Library\Caching.Memory.Library.csproj" />
+    <ProjectReference Include="..\Library\Caching.Memory.Generic.Library.csproj" />
   </ItemGroup>
 </Project>

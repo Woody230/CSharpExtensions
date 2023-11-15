@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Woody230.Caching.Memory;
+namespace Woody230.Caching.Memory.Generic;
 
 /// <summary>
 /// Represents a memory cache that is generically typed.
@@ -15,7 +15,7 @@ public interface IGenericMemoryCache<TKey, TValue> where TKey: notnull
     /// <summary>
     /// Adds or replaces the <paramref name="key"/> <paramref name="value"/> entry in the cache with the given <paramref name="options"/>.
     /// </summary>
-    public void Set(TKey key, TValue value, IMemoryCacheEntryOptions options);
+    public void Set(TKey key, TValue value, IGenericMemoryCacheEntryOptions options);
 
     /// <summary>
     /// Removes the value associated with the <paramref name="key"/> if it exists in the cache.

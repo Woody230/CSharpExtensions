@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Woody230.Caching.Memory;
+namespace Woody230.Caching.Memory.Generic;
 
 /// <summary>
 /// Represents a memory cache with a morpheme attached to the key. 
@@ -28,7 +28,7 @@ public abstract class AffixableMemoryCache<TValue> : IAffixableMemoryCache<TValu
     }
 
     /// <inheritdoc/>
-    public void Set(string key, TValue value, IMemoryCacheEntryOptions options)
+    public void Set(string key, TValue value, IGenericMemoryCacheEntryOptions options)
     {
         var affixedKey = GetAffixedKey(key);
         _cache.Set(affixedKey, value, options);

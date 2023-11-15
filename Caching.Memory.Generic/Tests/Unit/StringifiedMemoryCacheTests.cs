@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Primitives;
 
-namespace Woody230.Caching.Memory.Tests.Unit;
+namespace Woody230.Caching.Memory.Generic.Tests.Unit;
 
 /// <summary>
 /// Represents tests for the <see cref="StringifiedMemoryCache{TKey, TValue}"/>
@@ -30,7 +30,7 @@ public class StringifiedMemoryCacheTests
     public void Add_DoesNotExist()
     {
         // Act
-        _stringifiedCache.Set(Flag.Second, 99, new MemoryCacheEntryOptions());
+        _stringifiedCache.Set(Flag.Second, 99, new GenericMemoryCacheEntryOptions());
 
         // Assert
         _memoryCache.TryGetValue("Second", out object objectValue).Should().BeTrue();
@@ -60,7 +60,7 @@ public class StringifiedMemoryCacheTests
         mockMemoryCache.Setup(cache => cache.CreateEntry("Second")).Returns(mockCacheEntry.Object);
 
         // Act
-        stringifiedCache.Set(Flag.Second, 99, new MemoryCacheEntryOptions()
+        stringifiedCache.Set(Flag.Second, 99, new GenericMemoryCacheEntryOptions()
         {
             AbsoluteExpiration = new DateTime(2015, 5, 6),
             AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(1),
@@ -85,10 +85,10 @@ public class StringifiedMemoryCacheTests
     public void Add_Exists()
     {
         // Arrange
-        _stringifiedCache.Set(Flag.Second, 45, new MemoryCacheEntryOptions());
+        _stringifiedCache.Set(Flag.Second, 45, new GenericMemoryCacheEntryOptions());
 
         // Act
-        _stringifiedCache.Set(Flag.Second, 99, new MemoryCacheEntryOptions());
+        _stringifiedCache.Set(Flag.Second, 99, new GenericMemoryCacheEntryOptions());
 
         // Assert
         _memoryCache.TryGetValue("Second", out object objectValue).Should().BeTrue();
@@ -104,7 +104,7 @@ public class StringifiedMemoryCacheTests
     public void Remove_DoesNotExist()
     {
         // Arrange
-        _stringifiedCache.Set(Flag.Third, 99, new MemoryCacheEntryOptions());
+        _stringifiedCache.Set(Flag.Third, 99, new GenericMemoryCacheEntryOptions());
 
         // Act
         _stringifiedCache.Remove(Flag.Second);
@@ -117,7 +117,7 @@ public class StringifiedMemoryCacheTests
     public void Remove_Exists()
     {
         // Arrange
-        _stringifiedCache.Set(Flag.Second, 123, new MemoryCacheEntryOptions());
+        _stringifiedCache.Set(Flag.Second, 123, new GenericMemoryCacheEntryOptions());
 
         // Act
         _stringifiedCache.Remove(Flag.Second);
@@ -133,7 +133,7 @@ public class StringifiedMemoryCacheTests
         var stringifiedCache = new StringifiedMemoryCache<Flag, int>(_genericCache, (flag) => flag.ToString() + "-" + (int)flag);
 
         // Act
-        stringifiedCache.Set(Flag.Second, 99, new MemoryCacheEntryOptions());
+        stringifiedCache.Set(Flag.Second, 99, new GenericMemoryCacheEntryOptions());
 
         // Assert
         _memoryCache.TryGetValue("Second-1", out object objectValue).Should().BeTrue();

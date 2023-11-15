@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Woody230.Caching.Memory;
+namespace Woody230.Caching.Memory.Generic;
 
 /// <summary>
 /// Represents a memory cache where the key is converted to a string.
@@ -38,7 +38,7 @@ public abstract class StringifiableMemoryCache<TKey, TValue> : IGenericMemoryCac
     }
 
     /// <inheritdoc/>
-    public void Set(TKey key, TValue value, IMemoryCacheEntryOptions options)
+    public void Set(TKey key, TValue value, IGenericMemoryCacheEntryOptions options)
     {
         var stringifiedKey = Stringify(key);
 

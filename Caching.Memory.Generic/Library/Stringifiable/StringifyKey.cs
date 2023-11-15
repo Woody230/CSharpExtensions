@@ -1,4 +1,4 @@
-﻿namespace Woody230.Caching.Memory;
+﻿namespace Woody230.Caching.Memory.Generic;
 
 /// <summary>
 /// Converts the key to a string.

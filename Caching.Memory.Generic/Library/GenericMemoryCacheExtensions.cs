@@ -1,4 +1,4 @@
-﻿namespace Woody230.Caching.Memory;
+﻿namespace Woody230.Caching.Memory.Generic;
 
 /// <summary>
 /// Represents extensions for a <see cref="IGenericMemoryCache{TKey, TValue}"/>
@@ -21,13 +21,13 @@ public static class GenericMemoryCacheExtensions
     /// </summary>
     public static void Set<TKey, TValue>(this IGenericMemoryCache<TKey, TValue> @this, TKey key, TValue value) where TKey : notnull
     {
-        @this.Set(key, value, new MemoryCacheEntryOptions());
+        @this.Set(key, value, new GenericMemoryCacheEntryOptions());
     }
 
     /// <summary>
     /// Gets the value associated with the <paramref name="key"/>, otherwise uses the value from <paramref name="createValue"/> and stores it in the cache with the given <paramref name="options"/>.
     /// </summary>
-    public static TValue GetOrCreate<TKey, TValue>(this IGenericMemoryCache<TKey, TValue> @this, TKey key, IMemoryCacheEntryOptions options, Func<TValue> createValue) where TKey : notnull
+    public static TValue GetOrCreate<TKey, TValue>(this IGenericMemoryCache<TKey, TValue> @this, TKey key, IGenericMemoryCacheEntryOptions options, Func<TValue> createValue) where TKey : notnull
     {
         if (@this.TryGetValue(key, out var value))
         {
@@ -44,6 +44,6 @@ public static class GenericMemoryCacheExtensions
     /// </summary>
     public static TValue GetOrCreate<TKey, TValue>(this IGenericMemoryCache<TKey, TValue> @this, TKey key, Func<TValue> createValue) where TKey : notnull
     {
-        return GetOrCreate(@this, key, new MemoryCacheEntryOptions(), createValue);
+        return GetOrCreate(@this, key, new GenericMemoryCacheEntryOptions(), createValue);
     }
 }

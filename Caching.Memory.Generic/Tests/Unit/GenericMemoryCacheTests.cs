@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Primitives;
 
-namespace Woody230.Caching.Memory.Tests.Unit;
+namespace Woody230.Caching.Memory.Generic.Tests.Unit;
 
 /// <summary>
 /// Represents tests for the <see cref="GenericMemoryCacheTests{TKey, TValue}"/>
@@ -17,7 +17,7 @@ public class GenericMemoryCacheTests
     private readonly Mock<IChangeToken> _mockChangeToken;
     private readonly IGenericMemoryCache<string, int> _mockGenericCache;
 
-    private readonly IMemoryCacheEntryOptions _entryOptions;
+    private readonly IGenericMemoryCacheEntryOptions _entryOptions;
 
     public GenericMemoryCacheTests()
     {
@@ -32,7 +32,7 @@ public class GenericMemoryCacheTests
         _mockCacheEntry.SetupGet(entry => entry.ExpirationTokens).Returns(_changeTokens);
         _mockMemoryCache.Setup(cache => cache.CreateEntry(It.IsAny<string>())).Returns(_mockCacheEntry.Object);
 
-        _entryOptions = new MemoryCacheEntryOptions()
+        _entryOptions = new GenericMemoryCacheEntryOptions()
         {
             AbsoluteExpiration = new DateTime(2015, 5, 6),
             AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(1),
@@ -47,7 +47,7 @@ public class GenericMemoryCacheTests
     public void Set_DoesNotExist()
     {
         // Act
-        _genericCache.Set("Foo", 99, new MemoryCacheEntryOptions());
+        _genericCache.Set("Foo", 99, new GenericMemoryCacheEntryOptions());
 
         // Assert
         _memoryCache.TryGetValue("Foo", out object objectValue).Should().BeTrue();
@@ -75,10 +75,10 @@ public class GenericMemoryCacheTests
     public void Set_Exists()
     {
         // Arrange
-        _genericCache.Set("Foo", 45, new MemoryCacheEntryOptions());
+        _genericCache.Set("Foo", 45, new GenericMemoryCacheEntryOptions());
 
         // Act
-        _genericCache.Set("Foo", 99, new MemoryCacheEntryOptions());
+        _genericCache.Set("Foo", 99, new GenericMemoryCacheEntryOptions());
 
         // Assert
         _memoryCache.TryGetValue("Foo", out object objectValue).Should().BeTrue();
@@ -94,7 +94,7 @@ public class GenericMemoryCacheTests
     public void Remove_DoesNotExist()
     {
         // Arrange
-        _genericCache.Set("Bar", 99, new MemoryCacheEntryOptions());
+        _genericCache.Set("Bar", 99, new GenericMemoryCacheEntryOptions());
 
         // Act
         _genericCache.Remove("Foo");
@@ -107,7 +107,7 @@ public class GenericMemoryCacheTests
     public void Remove_Exists()
     {
         // Arrange
-        _genericCache.Set("Foo", 123, new MemoryCacheEntryOptions());
+        _genericCache.Set("Foo", 123, new GenericMemoryCacheEntryOptions());
 
         // Act
         _genericCache.Remove("Foo");
@@ -122,8 +122,8 @@ public class GenericMemoryCacheTests
     public void Clear()
     {
         // Arrange
-        _genericCache.Set("Foo", 123, new MemoryCacheEntryOptions());
-        _genericCache.Set("Bar", 456, new MemoryCacheEntryOptions());
+        _genericCache.Set("Foo", 123, new GenericMemoryCacheEntryOptions());
+        _genericCache.Set("Bar", 456, new GenericMemoryCacheEntryOptions());
 
         // Act
         _genericCache.Clear();

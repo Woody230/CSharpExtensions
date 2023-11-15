@@ -1,12 +1,12 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Primitives;
 
-namespace Woody230.Caching.Memory;
+namespace Woody230.Caching.Memory.Generic;
 
 /// <summary>
 /// Represents the cache options applied to an entry of the <see cref="IMemoryCache"/> instance.
 /// </summary>
-public interface IMemoryCacheEntryOptions
+public interface IGenericMemoryCacheEntryOptions
 {
     /// <summary>
     /// The absolute expiration date for the cache entry.

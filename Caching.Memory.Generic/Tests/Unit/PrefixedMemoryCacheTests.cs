@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Primitives;
 
-namespace Woody230.Caching.Memory.Tests.Unit;
+namespace Woody230.Caching.Memory.Generic.Tests.Unit;
 
 /// <summary>
 /// Represents tests for the <see cref="PrefixedMemoryCache{TValue}"/>
@@ -24,7 +24,7 @@ public class PrefixedMemoryCacheTests
     public void Add_DoesNotExist()
     {
         // Act
-        _prefixedCache.Set("Foo", 99, new MemoryCacheEntryOptions());
+        _prefixedCache.Set("Foo", 99, new GenericMemoryCacheEntryOptions());
 
         // Assert
         _memoryCache.TryGetValue($"{_prefix}Foo", out object objectValue).Should().BeTrue();
@@ -55,7 +55,7 @@ public class PrefixedMemoryCacheTests
         mockMemoryCache.Setup(cache => cache.CreateEntry($"{_prefix}Foo")).Returns(mockCacheEntry.Object);
 
         // Act
-        prefixedCache.Set("Foo", 99, new MemoryCacheEntryOptions()
+        prefixedCache.Set("Foo", 99, new GenericMemoryCacheEntryOptions()
         {
             AbsoluteExpiration = new DateTime(2015, 5, 6),
             AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(1),
@@ -80,10 +80,10 @@ public class PrefixedMemoryCacheTests
     public void Add_Exists()
     {
         // Arrange
-        _prefixedCache.Set("Foo", 45, new MemoryCacheEntryOptions());
+        _prefixedCache.Set("Foo", 45, new GenericMemoryCacheEntryOptions());
 
         // Act
-        _prefixedCache.Set("Foo", 99, new MemoryCacheEntryOptions());
+        _prefixedCache.Set("Foo", 99, new GenericMemoryCacheEntryOptions());
 
         // Assert
         _memoryCache.TryGetValue($"{_prefix}Foo", out object objectValue).Should().BeTrue();
@@ -100,7 +100,7 @@ public class PrefixedMemoryCacheTests
     public void Remove_DoesNotExist()
     {
         // Arrange
-        _prefixedCache.Set("Bar", 99, new MemoryCacheEntryOptions());
+        _prefixedCache.Set("Bar", 99, new GenericMemoryCacheEntryOptions());
 
         // Act
         _prefixedCache.Remove("Foo");
@@ -114,7 +114,7 @@ public class PrefixedMemoryCacheTests
     public void Remove_Exists()
     {
         // Arrange
-        _prefixedCache.Set("Foo", 123, new MemoryCacheEntryOptions());
+        _prefixedCache.Set("Foo", 123, new GenericMemoryCacheEntryOptions());
 
         // Act
         _prefixedCache.Remove("Foo");
@@ -131,7 +131,7 @@ public class PrefixedMemoryCacheTests
         var prefixedCache = new PrefixedMemoryCache<int>(_genericCache);
 
         // Act
-        prefixedCache.Set("Foo", 99, new MemoryCacheEntryOptions());
+        prefixedCache.Set("Foo", 99, new GenericMemoryCacheEntryOptions());
 
         // Assert
         _memoryCache.TryGetValue($"Int32-Foo", out object objectValue).Should().BeTrue();

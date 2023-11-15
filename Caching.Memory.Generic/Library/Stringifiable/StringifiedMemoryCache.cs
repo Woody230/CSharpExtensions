@@ -1,4 +1,4 @@
-﻿namespace Woody230.Caching.Memory;
+﻿namespace Woody230.Caching.Memory.Generic;
 
 /// <inheritdoc/>
 public sealed class StringifiedMemoryCache<TKey, TValue> : StringifiableMemoryCache<TKey, TValue> where TKey: notnull

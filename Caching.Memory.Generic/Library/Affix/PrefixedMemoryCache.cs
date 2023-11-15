@@ -1,4 +1,4 @@
-﻿namespace Woody230.Caching.Memory;
+﻿namespace Woody230.Caching.Memory.Generic;
 
 /// <summary>
 /// Represents a memory cache with a prefix attached to the key.
