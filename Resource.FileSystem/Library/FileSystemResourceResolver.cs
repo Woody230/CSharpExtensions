@@ -15,12 +15,6 @@ public class FileSystemResourceResolver : IResourceResolver
         _fileSystem = fileSystem;
     }
 
-    public string Resolve(Uri uri, Encoding encoding)
-    {
-        var path = GetPath(uri);
-        return _fileSystem.File.ReadAllText(path, encoding);
-    }
-
     public Task<string> ResolveAsync(Uri uri, Encoding encoding, CancellationToken cancellationToken)
     {
         var path = GetPath(uri);
