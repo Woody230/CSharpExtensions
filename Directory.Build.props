@@ -57,6 +57,7 @@
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
         <PackageVersion>$(Version)</PackageVersion>
+        <PackageOutputPath>$(MSBuildThisFileDirectory)\NuGet</PackageOutputPath>
       </PropertyGroup>
       <ItemGroup>
         <None Include="..\..\LICENSE.txt">
