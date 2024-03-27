@@ -1,6 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>1.4.1</Version>
     <Description>Enumeration wrapper for manual model state validation in ASP.NET Core.</Description>
     <PackageReleaseNotes>Update assembly name to match namespace.</PackageReleaseNotes>
   </PropertyGroup>

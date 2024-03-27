@@ -1,6 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>1.0.2</Version>
     <Description>Extensions for the FluentValidations library.</Description>
     <PackageReleaseNotes>Update assembly name to match namespace.</PackageReleaseNotes>
   </PropertyGroup>
