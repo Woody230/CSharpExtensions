@@ -12,7 +12,7 @@ public sealed class GenericMemoryCache<TKey, TValue> : IGenericMemoryCache<TKey,
 {
     private readonly IMemoryCache _memoryCache;
     private readonly HashSet<TKey> _keys = new();
-    private readonly SemaphoreSlim _semaphore = new(1);
+    private readonly SemaphoreSlim _semaphore = new(1, 1);
 
     public GenericMemoryCache(IMemoryCache memoryCache)
     {
