@@ -5,8 +5,8 @@
     <PackageReleaseNotes>Update assembly name to match namespace.</PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="FluentValidation" Version="$(FluentValidationPkgVer)" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="$(MicrosoftSourceLinkGitHubPkgVer)" PrivateAssets="All" />
-    <PackageReference Include="Woody230.Text" Version="1.0.0" />
+    <PackageReference Include="FluentValidation" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
+    <PackageReference Include="Woody230.Text" VersionOverride="1.0.0" />
   </ItemGroup>
 </Project>

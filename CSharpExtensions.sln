@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		Directory.Build.props = Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md
 	EndProjectSection
@@ -57,11 +58,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Collections.Tests", "Collec
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Collections.Extensible.Tests", "Collections.Extensible\Tests\Collections.Extensible.Tests.csproj", "{1B7044AF-F208-4066-B1F7-D38023811FCC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Caching.Memory.Generic", "Caching.Memory", "{171F28CB-C5C7-48F8-A241-A5BC05A8DB2A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Caching.Memory.Generic", "Caching.Memory.Generic", "{171F28CB-C5C7-48F8-A241-A5BC05A8DB2A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Caching.Memory.Generic.Library", "Caching.Memory.Generic\Library\Caching.Memory.Generic.Library.csproj", "{D06F2D78-16D4-416E-B37D-6A4B3580B0A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caching.Memory.Generic.Tests", "Caching.Memory.Generic\Tests\Caching.Memory.Generic.Tests.csproj", "{2BD5AB90-7907-4B15-8FFB-2C79D97C197A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Caching.Memory.Generic.Tests", "Caching.Memory.Generic\Tests\Caching.Memory.Generic.Tests.csproj", "{2BD5AB90-7907-4B15-8FFB-2C79D97C197A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
