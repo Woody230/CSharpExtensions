@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Settings">
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
     <PlatformTarget>x64</PlatformTarget>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <RepoRoot>$(MSBuildThisFileDirectory)</RepoRoot>
@@ -34,6 +34,17 @@
         <Nullable>enable</Nullable>
       </PropertyGroup>
     </Otherwise>
+  </Choose>
+
+  <Choose>
+    <When Condition="$(MSBuildProjectName.Contains('.Web'))">
+      <PropertyGroup>
+        <!-- Swashbuckle.AspNetCore workaround when using TargetFrameworks -->
+        <!-- https://github.com/domaindrivendev/Swashbuckle.AspNetCore/issues/2706 -->
+        <!-- https://github.com/domaindrivendev/Swashbuckle.AspNetCore/issues/1511#issuecomment-696682962 -->
+        <OpenApiGenerateDocumentsOnBuild>false</OpenApiGenerateDocumentsOnBuild>
+      </PropertyGroup>
+    </When>
   </Choose>
 
   <Choose>

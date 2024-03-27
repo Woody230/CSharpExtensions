@@ -3,6 +3,7 @@
 namespace Woody230.Collections.Tests.Unit.Generic.Dictionary;
 public class ToDictionaryTests
 {
+    #if NET6_0
     [Fact]
     public void Tuples()
     {
@@ -25,4 +26,5 @@ public class ToDictionaryTests
             ["Baz"] = 9
         });
     }
+    #endif
 }
