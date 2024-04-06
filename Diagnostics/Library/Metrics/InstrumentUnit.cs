@@ -1,0 +1,43 @@
+﻿using System.Diagnostics.Metrics;
+using System.Text.Json.Serialization;
+
+namespace Woody230.Diagnostics.Metrics;
+
+/// <summary>
+/// Represents a unit of measurement for an <see cref="Instrument"/>.
+/// </summary>
+public readonly struct InstrumentUnit
+{
+    private readonly string _value;
+    public static implicit operator string(InstrumentUnit unit) => unit._value;
+    public static implicit operator InstrumentUnit(string value) => new(value);
+
+    [JsonConstructor]
+    public InstrumentUnit(string value)
+    {
+        _value = value;
+    }
+
+    public override string ToString() => _value;
+
+    public override bool Equals(object? obj)
+    {
+        return obj is InstrumentUnit unit &&
+               _value == unit._value;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(_value);
+    }
+
+    public static bool operator ==(InstrumentUnit left, InstrumentUnit right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(InstrumentUnit left, InstrumentUnit right)
+    {
+        return !(left == right);
+    }
+}
