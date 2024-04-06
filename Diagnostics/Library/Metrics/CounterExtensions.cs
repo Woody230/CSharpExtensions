@@ -114,4 +114,34 @@ public static class CounterExtensions
         counter.Add(result.Time.TotalNanoseconds, tags);
     }
 #endif
+
+    public static void Add(this Counter<int> counter)
+    {
+        counter.Add(1);
+    }
+
+    public static void Add(this Counter<int> counter, TagList tags)
+    {
+        counter.Add(1, tags);
+    }
+
+    public static void Add(this Counter<int> counter, params KeyValuePair<string, object?>[] tags)
+    {
+        counter.Add(1, tags);
+    }
+
+    public static void Add(this Counter<long> counter)
+    {
+        counter.Add(1);
+    }
+
+    public static void Add(this Counter<long> counter, TagList tags)
+    {
+        counter.Add(1, tags);
+    }
+
+    public static void Add(this Counter<long> counter, params KeyValuePair<string, object?>[] tags)
+    {
+        counter.Add(1, tags);
+    }
 }
