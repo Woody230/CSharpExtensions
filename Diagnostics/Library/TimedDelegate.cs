@@ -7,8 +7,6 @@ namespace Woody230.Diagnostics;
 /// </summary>
 public class TimedDelegate
 {
-    public static readonly TimedDelegate Default = new();
-
     private readonly Stopwatch _stopwatch;
 
     public TimedDelegate(Stopwatch stopwatch)
