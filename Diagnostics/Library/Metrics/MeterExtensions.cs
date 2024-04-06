@@ -100,4 +100,10 @@ public static class MeterExtensions
         return meter.CreateUpDownCounter<T>(options.Name, options.Unit, options.Description, options.Tags);
     }
 #endif
+
+    public static TimeSpanCounter CreateTimeSpanCounter(this Meter meter, InstrumentOptions options, TimeInterval interval)
+    {
+        var counter = meter.CreateCounter<double>(options);
+        return new TimeSpanCounter(counter, interval);
+    }
 }

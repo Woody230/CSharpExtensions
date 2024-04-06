@@ -11,7 +11,7 @@ public sealed class TimeSpanCounter : Instrument<double>
     private readonly Counter<double> _counter;
     private readonly TimeInterval _interval;
 
-    public TimeSpanCounter(Counter<double> counter, TimeInterval interval) : base(counter.Meter, counter.Name, counter.Unit, counter.Description)
+    internal TimeSpanCounter(Counter<double> counter, TimeInterval interval) : base(counter.Meter, counter.Name, counter.Unit, counter.Description)
     {
         _counter = counter;
         _interval = interval;
