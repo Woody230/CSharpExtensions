@@ -12,6 +12,14 @@ public readonly struct InstrumentUnit
     public static implicit operator string(InstrumentUnit unit) => unit._value;
     public static implicit operator InstrumentUnit(string value) => new(value);
 
+    public static readonly InstrumentUnit Day = new("d");
+    public static readonly InstrumentUnit Hour = new("h");
+    public static readonly InstrumentUnit Minute = new("min");
+    public static readonly InstrumentUnit Second = new("s");
+    public static readonly InstrumentUnit Millisecond = new("ms");
+    public static readonly InstrumentUnit Microsecond = new("us");
+    public static readonly InstrumentUnit Nanosecond = new("ns");
+
     [JsonConstructor]
     public InstrumentUnit(string value)
     {

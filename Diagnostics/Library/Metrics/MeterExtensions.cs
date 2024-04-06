@@ -106,4 +106,41 @@ public static class MeterExtensions
         var counter = meter.CreateCounter<double>(options);
         return new TimeSpanCounter(counter, interval);
     }
+
+    public static TimeSpanCounter CreateDayCounter(this Meter meter, InstrumentOptions options)
+    {
+        return CreateTimeSpanCounter(meter, options with { Unit = InstrumentUnit.Day }, TimeInterval.Days);
+    }
+
+    public static TimeSpanCounter CreateHourCounter(this Meter meter, InstrumentOptions options)
+    {
+        return CreateTimeSpanCounter(meter, options with { Unit = InstrumentUnit.Hour }, TimeInterval.Hours);
+    }
+
+    public static TimeSpanCounter CreateMinuteCounter(this Meter meter, InstrumentOptions options)
+    {
+        return CreateTimeSpanCounter(meter, options with { Unit = InstrumentUnit.Minute }, TimeInterval.Minutes);
+    }
+
+    public static TimeSpanCounter CreateSecondCounter(this Meter meter, InstrumentOptions options)
+    {
+        return CreateTimeSpanCounter(meter, options with { Unit = InstrumentUnit.Second }, TimeInterval.Seconds);
+    }
+
+    public static TimeSpanCounter CreateMillisecondCounter(this Meter meter, InstrumentOptions options)
+    {
+        return CreateTimeSpanCounter(meter, options with { Unit = InstrumentUnit.Millisecond }, TimeInterval.Milliseconds);
+    }
+
+#if NET8_0_OR_GREATER
+    public static TimeSpanCounter CreateMicrosecondCounter(this Meter meter, InstrumentOptions options)
+    {
+        return CreateTimeSpanCounter(meter, options with { Unit = InstrumentUnit.Microsecond }, TimeInterval.Microsceonds);
+    }
+
+    public static TimeSpanCounter CreateNanosecondCounter(this Meter meter, InstrumentOptions options)
+    {
+        return CreateTimeSpanCounter(meter, options with { Unit = InstrumentUnit.Nanosecond }, TimeInterval.Nanoseconds);
+    }
+#endif
 }
