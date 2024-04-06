@@ -17,19 +17,19 @@ public sealed class TimeSpanCounter : Instrument<double>
         _interval = interval;
     }
 
-    public void Record(TimeSpan time)
+    public void Add(TimeSpan time)
     {
         var elapsed = GetElapsed(time);
         _counter.Add(elapsed);
     }
 
-    public void Record(TimeSpan time, in TagList tags)
+    public void Add(TimeSpan time, in TagList tags)
     {
         var elapsed = GetElapsed(time);
         _counter.Add(elapsed, tags);
     }
 
-    public void Record(TimeSpan time, params KeyValuePair<string, object?>[] tags)
+    public void Add(TimeSpan time, params KeyValuePair<string, object?>[] tags)
     {
         var elapsed = GetElapsed(time);
         _counter.Add(elapsed, tags);
