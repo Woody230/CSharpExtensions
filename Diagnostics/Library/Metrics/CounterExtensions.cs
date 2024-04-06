@@ -13,7 +13,7 @@ public static class CounterExtensions
         counter.Add(result.Time.TotalDays);
     }
 
-    public static void AddDays(this Counter<double> counter, TimedResult result, TagList tags)
+    public static void AddDays(this Counter<double> counter, TimedResult result, in TagList tags)
     {
         counter.Add(result.Time.TotalDays, tags);
     }
@@ -28,7 +28,7 @@ public static class CounterExtensions
         counter.Add(result.Time.TotalHours);
     }
 
-    public static void AddHours(this Counter<double> counter, TimedResult result, TagList tags)
+    public static void AddHours(this Counter<double> counter, TimedResult result, in TagList tags)
     {
         counter.Add(result.Time.TotalHours, tags);
     }
@@ -43,7 +43,7 @@ public static class CounterExtensions
         counter.Add(result.Time.TotalMinutes);
     }
 
-    public static void AddMinutes(this Counter<double> counter, TimedResult result, TagList tags)
+    public static void AddMinutes(this Counter<double> counter, TimedResult result, in TagList tags)
     {
         counter.Add(result.Time.TotalMinutes, tags);
     }
@@ -58,7 +58,7 @@ public static class CounterExtensions
         counter.Add(result.Time.TotalSeconds);
     }
 
-    public static void AddSeconds(this Counter<double> counter, TimedResult result, TagList tags)
+    public static void AddSeconds(this Counter<double> counter, TimedResult result, in TagList tags)
     {
         counter.Add(result.Time.TotalSeconds, tags);
     }
@@ -73,7 +73,7 @@ public static class CounterExtensions
         counter.Add(result.Time.TotalMilliseconds);
     }
 
-    public static void AddMilliseconds(this Counter<double> counter, TimedResult result, TagList tags)
+    public static void AddMilliseconds(this Counter<double> counter, TimedResult result, in TagList tags)
     {
         counter.Add(result.Time.TotalMilliseconds, tags);
     }
@@ -89,7 +89,7 @@ public static class CounterExtensions
         counter.Add(result.Time.TotalMicroseconds);
     }
 
-    public static void AddMicroseconds(this Counter<double> counter, TimedResult result, TagList tags)
+    public static void AddMicroseconds(this Counter<double> counter, TimedResult result, in TagList tags)
     {
         counter.Add(result.Time.TotalMicroseconds, tags);
     }
@@ -104,7 +104,7 @@ public static class CounterExtensions
         counter.Add(result.Time.TotalNanoseconds);
     }
 
-    public static void AddNanoseconds(this Counter<double> counter, TimedResult result, TagList tags)
+    public static void AddNanoseconds(this Counter<double> counter, TimedResult result, in TagList tags)
     {
         counter.Add(result.Time.TotalNanoseconds, tags);
     }
@@ -120,7 +120,7 @@ public static class CounterExtensions
         counter.Add(1);
     }
 
-    public static void Add(this Counter<int> counter, TagList tags)
+    public static void Add(this Counter<int> counter, in TagList tags)
     {
         counter.Add(1, tags);
     }
@@ -135,7 +135,7 @@ public static class CounterExtensions
         counter.Add(1);
     }
 
-    public static void Add(this Counter<long> counter, TagList tags)
+    public static void Add(this Counter<long> counter, in TagList tags)
     {
         counter.Add(1, tags);
     }
