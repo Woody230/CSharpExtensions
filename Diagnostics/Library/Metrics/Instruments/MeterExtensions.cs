@@ -64,9 +64,9 @@ public static class MeterExtensions
 
     internal static TimeSpanCounter InternalCreateTimeSpanCounter(this Meter meter, InstrumentOptions options, InstrumentUnit? unit, TimeInterval interval)
     {
-        var counter = meter.CreateCounter<double>(options with { Unit = options.Unit ?? unit });
-        return new TimeSpanCounter(counter, interval);
+        return new TimeSpanCounter(meter, options with { Unit = options.Unit ?? unit }, interval);
     }
+
     #endregion TimeSpanCounter
 
     #region OccurrenceInstrument

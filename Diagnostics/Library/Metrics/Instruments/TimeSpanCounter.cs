@@ -8,31 +8,30 @@ namespace Woody230.Diagnostics.Metrics.Instruments;
 /// </summary>
 public sealed class TimeSpanCounter : Instrument<double>
 {
-    private readonly Counter<double> _counter;
     private readonly TimeInterval _interval;
 
-    internal TimeSpanCounter(Counter<double> counter, TimeInterval interval) : base(counter.Meter, counter.Name, counter.Unit, counter.Description)
+    internal TimeSpanCounter(Meter meter, InstrumentOptions options, TimeInterval interval) : base(meter, options.Name, options.Unit, options.Description)
     {
-        _counter = counter;
+        Publish();
         _interval = interval;
     }
 
     public void Add(TimeSpan time)
     {
         var elapsed = GetElapsed(time);
-        _counter.Add(elapsed);
+        RecordMeasurement(elapsed);
     }
 
     public void Add(TimeSpan time, in TagList tags)
     {
         var elapsed = GetElapsed(time);
-        _counter.Add(elapsed, tags);
+        RecordMeasurement(elapsed, tags);
     }
 
     public void Add(TimeSpan time, params KeyValuePair<string, object?>[] tags)
     {
         var elapsed = GetElapsed(time);
-        _counter.Add(elapsed, tags);
+        RecordMeasurement(elapsed, tags);
     }
 
     private double GetElapsed(TimeSpan time) => _interval switch
