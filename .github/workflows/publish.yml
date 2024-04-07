@@ -20,4 +20,4 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Publish
-      run: dotnet nuget "./NuGet/*.nupkg" --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
+      run: dotnet nuget push "./NuGet/*.nupkg" --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
