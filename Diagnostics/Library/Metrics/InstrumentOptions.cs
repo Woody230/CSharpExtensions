@@ -7,7 +7,7 @@ namespace Woody230.Diagnostics.Metrics;
 /// Represents the options for configuring an <see cref="Instrument"/>.
 /// </summary>
 /// <param name="Name">The name of the instrument.</param>
-public record InstrumentOptions(InstrumentName Name)
+public sealed record InstrumentOptions(InstrumentName Name)
 {
     /// <summary>
     /// The unit of measurement.

@@ -6,7 +6,7 @@ namespace Woody230.Diagnostics.Metrics.Instruments;
 /// <summary>
 /// Represents an instrument that measures the occurrence of an event.
 /// </summary>
-public class OccurrenceInstrument : Instrument
+public sealed class OccurrenceInstrument : Instrument
 {
     private readonly Counter<long> _occurrenceCounter;
     private readonly TimeSpanCounter _timeCounter;
