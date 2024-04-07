@@ -68,7 +68,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Caching.Memory.Generic.Test
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Diagnostics", "Diagnostics", "{1D6B9FD3-0A25-4C31-8147-BF03BD35DD4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diagnostics.Library", "Diagnostics\Library\Diagnostics.Library.csproj", "{DF242ABB-8A45-425C-A7D8-6D7F3DC75E45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diagnostics.Library", "Diagnostics\Library\Diagnostics.Library.csproj", "{DF242ABB-8A45-425C-A7D8-6D7F3DC75E45}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diagnostics.Tests", "Diagnostics\Tests\Diagnostics.Tests.csproj", "{2029DA25-4DC5-4A04-831F-6F4E8DC14D1D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -152,6 +154,10 @@ Global
 		{DF242ABB-8A45-425C-A7D8-6D7F3DC75E45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF242ABB-8A45-425C-A7D8-6D7F3DC75E45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF242ABB-8A45-425C-A7D8-6D7F3DC75E45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2029DA25-4DC5-4A04-831F-6F4E8DC14D1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2029DA25-4DC5-4A04-831F-6F4E8DC14D1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2029DA25-4DC5-4A04-831F-6F4E8DC14D1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2029DA25-4DC5-4A04-831F-6F4E8DC14D1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -176,6 +182,7 @@ Global
 		{D06F2D78-16D4-416E-B37D-6A4B3580B0A3} = {171F28CB-C5C7-48F8-A241-A5BC05A8DB2A}
 		{2BD5AB90-7907-4B15-8FFB-2C79D97C197A} = {171F28CB-C5C7-48F8-A241-A5BC05A8DB2A}
 		{DF242ABB-8A45-425C-A7D8-6D7F3DC75E45} = {1D6B9FD3-0A25-4C31-8147-BF03BD35DD4B}
+		{2029DA25-4DC5-4A04-831F-6F4E8DC14D1D} = {1D6B9FD3-0A25-4C31-8147-BF03BD35DD4B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B59A3CED-A160-49B9-A001-B4EA679E9D25}
