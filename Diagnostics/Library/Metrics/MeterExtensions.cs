@@ -115,9 +115,9 @@ public static class MeterExtensions
             TimeInterval.Milliseconds => CreateMillisecondCounter(meter, options),
 #if NET8_0_OR_GREATER
             TimeInterval.Microsceonds => CreateMicrosecondCounter(meter, options),
-            TimeInterval.Nanoseconds => CreateNanosecondCounter(meter, options)
+            TimeInterval.Nanoseconds => CreateNanosecondCounter(meter, options),
 #endif
-            _ => CreateMillisecondCounter(meter, options),
+            _ => InternalCreateTimeSpanCounter(meter, options, null, interval),
         };
     }
 
@@ -158,7 +158,7 @@ public static class MeterExtensions
     }
 #endif
 
-    internal static TimeSpanCounter InternalCreateTimeSpanCounter(this Meter meter, InstrumentOptions options, InstrumentUnit unit, TimeInterval interval)
+    internal static TimeSpanCounter InternalCreateTimeSpanCounter(this Meter meter, InstrumentOptions options, InstrumentUnit? unit, TimeInterval interval)
     {
         var counter = meter.CreateCounter<double>(options with { Unit = options.Unit ?? unit });
         return new TimeSpanCounter(counter, interval);
