@@ -29,6 +29,16 @@ public static class TagListExtensions
         return @this;
     }
 
+    public static TagList With(this TagList @this, IEnumerable<KeyValuePair<string, object?>> tags)
+    {
+        foreach (var tag in tags)
+        {
+            @this.Add(tag);
+        }
+
+        return @this;
+    }
+
     public static TagList With(this TagList @this, in TagList tags)
     {
         foreach (var tag in tags)
@@ -37,5 +47,16 @@ public static class TagListExtensions
         }
 
         return @this;
+    }
+
+    public static TagList ToTagList(this IEnumerable<KeyValuePair<string, object?>>? @this)
+    {
+        var tags = new TagList();
+        if (@this == null)
+        {
+            return tags;
+        }
+
+        return tags.With(@this);
     }
 }

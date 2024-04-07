@@ -45,7 +45,7 @@ public sealed class TimeSpanCounter : Instrument<double>
         TimeInterval.Microsceonds => time.TotalMicroseconds,
         TimeInterval.Nanoseconds => time.TotalNanoseconds,
 #endif
-        _ => time.TotalMilliseconds
+        _ => 0
     };
 }
 
