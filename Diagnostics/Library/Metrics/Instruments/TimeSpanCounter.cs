@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Diagnostics.Metrics;
 
-namespace Woody230.Diagnostics.Metrics;
+namespace Woody230.Diagnostics.Metrics.Instruments;
 
 /// <summary>
 /// Represents a counter for measuring the total time elapsed specified by a <see cref="TimeSpan"/> for a <see cref="TimeInterval"/>.

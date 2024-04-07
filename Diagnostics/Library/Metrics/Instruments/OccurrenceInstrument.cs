@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Diagnostics.Metrics;
 
-namespace Woody230.Diagnostics.Metrics;
+namespace Woody230.Diagnostics.Metrics.Instruments;
 
 /// <summary>
 /// Represents an instrument that measures the occurrence of an event.
