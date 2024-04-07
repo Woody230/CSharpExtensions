@@ -12,8 +12,8 @@ public sealed class TimeSpanCounter : Instrument<double>
 
     internal TimeSpanCounter(Meter meter, InstrumentOptions options, TimeInterval interval) : base(meter, options.Name, options.Unit, options.Description)
     {
-        Publish();
         _interval = interval;
+        Publish();
     }
 
     public void Add(TimeSpan time)
