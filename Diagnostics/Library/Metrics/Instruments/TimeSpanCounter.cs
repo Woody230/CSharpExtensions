@@ -28,12 +28,6 @@ public sealed class TimeSpanCounter : Instrument<double>
         RecordMeasurement(elapsed, tags);
     }
 
-    public void Add(TimeSpan time, params KeyValuePair<string, object?>[] tags)
-    {
-        var elapsed = GetElapsed(time);
-        RecordMeasurement(elapsed, tags);
-    }
-
     private double GetElapsed(TimeSpan time) => _interval switch
     {
         TimeInterval.Days => time.TotalDays,
@@ -42,7 +36,7 @@ public sealed class TimeSpanCounter : Instrument<double>
         TimeInterval.Seconds => time.TotalSeconds,
         TimeInterval.Milliseconds => time.TotalMilliseconds,
 #if NET8_0_OR_GREATER
-        TimeInterval.Microsceonds => time.TotalMicroseconds,
+        TimeInterval.Microseconds => time.TotalMicroseconds,
         TimeInterval.Nanoseconds => time.TotalNanoseconds,
 #endif
         _ => 0
@@ -59,7 +53,7 @@ public enum TimeInterval
     Milliseconds,
 
 #if NET8_0_OR_GREATER
-    Microsceonds,
+    Microseconds,
     Nanoseconds
 #endif
 }

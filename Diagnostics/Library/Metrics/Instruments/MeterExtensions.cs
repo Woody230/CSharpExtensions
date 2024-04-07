@@ -33,7 +33,7 @@ public static class MeterExtensions
             TimeInterval.Seconds => CreateSecondCounter(meter, options),
             TimeInterval.Milliseconds => CreateMillisecondCounter(meter, options),
 #if NET8_0_OR_GREATER
-            TimeInterval.Microsceonds => CreateMicrosecondCounter(meter, options),
+            TimeInterval.Microseconds => CreateMicrosecondCounter(meter, options),
             TimeInterval.Nanoseconds => CreateNanosecondCounter(meter, options),
 #endif
             _ => InternalCreateTimeSpanCounter(meter, options, null, interval),
@@ -119,7 +119,7 @@ public static class MeterExtensions
 
     /// <summary>
     /// <para>
-    /// Creates a <see cref="TimeSpanCounter"/> with a <see cref="TimeInterval"/> of <see cref="TimeInterval.Microsceonds"/>.
+    /// Creates a <see cref="TimeSpanCounter"/> with a <see cref="TimeInterval"/> of <see cref="TimeInterval.Microseconds"/>.
     /// </para>
     /// <para>
     /// If the <see cref="InstrumentOptions.Unit"/> is null, it is defaulted to <see cref="InstrumentUnit.Microsecond"/>.
@@ -129,7 +129,7 @@ public static class MeterExtensions
     /// <param name="options">The instrument options.</param>
     public static TimeSpanCounter CreateMicrosecondCounter(this Meter meter, InstrumentOptions options)
     {
-        return CreateTimeSpanCounter(meter, options with { Unit = InstrumentUnit.Microsecond }, TimeInterval.Microsceonds);
+        return InternalCreateTimeSpanCounter(meter, options, InstrumentUnit.Microsecond, TimeInterval.Microseconds);
     }
 
     /// <summary>
@@ -144,7 +144,7 @@ public static class MeterExtensions
     /// <param name="options">The instrument options.</param>
     public static TimeSpanCounter CreateNanosecondCounter(this Meter meter, InstrumentOptions options)
     {
-        return CreateTimeSpanCounter(meter, options with { Unit = InstrumentUnit.Nanosecond }, TimeInterval.Nanoseconds);
+        return InternalCreateTimeSpanCounter(meter, options, InstrumentUnit.Nanosecond, TimeInterval.Nanoseconds);
     }
 #endif
 

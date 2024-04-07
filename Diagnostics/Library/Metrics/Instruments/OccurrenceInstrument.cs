@@ -31,13 +31,6 @@ public sealed class OccurrenceInstrument : Instrument
         _timeCounter.Add(result, tags);
     }
 
-    public void Record(Action action, params KeyValuePair<string, object?>[] tags)
-    {
-        var result = new Stopwatch().Measure(action);
-        _occurrenceCounter.Add(tags);
-        _timeCounter.Add(result, tags);
-    }
-
     public void Record(Action action, Func<TagList> getTags)
     {
         var result = new Stopwatch().Measure(action);
@@ -55,14 +48,6 @@ public sealed class OccurrenceInstrument : Instrument
     }
 
     public T Record<T>(Func<T> function, in TagList tags)
-    {
-        var result = new Stopwatch().Measure(function);
-        _occurrenceCounter.Add(tags);
-        _timeCounter.Add(result, tags);
-        return result;
-    }
-
-    public T Record<T>(Func<T> function, params KeyValuePair<string, object?>[] tags)
     {
         var result = new Stopwatch().Measure(function);
         _occurrenceCounter.Add(tags);
