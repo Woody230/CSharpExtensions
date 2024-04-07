@@ -197,7 +197,7 @@ public class TimedOccurrenceCounterTests: InstrumentTests
             measurements.Should().HaveCount(1);
 
             var measurement = measurements[0];
-            measurement.Value.Should().BeGreaterThan(2);
+            measurement.Value.Should().BeGreaterThan(2).And.BeLessThan(100, "should leniently finish in at least 100 ms");
             measurement.Tags.ToTagList().Should().BeEquivalentTo(tags ?? new TagList());
         }
     }
