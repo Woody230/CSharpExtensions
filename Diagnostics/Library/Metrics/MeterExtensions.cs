@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics.Metrics;
-using Woody230.Diagnostics.Metrics.Instruments;
 
 namespace Woody230.Diagnostics.Metrics;
 
