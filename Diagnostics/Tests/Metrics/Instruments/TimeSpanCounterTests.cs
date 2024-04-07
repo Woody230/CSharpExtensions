@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Diagnostics.Metrics.Testing;
-using System.Diagnostics;
 using Woody230.Diagnostics.Metrics.Instruments;
 
 namespace Woody230.Diagnostics.Tests.Metrics.Instruments;
@@ -27,13 +26,16 @@ public class TimeSpanCounterTests : InstrumentTests
     public void CreateInstrument_WithUnit_PersistsOptions(TimeInterval interval)
     {
         // Arrange
-        var counter = Meter.CreateTimeSpanCounter(Options with { Unit = "foo.bar" }, interval);
+        var counter = Meter.CreateTimeSpanCounter(Options with { Unit = Unit }, interval);
 
         // Assert
         counter.Meter.Should().Be(Meter);
         counter.Name.Should().Be(Options.Name);
-        counter.Unit.Should().Be("foo.bar");
+        counter.Unit.Should().Be(Unit);
         counter.Description.Should().Be(Options.Description);
+        counter.Tags.ToTagList().Should().BeEquivalentTo(Options.Tags);
+        counter.Enabled.Should().BeTrue();
+        counter.IsObservable.Should().BeFalse();
     }
 
     [Theory]
@@ -55,6 +57,9 @@ public class TimeSpanCounterTests : InstrumentTests
         counter.Name.Should().Be(Options.Name);
         counter.Unit.Should().Be(unit);
         counter.Description.Should().Be(Options.Description);
+        counter.Tags.ToTagList().Should().BeEquivalentTo(Options.Tags);
+        counter.Enabled.Should().BeTrue();
+        counter.IsObservable.Should().BeFalse();
     }
 
     [Theory]

@@ -155,11 +155,11 @@ public static class MeterExtensions
 
     #endregion TimeSpanCounter
 
-    #region OccurrenceInstrument
+    #region TimedOccurrenceCounter
 
     /// <summary>
     /// <para>
-    /// Creates a <see cref="OccurrenceInstrument"/> using the <paramref name="options"/> as a baseline for the subinstruments.
+    /// Creates a <see cref="TimedOccurrenceCounter"/> using the <paramref name="options"/> as a baseline for the subinstruments.
     /// </para>
     /// <para>
     /// The occurrence counter uses: 
@@ -183,7 +183,7 @@ public static class MeterExtensions
     /// <param name="meter">The meter.</param>
     /// <param name="options">The instrument options.</param>
     /// <param name="interval">The time interval to record.</param>
-    public static OccurrenceInstrument CreateOccurrenceInstrument(this Meter meter, InstrumentOptions options, TimeInterval interval)
+    public static TimedOccurrenceCounter CreateTimedOccurrenceCounter(this Meter meter, InstrumentOptions options, TimeInterval interval)
     {
         var occurrenceOptions = options with { Name = options.Name + ".count", Unit = options.Unit ?? InstrumentUnit.Unity, Description = "Count of " + options.Description };
         var occurrenceCounter = meter.CreateCounter<long>(occurrenceOptions);
@@ -192,5 +192,5 @@ public static class MeterExtensions
         var timeCounter = meter.CreateTimeSpanCounter(timeOptions, interval);
         return new(meter, options, occurrenceCounter, timeCounter);
     }
-    #endregion
+    #endregion TimedOccurrenceCounter
 }

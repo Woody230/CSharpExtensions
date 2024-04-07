@@ -9,6 +9,7 @@ public abstract class InstrumentTests
     protected Guid Id { get; } = new("2f3c8e5e-8f3f-4daa-941c-80d390684d5a");
     protected TagList Tags { get; }
     protected InstrumentOptions Options { get; }
+    protected InstrumentUnit Unit { get; } = new("{process}");
 
     public InstrumentTests()
     {

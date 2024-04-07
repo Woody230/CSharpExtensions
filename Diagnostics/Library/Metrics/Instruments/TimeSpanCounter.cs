@@ -10,7 +10,12 @@ public sealed class TimeSpanCounter : Instrument<double>
 {
     private readonly TimeInterval _interval;
 
-    internal TimeSpanCounter(Meter meter, InstrumentOptions options, TimeInterval interval) : base(meter, options.Name, options.Unit, options.Description)
+    internal TimeSpanCounter(Meter meter, InstrumentOptions options, TimeInterval interval)
+#if NET6_0
+        : base(meter, options.Name, options.Unit, options.Description)
+#else 
+        : base(meter, options.Name, options.Unit, options.Description, options.Tags)
+#endif
     {
         _interval = interval;
         Publish();
@@ -41,19 +46,4 @@ public sealed class TimeSpanCounter : Instrument<double>
 #endif
         _ => 0
     };
-}
-
-public enum TimeInterval
-{
-    Unspecified,
-    Days,
-    Hours,
-    Minutes,
-    Seconds,
-    Milliseconds,
-
-#if NET8_0_OR_GREATER
-    Microseconds,
-    Nanoseconds
-#endif
 }

@@ -6,12 +6,17 @@ namespace Woody230.Diagnostics.Metrics.Instruments;
 /// <summary>
 /// Represents an instrument that measures the number of times an event occurs and how long each event takes to process.
 /// </summary>
-public sealed class OccurrenceInstrument : Instrument
+public sealed class TimedOccurrenceCounter : Instrument
 {
-    private readonly Counter<long> _occurrenceCounter;
-    private readonly TimeSpanCounter _timeCounter;
+    internal readonly Counter<long> _occurrenceCounter;
+    internal readonly TimeSpanCounter _timeCounter;
 
-    internal OccurrenceInstrument(Meter meter, InstrumentOptions options, Counter<long> occurrenceCounter, TimeSpanCounter timeCounter) : base(meter, options.Name, options.Unit, options.Description)
+    internal TimedOccurrenceCounter(Meter meter, InstrumentOptions options, Counter<long> occurrenceCounter, TimeSpanCounter timeCounter)
+#if NET6_0
+        : base(meter, options.Name, options.Unit, options.Description)
+#else
+        : base(meter, options.Name, options.Unit, options.Description, options.Tags)
+#endif
     {
         _occurrenceCounter = occurrenceCounter;
         _timeCounter = timeCounter;
