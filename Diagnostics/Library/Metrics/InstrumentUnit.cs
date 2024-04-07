@@ -19,6 +19,7 @@ public readonly struct InstrumentUnit
     public static readonly InstrumentUnit Millisecond = new("ms");
     public static readonly InstrumentUnit Microsecond = new("us");
     public static readonly InstrumentUnit Nanosecond = new("ns");
+    public static readonly InstrumentUnit Unity = new("1");
 
     [JsonConstructor]
     public InstrumentUnit(string value)

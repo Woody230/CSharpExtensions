@@ -166,8 +166,8 @@ public static class MeterExtensions
     /// <list type="bullet">
     ///     <item><see cref="InstrumentOptions.Name"/> and appends <b>.count</b></item>
     ///     <item><see cref="InstrumentOptions.Description"/> and prepends <b>Count of</b></item>
-    ///     <item><see cref="InstrumentOptions.Unit"/> as is</item>
-    ///     <item>All other <see cref="InstrumentOptions"/> are unchanged.</item>
+    ///     <item><see cref="InstrumentOptions.Unit"/> as the <paramref name="options"/>'s unit if it exists, otherwise <see cref="InstrumentUnit.Unity"/></item>
+    ///     <item>All other options are unchanged.</item>
     /// </list>
     /// </para>
     /// <para>
@@ -175,8 +175,8 @@ public static class MeterExtensions
     /// <list type="bullet">
     ///     <item><see cref="InstrumentOptions.Name"/> and appends <b>.time</b>.</item>
     ///     <item><see cref="InstrumentOptions.Description"/> and prepends <b>Time spent</b></item>
-    ///     <item><see cref="InstrumentOptions.Unit"/> as the unit associated with the <paramref name="interval"/>. For example, milliseconds would use ms.</item>
-    ///     <item>All other <see cref="InstrumentOptions"/> are unchanged.</item>
+    ///     <item><see cref="InstrumentOptions.Unit"/> as the unit associated with the <paramref name="interval"/>. For example, milliseconds would use <see cref="InstrumentUnit.Millisecond"/>.</item>
+    ///     <item>All other options are unchanged.</item>
     /// </list>
     /// </para>
     /// </summary>
@@ -185,7 +185,7 @@ public static class MeterExtensions
     /// <param name="interval">The time interval to record.</param>
     public static OccurrenceInstrument CreateOccurrenceInstrument(this Meter meter, InstrumentOptions options, TimeInterval interval)
     {
-        var occurrenceOptions = options with { Name = options.Name + ".count", Description = "Count of " + options.Description };
+        var occurrenceOptions = options with { Name = options.Name + ".count", Unit = options.Unit ?? InstrumentUnit.Unity, Description = "Count of " + options.Description };
         var occurrenceCounter = meter.CreateCounter<long>(occurrenceOptions);
 
         var timeOptions = options with { Name = options.Name + ".time", Unit = null, Description = "Time spent " + options.Description };
