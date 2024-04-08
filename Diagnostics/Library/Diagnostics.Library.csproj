@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Description>Extensions for System.Diagnostics.</Description>
-    <PackageReleaseNotes>Internally use Counter for TimeSpanCounter. Enabled dependent on subinstruments.</PackageReleaseNotes>
+    <PackageReleaseNotes>Add ability to provide count to TimedOccurrenceCounter.</PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
