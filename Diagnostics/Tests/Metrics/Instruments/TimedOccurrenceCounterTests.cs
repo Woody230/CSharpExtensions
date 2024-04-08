@@ -13,7 +13,7 @@ public class TimedOccurrenceCounterTests: InstrumentTests
 {
     protected MetricCollector<long> OccurrenceMetrics { get; }
     protected MetricCollector<double> TimeMetrics { get; }
-    protected long Count { get; } = 5;
+    protected long Occurrences { get; } = 5;
     
     public TimedOccurrenceCounterTests()
     {
@@ -139,10 +139,10 @@ public class TimedOccurrenceCounterTests: InstrumentTests
         var counter = Meter.CreateTimedOccurrenceCounter(Options, TimeInterval.Milliseconds);
 
         // Act
-        counter.Record(() => Thread.Sleep(2), Count);
+        counter.Record(() => Thread.Sleep(2), Occurrences);
 
         // Assert
-        AssertMetrics(Count);
+        AssertMetrics(Occurrences);
     }
 
     [Fact]
@@ -152,10 +152,10 @@ public class TimedOccurrenceCounterTests: InstrumentTests
         var counter = Meter.CreateTimedOccurrenceCounter(Options, TimeInterval.Milliseconds);
 
         // Act
-        counter.Record(() => Thread.Sleep(2), Count, Tags);
+        counter.Record(() => Thread.Sleep(2), Occurrences, Tags);
 
         // Assert
-        AssertMetrics(Count, Tags);
+        AssertMetrics(Occurrences, Tags);
     }
 
     [Fact]
@@ -165,10 +165,10 @@ public class TimedOccurrenceCounterTests: InstrumentTests
         var counter = Meter.CreateTimedOccurrenceCounter(Options, TimeInterval.Milliseconds);
 
         // Act
-        counter.Record(() => Thread.Sleep(2), Count, () => Tags);
+        counter.Record(() => Thread.Sleep(2), Occurrences, () => Tags);
 
         // Assert
-        AssertMetrics(Count, Tags);
+        AssertMetrics(Occurrences, Tags);
     }
 
     #endregion Action With Count
@@ -269,11 +269,11 @@ public class TimedOccurrenceCounterTests: InstrumentTests
         {
             Thread.Sleep(2);
             return now;
-        }, Count, Tags);
+        }, Occurrences, Tags);
 
         // Assert
         result.Should().Be(now);
-        AssertMetrics(Count, Tags);
+        AssertMetrics(Occurrences, Tags);
     }
 
     [Fact]
@@ -288,7 +288,7 @@ public class TimedOccurrenceCounterTests: InstrumentTests
         {
             Thread.Sleep(2);
             return now;
-        }, Count, (result) =>
+        }, Occurrences, (result) =>
         {
             result.Should().Be(now);
             return Tags;
@@ -296,7 +296,7 @@ public class TimedOccurrenceCounterTests: InstrumentTests
 
         // Assert
         result.Should().Be(now);
-        AssertMetrics(Count, Tags);
+        AssertMetrics(Occurrences, Tags);
     }
 
     #endregion Function With Count
