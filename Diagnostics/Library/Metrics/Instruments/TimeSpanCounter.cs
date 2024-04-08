@@ -6,17 +6,12 @@ namespace Woody230.Diagnostics.Metrics.Instruments;
 /// <summary>
 /// Represents a counter for measuring the total time elapsed specified by a <see cref="TimeSpan"/> for a <see cref="TimeInterval"/>.
 /// </summary>
-public sealed class TimeSpanCounter : Instrument<double>
+public sealed class TimeSpanCounter : OptionsInstrument<double>
 {
     private readonly Counter<double> _counter;
     private readonly TimeInterval _interval;
 
-    internal TimeSpanCounter(Meter meter, InstrumentOptions options, Counter<double> counter, TimeInterval interval)
-#if NET6_0
-        : base(meter, options.Name, options.Unit, options.Description)
-#else 
-        : base(meter, options.Name, options.Unit, options.Description, options.Tags)
-#endif
+    internal TimeSpanCounter(Meter meter, InstrumentOptions options, Counter<double> counter, TimeInterval interval): base(meter, options)
     {
         _counter = counter;
         _interval = interval;
