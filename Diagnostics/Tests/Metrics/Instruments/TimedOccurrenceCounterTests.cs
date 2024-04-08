@@ -35,6 +35,12 @@ public class TimedOccurrenceCounterTests: InstrumentTests
         var counter = Meter.CreateTimedOccurrenceCounter(Options with { Unit = null }, interval);
 
         // Assert
+        counter.Meter.Should().Be(Meter);
+        counter.Name.Should().Be(Options.Name);
+        counter.Unit.Should().BeNull();
+        counter.Description.Should().Be(Options.Description);
+        counter.Enabled.Should().BeFalse();
+
         counter._occurrenceCounter.Meter.Should().Be(Meter);
         counter._occurrenceCounter.Name.Should().Be($"{Options.Name}.count");
         counter._occurrenceCounter.Unit.Should().Be(InstrumentUnit.Unity);
@@ -63,6 +69,12 @@ public class TimedOccurrenceCounterTests: InstrumentTests
         var counter = Meter.CreateTimedOccurrenceCounter(Options with { Unit = Unit }, interval);
 
         // Assert
+        counter.Meter.Should().Be(Meter);
+        counter.Name.Should().Be(Options.Name);
+        counter.Unit.Should().Be(Unit);
+        counter.Description.Should().Be(Options.Description);
+        counter.Enabled.Should().BeFalse();
+
         counter._occurrenceCounter.Meter.Should().Be(Meter);
         counter._occurrenceCounter.Name.Should().Be($"{Options.Name}.count");
         counter._occurrenceCounter.Unit.Should().Be(Unit);
