@@ -26,47 +26,77 @@ public sealed class TimedOccurrenceCounter : Instrument
 
     public void Record(Action action)
     {
-        var result = new Stopwatch().Measure(action);
-        _occurrenceCounter.Add();
-        _timeCounter.Add(result);
+        Record(action, 1);
     }
 
     public void Record(Action action, in TagList tags)
     {
-        var result = new Stopwatch().Measure(action);
-        _occurrenceCounter.Add(tags);
-        _timeCounter.Add(result, tags);
+        Record(action, 1, tags);
     }
 
     public void Record(Action action, Func<TagList> getTags)
     {
+        Record(action, 1, getTags);
+    }
+
+    public void Record(Action action, long count)
+    {
+        var result = new Stopwatch().Measure(action);
+        _occurrenceCounter.Add(count);
+        _timeCounter.Add(result);
+    }
+
+    public void Record(Action action, long count, in TagList tags)
+    {
+        var result = new Stopwatch().Measure(action);
+        _occurrenceCounter.Add(count, tags);
+        _timeCounter.Add(result, tags);
+    }
+
+    public void Record(Action action, long count, Func<TagList> getTags)
+    {
         var result = new Stopwatch().Measure(action);
         var tags = getTags();
-        _occurrenceCounter.Add(tags);
+        _occurrenceCounter.Add(count, tags);
         _timeCounter.Add(result, tags);
     }
 
     public T Record<T>(Func<T> function)
     {
-        var result = new Stopwatch().Measure(function);
-        _occurrenceCounter.Add();
-        _timeCounter.Add(result);
-        return result;
+        return Record(function, 1);
     }
 
     public T Record<T>(Func<T> function, in TagList tags)
     {
-        var result = new Stopwatch().Measure(function);
-        _occurrenceCounter.Add(tags);
-        _timeCounter.Add(result, tags);
-        return result;
+        return Record(function, 1, tags);
     }
 
     public T Record<T>(Func<T> function, Func<T, TagList> getTags)
     {
+        return Record(function, 1, getTags);
+    }
+
+    public T Record<T>(Func<T> function, long count)
+    {
+        var result = new Stopwatch().Measure(function);
+        _occurrenceCounter.Add(count);
+        _timeCounter.Add(result);
+        return result;
+    }
+
+    public T Record<T>(Func<T> function, long count, in TagList tags)
+    {
+        var result = new Stopwatch().Measure(function);
+        _occurrenceCounter.Add(count, tags);
+        _timeCounter.Add(result, tags);
+        return result;
+    }
+
+    public T Record<T>(Func<T> function, long count, Func<T, TagList> getTags)
+    {
         var result = new Stopwatch().Measure(function);
         var tags = getTags(result);
-        _occurrenceCounter.Add(tags);
+        _occurrenceCounter.Add(count, tags);
         _timeCounter.Add(result, tags);
         return result;
     }

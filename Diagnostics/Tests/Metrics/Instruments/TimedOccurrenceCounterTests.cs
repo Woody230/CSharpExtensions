@@ -13,6 +13,7 @@ public class TimedOccurrenceCounterTests: InstrumentTests
 {
     protected MetricCollector<long> OccurrenceMetrics { get; }
     protected MetricCollector<double> TimeMetrics { get; }
+    protected long Count { get; } = 5;
     
     public TimedOccurrenceCounterTests()
     {
@@ -88,6 +89,7 @@ public class TimedOccurrenceCounterTests: InstrumentTests
         counter._timeCounter.Enabled.Should().BeTrue();
     }
 
+    #region Action No Count
     [Fact]
     public void RecordAction()
     {
@@ -126,7 +128,52 @@ public class TimedOccurrenceCounterTests: InstrumentTests
         // Assert
         AssertMetrics(Tags);
     }
+    #endregion Action No Count
 
+    #region Action With Count
+
+    [Fact]
+    public void RecordAction_WithCount()
+    {
+        // Arrange
+        var counter = Meter.CreateTimedOccurrenceCounter(Options, TimeInterval.Milliseconds);
+
+        // Act
+        counter.Record(() => Thread.Sleep(2), Count);
+
+        // Assert
+        AssertMetrics(Count);
+    }
+
+    [Fact]
+    public void RecordAction_WithCount_WithTags()
+    {
+        // Arrange
+        var counter = Meter.CreateTimedOccurrenceCounter(Options, TimeInterval.Milliseconds);
+
+        // Act
+        counter.Record(() => Thread.Sleep(2), Count, Tags);
+
+        // Assert
+        AssertMetrics(Count, Tags);
+    }
+
+    [Fact]
+    public void RecordAction_WithCount_WithResultTags()
+    {
+        // Arrange
+        var counter = Meter.CreateTimedOccurrenceCounter(Options, TimeInterval.Milliseconds);
+
+        // Act
+        counter.Record(() => Thread.Sleep(2), Count, () => Tags);
+
+        // Assert
+        AssertMetrics(Count, Tags);
+    }
+
+    #endregion Action With Count
+
+    #region Function No Count
     [Fact]
     public void RecordFunction()
     {
@@ -188,7 +235,78 @@ public class TimedOccurrenceCounterTests: InstrumentTests
         AssertMetrics(Tags);
     }
 
-    private void AssertMetrics(TagList? tags = null)
+    #endregion Function No Count
+
+    #region Function With Count
+    [Fact]
+    public void RecordFunction_WithCount()
+    {
+        // Arrange
+        var counter = Meter.CreateTimedOccurrenceCounter(Options, TimeInterval.Milliseconds);
+
+        // Act
+        var now = DateTime.Now;
+        var result = counter.Record(() =>
+        {
+            Thread.Sleep(2);
+            return now;
+        });
+
+        // Assert
+        result.Should().Be(now);
+        AssertMetrics();
+    }
+
+    [Fact]
+    public void RecordFunction_WithCount_WithTags()
+    {
+        // Arrange
+        var counter = Meter.CreateTimedOccurrenceCounter(Options, TimeInterval.Milliseconds);
+
+        // Act
+        var now = DateTime.Now;
+        var result = counter.Record(() =>
+        {
+            Thread.Sleep(2);
+            return now;
+        }, Count, Tags);
+
+        // Assert
+        result.Should().Be(now);
+        AssertMetrics(Count, Tags);
+    }
+
+    [Fact]
+    public void RecordFunction_WithCount_WithResultTags()
+    {
+        // Arrange
+        var counter = Meter.CreateTimedOccurrenceCounter(Options, TimeInterval.Milliseconds);
+
+        // Act
+        var now = DateTime.Now;
+        var result = counter.Record(() =>
+        {
+            Thread.Sleep(2);
+            return now;
+        }, Count, (result) =>
+        {
+            result.Should().Be(now);
+            return Tags;
+        });
+
+        // Assert
+        result.Should().Be(now);
+        AssertMetrics(Count, Tags);
+    }
+
+    #endregion Function With Count
+
+    private void AssertMetrics(TagList tags)
+    {
+        AssertMetrics(1, tags);
+    }
+
+    private void AssertMetrics(long count = 1, TagList? tags = null)
     {
         AssertOccurrence();
         AssertTime();
@@ -199,7 +317,7 @@ public class TimedOccurrenceCounterTests: InstrumentTests
             measurements.Should().HaveCount(1);
 
             var measurement = measurements[0];
-            measurement.Value.Should().Be(1);
+            measurement.Value.Should().Be(count);
             measurement.Tags.ToTagList().Should().BeEquivalentTo(tags ?? new TagList());
         }
 
