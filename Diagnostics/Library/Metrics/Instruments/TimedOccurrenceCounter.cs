@@ -22,6 +22,8 @@ public sealed class TimedOccurrenceCounter : Instrument
         _timeCounter = timeCounter;
     }
 
+    public new bool Enabled => _occurrenceCounter.Enabled || _timeCounter.Enabled;
+
     public void Record(Action action)
     {
         var result = new Stopwatch().Measure(action);

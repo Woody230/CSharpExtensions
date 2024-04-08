@@ -39,7 +39,7 @@ public class TimedOccurrenceCounterTests: InstrumentTests
         counter.Name.Should().Be(Options.Name);
         counter.Unit.Should().BeNull();
         counter.Description.Should().Be(Options.Description);
-        counter.Enabled.Should().BeFalse();
+        counter.Enabled.Should().BeTrue();
 
         counter._occurrenceCounter.Meter.Should().Be(Meter);
         counter._occurrenceCounter.Name.Should().Be($"{Options.Name}.count");
@@ -73,7 +73,7 @@ public class TimedOccurrenceCounterTests: InstrumentTests
         counter.Name.Should().Be(Options.Name);
         counter.Unit.Should().Be(Unit);
         counter.Description.Should().Be(Options.Description);
-        counter.Enabled.Should().BeFalse();
+        counter.Enabled.Should().BeTrue();
 
         counter._occurrenceCounter.Meter.Should().Be(Meter);
         counter._occurrenceCounter.Name.Should().Be($"{Options.Name}.count");
