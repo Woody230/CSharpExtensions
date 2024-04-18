@@ -5,7 +5,8 @@ public readonly struct AdaptableNumber :
     IAdditionOperators<AdaptableNumber, AdaptableNumber, AdaptableNumber>,
     ISubtractionOperators<AdaptableNumber, AdaptableNumber, AdaptableNumber>,
     IMultiplyOperators<AdaptableNumber, AdaptableNumber, AdaptableNumber>,
-    IDivisionOperators<AdaptableNumber, AdaptableNumber, AdaptableNumber>
+    IDivisionOperators<AdaptableNumber, AdaptableNumber, AdaptableNumber>,
+    IFormattable
 {
     internal readonly Representation _representation;
     internal readonly AdaptableInt _int;
@@ -181,5 +182,13 @@ public readonly struct AdaptableNumber :
             Representation.Double => _decimal / other._double,
             Representation.Decimal => _decimal / other._decimal,
         },
+    };
+
+    public string ToString(string? format, IFormatProvider? formatProvider) => _representation switch
+    {
+        Representation.Int => _int.ToString(format, formatProvider),
+        Representation.Long => _long.ToString(format, formatProvider),
+        Representation.Double => _double.ToString(format, formatProvider),
+        Representation.Decimal => _decimal.ToString(format, formatProvider),
     };
 }

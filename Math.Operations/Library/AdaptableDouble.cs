@@ -17,9 +17,12 @@ internal readonly struct AdaptableDouble(double value) :
     IDivisionOperators<AdaptableDouble, int, AdaptableNumber>,
     IDivisionOperators<AdaptableDouble, long, AdaptableNumber>,
     IDivisionOperators<AdaptableDouble, double, AdaptableNumber>,
-    IDivisionOperators<AdaptableDouble, decimal, AdaptableNumber>
+    IDivisionOperators<AdaptableDouble, decimal, AdaptableNumber>,
+    IFormattable
 {
     private readonly double _value = value;
+
+    public string ToString(string? format, IFormatProvider? formatProvider) => _value.ToString(format, formatProvider);
 
     public static AdaptableNumber operator +(AdaptableDouble left, int right) => left._value + right;
     public static AdaptableNumber operator +(AdaptableDouble left, long right) => left._value + right;

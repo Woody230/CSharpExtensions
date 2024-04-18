@@ -17,9 +17,12 @@ internal readonly struct AdaptableDecimal(decimal value) :
     IDivisionOperators<AdaptableDecimal, int, AdaptableNumber>,
     IDivisionOperators<AdaptableDecimal, long, AdaptableNumber>,
     IDivisionOperators<AdaptableDecimal, double, AdaptableNumber>,
-    IDivisionOperators<AdaptableDecimal, decimal, AdaptableNumber>
+    IDivisionOperators<AdaptableDecimal, decimal, AdaptableNumber>,
+    IFormattable
 {
     private readonly decimal _value = value;
+
+    public string ToString(string? format, IFormatProvider? formatProvider) => _value.ToString(format, formatProvider);
 
     public static AdaptableNumber operator +(AdaptableDecimal left, int right) => left._value + right;
     public static AdaptableNumber operator +(AdaptableDecimal left, long right) => left._value + right;
