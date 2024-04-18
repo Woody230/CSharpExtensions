@@ -1,37 +1,37 @@
 ﻿namespace Woody230.Math.Operations;
 public static class AdaptableNumberExtensions
 {
-    public static AdaptableNumber ToAdaptableNumberOrZero(this object value) => value switch
+    public static AdaptableNumber ToAdaptableNumberOrZero(this object value, IFormatProvider? formatProvider = null) => value switch
     {
         int @int => @int,
         long @long => @long,
         double @double => @double,
         decimal @decimal => @decimal,
-        string @string => ToAdaptableNumberOrZero(@string),
-        _ => new AdaptableNumber()
+        string @string => ToAdaptableNumberOrZero(@string, formatProvider),
+        _ => default
     };
 
-    public static AdaptableNumber ToAdaptableNumberOrZero(this string value)
+    public static AdaptableNumber ToAdaptableNumberOrZero(this string value, IFormatProvider? formatProvider = null)
     {
-        if (int.TryParse(value, out var @int))
+        if (int.TryParse(value, formatProvider, out var @int))
         {
             return @int;
         }
-        else if (long.TryParse(value, out var @long))
+        else if (long.TryParse(value, formatProvider, out var @long))
         {
             return @long;
         }
-        else if (decimal.TryParse(value, out var @decimal))
+        else if (decimal.TryParse(value, formatProvider, out var @decimal))
         {
             return @decimal;
         }
-        else if (double.TryParse(value, out var @double))
+        else if (double.TryParse(value, formatProvider, out var @double))
         {
             return @double;
         }
         else
         {
-            return new AdaptableNumber();
+            return default;
         }
     }
 }
