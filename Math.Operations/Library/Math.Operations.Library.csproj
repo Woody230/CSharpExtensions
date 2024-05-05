@@ -10,6 +10,9 @@
     <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Math.Adaptable\Library\Math.Adaptable.Library.csproj" />
+  </ItemGroup>
+  <ItemGroup>
     <None Update="README.md">
       <PackagePath>\</PackagePath>
       <Pack>True</Pack>
