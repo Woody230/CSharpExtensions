@@ -1,28 +1,5 @@
-﻿using System.Numerics;
-
-namespace Woody230.Math.Adaptable;
-internal readonly struct AdaptableDecimal(decimal value) :
-    IAdditionOperators<AdaptableDecimal, int, AdaptableNumber>,
-    IAdditionOperators<AdaptableDecimal, long, AdaptableNumber>,
-    IAdditionOperators<AdaptableDecimal, double, AdaptableNumber>,
-    IAdditionOperators<AdaptableDecimal, decimal, AdaptableNumber>,
-    ISubtractionOperators<AdaptableDecimal, int, AdaptableNumber>,
-    ISubtractionOperators<AdaptableDecimal, long, AdaptableNumber>,
-    ISubtractionOperators<AdaptableDecimal, double, AdaptableNumber>,
-    ISubtractionOperators<AdaptableDecimal, decimal, AdaptableNumber>,
-    IMultiplyOperators<AdaptableDecimal, int, AdaptableNumber>,
-    IMultiplyOperators<AdaptableDecimal, long, AdaptableNumber>,
-    IMultiplyOperators<AdaptableDecimal, double, AdaptableNumber>,
-    IMultiplyOperators<AdaptableDecimal, decimal, AdaptableNumber>,
-    IDivisionOperators<AdaptableDecimal, int, AdaptableNumber>,
-    IDivisionOperators<AdaptableDecimal, long, AdaptableNumber>,
-    IDivisionOperators<AdaptableDecimal, double, AdaptableNumber>,
-    IDivisionOperators<AdaptableDecimal, decimal, AdaptableNumber>,
-    IPowerFunctions<int, AdaptableNumber>,
-    IPowerFunctions<long, AdaptableNumber>,
-    IPowerFunctions<double, AdaptableNumber>,
-    IPowerFunctions<decimal, AdaptableNumber>,
-    IFormattable
+﻿namespace Woody230.Math.Adaptable;
+internal readonly struct AdaptableDecimal(decimal value) : IAdaptableFunctions<AdaptableDecimal>
 {
     private readonly decimal _value = value;
 
