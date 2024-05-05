@@ -3,14 +3,11 @@
     <TargetFrameworks>net8.0</TargetFrameworks>
   </PropertyGroup>
   <PropertyGroup>
-    <Description>Provides an AdaptableNumber for managing arithmetic for an object that represent any kind of numeric.</Description>
+    <Description>Extensions for System.Math.</Description>
     <PackageReleaseNotes>Initial version.</PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Math\Library\Math.Library.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="README.md">

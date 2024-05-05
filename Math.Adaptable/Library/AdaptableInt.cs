@@ -51,7 +51,7 @@ internal readonly struct AdaptableInt(int value) :
     public AdaptableNumber Pow(int power) => System.Math.Pow(_value, power);
     public AdaptableNumber Pow(long power) => System.Math.Pow(_value, power);
     public AdaptableNumber Pow(double power) => System.Math.Pow(_value, power);
-    public AdaptableNumber Pow(decimal power) => System.Math.Pow(_value, Convert.ToDouble(power));
+    public AdaptableNumber Pow(decimal power) => System.Math.Pow(_value, power.ToDouble());
 
     public static implicit operator AdaptableInt(int value) => new(value);
     public static implicit operator int(AdaptableInt adaptable) => adaptable._value;

@@ -30,28 +30,28 @@ internal readonly struct AdaptableDecimal(decimal value) :
 
     public static AdaptableNumber operator +(AdaptableDecimal left, int right) => left._value + right;
     public static AdaptableNumber operator +(AdaptableDecimal left, long right) => left._value + right;
-    public static AdaptableNumber operator +(AdaptableDecimal left, double right) => left._value + Convert.ToDecimal(right);
+    public static AdaptableNumber operator +(AdaptableDecimal left, double right) => left._value + right.ToDecimal();
     public static AdaptableNumber operator +(AdaptableDecimal left, decimal right) => left._value + right;
 
     public static AdaptableNumber operator -(AdaptableDecimal left, int right) => left._value - right;
     public static AdaptableNumber operator -(AdaptableDecimal left, long right) => left._value - right;
-    public static AdaptableNumber operator -(AdaptableDecimal left, double right) => left._value - Convert.ToDecimal(right);
+    public static AdaptableNumber operator -(AdaptableDecimal left, double right) => left._value - right.ToDecimal();
     public static AdaptableNumber operator -(AdaptableDecimal left, decimal right) => left._value - right;
 
     public static AdaptableNumber operator *(AdaptableDecimal left, int right) => left._value * right;
     public static AdaptableNumber operator *(AdaptableDecimal left, long right) => left._value * right;
-    public static AdaptableNumber operator *(AdaptableDecimal left, double right) => left._value * Convert.ToDecimal(right);
+    public static AdaptableNumber operator *(AdaptableDecimal left, double right) => left._value * right.ToDecimal();
     public static AdaptableNumber operator *(AdaptableDecimal left, decimal right) => left._value * right;
 
     public static AdaptableNumber operator /(AdaptableDecimal left, int right) => left._value / right;
     public static AdaptableNumber operator /(AdaptableDecimal left, long right) => left._value / right;
-    public static AdaptableNumber operator /(AdaptableDecimal left, double right) => left._value / Convert.ToDecimal(right);
+    public static AdaptableNumber operator /(AdaptableDecimal left, double right) => left._value / right.ToDecimal();
     public static AdaptableNumber operator /(AdaptableDecimal left, decimal right) => left._value / right;
 
-    public AdaptableNumber Pow(int power) => System.Math.Pow(Convert.ToDouble(_value), power);
-    public AdaptableNumber Pow(long power) => System.Math.Pow(Convert.ToDouble(_value), power);
-    public AdaptableNumber Pow(double power) => System.Math.Pow(Convert.ToDouble(_value), power);
-    public AdaptableNumber Pow(decimal power) => System.Math.Pow(Convert.ToDouble(_value),  Convert.ToDouble(power));
+    public AdaptableNumber Pow(int power) => System.Math.Pow(_value.ToDouble(), power);
+    public AdaptableNumber Pow(long power) => System.Math.Pow(_value.ToDouble(), power);
+    public AdaptableNumber Pow(double power) => System.Math.Pow(_value.ToDouble(), power);
+    public AdaptableNumber Pow(decimal power) => System.Math.Pow(_value.ToDouble(), power.ToDouble());
 
     public static implicit operator AdaptableDecimal(decimal value) => new(value);
     public static implicit operator decimal(AdaptableDecimal adaptable) => adaptable._value;
