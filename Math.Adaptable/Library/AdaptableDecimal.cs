@@ -18,6 +18,10 @@ internal readonly struct AdaptableDecimal(decimal value) :
     IDivisionOperators<AdaptableDecimal, long, AdaptableNumber>,
     IDivisionOperators<AdaptableDecimal, double, AdaptableNumber>,
     IDivisionOperators<AdaptableDecimal, decimal, AdaptableNumber>,
+    IPowerFunctions<int, AdaptableNumber>,
+    IPowerFunctions<long, AdaptableNumber>,
+    IPowerFunctions<double, AdaptableNumber>,
+    IPowerFunctions<decimal, AdaptableNumber>,
     IFormattable
 {
     private readonly decimal _value = value;
@@ -43,6 +47,11 @@ internal readonly struct AdaptableDecimal(decimal value) :
     public static AdaptableNumber operator /(AdaptableDecimal left, long right) => left._value / right;
     public static AdaptableNumber operator /(AdaptableDecimal left, double right) => left._value / Convert.ToDecimal(right);
     public static AdaptableNumber operator /(AdaptableDecimal left, decimal right) => left._value / right;
+
+    public AdaptableNumber Pow(int power) => System.Math.Pow(Convert.ToDouble(_value), power);
+    public AdaptableNumber Pow(long power) => System.Math.Pow(Convert.ToDouble(_value), power);
+    public AdaptableNumber Pow(double power) => System.Math.Pow(Convert.ToDouble(_value), power);
+    public AdaptableNumber Pow(decimal power) => System.Math.Pow(Convert.ToDouble(_value),  Convert.ToDouble(power));
 
     public static implicit operator AdaptableDecimal(decimal value) => new(value);
     public static implicit operator decimal(AdaptableDecimal adaptable) => adaptable._value;

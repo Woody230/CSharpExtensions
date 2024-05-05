@@ -6,6 +6,7 @@ public readonly struct AdaptableNumber :
     ISubtractionOperators<AdaptableNumber, AdaptableNumber, AdaptableNumber>,
     IMultiplyOperators<AdaptableNumber, AdaptableNumber, AdaptableNumber>,
     IDivisionOperators<AdaptableNumber, AdaptableNumber, AdaptableNumber>,
+    IPowerFunctions<AdaptableNumber, AdaptableNumber>,
     IFormattable
 {
     internal readonly Representation _representation;
@@ -55,6 +56,37 @@ public readonly struct AdaptableNumber :
     public static AdaptableNumber operator -(AdaptableNumber left, AdaptableNumber right) => left.Subtract(right);
     public static AdaptableNumber operator *(AdaptableNumber left, AdaptableNumber right) => left.Multiply(right);
     public static AdaptableNumber operator /(AdaptableNumber left, AdaptableNumber right) => left.Divide(right);
+    public AdaptableNumber Pow(AdaptableNumber power) => _representation switch
+    {
+        Representation.Int => power._representation switch
+        {
+            Representation.Int => _int.Pow(power._int),
+            Representation.Long => _int.Pow(power._long),
+            Representation.Double => _int.Pow(power._double),
+            Representation.Decimal => _int.Pow(power._decimal),
+        },
+        Representation.Long => power._representation switch
+        {
+            Representation.Int => _long.Pow(power._int),
+            Representation.Long => _long.Pow(power._long),
+            Representation.Double => _long.Pow(power._double),
+            Representation.Decimal => _long.Pow(power._decimal),
+        },
+        Representation.Double => power._representation switch
+        {
+            Representation.Int => _double.Pow(power._int),
+            Representation.Long => _double.Pow(power._long),
+            Representation.Double => _double.Pow(power._double),
+            Representation.Decimal => _double.Pow(power._decimal),
+        },
+        Representation.Decimal => power._representation switch
+        {
+            Representation.Int => _decimal.Pow(power._int),
+            Representation.Long => _decimal.Pow(power._long),
+            Representation.Double => _decimal.Pow(power._double),
+            Representation.Decimal => _decimal.Pow(power._decimal),
+        },
+    };
 
     private AdaptableNumber Add(AdaptableNumber other) => _representation switch
     {
