@@ -1,4 +1,4 @@
-﻿namespace Woody230.Math.Operations;
+﻿namespace Woody230.Math.Adaptable;
 public static class AdaptableNumberExtensions
 {
     public static AdaptableNumber ToAdaptableNumberOrZero(this object value, IFormatProvider? formatProvider = null) => value switch

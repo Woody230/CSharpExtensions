@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace Woody230.Math.Operations;
+namespace Woody230.Math.Adaptable;
 internal readonly struct AdaptableDecimal(decimal value) :
     IAdditionOperators<AdaptableDecimal, int, AdaptableNumber>,
     IAdditionOperators<AdaptableDecimal, long, AdaptableNumber>,

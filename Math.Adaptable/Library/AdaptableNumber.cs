@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace Woody230.Math.Operations;
+namespace Woody230.Math.Adaptable;
 public readonly struct AdaptableNumber : 
     IAdditionOperators<AdaptableNumber, AdaptableNumber, AdaptableNumber>,
     ISubtractionOperators<AdaptableNumber, AdaptableNumber, AdaptableNumber>,

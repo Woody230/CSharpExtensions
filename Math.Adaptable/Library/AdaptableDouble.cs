@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace Woody230.Math.Operations;
+namespace Woody230.Math.Adaptable;
 internal readonly struct AdaptableDouble(double value) :
     IAdditionOperators<AdaptableDouble, int, AdaptableNumber>,
     IAdditionOperators<AdaptableDouble, long, AdaptableNumber>,
