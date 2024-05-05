@@ -9,6 +9,8 @@ public class ArithmeticOperation(ArithmeticOperationType type)
         ArithmeticOperationType.Subtract => value - operand,
         ArithmeticOperationType.Multiply => value * operand,
         ArithmeticOperationType.Divide => value / operand,
+        ArithmeticOperationType.Power => value.Pow(operand),
+        ArithmeticOperationType.Root => value.Pow(1.0 / operand),
         _ => throw new NotImplementedException($"The operation type {type} is not supported."),
     };
 }

@@ -4,5 +4,7 @@ public enum ArithmeticOperationType
     Add,
     Subtract,
     Multiply,
-    Divide
+    Divide,
+    Power,
+    Root
 }
