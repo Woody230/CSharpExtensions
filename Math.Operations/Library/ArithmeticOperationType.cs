@@ -1,5 +1,5 @@
 ﻿namespace Woody230.Math.Operations;
-public enum NumericOperationType
+public enum ArithmeticOperationType
 {
     Add,
     Subtract,
