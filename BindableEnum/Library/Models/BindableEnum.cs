@@ -59,7 +59,7 @@ public class BindableEnum<T> : IBindableEnum<T> where T : struct, Enum
     /// Implicitly converts a bindable enum to the enum.
     /// </summary>
     /// <param name="bindable">The bindable enum.</param>
-    public static implicit operator T(BindableEnum<T> bindable) => bindable.Enum;
+    public static implicit operator T(BindableEnum<T> bindable) => bindable?.Enum ?? default;
 
     /// <summary>
     /// Implicitly converts a bindable enum to the nullable enum.

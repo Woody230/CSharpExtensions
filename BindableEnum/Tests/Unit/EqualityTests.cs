@@ -19,8 +19,8 @@ public class EqualityTests
         BindableEnum<DayOfWeek> third = new(DayOfWeek.Monday);
 
         // Act / Assert
-        (first.Equals(second)).Should().BeTrue();
-        (first.Equals(third)).Should().BeTrue();
+        first.Equals(second).Should().BeTrue();
+        first.Equals(third).Should().BeTrue();
     }
 
     /// <summary>
@@ -35,8 +35,8 @@ public class EqualityTests
         BindableEnum<DayOfWeek> third = new(DayOfWeek.Tuesday);
 
         // Act / Assert
-        (first.Equals(second)).Should().BeFalse();
-        (first.Equals(third)).Should().BeFalse();
+        first.Equals(second).Should().BeFalse();
+        first.Equals(third).Should().BeFalse();
     }
 
     /// <summary>
@@ -69,5 +69,19 @@ public class EqualityTests
         // Act / Assert
         first.GetHashCode().Should().NotBe(second.GetHashCode());
         first.GetHashCode().Should().NotBe(third.GetHashCode());
+    }
+
+    /// <summary>
+    /// Verifies the equality of checking against a null enum.
+    /// </summary>
+    [Fact]
+    public void Null_NotEqual()
+    {
+        // Arrange
+        BindableEnum<DayOfWeek> @enum = null;
+
+        // Act / Assert
+        (@enum == DayOfWeek.Thursday).Should().BeFalse();
+        (@enum == DayOfWeek.Sunday).Should().BeTrue(because: "default enum");
     }
 }
