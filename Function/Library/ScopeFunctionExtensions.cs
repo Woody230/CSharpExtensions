@@ -27,6 +27,16 @@ public static class ScopeFunctionExtensions
     }
 
     /// <summary>
+    /// Invokes the <paramref name="function"/>.
+    /// </summary>
+    /// <returns>The <paramref name="object"/>.</returns>
+    public static T Apply<T, R>(this T @object, Func<R> function)
+    {
+        function();
+        return @object;
+    }
+
+    /// <summary>
     /// Invokes the <paramref name="function"/> using the <paramref name="object"/>.
     /// </summary>
     /// <returns>The <paramref name="object"/>.</returns>
