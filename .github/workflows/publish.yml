@@ -1,11 +1,19 @@
+# https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions
+
 name: Publish
 
-on: workflow_dispatch
+on: 
+  workflow_dispatch: 
+    inputs:
+      environment:
+        description: "The name of the environment."
+        required: true
+        type: string
 
 jobs:
   publish:
     runs-on: windows-latest
-    environment: production
+    environment: ${{ inputs.environment }}
     steps:
     - uses: actions/checkout@v3
     - name: Setup .NET
