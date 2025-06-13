@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Internal\Tests\Internal.Tests.csproj" />
+    <ProjectReference Include="..\Library\Function.Library.csproj" />
+  </ItemGroup>
+</Project>
