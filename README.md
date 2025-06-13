@@ -8,5 +8,6 @@
 | [Collections](Collections/Library/README.md) | [![](https://img.shields.io/nuget/v/Woody230.Collections)](https://www.nuget.org/packages/Woody230.Collections) | Extensions for the System.Collections namespace. | 
 | [Collections.Extensible](Collections.Extensible/Library/README.md) | [![](https://img.shields.io/nuget/v/Woody230.Collections.Extensible)](https://www.nuget.org/packages/Woody230.Collections.Extensible) | Custom collections extending System.Collections. | 
 | [Diagnostics](Diagnostics/Library/README.md) | [![](https://img.shields.io/nuget/v/Woody230.Diagnostics)](https://www.nuget.org/packages/Woody230.Diagnostics) | Extensions for the System.Diagnostics namespace. | 
+| [Function](Function/Library/README.md) | [![](https://img.shields.io/nuget/v/Woody230.Function)](https://www.nuget.org/packages/Woody230.Function) | Extensions for functions. |
 | [FluentValidation](FluentValidation/Library/README.md) | [![](https://img.shields.io/nuget/v/Woody230.FluentValidation)](https://www.nuget.org/packages/Woody230.FluentValidation) | Extensions for the [FluentValidation](https://github.com/FluentValidation/FluentValidation) library. |
 | [Text](Text/Library/README.md) | [![](https://img.shields.io/nuget/v/Woody230.Text)](https://www.nuget.org/packages/Woody230.Text) | Extensions for the System.Text namespace. |

@@ -3,7 +3,7 @@
 
 # Function
 
-Custom extensions for functions.
+Extensions for functions.
 
 ## Scope Functions
 https://kotlinlang.org/docs/scope-functions.html
