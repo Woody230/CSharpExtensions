@@ -7,14 +7,9 @@ namespace Woody230.Collections.Extensible.Generic;
 /// </summary>
 /// <typeparam name="TKey">The type of the key.</typeparam>
 /// <typeparam name="TValue">The type of the value.</typeparam>
-public abstract class ExtensibleDictionary<TKey, TValue>: ExtensibleCollection<KeyValuePair<TKey, TValue>>, IExtensibleDictionary<TKey, TValue>
+public abstract class ExtensibleDictionary<TKey, TValue>(IDictionary<TKey, TValue> dictionary) : ExtensibleCollection<KeyValuePair<TKey, TValue>>(dictionary), IExtensibleDictionary<TKey, TValue>
 {
-    private readonly IDictionary<TKey, TValue> _dictionary;
-
-    public ExtensibleDictionary(IDictionary<TKey, TValue> dictionary): base(dictionary)
-    {
-        _dictionary = dictionary;
-    }
+    private readonly IDictionary<TKey, TValue> _dictionary = dictionary;
 
     public override abstract IExtensibleDictionary<TKey, TValue> ShallowCopy();
 

@@ -26,7 +26,7 @@ public class GenericMemoryCacheTests
 
         _mockMemoryCache = new();
         _mockCacheEntry = new();
-        _changeTokens = new List<IChangeToken>();
+        _changeTokens = [];
         _mockChangeToken = new();
         _mockGenericCache = new GenericMemoryCache<string, int>(_mockMemoryCache.Object);
         _mockCacheEntry.SetupGet(entry => entry.ExpirationTokens).Returns(_changeTokens);
@@ -36,7 +36,7 @@ public class GenericMemoryCacheTests
         {
             AbsoluteExpiration = new DateTime(2015, 5, 6),
             AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(1),
-            ExpirationTokens = new List<IChangeToken>() { _mockChangeToken.Object },
+            ExpirationTokens = [_mockChangeToken.Object],
             Priority = CacheItemPriority.NeverRemove,
             Size = 1234,
             SlidingExpiration = TimeSpan.FromMinutes(30)
@@ -222,7 +222,7 @@ public class GenericMemoryCacheTests
     {
         _mockCacheEntry.VerifySet(entry => entry.AbsoluteExpiration = new DateTime(2015, 5, 6));
         _mockCacheEntry.VerifySet(entry => entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(1));
-        _changeTokens.Should().BeEquivalentTo(new List<IChangeToken>() { _mockChangeToken.Object });
+        _changeTokens.Should().BeEquivalentTo([_mockChangeToken.Object]);
         _mockCacheEntry.VerifySet(entry => entry.Priority = CacheItemPriority.NeverRemove);
         _mockCacheEntry.VerifySet(entry => entry.Size = 1234);
         _mockCacheEntry.VerifySet(entry => entry.SlidingExpiration = TimeSpan.FromMinutes(30));

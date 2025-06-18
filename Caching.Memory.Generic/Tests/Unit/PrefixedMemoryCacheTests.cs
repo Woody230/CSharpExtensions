@@ -59,7 +59,7 @@ public class PrefixedMemoryCacheTests
         {
             AbsoluteExpiration = new DateTime(2015, 5, 6),
             AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(1),
-            ExpirationTokens = new List<IChangeToken>() { mockChangeToken.Object },
+            ExpirationTokens = [mockChangeToken.Object],
             Priority = CacheItemPriority.NeverRemove,
             Size = 1234,
             SlidingExpiration = TimeSpan.FromMinutes(30)
@@ -70,7 +70,7 @@ public class PrefixedMemoryCacheTests
 
         mockCacheEntry.VerifySet(entry => entry.AbsoluteExpiration = new DateTime(2015, 5, 6));
         mockCacheEntry.VerifySet(entry => entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(1));
-        mockCacheEntryTokens.Should().BeEquivalentTo(new List<IChangeToken>() { mockChangeToken.Object });
+        mockCacheEntryTokens.Should().BeEquivalentTo([mockChangeToken.Object]);
         mockCacheEntry.VerifySet(entry => entry.Priority = CacheItemPriority.NeverRemove);
         mockCacheEntry.VerifySet(entry => entry.Size = 1234);
         mockCacheEntry.VerifySet(entry => entry.SlidingExpiration = TimeSpan.FromMinutes(30));

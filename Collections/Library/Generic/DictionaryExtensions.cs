@@ -5,16 +5,6 @@
 /// </summary>
 public static class DictionaryExtensions
 {
-    #if NET6_0
-    /// <summary>
-    /// Converts <paramref name="this"/> collection of tuples to a dictionary.
-    /// </summary>
-    public static IDictionary<TKey, TValue> ToDictionary<TKey, TValue>(this IEnumerable<(TKey, TValue)> @this) where TKey : notnull
-    {
-        return @this.ToDictionary(pair => pair.Item1, pair => pair.Item2);
-    }
-    #endif
-
     /// <summary>
     /// Removes the key value pairs associated with each of the keys from the <paramref name="other"/> collection in <paramref name="this"/> collection.
     /// </summary>

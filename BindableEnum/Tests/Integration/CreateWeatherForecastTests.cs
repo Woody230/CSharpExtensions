@@ -12,7 +12,7 @@ namespace Woody230.BindableEnum.Tests.Integration;
 /// <summary>
 /// Represents tests for the <see cref="WeatherForecastController"/> related to creating a new weather forecast.
 /// </summary>
-public class CreateWeatherForecastTests : IntegrationTests
+public class CreateWeatherForecastTests(WebApplicationFactory<Program> factory) : IntegrationTests(factory)
 {
     /// <summary>
     /// The serializer options.
@@ -21,14 +21,6 @@ public class CreateWeatherForecastTests : IntegrationTests
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
     };
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="CreateWeatherForecastTests"/> class.
-    /// </summary>
-    /// <param name="factory">The web application factory.</param>
-    public CreateWeatherForecastTests(WebApplicationFactory<Program> factory) : base(factory)
-    {
-    }
 
     /// <summary>
     /// Verifies that validation passes when a valid enum is used.

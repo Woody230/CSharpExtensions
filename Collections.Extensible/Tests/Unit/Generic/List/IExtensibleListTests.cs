@@ -15,7 +15,7 @@ public class IExtensibleListTests
 
         // Assert
         merged.Should().NotBeSameAs(first).And.NotBeSameAs(second);
-        merged.Should().BeEquivalentTo(new ExtendedList<int>() { 5, 8, 13, 9, 13, 17 });
+        merged.Should().BeEquivalentTo([5, 8, 13, 9, 13, 17]);
     }
 
     [Fact]
@@ -30,7 +30,7 @@ public class IExtensibleListTests
 
         // Assert
         merged.Should().NotBeSameAs(first).And.NotBeSameAs(second);
-        merged.Should().BeEquivalentTo(new ExtendedList<int>() { 5, 8, 13, 9, 13, 17 });
+        merged.Should().BeEquivalentTo([5, 8, 13, 9, 13, 17]);
     }
 
     [Fact]
@@ -45,7 +45,7 @@ public class IExtensibleListTests
 
         // Assert
         merged.Should().NotBeSameAs(first).And.NotBeSameAs(second);
-        merged.Should().BeEquivalentTo(new ExtendedList<int>() { 5, 8 });
+        merged.Should().BeEquivalentTo([5, 8]);
     }
 
     [Fact]
@@ -60,7 +60,7 @@ public class IExtensibleListTests
 
         // Assert
         merged.Should().NotBeSameAs(first).And.NotBeSameAs(second);
-        merged.Should().BeEquivalentTo(new ExtendedList<int>() { 9, 17 });
+        merged.Should().BeEquivalentTo([9, 17]);
     }
 
     [Fact]
@@ -75,7 +75,7 @@ public class IExtensibleListTests
 
         // Assert
         merged.Should().NotBeSameAs(first);
-        merged.Should().BeEquivalentTo(new ExtendedList<int>() { 5, 8, 13, 13 });
+        merged.Should().BeEquivalentTo([5, 8, 13, 13]);
     }
 
     [Fact]
@@ -90,6 +90,6 @@ public class IExtensibleListTests
 
         // Assert
         merged.Should().NotBeSameAs(first);
-        merged.Should().BeEquivalentTo(new ExtendedList<int>() { 5, 8 });
+        merged.Should().BeEquivalentTo([5, 8]);
     }
 }

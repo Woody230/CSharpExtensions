@@ -7,8 +7,8 @@ public class ExtendedSetTests
     public void AddCollection()
     {
         // Arrange
-        ExtendedSet<int> first = new ExtendedSet<int>() { 5, 8, 13 };
-        ExtendedSet<int> second = new ExtendedSet<int>() { 9, 13, 17 };
+        ExtendedSet<int> first = [5, 8, 13];
+        ExtendedSet<int> second = [9, 13, 17];
 
         // Act
         ExtendedSet<int> merged = first + second;
@@ -22,8 +22,8 @@ public class ExtendedSetTests
     public void AddCollection_Reverse()
     {
         // Arrange
-        ExtendedSet<int> first = new ExtendedSet<int>() { 9, 13, 17 };
-        ExtendedSet<int> second = new ExtendedSet<int>() { 5, 8, 13 };
+        ExtendedSet<int> first = [9, 13, 17];
+        ExtendedSet<int> second = [5, 8, 13];
 
         // Act
         ExtendedSet<int> merged = first + second;
@@ -37,8 +37,8 @@ public class ExtendedSetTests
     public void SubtractCollection()
     {
         // Arrange
-        ExtendedSet<int> first = new ExtendedSet<int>() { 5, 8, 13 };
-        ExtendedSet<int> second = new ExtendedSet<int>() { 9, 13, 17 };
+        ExtendedSet<int> first = [5, 8, 13];
+        ExtendedSet<int> second = [9, 13, 17];
 
         // Act
         ExtendedSet<int> merged = first - second;
@@ -52,8 +52,8 @@ public class ExtendedSetTests
     public void SubtractCollection_Reverse()
     {
         // Arrange
-        ExtendedSet<int> first = new ExtendedSet<int>() { 9, 13, 17 };
-        ExtendedSet<int> second = new ExtendedSet<int>() { 5, 8, 13 };
+        ExtendedSet<int> first = [9, 13, 17];
+        ExtendedSet<int> second = [5, 8, 13];
 
         // Act
         ExtendedSet<int> merged = first - second;
@@ -67,7 +67,7 @@ public class ExtendedSetTests
     public void AddItem()
     {
         // Arrange
-        ExtendedSet<int> first = new ExtendedSet<int>() { 5, 8, 13 };
+        ExtendedSet<int> first = [5, 8, 13];
         int second = 14;
 
         // Act
@@ -82,7 +82,7 @@ public class ExtendedSetTests
     public void SubtractItem()
     {
         // Arrange
-        ExtendedSet<int> first = new ExtendedSet<int>() { 5, 8, 13 };
+        ExtendedSet<int> first = [5, 8, 13];
         int second = 13;
 
         // Act
@@ -97,7 +97,7 @@ public class ExtendedSetTests
     public void ShallowCopy()
     {
         // Arrange
-        ExtendedSet<int> set = new ExtendedSet<int>() { 5, 8, 13 };
+        ExtendedSet<int> set = [5, 8, 13];
 
         // Act
         ExtendedSet<int> copy = set + 99;

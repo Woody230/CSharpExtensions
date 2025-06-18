@@ -10,7 +10,7 @@ public class ForEachTests
         // Arrange / Act
         var builder = new StringBuilder();
 
-        HashSet<int> set = new HashSet<int>() { 4, 7, 9 };
+        HashSet<int> set = [4, 7, 9];
         set.ForEach((int item) => builder.Append(item));
         builder.Append(' ');
 
@@ -32,7 +32,7 @@ public class ForEachTests
         // Arrange / Act
         var builder = new StringBuilder();
 
-        HashSet<int> set = new HashSet<int>() { 4, 7, 9 };
+        HashSet<int> set = [4, 7, 9];
         set.ForEachIndexed((int index, int item) => builder.Append(item + index));
         builder.Append(' ');
 

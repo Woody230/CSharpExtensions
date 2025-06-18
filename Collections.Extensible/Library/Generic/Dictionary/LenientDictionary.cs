@@ -7,13 +7,9 @@ namespace Woody230.Collections.Extensible.Generic;
 /// </summary>
 /// <typeparam name="TKey">The type of the key.</typeparam>
 /// <typeparam name="TValue">The type of the value.</typeparam>
-public sealed class LenientDictionary<TKey, TValue>: ExtensibleDictionary<TKey, TValue> where TKey: notnull
+public sealed class LenientDictionary<TKey, TValue>(IDictionary<TKey, TValue> dictionary) : ExtensibleDictionary<TKey, TValue>(dictionary) where TKey: notnull
 {
     public LenientDictionary() : this(new Dictionary<TKey, TValue>())
-    {
-    }
-
-    public LenientDictionary(IDictionary<TKey, TValue> dictionary) : base(dictionary)
     {
     }
 
@@ -28,7 +24,7 @@ public sealed class LenientDictionary<TKey, TValue>: ExtensibleDictionary<TKey, 
     public override LenientDictionary<TKey, TValue> ShallowCopy()
     {
         var dictionary = new Dictionary<TKey, TValue>(this);
-        return new LenientDictionary<TKey, TValue>(dictionary);
+        return [.. dictionary];
     }
 
     #region Operators

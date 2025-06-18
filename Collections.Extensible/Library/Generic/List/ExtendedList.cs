@@ -1,24 +1,20 @@
 ﻿namespace Woody230.Collections.Extensible.Generic;
 
 /// <inheritdoc/>
-public sealed class ExtendedList<T>: ExtensibleList<T>
+public sealed class ExtendedList<T>(IList<T> list) : ExtensibleList<T>(list)
 {
     public ExtendedList(IEnumerable<T> collection): this(collection.ToList())
     {
     }
 
-    public ExtendedList(IList<T> list) : base(list)
-    {
-    }
-
-    public ExtendedList(): this(new List<T>())
+    public ExtendedList(): this([])
     {
     }
 
     public override ExtendedList<T> ShallowCopy()
     {
         var list = new List<T>(this);
-        return new ExtendedList<T>(list);
+        return [.. list];
     }
 
     #region Operators

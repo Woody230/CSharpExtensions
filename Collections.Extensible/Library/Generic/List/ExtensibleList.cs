@@ -4,14 +4,9 @@
 /// Represents a <see cref="IList{T}"/> that is extensible with additional functionality.
 /// </summary>
 /// <typeparam name="T">The type of model.</typeparam>
-public abstract class ExtensibleList<T> : ExtensibleCollection<T>, IExtensibleList<T>
+public abstract class ExtensibleList<T>(IList<T> list) : ExtensibleCollection<T>(list), IExtensibleList<T>
 {
-    private readonly IList<T> _list;
-
-    public ExtensibleList(IList<T> list) : base(list)
-    {
-        _list = list;
-    }
+    private readonly IList<T> _list = list;
 
     public override abstract IExtensibleList<T> ShallowCopy();
 

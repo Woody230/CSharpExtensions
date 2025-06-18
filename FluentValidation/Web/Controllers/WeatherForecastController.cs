@@ -8,25 +8,20 @@ namespace FluentValidation.Web.Controllers;
 /// <summary>
 /// The weather forecast controller.
 /// </summary>
+/// <remarks>
+/// Initializes a new instance of the <see cref="WeatherForecastController"/> class.
+/// </remarks>
+/// <param name="logger">The logger.</param>
 [ApiController]
 [Route("[controller]")]
-public class WeatherForecastController : ControllerBase
+public class WeatherForecastController(ILogger<WeatherForecastController> logger) : ControllerBase
 {
     private static readonly string[] Summaries = new[]
     {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
 
-    private readonly ILogger<WeatherForecastController> _logger;
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="WeatherForecastController"/> class.
-    /// </summary>
-    /// <param name="logger">The logger.</param>
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
-    {
-        _logger = logger;
-    }
+    private readonly ILogger<WeatherForecastController> _logger = logger;
 
     /// <summary>
     /// Gets one or more weather forecasts.

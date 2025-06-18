@@ -10,7 +10,7 @@ namespace Woody230.FluentValidation.Tests.Integration;
 /// <summary>
 /// Represents tests for the <see cref="WeatherForecastController"/> related to creating a new weather forecast.
 /// </summary>
-public class CreateWeatherForecastTests : IntegrationTests
+public class CreateWeatherForecastTests(WebApplicationFactory<Program> factory) : IntegrationTests(factory)
 {
     /// <summary>
     /// The serializer options.
@@ -20,14 +20,6 @@ public class CreateWeatherForecastTests : IntegrationTests
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
         DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.Never
     };
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="CreateWeatherForecastTests"/> class.
-    /// </summary>
-    /// <param name="factory">The web application factory.</param>
-    public CreateWeatherForecastTests(WebApplicationFactory<Program> factory) : base(factory)
-    {
-    }
 
     /// <summary>
     /// Verifies that validation passes when a valid model is used.
@@ -44,14 +36,14 @@ public class CreateWeatherForecastTests : IntegrationTests
                 Description = "* Foo",
                 Name = "* Bar"
             },
-            RequiredEvents = new List<Event>()
-            {
+            RequiredEvents =
+            [
                 new Event()
                 {
                     Description = "* Fizz",
                     Name = "* Buzz"
                 }
-            }
+            ]
         };
 
         var request = CreateRequest(forecast);
@@ -86,8 +78,8 @@ public class CreateWeatherForecastTests : IntegrationTests
                 Description = "Foo",
                 Name = "* Bar"
             },
-            RequiredEvents = new List<Event>()
-            {
+            RequiredEvents =
+            [
                 new Event()
                 {
                     Description = "* 1",
@@ -100,9 +92,9 @@ public class CreateWeatherForecastTests : IntegrationTests
                     Name = "Buzz"
                 },
                 null
-            },
-            OptionalEvents = new List<Event>()
-            {
+            ],
+            OptionalEvents =
+            [
                 null,
                 new Event()
                 {
@@ -115,7 +107,7 @@ public class CreateWeatherForecastTests : IntegrationTests
                     Name = "678"
                 },
                 null
-            }
+            ]
         };
 
         var request = CreateRequest(forecast);

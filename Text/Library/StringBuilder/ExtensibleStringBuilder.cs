@@ -7,21 +7,12 @@ namespace Woody230.Text.StringBuilder;
 /// Represents a <see cref="System.Text.StringBuilder"/> that is extensible with additional functionality.
 /// </summary>
 /// <typeparam name="TBuilder">The type of the builder that is extending from this builder.</typeparam>
-public abstract class ExtensibleStringBuilder<TBuilder> : IExtensibleStringBuilder<TBuilder> where TBuilder: ExtensibleStringBuilder<TBuilder>
+public abstract class ExtensibleStringBuilder<TBuilder>(System.Text.StringBuilder builder) : IExtensibleStringBuilder<TBuilder> where TBuilder: ExtensibleStringBuilder<TBuilder>
 {
     /// <summary>
     /// The string builder.
     /// </summary>
-    private readonly System.Text.StringBuilder _builder;
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="ExtendedStringBuilder"/> class.
-    /// </summary>
-    /// <param name="builder">The string builder.</param>
-    public ExtensibleStringBuilder(System.Text.StringBuilder builder)
-    {
-        _builder = builder;
-    }
+    private readonly System.Text.StringBuilder _builder = builder;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ExtendedStringBuilder"/> class with a new string builder.

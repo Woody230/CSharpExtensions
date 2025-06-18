@@ -11,7 +11,7 @@ public record GenericMemoryCacheEntryOptions : IGenericMemoryCacheEntryOptions
     public DateTimeOffset? AbsoluteExpiration { get; init; }
     public TimeSpan? AbsoluteExpirationRelativeToNow { get; init; }
     public TimeSpan? SlidingExpiration { get; init; }
-    public IEnumerable<IChangeToken> ExpirationTokens { get; init; } = Enumerable.Empty<IChangeToken>();
+    public IEnumerable<IChangeToken> ExpirationTokens { get; init; } = [];
     public CacheItemPriority Priority { get; init; } = CacheItemPriority.Normal;
     public long? Size { get; init; }
 }

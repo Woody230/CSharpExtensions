@@ -1,20 +1,16 @@
 ﻿namespace Woody230.Collections.Extensible.Generic;
 
 /// <inheritdoc/>
-public sealed class ExtendedDictionary<TKey, TValue> : ExtensibleDictionary<TKey, TValue> where TKey: notnull
+public sealed class ExtendedDictionary<TKey, TValue>(IDictionary<TKey, TValue> dictionary) : ExtensibleDictionary<TKey, TValue>(dictionary) where TKey: notnull
 {
     public ExtendedDictionary(): this(new Dictionary<TKey, TValue>())
-    {
-    }
-
-    public ExtendedDictionary(IDictionary<TKey, TValue> dictionary) : base(dictionary)
     {
     }
 
     public override ExtendedDictionary<TKey, TValue> ShallowCopy()
     {
         var dictionary = new Dictionary<TKey, TValue>(this);
-        return new ExtendedDictionary<TKey, TValue>(dictionary);
+        return [.. dictionary];
     }
 
     #region Operators

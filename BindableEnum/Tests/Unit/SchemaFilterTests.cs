@@ -16,8 +16,8 @@ public class SchemaFilterTests
     /// <summary>
     /// The expected enumerations.
     /// </summary>
-    private static readonly IList<IOpenApiAny> _enums = new List<IOpenApiAny>()
-    {
+    private static readonly IList<IOpenApiAny> _enums =
+    [
         new OpenApiString("Sunday"),
         new OpenApiString("Monday"),
         new OpenApiString("Tuesday"),
@@ -25,7 +25,7 @@ public class SchemaFilterTests
         new OpenApiString("Thursday"),
         new OpenApiString("Friday"),
         new OpenApiString("Saturday"),
-    };
+    ];
 
     /// <summary>
     /// The expected schema.

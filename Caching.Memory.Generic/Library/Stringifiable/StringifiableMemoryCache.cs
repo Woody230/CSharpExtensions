@@ -5,16 +5,11 @@ namespace Woody230.Caching.Memory.Generic;
 /// <summary>
 /// Represents a memory cache where the key is converted to a string.
 /// </summary>
-public abstract class StringifiableMemoryCache<TKey, TValue> : IGenericMemoryCache<TKey, TValue> where TKey : notnull
+public abstract class StringifiableMemoryCache<TKey, TValue>(IGenericMemoryCache<string, TValue> cache) : IGenericMemoryCache<TKey, TValue> where TKey : notnull
 {
-    private readonly IGenericMemoryCache<string, TValue> _cache;
-    private readonly HashSet<TKey> _keys = new();
+    private readonly IGenericMemoryCache<string, TValue> _cache = cache;
+    private readonly HashSet<TKey> _keys = [];
     private readonly SemaphoreSlim _semaphore = new(1);
-
-    public StringifiableMemoryCache(IGenericMemoryCache<string, TValue> cache)
-    {
-        _cache = cache;
-    }
 
     /// <inheritdoc/>
     public IEnumerable<TKey> Keys => _keys;
