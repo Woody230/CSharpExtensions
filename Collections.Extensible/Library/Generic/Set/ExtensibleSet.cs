@@ -4,14 +4,9 @@
 /// Represents a <see cref="ISet{T}"/> that is extensible with additional functionality.
 /// </summary>
 /// <typeparam name="T">The type of model.</typeparam>
-public abstract class ExtensibleSet<T> : ExtensibleCollection<T>, IExtensibleSet<T>
+public abstract class ExtensibleSet<T>(ISet<T> set) : ExtensibleCollection<T>(set), IExtensibleSet<T>
 {
-    private readonly ISet<T> _set;
-
-    public ExtensibleSet(ISet<T> set) : base(set)
-    {
-        _set = set;
-    }
+    private readonly ISet<T> _set = set;
 
     public override abstract IExtensibleSet<T> ShallowCopy();
 

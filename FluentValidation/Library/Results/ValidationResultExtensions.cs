@@ -14,7 +14,7 @@ public static class ValidationResultExtensions
     /// <returns>The error message.</returns>
     public static string GetErrorMessage(this ValidationResult result)
     {
-        string Message(ValidationFailure failure) => $"[{failure.PropertyName}] {failure.ErrorMessage}";
+        static string Message(ValidationFailure failure) => $"[{failure.PropertyName}] {failure.ErrorMessage}";
         var messages = result.Errors.Select(Message);
         return string.Join(Environment.NewLine, messages); 
     }

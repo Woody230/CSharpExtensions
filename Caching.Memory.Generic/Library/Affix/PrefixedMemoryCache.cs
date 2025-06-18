@@ -3,14 +3,9 @@
 /// <summary>
 /// Represents a memory cache with a prefix attached to the key.
 /// </summary>
-public sealed class PrefixedMemoryCache<TValue> : AffixableMemoryCache<TValue>
+public sealed class PrefixedMemoryCache<TValue>(IGenericMemoryCache<string, TValue> cache, string prefix) : AffixableMemoryCache<TValue>(cache)
 {
-    private readonly string _prefix;
-
-    public PrefixedMemoryCache(IGenericMemoryCache<string, TValue> cache, string prefix): base(cache)
-    {
-        _prefix = prefix;
-    }
+    private readonly string _prefix = prefix;
 
     public PrefixedMemoryCache(IGenericMemoryCache<string, TValue> cache) : this(cache, typeof(TValue).Name + "-")
     {

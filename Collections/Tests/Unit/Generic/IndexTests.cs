@@ -13,11 +13,11 @@ public class IndexTests
         IEnumerable<(int, int)> withIndex = list.WithIndex();
 
         // Assert
-        withIndex.Should().BeEquivalentTo(new List<(int, int)>()
-        {
+        withIndex.Should().BeEquivalentTo(
+        [
             (0, 5),
             (1, 9),
             (2, 17)
-        });
+        ]);
     }
 }

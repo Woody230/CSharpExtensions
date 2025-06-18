@@ -25,7 +25,7 @@ public class BindedEnumAttribute : ValidationAttribute
             return ValidationResult.Success;
         }
 
-        var memberNames = validationContext.MemberName == null ? Array.Empty<string>() : new string[] { validationContext.MemberName };
+        var memberNames = validationContext.MemberName == null ? [] : new string[] { validationContext.MemberName };
         if (value is not IBindableEnum @enum)
         {
             return new ValidationResult("Expected the enum to be bindable.", memberNames);

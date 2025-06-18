@@ -6,9 +6,13 @@ namespace Woody230.Diagnostics.Metrics;
 /// <summary>
 /// Represents a unit of measurement for an <see cref="Instrument"/>.
 /// </summary>
-public readonly struct InstrumentUnit
+[method: JsonConstructor]
+/// <summary>
+/// Represents a unit of measurement for an <see cref="Instrument"/>.
+/// </summary>
+public readonly struct InstrumentUnit(string value)
 {
-    private readonly string _value;
+    private readonly string _value = value;
     public static implicit operator string(InstrumentUnit unit) => unit._value;
     public static implicit operator InstrumentUnit(string value) => new(value);
 
@@ -20,12 +24,6 @@ public readonly struct InstrumentUnit
     public static readonly InstrumentUnit Microsecond = new("us");
     public static readonly InstrumentUnit Nanosecond = new("ns");
     public static readonly InstrumentUnit Unity = new("1");
-
-    [JsonConstructor]
-    public InstrumentUnit(string value)
-    {
-        _value = value;
-    }
 
     public override string ToString() => _value;
 

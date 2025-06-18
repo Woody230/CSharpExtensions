@@ -2,14 +2,10 @@
 
 namespace Woody230.Collections.Extensible.Generic;
 
-public abstract class ExtensibleCollection<T> : IExtensibleCollection<T>
+public abstract class ExtensibleCollection<T>(ICollection<T> collection) : IExtensibleCollection<T>
 {
-    private readonly ICollection<T> _collection;
+    private readonly ICollection<T> _collection = collection;
 
-    public ExtensibleCollection(ICollection<T> collection)
-    {
-        _collection = collection;
-    }
     public abstract IExtensibleCollection<T> ShallowCopy();
 
     #region Delegated

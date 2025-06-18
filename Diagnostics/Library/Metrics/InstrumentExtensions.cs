@@ -21,9 +21,6 @@ public static class InstrumentExtensions
     {
         Description = instrument.Description,
         Unit = instrument.Unit == null ? null : new(instrument.Unit),
-
-#if NET8_0_OR_GREATER
         Tags = instrument.Tags.ToTagList(),
-#endif
     };
 }

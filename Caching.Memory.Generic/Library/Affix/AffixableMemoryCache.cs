@@ -5,14 +5,9 @@ namespace Woody230.Caching.Memory.Generic;
 /// <summary>
 /// Represents a memory cache with a morpheme attached to the key. 
 /// </summary>
-public abstract class AffixableMemoryCache<TValue> : IAffixableMemoryCache<TValue>
+public abstract class AffixableMemoryCache<TValue>(IGenericMemoryCache<string, TValue> cache) : IAffixableMemoryCache<TValue>
 {
-    private readonly IGenericMemoryCache<string, TValue> _cache;
-
-    public AffixableMemoryCache(IGenericMemoryCache<string, TValue> cache)
-    {
-        _cache = cache;
-    }
+    private readonly IGenericMemoryCache<string, TValue> _cache = cache;
 
     /// <inheritdoc/>
     public IEnumerable<string> AffixedKeys => _cache.Keys;

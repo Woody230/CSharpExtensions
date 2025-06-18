@@ -9,19 +9,11 @@ namespace Woody230.FluentValidation.Validators.Property;
 /// </summary>
 /// <typeparam name="T">The type of model.</typeparam>
 /// <typeparam name="TProperty">The type of property.</typeparam>
-public sealed class DataAnnotationPropertyValidator<T, TProperty> : OptionalPropertyValidator<T, TProperty>
+/// <param name="attribute">The data annotation.</param>
+public sealed class DataAnnotationPropertyValidator<T, TProperty>(ValidationAttribute attribute) : OptionalPropertyValidator<T, TProperty>
 {
-    private readonly ValidationAttribute _attribute;
+    private readonly ValidationAttribute _attribute = attribute;
     private const string ErrorMessage = "ErrorMessage";
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="DataAnnotationPropertyValidator{T, TProperty}"/>.
-    /// </summary>
-    /// <param name="attribute">The data annotation.</param>
-    public DataAnnotationPropertyValidator(ValidationAttribute attribute)
-    {
-        _attribute = attribute;
-    }
 
     /// <inheritdoc/>
     protected override ErrorMessageTemplateBuilder BuildDefaultErrorMessage(string errorCode)

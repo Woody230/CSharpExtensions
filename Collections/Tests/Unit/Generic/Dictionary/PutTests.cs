@@ -7,7 +7,7 @@ public class PutTests
     public void Put_WithDuplicate_Updates()
     {
         // Arrange / Act
-        Dictionary<string, int> dictionary = new Dictionary<string, int>();
+        Dictionary<string, int> dictionary = [];
         dictionary.Put("Foo", 5);
         dictionary.Put("Bar", 7);
         dictionary.Put("Baz", 1094);
@@ -38,7 +38,7 @@ public class PutTests
             KeyValuePair.Create("Foo", 112233)
         };
 
-        Dictionary<string, int> dictionary = new Dictionary<string, int>();
+        Dictionary<string, int> dictionary = [];
         dictionary.Put("Foo", 5);
         dictionary.Put("Bar", 7);
         dictionary.Put("Baz", 1094);

@@ -6,17 +6,12 @@ namespace Woody230.Diagnostics.Metrics;
 /// <summary>
 /// Represents the name of an <see cref="Instrument"/>
 /// </summary>
-public readonly struct InstrumentName
+[method: JsonConstructor]
+public readonly struct InstrumentName(string value)
 {
-    private readonly string _value;
+    private readonly string _value = value;
     public static implicit operator string(InstrumentName name) => name._value;
     public static implicit operator InstrumentName(string value) => new(value);
-
-    [JsonConstructor]
-    public InstrumentName(string value)
-    {
-        _value = value;
-    }
 
     public override string ToString() => _value;
 

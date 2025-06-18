@@ -1,13 +1,9 @@
 ﻿namespace Woody230.Collections.Extensible.Generic;
 
 /// <inheritdoc/>
-public sealed class ExtendedSet<T>: ExtensibleSet<T>
+public sealed class ExtendedSet<T>(ISet<T> set) : ExtensibleSet<T>(set)
 {
     public ExtendedSet(IEnumerable<T> collection): this(collection.ToHashSet())
-    {
-    }
-
-    public ExtendedSet(ISet<T> set): base(set)
     {
     }
 
@@ -18,7 +14,7 @@ public sealed class ExtendedSet<T>: ExtensibleSet<T>
     public override ExtendedSet<T> ShallowCopy()
     {
         var set = new HashSet<T>(this);
-        return new ExtendedSet<T>(set);
+        return [.. set];
     }
 
     #region Operators

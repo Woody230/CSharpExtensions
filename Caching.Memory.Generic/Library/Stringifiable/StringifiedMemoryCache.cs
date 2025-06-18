@@ -1,14 +1,9 @@
 ﻿namespace Woody230.Caching.Memory.Generic;
 
 /// <inheritdoc/>
-public sealed class StringifiedMemoryCache<TKey, TValue> : StringifiableMemoryCache<TKey, TValue> where TKey: notnull
+public sealed class StringifiedMemoryCache<TKey, TValue>(IGenericMemoryCache<string, TValue> cache, StringifyKey<TKey> stringify) : StringifiableMemoryCache<TKey, TValue>(cache) where TKey: notnull
 {
-    private readonly StringifyKey<TKey> _stringify;
-
-    public StringifiedMemoryCache(IGenericMemoryCache<string, TValue> cache, StringifyKey<TKey> stringify): base(cache)
-    {
-        _stringify = stringify;
-    }
+    private readonly StringifyKey<TKey> _stringify = stringify;
 
     /// <summary>
     /// Uses <see cref="TKey.ToString"/> to stringify the key.

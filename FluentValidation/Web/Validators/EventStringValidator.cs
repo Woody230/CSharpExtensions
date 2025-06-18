@@ -17,6 +17,6 @@ public class EventStringValidator : OptionalPropertyValidator<Event, string>
     /// <inheritdoc/>
     protected override bool IsPropertyValid(ValidationContext<Event> context, string value)
     {
-        return value!.StartsWith("*");
+        return value!.StartsWith('*');
     }
 }

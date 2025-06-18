@@ -38,10 +38,8 @@ public sealed class TimeSpanCounter : OptionsInstrument<double>
         TimeInterval.Minutes => time.TotalMinutes,
         TimeInterval.Seconds => time.TotalSeconds,
         TimeInterval.Milliseconds => time.TotalMilliseconds,
-#if NET8_0_OR_GREATER
         TimeInterval.Microseconds => time.TotalMicroseconds,
         TimeInterval.Nanoseconds => time.TotalNanoseconds,
-#endif
         _ => 0
     };
 }

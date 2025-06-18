@@ -13,7 +13,7 @@ public class WhereTests
         var not = list.Where(item => item % 3 == 0);
 
         // Assert
-        not.Should().BeEquivalentTo(new List<int> { 3, 9, 12, 15, 99 });
+        not.Should().BeEquivalentTo([3, 9, 12, 15, 99]);
     }
 
     [Fact]
@@ -26,7 +26,7 @@ public class WhereTests
         var not = list.WhereNot(item => item % 3 == 0);
 
         // Assert
-        not.Should().BeEquivalentTo(new List<int> { 1, 4, 44, 100 });
+        not.Should().BeEquivalentTo([1, 4, 44, 100]);
     }
 
     [Fact]
@@ -91,7 +91,7 @@ public class WhereTests
         var @default = list.WhereDefault();
 
         // Assert
-        @default.Should().BeEquivalentTo(new List<int> { 0, 0, 0 });
+        @default.Should().BeEquivalentTo([0, 0, 0]);
     }
 
     [Fact]
@@ -104,7 +104,7 @@ public class WhereTests
         var notDefault = list.WhereNotDefault();
 
         // Assert
-        notDefault.Should().BeEquivalentTo(new List<int> { 1, 3, 4, 9, 12, 15, 44, 99, 100 });
+        notDefault.Should().BeEquivalentTo([1, 3, 4, 9, 12, 15, 44, 99, 100]);
     }
 
     [Fact]

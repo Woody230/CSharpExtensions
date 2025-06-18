@@ -8,16 +8,11 @@ namespace Woody230.Caching.Memory.Generic;
 /// </summary>
 /// <typeparam name="TKey">The type of key.</typeparam>
 /// <typeparam name="TValue">The type of value.</typeparam>
-public sealed class GenericMemoryCache<TKey, TValue> : IGenericMemoryCache<TKey, TValue> where TKey : notnull
+public sealed class GenericMemoryCache<TKey, TValue>(IMemoryCache memoryCache) : IGenericMemoryCache<TKey, TValue> where TKey : notnull
 {
-    private readonly IMemoryCache _memoryCache;
-    private readonly HashSet<TKey> _keys = new();
+    private readonly IMemoryCache _memoryCache = memoryCache;
+    private readonly HashSet<TKey> _keys = [];
     private readonly SemaphoreSlim _semaphore = new(1, 1);
-
-    public GenericMemoryCache(IMemoryCache memoryCache)
-    {
-        _memoryCache = memoryCache;
-    }
 
     /// <inheritdoc/>
     public IEnumerable<TKey> Keys => _keys;
