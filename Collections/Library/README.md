@@ -43,6 +43,7 @@ Extensions for the System.Collections namespace.
 | Type | MethodName |
 | --- | --- |
 | IEnumerable<IGrouping`<TKey, TValue>`> | ToLookup |
+| IDictionary`<TKey, IEnumerable<TValue>>` | ToLookup |
 
 ## Grouping
 
