@@ -37,3 +37,15 @@ Extensions for the System.Collections namespace.
 | IDictionary`<TKey, TValue>` | PutAll |
 | IDictionary`<TKey, TValue>` | SelectKeys |
 | IDictionary`<TKey, TValue>` | SelectValues |
+
+## Lookup
+
+| Type | MethodName |
+| --- | --- |
+| IEnumerable<IGrouping`<TKey, TValue>`> | ToLookup |
+
+## Grouping
+
+| Type | Method Name |
+| --- | --- |
+| IEnumerable`<TValue>` | ToGrouping |
