@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Function\Library\Function.Library.csproj" />
+    <ProjectReference Include="..\..\Internal\Tests\Internal.Tests.csproj" />
+    <ProjectReference Include="..\Library\Text.Json.Converters.Library.csproj" />
+  </ItemGroup>
+</Project>
