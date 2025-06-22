@@ -1,8 +1,8 @@
 ﻿using System.Collections;
-using Woody230.Collections.Extensible.Generic;
-using Woody230.Collections.Extensible.Generic.Lookup;
+using Woody230.Collections.Generic;
+using Woody230.Collections.Generic.Lookup;
 
-namespace Woody230.Collections.Extensible.Tests.Unit.Generic.Lookup;
+namespace Woody230.Collections.Tests.Unit.Generic.Lookup;
 
 /// <summary>
 /// Represents tests for a <see cref="GroupedLookup{TKey, TValue}"/>

@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace Woody230.Collections.Extensible.Generic;
+namespace Woody230.Collections.Generic.Lookup;
 
 /// <summary>
 /// Wraps the <paramref name="groupings"/> as a <see cref="ILookup{TKey, TElement}"/>.

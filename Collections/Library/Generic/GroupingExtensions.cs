@@ -1,4 +1,6 @@
-﻿namespace Woody230.Collections.Extensible.Generic.Lookup;
+﻿using Woody230.Collections.Generic.Lookup;
+
+namespace Woody230.Collections.Generic;
 
 /// <summary>
 /// Represents extensions for a <see cref="IGrouping{TKey, TElement}"/>.

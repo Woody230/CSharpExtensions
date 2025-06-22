@@ -12,7 +12,6 @@ Custom collections extending System.Collections.
 | ExtendedDictionary | Wrapper of an IDictionary`<TKey, TValue>`. |
 | LenientDictionary | Replaces existing values when adding duplicates instead of throwing an exception. |
 | ExtendedList | Wrapper of an IList`<T>`. | 
-| GroupedLookup | Wraps an IEnumerable<IGrouping`<TKey, TValue>`> as a ILookup`<TKey, TValue>`. |
 | ExtendedSet | Wrapper of an ISet`<T>`. |
 
 ## Operators

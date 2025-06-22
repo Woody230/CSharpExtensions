@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace Woody230.Collections.Extensible.Generic;
+namespace Woody230.Collections.Generic.Lookup;
 
 /// <summary>
 /// Represents a grouping of the <paramref name="key"/> to the <paramref name="values"/>
