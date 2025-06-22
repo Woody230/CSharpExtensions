@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 namespace Woody230.Text.Json.Converters.Tests.Unit.Regex;
 
 /// <summary>
-/// Represents tests related to a regex <see cref="JsonConverter"/>
+/// Represents tests related to a <see cref="JsonConverter{System.Text.RegularExpressions.Regex}"/>
 /// </summary>
 public abstract class BaseRegexJsonConverterTests<TConverter>: BaseJsonConverterTests where TConverter : JsonConverter<System.Text.RegularExpressions.Regex>, new()
 {
