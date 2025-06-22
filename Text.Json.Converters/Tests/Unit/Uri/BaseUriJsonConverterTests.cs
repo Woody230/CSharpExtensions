@@ -9,33 +9,39 @@ namespace Woody230.Text.Json.Converters.Tests.Unit.Uri;
 public abstract class BaseUriJsonConverterTests<TConverter> : BaseJsonConverterTests where TConverter : JsonConverter<System.Uri>, new()
 {
     protected abstract UriKind UriKind { get; }
-    protected abstract string Uri { get; }
+    protected string Uri => GetUriValidity().First(uri => uri.Value).Key;
 
     protected BaseUriJsonConverterTests()
     {
         SerializerOptions.Converters.Add(new TConverter());
     }
 
-    [Fact]
-    public void Read()
+    public abstract void Read(string uri, bool isValid);
+
+    protected void ReadImpl(string uri, bool isValid)
     {
         // Arrange
-        var testObject = new TestUriObject()
-        {
-            Uri = new(Uri, UriKind)
-        };
+        var testObject = isValid ? new TestUriObject() { Uri = new(uri, UriKind) } : null;
 
         var json = $$"""
         {
-          "Uri": "{{Uri}}"
+          "Uri": "{{uri}}"
         }
         """;
 
         // Act
-        var deserialized = JsonSerializer.Deserialize<TestUriObject>(json, SerializerOptions);
+        var deserializeAction = () => JsonSerializer.Deserialize<TestUriObject>(json, SerializerOptions);
 
         // Assert
-        deserialized.Should().BeEquivalentTo(testObject);
+        if (isValid)
+        {
+            var deserialized = deserializeAction.Should().NotThrow().Which;
+            deserialized.Should().BeEquivalentTo(testObject);
+        }
+        else
+        {
+            deserializeAction.Should().Throw<UriFormatException>();
+        }
     }
 
     [Fact]
@@ -102,5 +108,21 @@ public abstract class BaseUriJsonConverterTests<TConverter> : BaseJsonConverterT
 
         // Assert
         deserialized.Should().Be(json);
+    }
+
+    /// <summary>
+    /// Gets uris mapped to whether they are valid.
+    /// </summary>
+    protected abstract IDictionary<string, bool> GetUriValidity();
+
+    public static TheoryData<string, bool> ToTheoryData(IDictionary<string, bool> urls)
+    {
+        var data = new TheoryData<string, bool>();
+        foreach (var (uri, isValid) in urls)
+        {
+            data.Add(uri, isValid);
+        }
+
+        return data;
     }
 }
