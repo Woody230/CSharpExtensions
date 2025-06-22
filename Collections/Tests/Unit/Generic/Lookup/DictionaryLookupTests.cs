@@ -5,22 +5,22 @@ using Woody230.Collections.Generic.Lookup;
 namespace Woody230.Collections.Tests.Unit.Generic.Lookup;
 
 /// <summary>
-/// Represents tests for a <see cref="GroupedLookup{TKey, TValue}"/>
+/// Represents tests for a <see cref="GroupedLookup{TKey, TValue}"/> using a dictionary.
 /// </summary>
-public class GroupedLookupTests
+public class DictionaryLookupTests
 {
-    private readonly IEnumerable<IGrouping<string, int>> _groupings =
-    [
-        new List<int>() { 5, 9, 124, 951 }.ToGrouping("foo"),
-        new List<int>() { 812, 852, 456, 274 }.ToGrouping("bar"),
-        new List<int>() { 985, 331, 980, 468, 576 }.ToGrouping("baz")
-    ];
+    private readonly Dictionary<string, IEnumerable<int>> _dictionary = new()
+    {
+        ["foo"] = [5, 9, 124, 951],
+        ["bar"] = [812, 852, 456, 274],
+        ["baz"] = [985, 331, 980, 468, 576]
+    };
 
     [Fact]
     public void Index()
     {
         // Arrange
-        var lookup = _groupings.ToLookup();
+        var lookup = _dictionary.ToLookup();
 
         // Act / Assert
         lookup["foo"].Should().BeEquivalentTo([5, 9, 124, 951]);
@@ -33,7 +33,7 @@ public class GroupedLookupTests
     public void Count()
     {
         // Arrange
-        var lookup = _groupings.ToLookup();
+        var lookup = _dictionary.ToLookup();
 
         // Act
         var count = lookup.Count;
@@ -50,7 +50,7 @@ public class GroupedLookupTests
     public void Contains(string key, bool expected)
     {
         // Arrange
-        var lookup = _groupings.ToLookup();
+        var lookup = _dictionary.ToLookup();
 
         // Act
         var contains = lookup.Contains(key);
@@ -63,7 +63,7 @@ public class GroupedLookupTests
     public void GetEnumerator()
     {
         // Arrange
-        var lookup = _groupings.ToLookup();
+        var lookup = _dictionary.ToLookup();
 
         // Act
         using var enumerator = lookup.GetEnumerator();
@@ -75,14 +75,19 @@ public class GroupedLookupTests
             items.Add(enumerator.Current);
         }
 
-        items.Should().BeEquivalentTo(_groupings);
+        items.Count.Should().Be(_dictionary.Count);
+        foreach (var (group, pair) in items.Zip(_dictionary))
+        {
+            group.Key.Should().Be(pair.Key);
+            group.Should().BeEquivalentTo(pair.Value);
+        }
     }
 
     [Fact]
     public void InterfaceGetEnumerator()
     {
         // Arrange
-        var lookup = _groupings.ToLookup();
+        var lookup = _dictionary.ToLookup();
 
         // Act
         var enumerator = ((IEnumerable)lookup).GetEnumerator();
@@ -94,6 +99,12 @@ public class GroupedLookupTests
             items.Add((IGrouping<string, int>)enumerator.Current);
         }
 
-        items.Should().BeEquivalentTo(_groupings);
+        items.Count.Should().Be(_dictionary.Count);
+        foreach (var (group, pair) in items.Zip(_dictionary))
+        {
+            group.Key.Should().Be(pair.Key);
+            group.Should().BeEquivalentTo(pair.Value);
+        }
     }
 }
+

@@ -14,4 +14,13 @@ public static class LookupExtensions
     {
         return new GroupedLookup<TKey, TValue>(groupings);
     }
+
+    /// <summary>
+    /// Wraps the <paramref name="dictionary"/> as a <see cref="ILookup{TKey, TElement}"/>.
+    /// </summary>
+    public static ILookup<TKey, TValue> ToLookup<TKey, TValue>(this IDictionary<TKey, IEnumerable<TValue>> dictionary) where TKey : notnull
+    {
+        var groupings = dictionary.Select(pair => new Grouping<TKey, TValue>(pair.Key, pair.Value));
+        return new GroupedLookup<TKey, TValue>(groupings);
+    }
 }
