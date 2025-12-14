@@ -6,12 +6,17 @@
 public sealed record JsonMergeOptions
 {
     /// <summary>
+    /// A singleton instance of <see cref="JsonMergeOptions"/> with <see cref="ArrayMergeHandling.Merge"/> and <see cref="NullMergeHandling.Ignore"/>
+    /// </summary>
+    public static readonly JsonMergeOptions Default = new();
+
+    /// <summary>
     /// How to merge arrays.
     /// </summary>
-    public required ArrayMergeHandling ArrayHandling { get; init; } = ArrayMergeHandling.Merge;
+    public ArrayMergeHandling ArrayHandling { get; init; } = ArrayMergeHandling.Merge;
 
     /// <summary>
     /// How to merge null values.
     /// </summary>
-    public required NullMergeHandling NullHandling { get; init; } = NullMergeHandling.Ignore;
+    public NullMergeHandling NullHandling { get; init; } = NullMergeHandling.Ignore;
 }

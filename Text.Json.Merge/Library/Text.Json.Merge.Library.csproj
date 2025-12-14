@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Description>Merging of JSON components from the System.Text.Json namespace.</Description>
+    <Description>Merging of JSON nodes from the System.Text.Json namespace.</Description>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />

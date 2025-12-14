@@ -1,4 +1,6 @@
-﻿using System.Text.Json.Nodes;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 using Woody230.Text.Json.Merge.Models;
 
 namespace Woody230.Text.Json.Merge.Mergers;
@@ -8,10 +10,15 @@ namespace Woody230.Text.Json.Merge.Mergers;
 /// </summary>
 public sealed class JsonMerger(JsonMergeOptions options) : IJsonMerger
 {
+    /// <summary>
+    /// A singleton instance of <see cref="JsonMerger"/> with <see cref="JsonMergeOptions.Default"/>.
+    /// </summary>
+    public static readonly JsonMerger Default = new(JsonMergeOptions.Default);
+
     /// <inheritdoc/>
     public JsonNode? Merge(JsonNode? first, JsonNode? second)
     {
-        if (second is null || second is JsonValue)
+        if (second is null || second.GetValueKind() == JsonValueKind.Null)
         {
             return MergeNull(first);
         }
