@@ -86,7 +86,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Text.Json.Converters.Tests"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Text.Json.Merge", "Text.Json.Merge", "{CE51F99C-1307-4CD8-B86A-5BF4D6FA738B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Text.Json.Merge.Library", "Text.Json.Merge\Text.Json.Merge.Library\Text.Json.Merge.Library.csproj", "{73D299B5-B5DC-4C7F-8DB3-AEDD4233E9DA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Text.Json.Merge.Library", "Text.Json.Merge\Library\Text.Json.Merge.Library.csproj", "{73D299B5-B5DC-4C7F-8DB3-AEDD4233E9DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
