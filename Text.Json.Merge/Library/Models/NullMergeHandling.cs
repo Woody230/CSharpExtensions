@@ -5,13 +5,13 @@
 /// </summary>
 public enum NullMergeHandling
 {
-    /**
-     * Null values are ignored during merging.
-     */
+    /// <summary>
+    /// Null values are ignored during merging.
+    /// </summary>
     Ignore,
 
-    /**
-     * Null values are allowed to be merged.
-     */
+    /// <summary>
+    /// Null values are allowed to be merged.
+    /// </summary>
     Merge
 }

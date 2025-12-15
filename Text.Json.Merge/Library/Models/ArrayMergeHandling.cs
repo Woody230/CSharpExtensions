@@ -5,23 +5,23 @@
 /// </summary>
 public enum ArrayMergeHandling
 {
-    /**
-     * Appends the elements.
-     */
+    /// <summary>
+    /// Appends the nodes.
+    /// </summary>
     Concat,
 
-    /**
-     * Skips elements that already exist.
-     */
+    /// <summary>
+    /// Skips nodes that already exist.
+    /// </summary>
     Union,
 
-    /**
-     * Replaces the elements.
-     */
+    /// <summary>
+    /// Replaces the nodes.
+    /// </summary>
     Replace,
 
-    /**
-     * Replaces the elements within the same index.
-     */
+    /// <summary>
+    /// Replaces the nodes within the same index.
+    /// </summary>
     Merge
 }
