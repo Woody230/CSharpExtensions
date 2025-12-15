@@ -83,7 +83,7 @@ public sealed class JsonMerger(JsonMergeOptions options) : IJsonMerger
     private JsonArray Union(JsonArray first, JsonArray second)
     {
         var result = new JsonArray(second.Options);
-        foreach (var node in first.Union(second))
+        foreach (var node in first.Union(second, DeepEqualityComparer.Instance))
         {
             result.Add(node?.DeepClone());
         }
