@@ -1,4 +1,4 @@
-﻿namespace Woody230.Text.Json.Merge.Models;
+﻿namespace Woody230.Text.Json.Merge;
 
 /// <summary>
 /// The options for merging JSON nodes.

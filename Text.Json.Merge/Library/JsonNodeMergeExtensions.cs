@@ -1,8 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Nodes;
-using Woody230.Text.Json.Merge.Models;
 
-namespace Woody230.Text.Json.Merge.Mergers;
+namespace Woody230.Text.Json.Merge;
 
 /// <summary>
 /// Represents extensions for merging <see cref="JsonNode"/>

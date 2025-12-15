@@ -1,8 +1,7 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Nodes;
-using Woody230.Text.Json.Merge.Models;
 
-namespace Woody230.Text.Json.Merge.Mergers;
+namespace Woody230.Text.Json.Merge;
 
 /// <summary>
 /// Combines JSON nodes.

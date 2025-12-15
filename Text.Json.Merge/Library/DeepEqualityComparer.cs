@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Nodes;
 
-namespace Woody230.Text.Json.Merge.Mergers;
+namespace Woody230.Text.Json.Merge;
 
 /// <summary>
 /// Compares nodes using deep equality.
