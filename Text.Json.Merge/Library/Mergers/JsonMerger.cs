@@ -52,7 +52,8 @@ public sealed class JsonMerger(JsonMergeOptions options) : IJsonMerger
         {
             first.TryGetPropertyValue(key, out var firstProperty);
             second.TryGetPropertyValue(key, out var secondProperty);
-            result[key] = Merge(firstProperty, secondProperty);
+            var mergedProperty = Merge(firstProperty, secondProperty);
+            result[key] = mergedProperty?.DeepClone();
         }
 
         return result;
