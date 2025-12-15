@@ -23,7 +23,7 @@ Merging of JSON nodes from the System.Text.Json namespace.
 | Handling | Description | 
 | --- | --- |
 | Concat | Appends the nodes. |
-| Union | Skips ndes that already exist. |
+| Union | Skips nodes that already exist. |
 | Replace | Replaces the nodes. |
 | Merge | Replaces the nodes within the same index. |
 
