@@ -73,7 +73,7 @@ public sealed class JsonMerger(JsonMergeOptions options) : IJsonMerger
         var result = new JsonArray(second.Options);
         foreach (var node in first.Concat(second))
         {
-            result.Add(node);
+            result.Add(node?.DeepClone());
         }
 
         return result;
@@ -84,7 +84,7 @@ public sealed class JsonMerger(JsonMergeOptions options) : IJsonMerger
         var result = new JsonArray(second.Options);
         foreach (var node in first.Union(second))
         {
-            result.Add(node);
+            result.Add(node?.DeepClone());
         }
 
         return result;
@@ -100,7 +100,7 @@ public sealed class JsonMerger(JsonMergeOptions options) : IJsonMerger
             var firstNode = first.ElementAtOrDefault(i);
             var secondNode = second.ElementAtOrDefault(i);
             var mergedNode = Merge(firstNode, secondNode);
-            result.Add(mergedNode);
+            result.Add(mergedNode?.DeepClone());
         }
 
         return result;
