@@ -12,3 +12,4 @@
 | [FluentValidation](FluentValidation/Library/README.md) | [![](https://img.shields.io/nuget/v/Woody230.FluentValidation)](https://www.nuget.org/packages/Woody230.FluentValidation) | Extensions for the [FluentValidation](https://github.com/FluentValidation/FluentValidation) library. |
 | [Text](Text/Library/README.md) | [![](https://img.shields.io/nuget/v/Woody230.Text)](https://www.nuget.org/packages/Woody230.Text) | Extensions for the System.Text namespace. |
 | [Text.Json.Converters](Text.Json.Converters/Library/README.md) | [![](https://img.shields.io/nuget/v/Woody230.Text.Json.Converters)](https://www.nuget.org/packages/Woody230.Text.Json.Converters) | Custom JsonConverters for the System.Text.Json namespace. |
+| [Text.Json.Merge](Text.Json.Merge/Library/README.md) | [![](https://img.shields.io/nuget/v/Woody230.Text.Json.Merge)](https://www.nuget.org/packages/Woody230.Text.Json.Merge) | Merging of JSON nodes from the System.Text.Json namespace. |

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.5.33530.505
+# Visual Studio Version 18
+VisualStudioVersion = 18.1.11304.174
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BindableEnum.Web", "BindableEnum\Web\BindableEnum.Web.csproj", "{8E67B46F-6A4B-4216-945C-582907A74658}"
 EndProject
@@ -83,6 +83,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Text.Json.Converters.Library", "Text.Json.Converters\Library\Text.Json.Converters.Library.csproj", "{519020EB-93A4-4C5F-A7A9-802D4FC330F0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Text.Json.Converters.Tests", "Text.Json.Converters\Tests\Text.Json.Converters.Tests.csproj", "{A263528D-659B-4022-9CAB-AE9CC0C105E1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Text.Json.Merge", "Text.Json.Merge", "{CE51F99C-1307-4CD8-B86A-5BF4D6FA738B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Text.Json.Merge.Library", "Text.Json.Merge\Library\Text.Json.Merge.Library.csproj", "{73D299B5-B5DC-4C7F-8DB3-AEDD4233E9DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Text.Json.Merge.Tests", "Text.Json.Merge\Tests\Text.Json.Merge.Tests.csproj", "{FFCBC01E-E246-4659-9316-30D00CF7943F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -186,6 +192,14 @@ Global
 		{A263528D-659B-4022-9CAB-AE9CC0C105E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A263528D-659B-4022-9CAB-AE9CC0C105E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A263528D-659B-4022-9CAB-AE9CC0C105E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73D299B5-B5DC-4C7F-8DB3-AEDD4233E9DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73D299B5-B5DC-4C7F-8DB3-AEDD4233E9DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73D299B5-B5DC-4C7F-8DB3-AEDD4233E9DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73D299B5-B5DC-4C7F-8DB3-AEDD4233E9DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFCBC01E-E246-4659-9316-30D00CF7943F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFCBC01E-E246-4659-9316-30D00CF7943F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFCBC01E-E246-4659-9316-30D00CF7943F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFCBC01E-E246-4659-9316-30D00CF7943F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -215,6 +229,8 @@ Global
 		{343F231F-6307-4AB7-93A1-336D6E85694C} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{519020EB-93A4-4C5F-A7A9-802D4FC330F0} = {352B7C3C-7F95-4815-8C25-497D65D6D0AD}
 		{A263528D-659B-4022-9CAB-AE9CC0C105E1} = {352B7C3C-7F95-4815-8C25-497D65D6D0AD}
+		{73D299B5-B5DC-4C7F-8DB3-AEDD4233E9DA} = {CE51F99C-1307-4CD8-B86A-5BF4D6FA738B}
+		{FFCBC01E-E246-4659-9316-30D00CF7943F} = {CE51F99C-1307-4CD8-B86A-5BF4D6FA738B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B59A3CED-A160-49B9-A001-B4EA679E9D25}
