@@ -56,7 +56,7 @@ public class CreateWeatherForecastTests(WebApplicationFactory<Program> factory) 
         response.StatusCode.Should().Be(HttpStatusCode.OK);
 
         var content = await response.Content.ReadAsStringAsync();
-        scope.AddReportable("Content", content);
+        AssertionChain.GetOrCreate().AddReportable("Content", content);
 
         var model = JsonSerializer.Deserialize<WeatherForecast>(content, _options);
         model.Should().BeEquivalentTo(forecast);
@@ -158,7 +158,7 @@ public class CreateWeatherForecastTests(WebApplicationFactory<Program> factory) 
         response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
 
         var content = await response.Content.ReadAsStringAsync();
-        scope.AddReportable("Content", content);
+        AssertionChain.GetOrCreate().AddReportable("Content", content);
 
         content.Should().Be(expectedContent);
     }

@@ -46,7 +46,7 @@ public class CreateWeatherForecastTests(WebApplicationFactory<Program> factory) 
         response.StatusCode.Should().Be(HttpStatusCode.OK);
 
         var content = await response.Content.ReadAsStringAsync();
-        scope.AddReportable("Content", content);
+        AssertionChain.GetOrCreate().AddReportable("Content", content);
 
         var model = JsonSerializer.Deserialize<WeatherForecast>(content, _options);
         model.IDayOfWeek.Enum.Should().Be(dayOfWeek);
@@ -104,7 +104,7 @@ public class CreateWeatherForecastTests(WebApplicationFactory<Program> factory) 
         response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
 
         var content = await response.Content.ReadAsStringAsync();
-        scope.AddReportable("Content", content);
+        AssertionChain.GetOrCreate().AddReportable("Content", content);
 
         var model = JsonSerializer.Deserialize<ValidationProblemDetails>(content, _options);
         model.Errors.Should().ContainKeys("DayOfWeek", "IDayOfWeek");

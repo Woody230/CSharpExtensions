@@ -1,7 +1,8 @@
-﻿using Microsoft.OpenApi.Any;
-using Microsoft.OpenApi.Models;
+﻿using Microsoft.OpenApi;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Text.Json;
+using System.Text.Json.Nodes;
+using System.Text.Json.Serialization;
 using Woody230.BindableEnum.Filters;
 using Woody230.BindableEnum.Models;
 using Woody230.BindableEnum.Options;
@@ -16,15 +17,15 @@ public class SchemaFilterTests
     /// <summary>
     /// The expected enumerations.
     /// </summary>
-    private static readonly IList<IOpenApiAny> _enums =
+    private static readonly IList<string> _enums =
     [
-        new OpenApiString("Sunday"),
-        new OpenApiString("Monday"),
-        new OpenApiString("Tuesday"),
-        new OpenApiString("Wednesday"),
-        new OpenApiString("Thursday"),
-        new OpenApiString("Friday"),
-        new OpenApiString("Saturday"),
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
     ];
 
     /// <summary>
@@ -32,23 +33,32 @@ public class SchemaFilterTests
     /// </summary>
     private static readonly OpenApiSchema _schema = new()
     {
-        Type = "string",
-        Reference = new OpenApiReference()
-        {
-            Id = "DayOfWeek",
-            Type = ReferenceType.Schema
-        }
+        AllOf = [
+            new OpenApiSchemaReference("DayOfWeek")
+        ],
+        Description = "Foo Bar Baz"
     };
+
+    /// <summary>
+    /// The JSON serializer options.
+    /// </summary>
+    private readonly JsonSerializerOptions _serializerOptions = new();
 
     /// <summary>
     /// The schema generator.
     /// </summary>
-    private static readonly SchemaGenerator _schemaGenerator = new(new SchemaGeneratorOptions(), new JsonSerializerDataContractResolver(new JsonSerializerOptions()));
+    private readonly SchemaGenerator _schemaGenerator;
 
     /// <summary>
     /// The schema repository.
     /// </summary>
-    private static readonly SchemaRepository _schemaRepository = new SchemaRepository();
+    private readonly SchemaRepository _schemaRepository = new();
+
+    public SchemaFilterTests()
+    {
+        _serializerOptions.Converters.Add(new JsonStringEnumConverter());
+        _schemaGenerator = new(new SchemaGeneratorOptions(), new JsonSerializerDataContractResolver(_serializerOptions));
+    }
 
     /// <summary>
     /// Verifies that when the schema filter is applied to a <see cref="IBindableEnum{T}"/>, then the associated enumerations are documented.
@@ -57,7 +67,10 @@ public class SchemaFilterTests
     public void ApplyToInterface_AddsEnumerations()
     {
         // Arrange
+        _schemaRepository.TryLookupByType(typeof(DayOfWeek), out var _).Should().BeFalse();
+
         var type = typeof(IBindableEnum<DayOfWeek>);
+
 
         var schema = CreateSchema(typeof(IBindableEnum<>));
         var context = new SchemaFilterContext(type, _schemaGenerator, _schemaRepository);
@@ -67,6 +80,20 @@ public class SchemaFilterTests
 
         // Assert
         schema.Should().BeEquivalentTo(_schema);
+
+        _schemaRepository.TryLookupByType(typeof(DayOfWeek), out var _).Should().BeTrue();
+
+        _schemaRepository.Schemas.TryGetValue(nameof(DayOfWeek), out var dayOfWeekSchema).Should().BeTrue();
+        dayOfWeekSchema.Should().BeEquivalentTo(
+            new OpenApiSchema()
+            {
+                Type = JsonSchemaType.String
+            },
+            options => options.Excluding(schema => schema.Enum)
+        );
+
+        dayOfWeekSchema.Enum.Should().AllBeAssignableTo<JsonValue>()
+            .Which.Select(jsonValue => jsonValue.TryGetValue<string>(out var value) ? value : null).Should().BeEquivalentTo(_enums, options => options.WithStrictOrdering());
     }
 
     /// <summary>
@@ -76,6 +103,8 @@ public class SchemaFilterTests
     public void ApplyToImplementation_AddsEnumerations()
     {
         // Arrange
+        _schemaRepository.TryLookupByType(typeof(DayOfWeek), out var _).Should().BeFalse();
+
         var type = typeof(BindableEnum<DayOfWeek>);
 
         var schema = CreateSchema(typeof(BindableEnum<>));
@@ -86,6 +115,20 @@ public class SchemaFilterTests
 
         // Assert
         schema.Should().BeEquivalentTo(_schema);
+
+        _schemaRepository.TryLookupByType(typeof(DayOfWeek), out var _).Should().BeTrue();
+
+        _schemaRepository.Schemas.TryGetValue(nameof(DayOfWeek), out var dayOfWeekSchema).Should().BeTrue();
+        dayOfWeekSchema.Should().BeEquivalentTo(
+            new OpenApiSchema()
+            {
+                Type = JsonSchemaType.String
+            }, 
+            options => options.Excluding(schema => schema.Enum)
+        );
+
+        dayOfWeekSchema.Enum.Should().AllBeAssignableTo<JsonValue>()
+            .Which.Select(jsonValue => jsonValue.TryGetValue<string>(out var value) ? value : null).Should().BeEquivalentTo(_enums, options => options.WithStrictOrdering());
     }
 
     /// <summary>
@@ -100,6 +143,6 @@ public class SchemaFilterTests
 
         var mapping = swaggerOptions.SchemaGeneratorOptions.CustomTypeMappings;
         mapping.Should().ContainKey(type);
-        return mapping[type]();
+        return new OpenApiSchema() { Type = JsonSchemaType.String, Description = "Foo Bar Baz" };
     }
 }
