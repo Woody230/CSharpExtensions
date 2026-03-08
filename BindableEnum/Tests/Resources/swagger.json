@@ -1,0 +1,150 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "Woody230.BindableEnum.Web",
+    "version": "1.0"
+  },
+  "paths": {
+    "/WeatherForecast": {
+      "get": {
+        "tags": [
+          "WeatherForecast"
+        ],
+        "summary": "Gets one or more weather forecasts.",
+        "operationId": "GetWeatherForecast",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "WeatherForecast"
+        ],
+        "summary": "Creates a weather forecast.",
+        "operationId": "CreateWeatherForecast",
+        "requestBody": {
+          "description": "The weather forecast.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WeatherForecast"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WeatherForecast"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WeatherForecast"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DayOfWeek": {
+        "enum": [
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "type": "string"
+      },
+      "WeatherForecast": {
+        "required": [
+          "dayOfWeek",
+          "iDayOfWeek"
+        ],
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "The date.",
+            "format": "date-time"
+          },
+          "temperatureC": {
+            "type": "integer",
+            "description": "The temperature in degrees celsius.",
+            "format": "int32"
+          },
+          "temperatureF": {
+            "type": "integer",
+            "description": "The temperature in degrees fahrenheit.",
+            "format": "int32",
+            "readOnly": true
+          },
+          "summary": {
+            "type": "string",
+            "description": "The summary.",
+            "nullable": true
+          },
+          "dayOfWeek": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DayOfWeek"
+              }
+            ],
+            "description": "The day of the week (implementation)."
+          },
+          "iDayOfWeek": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DayOfWeek"
+              }
+            ],
+            "description": "The day of the week (interface)."
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a weather forecast."
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "WeatherForecast"
+    }
+  ]
+}
