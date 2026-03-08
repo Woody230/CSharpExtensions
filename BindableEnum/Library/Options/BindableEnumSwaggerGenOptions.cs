@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Woody230.BindableEnum.Filters;
 using Woody230.BindableEnum.Models;
@@ -16,7 +16,7 @@ public class BindableEnumSwaggerGenOptions : IConfigureOptions<SwaggerGenOptions
     public void Configure(SwaggerGenOptions options)
     {
         options.SchemaFilter<BindableEnumSchemaFilter>();
-        options.MapType(typeof(IBindableEnum<>), () => new OpenApiSchema { Type = "string" });
-        options.MapType(typeof(BindableEnum<>), () => new OpenApiSchema { Type = "string" });
+        options.MapType(typeof(IBindableEnum<>), () => new OpenApiSchema { Type = JsonSchemaType.String });
+        options.MapType(typeof(BindableEnum<>), () => new OpenApiSchema { Type = JsonSchemaType.String });
     }
 }

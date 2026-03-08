@@ -39,14 +39,14 @@ public class CreateWeatherForecastTests(WebApplicationFactory<Program> factory) 
         var request = CreateRequest(value);
 
         // Act
-        var response = await HttpClient.SendAsync(request);
+        var response = await HttpClient.SendAsync(request, TestContext.Current.CancellationToken);
 
         // Assert
         using var scope = new AssertionScope();
         response.StatusCode.Should().Be(HttpStatusCode.OK);
 
-        var content = await response.Content.ReadAsStringAsync();
-        scope.AddReportable("Content", content);
+        var content = await response.Content.ReadAsStringAsync(TestContext.Current.CancellationToken);
+        AssertionChain.GetOrCreate().AddReportable("Content", content);
 
         var model = JsonSerializer.Deserialize<WeatherForecast>(content, _options);
         model.IDayOfWeek.Enum.Should().Be(dayOfWeek);
@@ -67,7 +67,7 @@ public class CreateWeatherForecastTests(WebApplicationFactory<Program> factory) 
         var request = CreateRequest(value);
 
         // Act
-        var response = await HttpClient.SendAsync(request);
+        var response = await HttpClient.SendAsync(request, TestContext.Current.CancellationToken);
 
         // Assert
         var message = $"`{value}` must be one of the following DayOfWeek values: Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday";
@@ -86,7 +86,7 @@ public class CreateWeatherForecastTests(WebApplicationFactory<Program> factory) 
         request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
         // Act
-        var response = await HttpClient.SendAsync(request);
+        var response = await HttpClient.SendAsync(request, TestContext.Current.CancellationToken);
 
         // Assert
         await AssertDayOfWeekError(response, $"The DayOfWeek field is required.", $"The IDayOfWeek field is required.");
@@ -104,7 +104,7 @@ public class CreateWeatherForecastTests(WebApplicationFactory<Program> factory) 
         response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
 
         var content = await response.Content.ReadAsStringAsync();
-        scope.AddReportable("Content", content);
+        AssertionChain.GetOrCreate().AddReportable("Content", content);
 
         var model = JsonSerializer.Deserialize<ValidationProblemDetails>(content, _options);
         model.Errors.Should().ContainKeys("DayOfWeek", "IDayOfWeek");

@@ -1,4 +1,4 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using Microsoft.OpenApi;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Woody230.BindableEnum.Models;
 
@@ -10,7 +10,7 @@ namespace Woody230.BindableEnum.Filters;
 public class BindableEnumSchemaFilter : ISchemaFilter
 {
     /// <inheritdoc/>
-    public void Apply(OpenApiSchema schema, SchemaFilterContext context)
+    public void Apply(IOpenApiSchema schema, SchemaFilterContext context)
     {
         if (!context.Type.IsGenericType)
         {
@@ -30,11 +30,24 @@ public class BindableEnumSchemaFilter : ISchemaFilter
         }
 
         var enumType = genericArguments[0];
-        if (!context.SchemaRepository.TryLookupByType(enumType, out var referenceSchema))
+        if (schema is not OpenApiSchema implementationSchema)
         {
-            referenceSchema = context.SchemaGenerator.GenerateSchema(enumType, context.SchemaRepository);
+            return;
         }
 
-        schema.Reference = referenceSchema.Reference;
+        implementationSchema.AllOf = [GetOrCreateEnumSchema()];
+        implementationSchema.Type = null;
+
+        IOpenApiSchema GetOrCreateEnumSchema()
+        {
+            if (context.SchemaRepository.TryLookupByType(enumType, out var referenceSchema))
+            {
+                return referenceSchema;
+            }
+            else
+            {
+                return context.SchemaGenerator.GenerateSchema(enumType, context.SchemaRepository);
+            }
+        }
     }
 }

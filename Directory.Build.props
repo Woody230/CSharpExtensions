@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Settings">
-    <TargetFrameworks>net8.0</TargetFrameworks>
+    <TargetFramework>net10.0</TargetFramework>
     <PlatformTarget>x64</PlatformTarget>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <RepoRoot>$(MSBuildThisFileDirectory)</RepoRoot>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Version>2.7.0</Version>
+    <Version>3.0.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Label="Namespace">
@@ -25,6 +25,7 @@
     <When Condition="$(MSBuildProjectName.Contains('.Tests'))">
       <ItemGroup Label="Implicit Usings">
         <Using Include="FluentAssertions"/>
+        <Using Include="FluentAssertions.Json"/>
         <Using Include="Moq"/>
         <Using Include="Xunit"/>
       </ItemGroup>
