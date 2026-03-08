@@ -25,6 +25,7 @@
     <When Condition="$(MSBuildProjectName.Contains('.Tests'))">
       <ItemGroup Label="Implicit Usings">
         <Using Include="FluentAssertions"/>
+        <Using Include="FluentAssertions.Json"/>
         <Using Include="Moq"/>
         <Using Include="Xunit"/>
       </ItemGroup>

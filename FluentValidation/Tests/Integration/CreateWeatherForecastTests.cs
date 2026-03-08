@@ -49,13 +49,13 @@ public class CreateWeatherForecastTests(WebApplicationFactory<Program> factory) 
         var request = CreateRequest(forecast);
 
         // Act
-        var response = await HttpClient.SendAsync(request);
+        var response = await HttpClient.SendAsync(request, TestContext.Current.CancellationToken);
 
         // Assert
         using var scope = new AssertionScope();
         response.StatusCode.Should().Be(HttpStatusCode.OK);
 
-        var content = await response.Content.ReadAsStringAsync();
+        var content = await response.Content.ReadAsStringAsync(TestContext.Current.CancellationToken);
         AssertionChain.GetOrCreate().AddReportable("Content", content);
 
         var model = JsonSerializer.Deserialize<WeatherForecast>(content, _options);
@@ -113,7 +113,7 @@ public class CreateWeatherForecastTests(WebApplicationFactory<Program> factory) 
         var request = CreateRequest(forecast);
 
         // Act
-        var response = await HttpClient.SendAsync(request);
+        var response = await HttpClient.SendAsync(request, TestContext.Current.CancellationToken);
 
         // Assert
         await AssertBadResponse(response, "[OptionalEvent.Description] 'Description' must not be empty.\r\n[RequiredEvent.Description] 'Description' must start with *\r\n[OptionalEvents[2].Name] 'Name' must start with *\r\n[RequiredEvents[2].Name] 'Name' must start with *\r\n[TemperatureC] 'Temperature C' must be greater than '0'.");
@@ -130,7 +130,7 @@ public class CreateWeatherForecastTests(WebApplicationFactory<Program> factory) 
         var request = CreateRequest(forecast);
 
         // Act
-        var response = await HttpClient.SendAsync(request);
+        var response = await HttpClient.SendAsync(request, TestContext.Current.CancellationToken);
 
         // Assert
         await AssertBadResponse(response, "[RequiredEvent] 'Required Event' must not be empty.\r\n[RequiredEvents] 'Required Events' must not be empty.\r\n[TemperatureC] 'Temperature C' must be greater than '0'.");
@@ -146,7 +146,7 @@ public class CreateWeatherForecastTests(WebApplicationFactory<Program> factory) 
         var request = CreateRequest(null);
 
         // Act
-        var response = await HttpClient.SendAsync(request);
+        var response = await HttpClient.SendAsync(request, TestContext.Current.CancellationToken);
 
         // Assert
         await AssertBadResponse(response, "[$] Model is null.");

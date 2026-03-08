@@ -1,5 +1,4 @@
 ﻿using FluentAssertions.Execution;
-using FluentAssertions.Json;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json.Linq;
 using System.Net;
@@ -22,13 +21,13 @@ public class SwaggerTests(WebApplicationFactory<Program> factory) : IntegrationT
         var request = new HttpRequestMessage(HttpMethod.Get, "swagger/v1/swagger.json");
 
         // Act
-        var response = await HttpClient.SendAsync(request);
+        var response = await HttpClient.SendAsync(request, TestContext.Current.CancellationToken);
 
         // Assert
         using var scope = new AssertionScope();
         response.StatusCode.Should().Be(HttpStatusCode.OK);
 
-        var content = await response.Content.ReadAsStringAsync();
+        var content = await response.Content.ReadAsStringAsync(TestContext.Current.CancellationToken);
         AssertionChain.GetOrCreate().WithReportable("Content", () => content);
 
         var json = JObject.Parse(content);
